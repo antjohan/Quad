@@ -119,7 +119,7 @@ uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
 void Initialize(){
 printf("init");
  ConversionWaitTimeMs = 5;
- OversamplingSetting = 0;
+ OversamplingSetting = 3;
  Oversample = false;
 
  LastTemperatureTime = -1000;
