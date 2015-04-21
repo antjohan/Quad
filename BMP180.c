@@ -216,17 +216,17 @@ int GetUncompensatedTemperature(){
       int x2;
       long x1;
       x1 = (((long)uncompensatedTemperature - (long)Calibration_AC6) * (long)Calibration_AC5) >> 15;
-      printf("X1: %f\n",x1);
+      printf("X1: %d\n",x1);
       x2 = ((long)Calibration_MC << 11) / (x1 + Calibration_MD);
-      printf("X2: %f\n",x2);
+      printf("X2: %d\n",x2);
 
       int param_b5 = x1 + x2;
-      printf("b5: %f\n",param_b5);
+      printf("b5: %d\n",param_b5);
       temperature = (int)((param_b5 + 8) >> 4);  /* temperature in 0.1 deg C*/
       float fTemperature = temperature;
-      printf("temperature: %f\n",temperature);
+      printf("temperature: %d\n",temperature);
       fTemperature /= 10.0;
-      printf("fTemperature: %f\n",fTemperature);
+      printf("fTemperature: %d\n",fTemperature);
 
     // Record this data because it is required by the pressure algorithem.
     LastTemperatureData = param_b5;
