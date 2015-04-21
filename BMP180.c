@@ -205,7 +205,7 @@ int GetUncompensatedTemperature(){
         //Read2(Reg_AnalogConverterOutMSB, 3, buffer);
 
         // Collect the data (and push back the LSB if we are not sampling them).
-        pressure = ((((long)Read(0xF6) <<16) | ((long)Read(F7) <<8) | ((long)Read(0xF8))) >> (8-OversamplingSetting));
+        pressure = ((((long)Read(0xF6) <<16) | ((long)Read(0xF7) <<8) | ((long)Read(0xF8))) >> (8-OversamplingSetting));
       }
       return pressure / loops;
     }
