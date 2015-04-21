@@ -225,8 +225,8 @@ int GetUncompensatedTemperature(){
       int param_b5 = x1 + x2;
       printf("b5: %d\n",param_b5);
       temperature = (int)((param_b5 + 8) >> 4);  /* temperature in 0.1 deg C*/
-      double fTemperature = (double)temperature;
-      printf("temperature: %d\n",temperature);
+      double fTemperature = temperature;
+      printf("temperature: %d\n",(float)temperature/10);
       fTemperature = fTemperature/10;
       printf("fTemperature: %d\n",fTemperature);
 
