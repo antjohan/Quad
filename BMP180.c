@@ -154,17 +154,17 @@ printf("init");
 }
 
 void PrintCalibrationData(){
-	printf("AC1:\t"); printf("%s\n",Calibration_AC1);
-	printf("AC2:\t"); printf("%s\n",Calibration_AC2);
-	printf("AC3:\t"); printf("%s\n",Calibration_AC3);
-	printf("AC4:\t"); printf("%s\n",Calibration_AC4);
-	printf("AC5:\t"); printf("%s\n",Calibration_AC5);
-	printf("AC6:\t"); printf("%s\n",Calibration_AC6);
-	printf("B1:\t"); printf("%s\n",Calibration_B1);
-	printf("B2:\t"); printf("%s\n",Calibration_B2);
-	printf("MB:\t"); printf("%s\n",Calibration_MB);
-	printf("MC:\t"); printf("%s\n",Calibration_MC);
-	printf("MD:\t"); printf("%s\n",Calibration_MD);
+	printf("AC1:\t"); printf("%d\n",Calibration_AC1);
+	printf("AC2:\t"); printf("%d\n",Calibration_AC2);
+	printf("AC3:\t"); printf("%d\n",Calibration_AC3);
+	printf("AC4:\t"); printf("%d\n",Calibration_AC4);
+	printf("AC5:\t"); printf("%d\n",Calibration_AC5);
+	printf("AC6:\t"); printf("%d\n",Calibration_AC6);
+	printf("B1:\t"); printf("%d\n",Calibration_B1);
+	printf("B2:\t"); printf("%d\n",Calibration_B2);
+	printf("MB:\t"); printf("%d\n",Calibration_MB);
+	printf("MC:\t"); printf("%d\n",Calibration_MC);
+	printf("MD:\t"); printf("%d\n",Calibration_MD);
 
 }
 

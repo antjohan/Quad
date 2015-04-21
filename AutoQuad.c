@@ -104,13 +104,11 @@ int main(){
 			Set_Servo(servo, speed);
 
 		}else if (val == 4){
-			printf("1");
 
 			Initialize();
-			printf("2");
 
 			PrintCalibrationData();
-			printf("3");
+			printf("%d",GetUncompensatedTemperature());
 
 
 		}else if (val == 5){
