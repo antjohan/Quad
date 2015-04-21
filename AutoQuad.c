@@ -114,7 +114,7 @@ int main(){
 
 			printf("Compensated temperature: %d\n", GetTemperature());
 			printf("Compensated pressure: %d\n", GetPressure());
-			printf("Height: %d", GetAltitude(GetPressure()));
+			printf("Height: %d\n", GetAltitude(GetPressure()));
 
 		
 		}else if (val == 5){
