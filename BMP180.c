@@ -225,10 +225,12 @@ int GetUncompensatedTemperature(){
       int param_b5 = x1 + x2;
       printf("b5: %d\n",param_b5);
       temperature = (int)((param_b5 + 8) >> 4);  /* temperature in 0.1 deg C*/
-      double fTemperature = temperature;
-      printf("temperature: %d\n",(float)temperature/10);
-      fTemperature = fTemperature/(float)10;
+      float fTemperature = temperature;
+      printf("temperature: %d\n",temperature);
       printf("fTemperature: %d\n",fTemperature);
+
+      fTemperature = fTemperature/10.0;
+      printf("fTemperature: %f\n",fTemperature);
 
     // Record this data because it is required by the pressure algorithem.
     LastTemperatureData = param_b5;
