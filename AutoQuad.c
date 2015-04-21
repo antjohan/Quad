@@ -14,7 +14,8 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 	THR -> 3 -> P1-13
 	RUD -> 4 -> P1-15
 ----------------------------------------------------
-*/
+*/ 
+// HEEEEEJ
 
 void Set_Servo(int num, int pos){
 
