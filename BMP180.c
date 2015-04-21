@@ -161,6 +161,7 @@ printf("init");
   Calibration_MB = (int)(Read(0xBA) <<8) | Read(0xBB); 
   Calibration_MC = (int)(Read(0xBC) <<8) | Read(0xBD);
   Calibration_MD = (int)(Read(0xBE) <<8) | Read(0xBF);
+    printf("hej???"); 
 }
 
 void PrintCalibrationData(){
