@@ -159,6 +159,9 @@ printf("init");
   Calibration_B1 = (Read(0xB6) <<8) | Read(0xB7);
   Calibration_B2 = (Read(0xB8) <<8) | Read(0xB9);
   Calibration_MB = (Read(0xBA) <<8) | Read(0xBB);
+  printf("BA:\t"); printf("%d\n",Read(0xBA));  
+  printf("BB:\t"); printf("%d\n",Read(0xBB));  
+
   Calibration_MC = (Read(0xBC) <<8) | Read(0xBD);
   Calibration_MD = (Read(0xBE) <<8) | Read(0xBF);
 }
