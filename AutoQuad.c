@@ -109,11 +109,11 @@ int main(){
 			Initialize();
 
 			PrintCalibrationData();
-			printf("Uncompensated temperature: %d",GetUncompensatedTemperature());
-			printf("Uncompensated pressure: %d",GetUncompensatedPressure());
+			printf("Uncompensated temperature: %d\n",GetUncompensatedTemperature());
+			printf("Uncompensated pressure: %d\n",GetUncompensatedPressure());
 
-			printf("Compensated temperature: %d", GetTemperature());
-			printf("Compensated pressure: %d", GetPressure());
+			printf("Compensated temperature: %d\n", GetTemperature());
+			printf("Compensated pressure: %d\n", GetPressure());
 
 		
 		}else if (val == 5){
