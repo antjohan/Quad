@@ -162,6 +162,12 @@ printf("init");
   printf("BA:\t"); printf("%d\n",Read(0xBA));  
   printf("BB:\t"); printf("%d\n",Read(0xBB));  
 
+  printf("Värden på minnet:\t"); printf("%d\n",Read(0xBA));  
+  printf("BA:\t"); printf("%d\n",Read(0xBA));  
+  printf("BB:\t"); printf("%d\n",Read(0xBB));
+
+  printf("Borde bli:\t"); printf("%d\n",((128 <<8) | 0));  
+  
   Calibration_MC = (Read(0xBC) <<8) | Read(0xBD);
   Calibration_MD = (Read(0xBE) <<8) | Read(0xBF);
 }
