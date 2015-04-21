@@ -127,16 +127,16 @@ printf("init");
 
  AcceptableTemperatureLatencyForPressure = 1000;
  wiringPiSetupSys();
- printf("init");
+ //printf("init");
 
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- printf("init");
+ //printf("init");
 
  SetResolution(BMP180_Mode_Standard, false);
-printf("init");
+//printf("init");
 
  //uint8_t* buffer = Read(Reg_CalibrationStart, Reg_CalibrationEnd - Reg_CalibrationStart + 2);
- printf("init");
+// printf("init");
 
 	// This data is in Big Endian format from the BMP180.
   /*Calibration_AC1 = (buffer[0] << 8) | buffer[1];
@@ -156,11 +156,16 @@ printf("init");
   Calibration_AC4 = (Read(0xB0) <<8) | Read(0xB1);
   Calibration_AC5 = (Read(0xB2) <<8) | Read(0xB3);
   Calibration_AC6 = (Read(0xB4) <<8) | Read(0xB5);
-  Calibration_B1 = (Read(0xB6) <<8) | Read(0xB7);
-  Calibration_B2 = (Read(0xB8) <<8) | Read(0xB9);
-  Calibration_MB = (Read(0xBA) <<8) | Read(0xBB);
+  Calibration_B1  = (Read(0xB6) <<8) | Read(0xB7);
+  Calibration_B2  = (Read(0xB8) <<8) | Read(0xB9);
+  Calibration_MB  = (Read(0xBA) <<8) | Read(0xBB);
+
+  printf("Värden på minnet:\t"); printf("%d\n",Read(0xBA));  
   printf("BA:\t"); printf("%d\n",Read(0xBA));  
-  printf("BB:\t"); printf("%d\n",Read(0xBB));  
+  printf("BB:\t"); printf("%d\n",Read(0xBB));
+
+  printf("Borde bli:\t"); printf("%d\n",((128 <<8) | 0));  
+  
 
   Calibration_MC = (Read(0xBC) <<8) | Read(0xBD);
   Calibration_MD = (Read(0xBE) <<8) | Read(0xBF);
