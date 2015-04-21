@@ -233,10 +233,10 @@ int GetUncompensatedTemperature(){
   }
 
   long CompensatePressure(long uncompensatedPressure){
-   int msSinceLastTempReading = millis() - LastTemperatureTime;
+   //int msSinceLastTempReading = millis() - LastTemperatureTime;
     // Check to see if we have old temperature data.
-    if (msSinceLastTempReading > AcceptableTemperatureLatencyForPressure)
-        GetTemperature(); // Refresh the temperature.
+    //if (msSinceLastTempReading > AcceptableTemperatureLatencyForPressure)
+      //  GetTemperature(); // Refresh the temperature.
 
     // Data from the BMP180 datasheet to test algorithm.
     /*OversamplingSetting = 0;
