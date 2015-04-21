@@ -46,8 +46,7 @@
  int Calibration_MC;
  int Calibration_MD;
 
- void Write(int address, int data){
-
+void Write(int address, int data){
   wiringPiI2CWriteReg8(BMP180_Sensor,address, data);  
 }
 
@@ -184,8 +183,9 @@ int GetUncompensatedTemperature(){
     Write(Reg_Control, ControlInstruction_MeasureTemperature);
     // Wait for the conversion to complete.
     delay(5);
-    uint8_t* data = Read(Reg_AnalogConverterOutMSB, 2);
-    int value = (data[0] << 8) | data[1];
+    //uint8_t* data = Read(Reg_AnalogConverterOutMSB, 2);
+
+    int value = (Read(Reg_AnalogConverterOutMSB) << 8) | Read(Reg_AnalogConverterOutMSB+0x01);
     return value;
   }
 
@@ -201,11 +201,11 @@ int GetUncompensatedTemperature(){
         // Wait for the conversion
         delay(ConversionWaitTimeMs);
         // Read the conversion data.
-        uint8_t buffer[3];
-        Read2(Reg_AnalogConverterOutMSB, 3, buffer);
+       // uint8_t buffer[3];
+        //Read2(Reg_AnalogConverterOutMSB, 3, buffer);
 
         // Collect the data (and push back the LSB if we are not sampling them).
-        pressure = ((((long)buffer[0] <<16) | ((long)buffer[1] <<8) | ((long)buffer[2])) >> (8-OversamplingSetting));
+        pressure = ((((long)Read(0xF6) <<16) | ((long)Read(F7) <<8) | ((long)Read(0xF8))) >> (8-OversamplingSetting));
       }
       return pressure / loops;
     }
