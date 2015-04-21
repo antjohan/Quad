@@ -117,7 +117,7 @@ uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
 }
 
 void Initialize(){
-printf("init");
+//printf("init");
  ConversionWaitTimeMs = 5;
  OversamplingSetting = 3;
  Oversample = false;
@@ -127,16 +127,16 @@ printf("init");
 
  AcceptableTemperatureLatencyForPressure = 1000;
  wiringPiSetupSys();
- printf("init");
+ //printf("init");
 
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- printf("init");
+ //printf("init");
 
  SetResolution(BMP180_Mode_Standard, false);
-printf("init");
+//printf("init");
 
  //uint8_t* buffer = Read(Reg_CalibrationStart, Reg_CalibrationEnd - Reg_CalibrationStart + 2);
- printf("init");
+ //printf("init");
 
 	// This data is in Big Endian format from the BMP180.
   /*Calibration_AC1 = (buffer[0] << 8) | buffer[1];
@@ -150,18 +150,18 @@ printf("init");
   Calibration_MB = (buffer[16] << 8) | buffer[17];
   Calibration_MC = (buffer[18] << 8) | buffer[19];
   Calibration_MD = (buffer[20] << 8) | buffer[21];*/
-  Calibration_AC1 = (int)((Read(0xAA) <<8) | Read(0xAB));
-  Calibration_AC2 = (int)((Read(0xAC) <<8) | Read(0xAD));
-  Calibration_AC3 = (int)((Read(0xAE) <<8) | Read(0xAF));
-  Calibration_AC4 = (unsigned int)((Read(0xB0) <<8) | Read(0xB1));
-  Calibration_AC5 = (unsigned int)((Read(0xB2) <<8) | Read(0xB3));
-  Calibration_AC6 = (unsigned int)((Read(0xB4) <<8) | Read(0xB5));
-  Calibration_B1 = (int)((Read(0xB6) <<8) | Read(0xB7));
-  Calibration_B2 = (int)((Read(0xB8) <<8) | Read(0xB9));
-  Calibration_MB = (int)((Read(0xBA) <<8) | Read(0xBB)); 
-  Calibration_MC = (int)((Read(0xBC) <<8) | Read(0xBD));
-  Calibration_MD = (int)((Read(0xBE) <<8) | Read(0xBF));
-    printf("hej???"); 
+  Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
+  Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
+  Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
+  Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
+  Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
+  Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
+  Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
+  Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
+  Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
+  Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
+  Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
+
 }
 
 void PrintCalibrationData(){
