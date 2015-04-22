@@ -7,6 +7,8 @@
 #define HMC5883L_Address 0x1E
  #define ModeRegister_Address 0x02
  #define ContinuosMeasurementMode 0x00
+#define CRA 0x00 //configuration register a
+#define CRB 0x01 //configuration register b
 #define XData_MSB 0x03
 #define XData_LSB 0x04
 #define ZData_MSB 0x05
@@ -21,13 +23,15 @@ void HMC5883L_init(){
    wiringPiSetupSys();
    HMC5883L_Sensor =  wiringPiI2CSetup (HMC5883L_Address);
    wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
+   wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
+
 }
 
 int GetX(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
 
-   unsigned int x = (unsigned int)((MSB << 8) | LSB);
+   signed int x = (signed int)((MSB << 8) | LSB);
    return x;
 }
 
@@ -35,7 +39,7 @@ int GetY(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
 
-   unsigned int y = (unsigned int)((MSB << 8) | LSB);
+   signed int y = (signed int)((MSB << 8) | LSB);
    return y;
 }
 
@@ -43,7 +47,7 @@ int GetZ(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_LSB);
 
-   unsigned int z = (unsigned int)((MSB << 8) | LSB);
+   signed int z = (signed int)((MSB << 8) | LSB);
    return z;
 }
 
