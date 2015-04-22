@@ -113,7 +113,7 @@ int main(){
 			printf("Uncompensated pressure: %d\n",GetUncompensatedPressure());
 
 			printf("Compensated temperature: %f\n", GetTemperature());
-			printf("Compensated pressure: %f\n", GetPressure());
+			printf("Compensated pressure: %d\n", GetPressure());
 			printf("Height: %f\n", GetAltitude(GetPressure()));
 
 		
