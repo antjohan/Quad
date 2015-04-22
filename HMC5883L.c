@@ -23,24 +23,24 @@ void HMC5883L_init(){
 }
 
 int GetX(){
-   uint8_t MSB = wiringPiI2CReadReg8(XData_MSB);
-   uint8_t LSB = wiringPiI2CReadReg8(XData_LSB);
+   uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
+   uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
 
    int x = (MSB << 8) | LSB;
    return x;
 }
 
 int GetY(){
-   uint8_t MSB = wiringPiI2CReadReg8(YData_MSB);
-   uint8_t LSB = wiringPiI2CReadReg8(YData_LSB);
+   uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_MSB);
+   uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
 
    int y = (MSB << 8) | LSB;
    return y;
 }
 
-int GetX(){
-   uint8_t MSB = wiringPiI2CReadReg8(ZData_MSB);
-   uint8_t LSB = wiringPiI2CReadReg8(ZData_LSB);
+int GetZ(){
+   uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_MSB);
+   uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_LSB);
 
    int z = (MSB << 8) | LSB;
    return z;
