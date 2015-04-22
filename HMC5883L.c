@@ -27,7 +27,7 @@ int GetX(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
 
-   int x = (MSB << 8) | LSB;
+   unsigned int x = ((unsigned int)((MSB << 8) | LSB);
    return x;
 }
 
@@ -35,7 +35,7 @@ int GetY(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
 
-   int y = (MSB << 8) | LSB;
+   unsigned int y = (unsigned int)((MSB << 8) | LSB);
    return y;
 }
 
@@ -43,7 +43,7 @@ int GetZ(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_LSB);
 
-   int z = (MSB << 8) | LSB;
+   unsigned int z = (unsigned int)((MSB << 8) | LSB);
    return z;
 }
 
@@ -52,5 +52,7 @@ int main(){
    while(1){
       delay(100);
       printf("%d\n", GetX());
+      printf("%d\n", GetY());
+      printf("%d\n", GetZ());
    }
 }
