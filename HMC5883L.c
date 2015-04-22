@@ -1,4 +1,5 @@
  #include <wiringPiI2C.h>
+ #include <stdio.h>
  #include <wiringPi.h>
  #include <inttypes.h>
  #include <stdbool.h>
