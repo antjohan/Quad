@@ -31,7 +31,7 @@ int GetX(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
 
-   signed int x = (signed int)((MSB << 8) | LSB);
+   short x = (short)((MSB << 8) | LSB);
    return x;
 }
 
@@ -39,7 +39,7 @@ int GetY(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
 
-   signed int y = (signed int)((MSB << 8) | LSB);
+   short y = (short)((MSB << 8) | LSB);
    return y;
 }
 
@@ -47,7 +47,7 @@ int GetZ(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_LSB);
 
-   signed int z = (signed int)((MSB << 8) | LSB);
+   short z = (short)((MSB << 8) | LSB);
    return z;
 }
 
