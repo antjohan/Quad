@@ -27,7 +27,7 @@ int GetX(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
 
-   unsigned int x = ((unsigned int)((MSB << 8) | LSB);
+   unsigned int x = (unsigned int)((MSB << 8) | LSB);
    return x;
 }
 
