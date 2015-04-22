@@ -50,8 +50,8 @@ int GetZ(){
 int main(){
    HMC5883L_init();
    while(1){
-      delay(100);
-      printf("%d\n", GetX());
+      delay(500);
+      printf("-------------\n%d\n", GetX());
       printf("%d\n", GetY());
       printf("%d\n", GetZ());
    }
