@@ -21,15 +21,22 @@
    This example code is in the public domain.
 
  */
+ #include <wiringPiI2C.h>
+ #include <wiringPi.h>
+ #include <inttypes.h>
+ #include <stdbool.h>
+ #include <math.h>
 
-// this constant won't change.  It's the pin number
-// of the sensor's output:
 const int pingPin = 0x77;
 
 void setup() {
   // initialize serial communication:
-  Serial.begin(9600);
+  printf("init");
+//Serial.begin(9600);
+  wiringPiSetupSys();
+  printf("init");
   SensorPin =  wiringPiI2CSetup (pingPing);
+  printf("init");
 }
 
 void loop()
@@ -40,40 +47,20 @@ void loop()
 
   // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
   // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-  pinMode(pingPin, OUTPUT);
-  digitalWrite(pingPin, LOW);
+  wiringPiI2CWrite (pingPin, 0);
   delayMicroseconds(2);
-  digitalWrite(pingPin, HIGH);
+  wiringPiI2CWrite (pingPin, 1);
   delayMicroseconds(5);
-  digitalWrite(pingPin, LOW);
-
+  wiringPiI2CWrite (pingPin, 0);
   // The same pin is used to read the signal from the PING))): a HIGH
   // pulse whose duration is the time (in microseconds) from the sending
   // of the ping to the reception of its echo off of an object.
-  pinMode(pingPin, INPUT);
-  duration = pulseIn(pingPin, HIGH);
-
+  duration = pulseIn(wiringPiI2CRead (pingPin), 1);
+  
   // convert the time into a distance
-  inches = microsecondsToInches(duration);
   cm = microsecondsToCentimeters(duration);
-  
-  Serial.print(inches);
-  Serial.print("in, ");
-  Serial.print(cm);
-  Serial.print("cm");
-  Serial.println();
-  
+  printf("%l",cm);
   delay(100);
-}
-
-long microsecondsToInches(long microseconds)
-{
-  // According to Parallax's datasheet for the PING))), there are
-  // 73.746 microseconds per inch (i.e. sound travels at 1130 feet per
-  // second).  This gives the distance travelled by the ping, outbound
-  // and return, so we divide by 2 to get the distance of the obstacle.
-  // See: http://www.parallax.com/dl/docs/prod/acc/28015-PING-v1.3.pdf
-  return microseconds / 74 / 2;
 }
 
 long microsecondsToCentimeters(long microseconds)
@@ -83,3 +70,42 @@ long microsecondsToCentimeters(long microseconds)
   // object we take half of the distance travelled.
   return microseconds / 29 / 2;
 }
+/*
+int pulseIn(int pin, int level, int timeout)
+{
+   struct timeval tn, t0, t1;
+
+   long micros;
+
+   gettimeofday(&t0, NULL);
+
+   micros = 0;
+
+   while (digitalRead(pin) != level)
+   {
+      gettimeofday(&tn, NULL);
+
+      if (tn.tv_sec > t0.tv_sec) micros = 1000000L; else micros = 0;
+      micros += (tn.tv_usec - t0.tv_usec);
+
+      if (micros > timeout) return 0;
+   }
+
+   gettimeofday(&t1, NULL);
+
+   while (digitalRead(pin) == level)
+   {
+      gettimeofday(&tn, NULL);
+
+      if (tn.tv_sec > t0.tv_sec) micros = 1000000L; else micros = 0;
+      micros = micros + (tn.tv_usec - t0.tv_usec);
+
+      if (micros > timeout) return 0;
+   }
+
+   if (tn.tv_sec > t1.tv_sec) micros = 1000000L; else micros = 0;
+   micros = micros + (tn.tv_usec - t1.tv_usec);
+
+   return micros;
+}
+*/
