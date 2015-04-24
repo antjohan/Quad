@@ -13,21 +13,21 @@ void ultraSetup() {
         pinMode(ECHO, INPUT);
  
         //TRIG pin must start LOW
-        digitalWrite(TRIG, LOW);
+        digitalWrite(TRIG, 0);
         delay(30);
 }
  
 int getCM() {
         //Send trig pulse
-        digitalWrite(TRIG, HIGH);
+        digitalWrite(TRIG, 1);
         delayMicroseconds(20);
-        digitalWrite(TRIG, LOW);
+        digitalWrite(TRIG, 0);
         //Wait for echo start
-        while(digitalRead(ECHO) == LOW);
+        while(digitalRead(ECHO) == 0);
         printf("1a loop\n");
         //Wait for echo end
         long startTime = micros();
-        while(digitalRead(ECHO) == HIGH);
+        while(digitalRead(ECHO) == 1);
         long travelTime = micros() - startTime;
  
         //Get distance in cm
