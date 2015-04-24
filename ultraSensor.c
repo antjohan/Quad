@@ -23,9 +23,9 @@ int getUltra()
 
 //    while(1) {
     	     digitalWrite(trig, LOW);     // trig off
-	     delay(0.002)
+	     delay(0.002);
 	     digitalWrite(trig, HIGH);     // trig on
-	     delay(0.005)
+	     delay(0.005);
 	     digitalWrite(trig, LOW);     // trig off
 
 	     while(echo != HIGH) {
