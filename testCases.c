@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
-#include "AutoQuad.c"
 const int hoverConst = 70;
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
