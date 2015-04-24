@@ -12,6 +12,7 @@ clock_t start, echotime;
 int getUltra()
 {
     // Setup stuff:
+    printf("getUltra");
     wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
 
     pinMode(trig, OUTPUT);     // Set trig as output
