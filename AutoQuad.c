@@ -6,7 +6,7 @@
 #include "BMP180.c"
 #include "ultraSensor.c"
 #include "ultra.c"
-
+#include "testCases.c"
 
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
