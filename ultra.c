@@ -51,6 +51,12 @@ int getCM(){
   }
   int res = sum/val;
   
+    FILE *fp;
+fp=fopen("data.txt","r+");
+fprintf(fp, "%i %i", (int)clock(), res"\n");
+fclose(fp);
+  
+  
   return res;
   
   
