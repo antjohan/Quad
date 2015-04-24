@@ -31,7 +31,7 @@ to idle, so that if they are controlled through the mux aswell it will stay stat
 */
 
 int testHoverToStep(void){
-	printf("Startar hover to step test\n");
+	printf("Startar hover to step test, setter hover\n");
   int afterStep = 75;
   setHover();
   sleep(4);
