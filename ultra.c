@@ -27,7 +27,7 @@ int getCM() {
         while(digitalRead(ECHO) == LOW && i < 10000){
           i++;
         };
- 
+        printf("1a loop");
         //Wait for echo end
         long startTime = micros();
         while(digitalRead(ECHO) == HIGH);
