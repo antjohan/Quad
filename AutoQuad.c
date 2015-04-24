@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <wiringPiI2C.h>
 #include "BMP180.c"
+#include "ultraSensor.c"
 
 
 /*
@@ -63,6 +64,7 @@ void Disarm_FlightController(){
 	}
 } 
 
+
 int main(){
 	while(1){
 		printf("---------------------------------\n");
@@ -73,6 +75,7 @@ int main(){
 		printf("[3]	Set Servo\n");
 		printf("[4]	i2c\n");
 		printf("[5]	Quit\n");
+		printf("[6]     Test prog\n")
 		printf("---------------------------------\n");
 
 		int val;
@@ -121,6 +124,11 @@ int main(){
 			break;
 		}else{
 			printf("Invalid\n");
+		}
+		if(val == 6){
+			printf("Testar avstand\n");
+			getUltra();
+			printf("Done!\n");
 		}
 	}
 	///////////////////
