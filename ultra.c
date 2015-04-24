@@ -24,10 +24,10 @@ int getCM() {
         digitalWrite(TRIG, LOW);
         int i = 0;
         //Wait for echo start
-        while(digitalRead(ECHO) == LOW && i < 10000){
+        while(digitalRead(ECHO) == LOW && i < 100000){
           i++;
         };
-        printf("1a loop");
+        printf("1a loop\n");
         //Wait for echo end
         long startTime = micros();
         while(digitalRead(ECHO) == HIGH);
