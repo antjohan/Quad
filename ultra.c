@@ -53,7 +53,7 @@ int getCM(){
   
     FILE *fp;
 fp=fopen("data.txt","r+");
-fprintf(fp, "%i, res, "\n");
+fprintf(fp, "%i", res, "\n");
 fclose(fp);
   
   
