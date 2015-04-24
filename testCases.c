@@ -47,7 +47,7 @@ int testHoverToStep(void){
 
 /*
 Testcase2, Rotera ett varv
-Sets hover, after 4 seconds sets a predetermined value of force to yaw, clockwise direction.
+Sets hover, after 4 seconds sets a predetermined value to yaw, clockwise direction.
 After 4 seconds, sets hover for 4 seconds. Then sets a counter clockwise rotation for 4 seconds.
 Initially it is controlled by time and not the magnetometer (TODO).
 Setup: Doubled inputs from RC reciever to the MUX on all ports except from yaw
@@ -76,11 +76,55 @@ int testOneRotation(void){
 
 /*
 Testcase3, pitch
-
-
+	Sets hover, after 4 seconds sets a predetermined value of to pitch, forward direction.
+	After 4 seconds, sets hover for 4 seconds. Then sets a backwards direction for 4 seconds.
+	Initially it is controlled by force and not the magnetometer (TODO?).
+	Setup: Doubled inputs from RC reciever to the MUX on all ports except from pitch
+	which is controlled by the rPI in one of the sets of the inputs. For safety; all servos are set 
+	to idle, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-
-/*Testcase4, roll
-
-
+int pitchTest(void){
+	const int pitchSpeed = 30;
+  printf("Startar pitch test, setter hover\n");
+  setHover();
+  sleep(4);
+  printf("Initierar framåt\n");
+//  Set_Servo(1,50+pitchSpeed);
+  sleep(4);
+  printf("Klar med framåt, setter hover\n");
+  setHover();
+  sleep(4);
+  printf("Initierar bakåt\n");
+//  Set_Servo(1, 50-pitchSpeed);
+  sleep(4);
+  printf("Klar med pitch test, setter hover\n");
+  setHover();
+  return 0;
+}
+/*
+Testcase4, roll
+	Sets hover, after 4 seconds sets a predetermined value of to roll, right direction.
+	After 4 seconds, sets hover for 4 seconds. Then sets a left direction for 4 seconds.
+	Initially it is controlled by force and not the magnetometer (TODO?).
+	Setup: Doubled inputs from RC reciever to the MUX on all ports except from roll
+	which is controlled by the rPI in one of the sets of the inputs. For safety; all servos are set 
+	to idle, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
+int rollTest(void){
+	const int rollSpeed = 30;
+  printf("Startar roll test, setter hover\n");
+  setHover();
+  sleep(4);
+  printf("Initierar höger\n");
+//  Set_Servo(1,50+rollSpeed);
+  sleep(4);
+  printf("Klar med höger, setter hover\n");
+  setHover();
+  sleep(4);
+  printf("Initierar vänster\n");
+//  Set_Servo(1, 50-rollSpeed);
+  sleep(4);
+  printf("Klar med roll test, setter hover\n");
+  setHover();
+  return 0;
+}
