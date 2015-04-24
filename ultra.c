@@ -49,7 +49,7 @@ int getCM(){
    printf("%i\n", tmp);
    delay(100);
   }
-  return tmp/val;
+  return sum/val;
 }
 
 
