@@ -4,8 +4,8 @@
  
 #define TRUE 1
  
-#define TRIG 4
-#define ECHO 5
+#define TRIG 23
+#define ECHO 24
  
 void ultraSetup() {
         wiringPiSetup();
