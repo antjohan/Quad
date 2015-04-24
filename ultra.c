@@ -13,16 +13,6 @@ void ultraSetup() {
         pinMode(ECHO, INPUT);
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
-        printf("000\n");
-        digitalWrite(TRIG, LOW);
-        printf("111\n");
-        sleep(10);
-        digitalWrite(TRIG, HIGH);
-        printf("111\n");
-        sleep(5);
-        digitalWrite(TRIG, LOW);
-        printf("111\n");
-        sleep(5);
         delay(30);
 }
  
