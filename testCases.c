@@ -132,13 +132,13 @@ int rollTest(void){
   setHover();
   sleep(4);
   printf("Initierar höger\n");
-  Set_Serv(1,50+rollSpeed);
+  Set_Serv(2,50+rollSpeed);
   sleep(4);
   printf("Klar med höger, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar vänster\n");
-  Set_Serv(1, 50-rollSpeed);
+  Set_Serv(2, 50-rollSpeed);
   sleep(4);
   printf("Klar med roll test, setter hover\n");
   setHover();
