@@ -33,9 +33,9 @@ int getUltra()
 	     for(int i = 0; i< 20; i++){
 	     	
 	     }
-	     printf(
-	     while(echo != HIGH) {
-	     }
+	     
+	    // while(echo != HIGH) {
+	     //}
 	     printf("getUltra Mellan\n");
 	     start = clock();
 	     printf("getUltra 4\n");
