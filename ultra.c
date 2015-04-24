@@ -23,11 +23,11 @@ int getCM() {
         delayMicroseconds(20);
         digitalWrite(TRIG, LOW);
         //Wait for echo start
-        while(digitalRead(ECHO) != HIGH);
+        while(digitalRead(ECHO) == LOW);
         printf("1a loop\n");
         //Wait for echo end
         long startTime = micros();
-        while(digitalRead(ECHO) != LOW);
+        while(digitalRead(ECHO) == HIGH);
         long travelTime = micros() - startTime;
  
         //Get distance in cm
