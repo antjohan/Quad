@@ -74,9 +74,8 @@ int main(){
 		printf("[1]	Arm FlightController\n");
 		printf("[2]	Disrm FlightController\n");
 		printf("[3]	Set Servo\n");
-		printf("[4]	i2c\n");
+		printf("[4]	Test prog\n");
 		printf("[5]	Quit\n");
-		printf("[6]     Test prog\n");
 		printf("---------------------------------\n");
 
 		int val;
@@ -117,6 +116,7 @@ int main(){
 			printf("[2] Testa ultra sensor\n");
 			printf("[3] Testa hoverToStep\n");
 			printf("[4] Testa ett varv rotation\n");
+			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
 			if (test == 1){
