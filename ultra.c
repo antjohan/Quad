@@ -22,9 +22,11 @@ int getCM() {
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
         digitalWrite(TRIG, LOW);
- 
+        int i = 0;
         //Wait for echo start
-        while(digitalRead(ECHO) == LOW);
+        while(digitalRead(ECHO) == LOW && i < 10000){
+          i++;
+        };
  
         //Wait for echo end
         long startTime = micros();
