@@ -41,11 +41,13 @@ int getUltra() {
 int getCM(){
  int val = 10;
  int tmp=0;
+ int sum=0;
  
   for(int i = 0; i<val; i++){
-   tmp = tmp + getUltra();
+   tmp = getUltra();
+   sum = sum+tmp;
+   printf("%i\n", tmp);
   }
-  
   return tmp/val;
 }
 
