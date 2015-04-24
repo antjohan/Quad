@@ -20,6 +20,7 @@ void ultraSetup() {
 int getCM() {
         //Send trig pulse
         digitalWrite(TRIG, 1);
+        sleep(300000);
         /*
         delayMicroseconds(20);
         digitalWrite(TRIG, 0);
@@ -35,6 +36,7 @@ int getCM() {
         int distance = travelTime / 58;
  
         return distance; */
+        return 0;
 }
  
 //int main(void) {
