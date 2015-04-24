@@ -12,12 +12,12 @@ clock_t start, echotime;
 int getUltra()
 {
     // Setup stuff:
-    printf("getUltra");
+    printf("getUltra\n");
     wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
 
     pinMode(trig, OUTPUT);     // Set trig as output
     pinMode(echo, INPUT);      // Set echo as INPUT
-
+    printf("getUltra 2\n");
 // Ev. ta bort   pullUpDnControl(butPin, PUD_UP); // Enable pull-up resistor on button
 
 // Loop
@@ -42,7 +42,7 @@ int getUltra()
 	     
 	     printf("%l", length);
 //	}
-
+    printf("getUltra 6\n");
 	 return length;
 }
 
