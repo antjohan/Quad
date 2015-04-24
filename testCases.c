@@ -12,12 +12,28 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 	RUD -> 4 -> P1-15
 ----------------------------------------------------
 */
+
+void Set_Serv(int num, int pos){
+
+	if((num <= 4 || num >= 1) && (pos <= 100 || pos >= 0)){
+		char* echo = "echo";
+		char* destination = " > /dev/servoblaster \n";
+		char* equal = "=";
+		char* procent = "%";
+		char cmd[256];
+		snprintf(cmd, sizeof cmd, "%s %i%s%i%s %s", echo, num, equal,pos, procent, destination);
+		//system(cmd);
+		//printf("%s\n",cmd);
+	}else{
+		printf("Invalid!");
+	}
+}
 void setHover(){
 	int servo[4] = {1,2,3,4};
 	int hover[4] = {50,50,hoverConst,50};
 	
 	for (int i = 0; i<4;i++){
-//	  Set_Servo(servo[i],hover[i]);
+	  Set_Serv(servo[i],hover[i]);
 	}
 }
 
@@ -37,7 +53,7 @@ int testHoverToStep(void){
   sleep(4);
   printf("Initierar steg\n");
   //Initiate step
-//  Set_Servo(3, afterStep);
+  Set_Serv(3, afterStep);
   sleep(4);
   printf("Klar med test, setter hover\n");
   //Hover
@@ -61,13 +77,13 @@ int testOneRotation(void){
   setHover();
   sleep(4);
   printf("Initierar clockwise rotation\n");
-//  Set_Servo(4,50+yawSpeed);
+  Set_Serv(4,50+yawSpeed);
   sleep(4);
   printf("Klar med clockwise, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar counter clockwise rotation\n");
-//  Set_Servo(4, 50-yawSpeed);
+  Set_Serv(4, 50-yawSpeed);
   sleep(4);
   printf("Klar med test, setter hover\n");
   setHover();
@@ -89,13 +105,13 @@ int pitchTest(void){
   setHover();
   sleep(4);
   printf("Initierar framåt\n");
-//  Set_Servo(1,50+pitchSpeed);
+  Set_Serv(1,50+pitchSpeed);
   sleep(4);
   printf("Klar med framåt, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar bakåt\n");
-//  Set_Servo(1, 50-pitchSpeed);
+  Set_Serv(1, 50-pitchSpeed);
   sleep(4);
   printf("Klar med pitch test, setter hover\n");
   setHover();
@@ -116,13 +132,13 @@ int rollTest(void){
   setHover();
   sleep(4);
   printf("Initierar höger\n");
-//  Set_Servo(1,50+rollSpeed);
+  Set_Serv(1,50+rollSpeed);
   sleep(4);
   printf("Klar med höger, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar vänster\n");
-//  Set_Servo(1, 50-rollSpeed);
+  Set_Serv(1, 50-rollSpeed);
   sleep(4);
   printf("Klar med roll test, setter hover\n");
   setHover();
