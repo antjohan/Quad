@@ -8,7 +8,7 @@
 #define ECHO 5
  
 void ultraSetup() {
- //       wiringPiSetup();
+        wiringPiSetup();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
  
