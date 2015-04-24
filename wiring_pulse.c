@@ -1,6 +1,7 @@
 /*  
 
-  >>>TESTAR OM pulseIN() FUNGERAR BÄTTRE<<<
+  >>> Eventuellt fungerar ultra.c bättre med denna funktionen (implementerad i ultra2.c)
+  Dock kräver den fler bibliotek som vi inte har...<<<
 
   wiring_pulse.c - pulseIn() function
   Part of Arduino - http://www.arduino.cc/
