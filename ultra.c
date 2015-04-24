@@ -11,7 +11,6 @@ void ultraSetup() {
         wiringPiSetup();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
- 
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
         delay(30);
@@ -20,6 +19,7 @@ void ultraSetup() {
 int getCM() {
         //Send trig pulse
         digitalWrite(TRIG, HIGH);
+        printf("...");
         sleep(300000);
         /*
         delayMicroseconds(20);
