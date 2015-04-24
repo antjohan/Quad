@@ -49,8 +49,18 @@ int getCM(){
   // printf("%i\n", tmp);
    delay(30);
   }
-  return sum/val;
+  res = sum/val;
+  
+  FILE *fp;
+fp=fopen("data.txt","w");
+putc(res,fp);
+fclose(fp);
+  
+  return res;
+  
+  
 }
+
 
 
 
