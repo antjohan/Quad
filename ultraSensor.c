@@ -30,7 +30,7 @@ int getUltra()
 	     digitalWrite(trig, LOW);     // trig off
 	     printf("getUltra 3\n");
 	     testtime = clock();
-	     for(int i = 0; i< 20; i++){
+	     for(int i = 0; i< 200; i++){
 	     	
 	     }
 	     
@@ -41,8 +41,8 @@ int getUltra()
 	     printf("getUltra 4\n");
 	     //while(echo != LOW) {
 	     //}
-	     printf("getUltra 5\n");
 	     echotime = (long)(clock() - testtime)/CLOCKS_PER_SEC;
+		printf("%l", echotime);
 	     length = (echotime / 58.138);
 	     
 	     printf("%l", length);
