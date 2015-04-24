@@ -112,10 +112,10 @@ int main(){
 		else if(val == 4){
 			int test;
 
-			printf("[1] Testa barometer\n");
-			printf("[2] Testa ultra sensor\n");
-			printf("[3] Testa hoverToStep\n");
-			printf("[4] Testa ett varv rotation\n");
+			printf("[1]	Testa barometer\n");
+			printf("[2]	Testa ultra sensor\n");
+			printf("[3]	Testa hoverToStep\n");
+			printf("[4]	Testa ett varv rotation\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
