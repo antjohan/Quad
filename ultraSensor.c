@@ -1,4 +1,4 @@
-#include <stdio.h>			// Used for printf() statements
+/* #include <stdio.h>			// Used for printf() statements
 #include <wiringPi.h> 		 // Include WiringPi library!
 #include <time.h>		    	    // Include time
 // Pin number declarations. We're using the Broadcom chip pin numbers.
@@ -48,5 +48,5 @@ int getUltra()
 	 return length;
 }
 
-
+*/
 
