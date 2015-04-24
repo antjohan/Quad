@@ -138,10 +138,10 @@ int main(){
 				printf("Done!\n");
 			}
 			//Test hoverToStep
-			else if(){
+			else if(test == 3){
 				testHoverToStep();
 				
-			}else if(){
+			}else if(test == 4){
 				testOneRotation();
 			}else{
 				printf("Invalid\n");
