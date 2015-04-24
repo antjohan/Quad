@@ -1,3 +1,15 @@
+/* 
+
+Denna filen använder sig av funktionen 
+pulseIn() jämfört mot den andra filen (ultra.c).
+Tror att denna ger bättre noggrannhet framförallt 
+vid längre avstånd.
+
+wiring_pulse.c använder sig av bibilotek vi inte har...
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <wiringPi.h>
