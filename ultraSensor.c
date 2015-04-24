@@ -6,7 +6,7 @@
 const int trig = 23; // Broadcom pin 23 (GPIO 23)
 const int echo = 24; // Broadcom pin 24 (GPIO 24)
 long length;
-clock_t start, echotime;
+clock_t start, echotime, testtime;
 
 
 int getUltra()
@@ -23,21 +23,26 @@ int getUltra()
 // Loop
 
 //    while(1) {
-    	     digitalWrite(trig, LOW);     // trig off
+    	 digitalWrite(trig, LOW);     // trig off
 	     delay(0.002);
 	     digitalWrite(trig, HIGH);     // trig on
 	     delay(0.005);
 	     digitalWrite(trig, LOW);     // trig off
-		printf("getUltra 3\n");
+	     printf("getUltra 3\n");
+	     testtime = clock();
+	     for(int i = 0; i< 20; i++){
+	     	
+	     }
+	     printf(
 	     while(echo != HIGH) {
 	     }
-
+	     printf("getUltra Mellan\n");
 	     start = clock();
 	     printf("getUltra 4\n");
-	     while(echo != LOW) {
-	     }
+	     //while(echo != LOW) {
+	     //}
 	     printf("getUltra 5\n");
-	     echotime = (clock() - start)/CLOCKS_PER_SEC;
+	     echotime = (long)(clock() - testtime)/CLOCKS_PER_SEC;
 	     length = (echotime / 58.138);
 	     
 	     printf("%l", length);
