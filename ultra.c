@@ -16,8 +16,9 @@ void ultraSetup() {
         digitalWrite(TRIG, LOW);
         delay(30);
 }
- 
-int getCM() {
+
+
+int getUltra() {
         //Send trig pulse
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
@@ -36,4 +37,21 @@ int getCM() {
  
         return distance;
 }
+
+int getCM(){
+ int val = 10;
+ int tmp=0;
+ 
+  for(int i = 0; i++, i<val){
+   tmp = tmp + getUltra();
+  }
+  
+  return tmp/val;
+}
+
+
+
+
+
+
  
