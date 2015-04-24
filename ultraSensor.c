@@ -30,10 +30,8 @@ int getUltra()
 	     digitalWrite(trig, LOW);     // trig off
 	     printf("getUltra 3\n");
 	     testtime = clock();
-	     for(int i = 0; i< 200; i++){
-	     	
-	     }
-	    // while(echo != HIGH) {
+	     delay(500);
+	     // while(echo != HIGH) {
 	     //}
 	     printf("%ld\n", testtime);
 	     start = clock();
