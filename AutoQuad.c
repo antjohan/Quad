@@ -135,7 +135,8 @@ int main(){
 			else if(test == 2){
 				ultraSetup();
 				printf("Testar avstand\n");
-				printf("%i\n", getCM());
+				int a = getCM();
+				printf("%i\n", a);
 				printf("Done!\n");
 			}
 			//Test hoverToStep
