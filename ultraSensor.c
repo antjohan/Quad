@@ -33,16 +33,15 @@ int getUltra()
 	     for(int i = 0; i< 200; i++){
 	     	
 	     }
-	     
 	    // while(echo != HIGH) {
 	     //}
-	     printf("getUltra Mellan\n");
+	     printf("%ld\n", testtime);
 	     start = clock();
 	     printf("getUltra 4\n");
 	     //while(echo != LOW) {
 	     //}
 	     echotime = (long)(clock() - testtime)/CLOCKS_PER_SEC;
-		printf("%l", echotime);
+
 	     length = (echotime / 58.138);
 	     
 	     printf("%l", length);
