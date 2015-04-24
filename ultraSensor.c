@@ -37,14 +37,14 @@ int getUltra()
 	     //}
 	     printf("%ld\n", testtime);
 	     start = clock();
-	     printf("getUltra 4\n");
+	     printf("%ld\n", start);
 	     //while(echo != LOW) {
 	     //}
-	     echotime = (long)(clock() - testtime)/CLOCKS_PER_SEC;
-
+	     echotime = (long)(start - testtime)/CLOCKS_PER_SEC;
+	     printf("%ld\n", echotime);
 	     length = (echotime / 58.138);
 	     
-	     printf("%l", length);
+	     printf("%l\n", length);
 //	}
     printf("getUltra 6\n");
 	 return length;
