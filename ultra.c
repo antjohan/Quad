@@ -49,7 +49,7 @@ int getCM(){
   // printf("%i\n", tmp);
    delay(30);
   }
-  res = sum/val;
+  int res = sum/val;
   
   FILE *fp;
 fp=fopen("data.txt","w");
