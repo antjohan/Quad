@@ -46,8 +46,8 @@ int getCM(){
   for(int i = 0; i<val; i++){
    tmp = getUltra();
    sum = sum+tmp;
-  // printf("%i\n", tmp);
-   delay(30);
+   printf("%i\n", tmp);
+   delay(100);
   }
   int res = sum/val;
   
