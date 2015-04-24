@@ -17,7 +17,7 @@ void setHover(){
 	int hover[4] = {50,50,hoverConst,50};
 	
 	for (int i = 0; i<4;i++){
-	  Set_Servo(servo[i],hover[i]);
+//	  Set_Servo(servo[i],hover[i]);
 	}
 }
 
@@ -35,7 +35,7 @@ int testHoverToStep(void){
   setHover();
   sleep(4);
   //Initiate step
-  Set_Servo(3, afterStep);
+//  Set_Servo(3, afterStep);
   sleep(4);
   //Hover
   setHover();
@@ -55,11 +55,11 @@ int testOneRotation(void){
   const int yawSpeed = 30;
   setHover();
   sleep(4);
-  Set_Servo(4,50+yawSpeed);
+//  Set_Servo(4,50+yawSpeed);
   sleep(4);
   setHover();
   sleep(4);
-  Set_Servo(4, 50-yawSpeed);
+//  Set_Servo(4, 50-yawSpeed);
   sleep(4);
   setHover();
   return 0;
