@@ -13,7 +13,7 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 ----------------------------------------------------
 */
 void setHover(){
-  int servo[4] = {1,2,3,4};
+	int servo[4] = {1,2,3,4};
 	int hover[4] = {50,50,hoverConst,50};
 	
 	for (int i = 0; i<4;i++){
@@ -73,3 +73,14 @@ int testOneRotation(void){
   setHover();
   return 0;
 }
+
+/*
+Testcase3, pitch
+
+
+*/
+
+/*Testcase4, roll
+
+
+*/
