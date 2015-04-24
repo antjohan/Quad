@@ -47,7 +47,7 @@ int getCM(){
    tmp = getUltra();
    sum = sum+tmp;
    printf("%i\n", tmp);
-   delay(100);
+   delay(30);
   }
   return sum/val;
 }
