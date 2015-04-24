@@ -31,12 +31,15 @@ to idle, so that if they are controlled through the mux aswell it will stay stat
 */
 
 int testHoverToStep(void){
+	printf("Startar hover to step test\n");
   int afterStep = 75;
   setHover();
   sleep(4);
+  printf("Initierar steg\n");
   //Initiate step
 //  Set_Servo(3, afterStep);
   sleep(4);
+  printf("Klar med test, setter hover\n");
   //Hover
   setHover();
   return 0;
@@ -53,14 +56,20 @@ to idle, so that if they are controlled through the mux aswell it will stay stat
 */
 int testOneRotation(void){
   const int yawSpeed = 30;
+ 
+  printf("Startar yaw rotations test, setter hover\n");
   setHover();
   sleep(4);
+  printf("Initierar clockwise rotation\n");
 //  Set_Servo(4,50+yawSpeed);
   sleep(4);
+  printf("Klar med clockwise, setter hover\n");
   setHover();
   sleep(4);
+  printf("Initierar counter clockwise rotation\n");
 //  Set_Servo(4, 50-yawSpeed);
   sleep(4);
+  printf("Klar med test, setter hover\n");
   setHover();
   return 0;
 }
