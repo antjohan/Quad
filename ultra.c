@@ -7,7 +7,7 @@
 #define TRIG 4
 #define ECHO 5
  
-void setup() {
+void ultraSetup() {
         wiringPiSetup();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
