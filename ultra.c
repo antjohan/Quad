@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <wiringPi.h>
  
-#define TRUE 1
+// #define TRUE 1
  
 #define TRIG 4
 #define ECHO 5
