@@ -125,7 +125,7 @@ int main(){
 		}
 		if(val == 6){
 			printf("Testar avstand\n");
-			getUltra();
+			printf("%l\n", getUltra());
 			printf("Done!\n");
 		}else{
 			printf("Invalid\n");
