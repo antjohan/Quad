@@ -108,28 +108,49 @@ int main(){
 
 			Set_Servo(servo, speed);
 
-		}else if (val == 4){
+		}
+		//testcases
+		else if(val == 4){
+			int test;
 
-			Initialize();
+			printf("[1] Testa barometer\n");
+			printf("[2] Testa ultra sensor\n");
+			printf("[3] Testa hoverToStep\n");
+			printf("[4] Testa ett varv rotation\n");
+			scanf("%d",&test);
+			//barometertest
+			if (test == 1){
+				Initialize();
+				
+				PrintCalibrationData();
+				printf("Uncompensated temperature: %d\n",GetUncompensatedTemperature());
+				printf("Uncompensated pressure: %d\n",GetUncompensatedPressure());
 
-			PrintCalibrationData();
-			printf("Uncompensated temperature: %d\n",GetUncompensatedTemperature());
-			printf("Uncompensated pressure: %d\n",GetUncompensatedPressure());
-
-			printf("Compensated temperature: %f\n", GetTemperature());
-			printf("Compensated pressure: %d\n", GetPressure());
-			printf("Height: %f\n", GetAltitude(GetPressure()));
-
-		
+				printf("Compensated temperature: %f\n", GetTemperature());
+				printf("Compensated pressure: %d\n", GetPressure());
+				printf("Height: %f\n", GetAltitude(GetPressure()));
+			}
+			//Ultra sensor
+			else if(test == 2){
+				ultraSetup();
+				printf("Testar avstand\n");
+				printf("%i\n", getCM());
+				printf("Done!\n");
+			}
+			//Test hoverToStep
+			else if(){
+				testHoverToStep();
+				
+			}else if(){
+				testOneRotation();
+			}else{
+				printf("Invalid\n");
+			}
+			
 		}else if (val == 5){
 			break;
 		}
-		if(val == 6){
-			ultraSetup();
-			printf("Testar avstand\n");
-			printf("%i\n", getCM());
-			printf("Done!\n");
-		}else{
+		else{
 			printf("Invalid\n");
 		}
 	}
