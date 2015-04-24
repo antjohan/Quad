@@ -14,7 +14,7 @@ void ultraSetup() {
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
         printf("000\n");
-        digitalWrite(TRIG, HIGH);
+        digitalWrite(TRIG, LOW);
         printf("111\n");
         sleep(300000);
         delay(30);
