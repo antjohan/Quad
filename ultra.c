@@ -43,8 +43,8 @@ int getCM(){
  int tmp=0;
  int sum=0;
  
- // for(int i = 0; i<val; i++){
-   while(1){
+  for(int i = 0; i<val; i++){
+ //  while(1){
    tmp = getUltra();
    sum = sum+tmp;
    printf("%i\n", tmp);
