@@ -14,10 +14,10 @@ int getUltra()
     // Setup stuff:
     printf("getUltra\n");
     wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
-
+printf("getUltra 2\n");
     pinMode(trig, OUTPUT);     // Set trig as output
     pinMode(echo, INPUT);      // Set echo as INPUT
-    printf("getUltra 2\n");
+    printf("getUltra 3\n");
 // Ev. ta bort   pullUpDnControl(butPin, PUD_UP); // Enable pull-up resistor on button
 
 // Loop
