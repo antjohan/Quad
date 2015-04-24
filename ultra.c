@@ -51,11 +51,6 @@ int getCM(){
   }
   int res = sum/val;
   
-  FILE *fp;
-fp=fopen("data.txt","r+");
-fprintf(fp, "%i", res);
-fclose(fp);
-  
   return res;
   
   
