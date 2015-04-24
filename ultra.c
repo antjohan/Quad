@@ -39,7 +39,7 @@ int getUltra() {
 }
 
 int getCM(){
- int val = 10;
+ int val = 5;
  int tmp=0;
  int sum=0;
  
