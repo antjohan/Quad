@@ -75,7 +75,7 @@ int main(){
 		printf("[3]	Set Servo\n");
 		printf("[4]	i2c\n");
 		printf("[5]	Quit\n");
-		printf("[6]     Test prog\n")
+		printf("[6]     Test prog\n");
 		printf("---------------------------------\n");
 
 		int val;
