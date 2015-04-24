@@ -27,7 +27,7 @@ int getCM() {
         printf("1a loop\n");
         //Wait for echo end
         long startTime = micros();
-        while(digitalRead(ECHO) == HIGH);
+        while(digitalRead(ECHO) != LOW);
         long travelTime = micros() - startTime;
  
         //Get distance in cm
