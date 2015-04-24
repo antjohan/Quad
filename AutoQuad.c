@@ -5,6 +5,7 @@
 #include <wiringPiI2C.h>
 #include "BMP180.c"
 #include "ultraSensor.c"
+#include "ultra.c"
 
 
 /*
@@ -124,8 +125,9 @@ int main(){
 			break;
 		}
 		if(val == 6){
+			ultraSetup();
 			printf("Testar avstand\n");
-			printf("%l\n", getUltra());
+			printf("%i\n", getCM());
 			printf("Done!\n");
 		}else{
 			printf("Invalid\n");
