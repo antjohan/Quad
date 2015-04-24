@@ -14,10 +14,10 @@ int getUltra()
     // Setup stuff:
     printf("getUltra\n");
  //   wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
-printf("getUltra 2\n");
+
     pinMode(trig, OUTPUT);     // Set trig as output
     pinMode(echo, INPUT);      // Set echo as INPUT
-    printf("getUltra 3\n");
+    printf("getUltra 2\n");
 // Ev. ta bort   pullUpDnControl(butPin, PUD_UP); // Enable pull-up resistor on button
 
 // Loop
@@ -28,15 +28,15 @@ printf("getUltra 2\n");
 	     digitalWrite(trig, HIGH);     // trig on
 	     delay(0.005);
 	     digitalWrite(trig, LOW);     // trig off
-
+		printf("getUltra 3\n");
 	     while(echo != HIGH) {
 	     }
 
 	     start = clock();
-
+	     printf("getUltra 4\n");
 	     while(echo != LOW) {
 	     }
-
+	     printf("getUltra 5\n");
 	     echotime = (clock() - start)/CLOCKS_PER_SEC;
 	     length = (echotime / 58.138);
 	     
