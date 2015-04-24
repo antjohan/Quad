@@ -122,13 +122,13 @@ int main(){
 		
 		}else if (val == 5){
 			break;
-		}else{
-			printf("Invalid\n");
 		}
 		if(val == 6){
 			printf("Testar avstand\n");
 			getUltra();
 			printf("Done!\n");
+		}else{
+			printf("Invalid\n");
 		}
 	}
 	///////////////////
