@@ -42,7 +42,7 @@ int getCM(){
  int val = 10;
  int tmp=0;
  
-  for(int i = 0; i++, i<val){
+  for(int i = 0; i<val; i++){
    tmp = tmp + getUltra();
   }
   
