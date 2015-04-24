@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <wiringPi.h>
- 
+#include <time.h>
+
 #define TRUE 1
  
 #define TRIG 4
@@ -26,10 +27,11 @@ int getCM() {
         while(digitalRead(ECHO) == LOW);
         printf("1a loop\n");
         //Wait for echo end
-        long startTime = micros();
+        // long startTime = micros();
+        time_t startTime = clock();
         while(digitalRead(ECHO) == HIGH);
-        long travelTime = micros() - startTime;
- 
+        //long travelTime = micros() - startTime;
+        int travelTime = (int)(clock() - startTime)/CLOCKS_PER_SEC;
         //Get distance in cm
         int distance = travelTime / 58;
  
