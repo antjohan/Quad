@@ -13,13 +13,13 @@ void ultraSetup() {
         pinMode(ECHO, INPUT);
  
         //TRIG pin must start LOW
-        digitalWrite(TRIG, 0);
+        digitalWrite(TRIG, LOW);
         delay(30);
 }
  
 int getCM() {
         //Send trig pulse
-        digitalWrite(TRIG, 1);
+        digitalWrite(TRIG, HIGH);
         sleep(300000);
         /*
         delayMicroseconds(20);
