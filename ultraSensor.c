@@ -13,7 +13,7 @@ int getUltra()
 {
     // Setup stuff:
     printf("getUltra\n");
-    wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
+ //   wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
 printf("getUltra 2\n");
     pinMode(trig, OUTPUT);     // Set trig as output
     pinMode(echo, INPUT);      // Set echo as INPUT
