@@ -5,7 +5,7 @@
 #include <wiringPiI2C.h>
 #include "BMP180.c"
 #include "ultraSensor.c"
-#include "ultra2.c"
+#include "ultra.c"
 #include "testCases.c"
 
 /*
