@@ -1,7 +1,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <unistd.h>
+//#include <unistd.h>
 
 #define MAX_BUF 256 //Amount of characters that can be sent through the fifos
  
@@ -9,23 +9,23 @@ int barometerfifofd;
 int ultrasonicfifofd;
 int magnetometerfifofd;
 int gpsfifofd;
-int flightlogfd;
+int fusionlogfd;
 
 //variables
 double height; //height form ultrasonic/barometer
 double bearing; //bearing from magnetometer
-double[3] coordinate; //lat, long, quality from gps
+double coordinate[3]; //lat, long, quality from gps
 double speed; //info from gps
 
 
-
+int main(){}
 void init(){ 
 	//name of all fifos, will need to be matching in respective sensor programs
-	char * barometerfifo = "./tmp/barometerfifo";
-	char * ultrasonicfifo = "./tmp/ultrasonicfifo"
-	char * magnetometerfifo = "./tmp/magnetometerfifo";
-	char * gpsfifo = "./tmp/gpsfifo";
-	char * flightlog = "./fusionlog.txt";
+	char* barometerfifo = "./tmp/barometerfifo";
+	char* ultrasonicfifo = "./tmp/ultrasonicfifo";
+	char* magnetometerfifo = "./tmp/magnetometerfifo";
+	char* gpsfifo = "./tmp/gpsfifo";
+	char* fusionlog = "./fusionlog.txt";
 
 
 
@@ -68,9 +68,21 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 }
 
 double getBearing(){ //returns current bearing based on magnetometric sensor output
-
+	double br;
+	char magnetometerbuffer[MAX_BUF];
+	read(magnetometerfifofd, magnetometerbuffer, MAX_BUF);
+	sscanf(magnetometerbuffer, "%lf", &br);
+	return(br);
 
 }
+double * getCoordinate(){
+	double coord[3];
+	char gpsbuffer[MAX_BUF];
+	read(gpsfifofd, gpsbuffer, MAX_BUF);
+	sscanf(gpsbuffer, "%lf, %lf, %lf", &coord);
+	return(coord);
+}
+
 void updateLog(){//enters all current sensor data into fusionlog
 
 }
