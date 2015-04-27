@@ -26,15 +26,6 @@ double coordinate[3]; //lat, long, quality from gps
 double speed; //info from gps
 
 
-
-int main(){//test
-/*	config_init(config)
-	config_read_file(config,configfile);
-	double test;
-	config_lookup_float(config,"sensors.magnetometer.sampling",test);
-	printf("%f", test);
-*/
-}
 void init(){ 
 	//name of all fifos, will need to be matching in respective sensor programs
 	char* barometerfifo = "./tmp/barometerfifo";
