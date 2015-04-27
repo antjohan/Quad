@@ -49,8 +49,6 @@ void Initialize(){
     printf("Barometer: h = %f  p = %d  t = %d\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature());
     sprintf(WriteBuf,"%f.1",RelativeAltitude);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
-    delay(OutputSpeed);
-
   }
  }
 

@@ -32,7 +32,6 @@
  #define BMP180_Mode_HighResolution    2
  #define BMP180_Mode_UltraHighResolution 3
 
-int OutputSpeed=100;
 int InitialPressurePa;
 int barometerfifofd;
 
