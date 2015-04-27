@@ -26,7 +26,7 @@ double coordinate[3]; //lat, long, quality from gps
 double speed; //info from gps
 
 
-void init(){ 
+void sfinit(){ 
 	//name of all fifos, will need to be matching in respective sensor programs
 	char* barometerfifo = "/tmp/barometerfifo";
 	char* ultrasonicfifo = "/tmp/ultrasonicfifo";

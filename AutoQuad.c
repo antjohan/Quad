@@ -67,6 +67,7 @@ void Disarm_FlightController(){
 
 
 int main(){
+	sfinit();
 	while(1){
 		printf("---------------------------------\n");
 		printf("Make a choice:\n");
