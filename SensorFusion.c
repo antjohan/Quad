@@ -54,7 +54,6 @@ void init(){
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
 	double uh; //ultrasonic height
 	double bh; //barometer height
-
 	//char ultrasonicbuffer[MAX_BUF];
 	char barometerbuffer[MAX_BUF];
 	//read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
@@ -72,6 +71,8 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 		return (bh);
 	}
 */
+		printf("hej");
+
 	return bh;
 
 }

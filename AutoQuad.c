@@ -155,8 +155,8 @@ int main(){
 			break;
 		}else if(val==6){//recieve barometer data
 			while(1){
-				printf("AutoQuad: %lf\n",getHeight());
-				delay(100);
+				printf("AutoQuad::::: %lf\n",getHeight());
+				delay(1000);
 			}
 
 		}
