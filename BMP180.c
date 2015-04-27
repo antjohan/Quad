@@ -46,7 +46,10 @@ void Initialize(){
   if (a==-1){
     printf("mkfifoerror: %s",strerror(errno));
   }
+    printf("ooopa1\n");
   barometerfifofd=open(barometerfifo, O_WRONLY);
+    printf("ooopa2\n");
+
   printf("%d\n",barometerfifofd);
     printf("???\n");
 
