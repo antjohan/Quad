@@ -162,12 +162,19 @@ Action:	The motor is first given an offset to achieve hover. The pilot controlls
 Setup:	The ultra sensor should be placed facing downwards. Doubled signals from the RC reciever is sent
 	to the MUX, except for the thrust which is sent from the rPI on one set of inputs.
 */
-int pidHeightTest(void){
+int pidHeightTest(int refHeight){
   const int hoverOffset = 70;
   printf("Startar PID height test, setter hover\n");
-  //FYLLA UT MED KOD
-  printf("Klar med PID height test, setter hover\n");
   setHover();
+  for(int i = 0; i<100; i++){
+    printf("Ny Iteration\n");
+    int currentHeight = getHeight(); //Use the ultra sensor to get height
+    int reqThrust = getThrust(refHeight-currentHeight);//PID function
+    Set_Serv(3, reqThrust);
+    delay(100);//0.1 second
+  }//Iterate 10 seconds
+  printf("Klar med PID height test, borde hovra nu\n");
+  setHover();//Should not be needed if the PID works nicely
   return 0;
 }
 
