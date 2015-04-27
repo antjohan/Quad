@@ -40,7 +40,7 @@ void Initialize(){
   printf("Initial pressure: %f\n",InitialPressurePa);
   */
   //open fifo
-  char* barometerfifo = "./tmp/barometerfifo";
+  char* barometerfifo = "/tmp/barometerfifo";
   mkfifo(barometerfifo,0666);
   barometerfifofd=open(barometerfifo, O_WRONLY);
   sample();
