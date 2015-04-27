@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <wiringPiI2C.h>
-#include "BMP180.c"
+//#include "BMP180.c"
 #include "ultra.c"
 #include "testCases.c"
 #include "SensorFusion.c"
@@ -117,11 +117,12 @@ int main(){
 			printf("[3]	Testa hoverToStep\n");
 			printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Tillbaks\n");
+			printf("[6]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
 			if (test == 1){
-				Initialize();
+				/*Initialize();
 				
 				PrintCalibrationData();
 				printf("Uncompensated temperature: %d\n",GetUncompensatedTemperature());
@@ -129,7 +130,7 @@ int main(){
 
 				printf("Compensated temperature: %f\n", GetTemperature());
 				printf("Compensated pressure: %d\n", GetPressure());
-				printf("Height: %f\n", GetAltitude(GetPressure()));
+				printf("Height: %f\n", GetAltitude(100500));*/
 			}
 			//Ultra sensor
 			else if(test == 2){
@@ -152,6 +153,12 @@ int main(){
 			
 		}else if (val == 5){
 			break;
+		}else if(val==6){//recieve barometer data
+			while(1){
+				printf("AutoQuad: %lf\n",getHeight());
+				delay(100)
+			}
+
 		}
 		else{
 			printf("Invalid\n");

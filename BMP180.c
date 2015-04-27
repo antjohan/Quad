@@ -3,6 +3,8 @@
  #include <inttypes.h>
  #include <stdbool.h>
  #include <math.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
  #define BMP180_Address 0x77
 
@@ -26,6 +28,10 @@
  #define BMP180_Mode_HighResolution    2
  #define BMP180_Mode_UltraHighResolution 3
 
+int OutputSpeed=500;
+int InitialPressurePa;
+int barometerfifofd;
+
  uint8_t OversamplingSetting;
  bool Oversample;
  int BMP180_Sensor;
@@ -45,6 +51,50 @@
  int Calibration_MB;
  int Calibration_MC;
  int Calibration_MD;
+
+void Initialize(){
+ ConversionWaitTimeMs = 5;
+ OversamplingSetting = 3;
+ Oversample = false;
+
+ LastTemperatureTime = -1000;
+ LastTemperatureData = 0;
+
+ AcceptableTemperatureLatencyForPressure = 1000;
+ wiringPiSetupSys();
+ BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
+ SetResolution(BMP180_Mode_Standard, false);
+  Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
+  Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
+  Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
+  Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
+  Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
+  Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
+  Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
+  Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
+  Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
+  Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
+  Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
+
+  InitialPressurePa=GetPressure();
+  //open fifo
+  char* barometerfifo = "./tmp/barometerfifo";
+  mkfifo(barometerfifo,0666);
+  barometerfifofd=open(barometerfifo, O_WRONLY);
+  sample();
+}
+ void sample(){
+  float RelativeAltitude;
+  char WriteBuf[10];
+  while(1){
+    RelativeAltitude=GetAltitude(InitialPressurePa);
+    printf("Barometer: %f\n",RelativeAltitude);
+    sprintf(WriteBuf,"%f.1",RelativeAltitude);
+    write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    delay(OutputSpeed);
+
+  }
+ }
 
 void Write(int address, int data){
   wiringPiI2CWriteReg8(BMP180_Sensor,address, data);  
@@ -116,53 +166,6 @@ uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
   }
 }
 
-void Initialize(){
-//printf("init");
- ConversionWaitTimeMs = 5;
- OversamplingSetting = 3;
- Oversample = false;
-
- LastTemperatureTime = -1000;
- LastTemperatureData = 0;
-
- AcceptableTemperatureLatencyForPressure = 1000;
- wiringPiSetupSys();
- //printf("init");
-
- BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- //printf("init");
-
- SetResolution(BMP180_Mode_Standard, false);
-//printf("init");
-
- //uint8_t* buffer = Read(Reg_CalibrationStart, Reg_CalibrationEnd - Reg_CalibrationStart + 2);
- //printf("init");
-
-	// This data is in Big Endian format from the BMP180.
-  /*Calibration_AC1 = (buffer[0] << 8) | buffer[1];
-  Calibration_AC2 = (buffer[2] << 8) | buffer[3];
-  Calibration_AC3 = (buffer[4] << 8) | buffer[5];
-  Calibration_AC4 = (buffer[6] << 8) | buffer[7];
-  Calibration_AC5 = (buffer[8] << 8) | buffer[9];
-  Calibration_AC6 = (buffer[10] << 8) | buffer[11];
-  Calibration_B1 = (buffer[12] << 8) | buffer[13];
-  Calibration_B2 = (buffer[14] << 8) | buffer[15];
-  Calibration_MB = (buffer[16] << 8) | buffer[17];
-  Calibration_MC = (buffer[18] << 8) | buffer[19];
-  Calibration_MD = (buffer[20] << 8) | buffer[21];*/
-  Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
-  Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
-  Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
-  Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
-  Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
-  Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
-  Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
-  Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
-  Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
-  Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
-  Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
-
-}
 
 void PrintCalibrationData(){
 	printf("AC1:\t"); printf("%d\n",Calibration_AC1);
@@ -216,19 +219,11 @@ int GetUncompensatedTemperature(){
       int x2;
       long x1;
       x1 = (((long)uncompensatedTemperature - (long)Calibration_AC6) * (long)Calibration_AC5) >> 15;
-      //printf("AC6: %d\n",Calibration_AC6);
-      //printf("AC5: %d\n",Calibration_AC5);
-      //printf("X1: %d\n",x1);
       x2 = ((long)Calibration_MC << 11) / (x1 + Calibration_MD);
-      //printf("X2: %d\n",x2);
-
       int param_b5 = x1 + x2;
-      //printf("b5: %d\n",param_b5);
       temperature = (int)((param_b5 + 8) >> 4);  /* temperature in 0.1 deg C*/
       float fTemperature = temperature;
-      //printf("temperature: %d\n",temperature);
       fTemperature = fTemperature/10.0;
-      //printf("fTemperature: %f\n",fTemperature);
 
     // Record this data because it is required by the pressure algorithem.
     LastTemperatureData = param_b5;

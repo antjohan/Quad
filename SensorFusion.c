@@ -55,22 +55,24 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	double uh; //ultrasonic height
 	double bh; //barometer height
 
-	char ultrasonicbuffer[MAX_BUF];
+	//char ultrasonicbuffer[MAX_BUF];
 	char barometerbuffer[MAX_BUF];
-	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
+	//read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
 	read(barometerfifofd,barometerbuffer,MAX_BUF);
 
-	sscanf(ultrasonicbuffer, "%lf", &uh);
+	//sscanf(ultrasonicbuffer, "%lf", &uh);
 	sscanf(barometerbuffer, "%lf", &bh);
 
 	//logic for which value to return
 
+/*
 	if (uh<4){//easiest possible...
 		return (uh);
 	} else {
 		return (bh);
 	}
-
+*/
+	return bh;
 
 }
 
