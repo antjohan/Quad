@@ -5,7 +5,7 @@
 #include <wiringPiI2C.h>
 #include "BMP180.c"
 #include "ultra.c"
-#include "testCases.c"
+//#include "testCases.c"
 
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
