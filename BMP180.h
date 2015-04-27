@@ -1,4 +1,14 @@
-
+ #include <stdio.h>
+#include <stdlib.h>
+ #include <wiringPiI2C.h>
+ #include <wiringPi.h>
+ #include <inttypes.h>
+ #include <stdbool.h>
+ #include <math.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
 
  #define BMP180_Address 0x77
 
@@ -48,6 +58,7 @@ int barometerfifofd;
 
 //Functions
 void Initialize();
+void sample();
 void Write();
 uint8_t Read(int address);
 uint8_t SetResolution(uint8_t sampleResolution, bool oversample);

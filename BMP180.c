@@ -1,13 +1,3 @@
- #include <stdio.h>
-#include <stdlib.h>
- #include <wiringPiI2C.h>
- #include <wiringPi.h>
- #include <inttypes.h>
- #include <stdbool.h>
- #include <math.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <fcntl.h>
 #include "BMP180.h"
 
 int main(){
