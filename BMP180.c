@@ -30,7 +30,9 @@ void Initialize(){
   delay(200);
   int pasum=0;
   for (int i=0;i<30;++i){
-    pasum=pasum+CompensatePressure(GetUncompensatedPressure());
+    int newpres =CompensatePressure(GetUncompensatedPressure()); 
+    printf("Calibration values: %d\n",newpres);
+    pasum=pasum+newpres;
     delay(100);
   }
   InitialPressurePa=pasum/30;
@@ -46,7 +48,7 @@ void Initialize(){
   char WriteBuf[10];
   while(1){
     RelativeAltitude=GetAltitude(InitialPressurePa);
-    printf("Barometer: h = %f  p = %d  t = %d\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
+    printf("Barometer: h = %f  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
     sprintf(WriteBuf,"%f.1",RelativeAltitude);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
   }
@@ -115,6 +117,7 @@ uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
     break;
     case 3:
     ConversionWaitTimeMs = 26;
+    printf("RÄTT SAMPLERES");
     break;
     default:
     return ErrorCode_1_Num;
