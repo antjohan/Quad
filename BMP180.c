@@ -26,7 +26,7 @@ void Initialize(){
   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
-  printf("Calibrating initial pressure...\n");
+  /*printf("Calibrating initial pressure...\n");
   delay(200);
   float pasum=0.0;
   for (int i=0;i<30;++i){
@@ -36,7 +36,9 @@ void Initialize(){
     delay(100);
   }
   InitialPressurePa=pasum/(float)30.0;
+  
   printf("Initial pressure: %f\n",InitialPressurePa);
+  */
   //open fifo
   char* barometerfifo = "./tmp/barometerfifo";
   mkfifo(barometerfifo,0666);
