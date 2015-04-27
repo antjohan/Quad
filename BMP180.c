@@ -6,7 +6,7 @@ int main(){
 void Initialize(){
  ConversionWaitTimeMs = 5;
  OversamplingSetting = 3;
- Oversample = false;
+ Oversample = true;
 
  LastTemperatureTime = -1000;
  LastTemperatureData = 0;
@@ -14,7 +14,7 @@ void Initialize(){
  AcceptableTemperatureLatencyForPressure = 1000;
  wiringPiSetupSys();
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- SetResolution(BMP180_Mode_UltraHighResolution, false);
+ SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
   Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
@@ -47,11 +47,14 @@ void Initialize(){
   float RelativeAltitude;
   char WriteBuf[10];
   while(1){
-    RelativeAltitude=GetAltitude(InitialPressurePa);
+    float AltitudeSum=0;
+    for (int i=0;i<4;++i){
+      AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
+    }
+    RelativeAltitude=AltitudeSum/(float)4;
     printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
     //sprintf(WriteBuf,"%f.1",RelativeAltitude);
     //write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
-    delay(100);
   }
  }
 
@@ -118,7 +121,6 @@ uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
     break;
     case 3:
     ConversionWaitTimeMs = 26;
-    printf("RÄTT SAMPLERES");
     break;
     default:
     return ErrorCode_1_Num;
@@ -258,7 +260,7 @@ int GetUncompensatedTemperature(){
     // Get pressure in Pascals (Pa).
     float pressure = GetPressure();
     // Calculate altitude from sea level.
-    float altitude = 44330.0 * (1.0 - pow(pressure / currentSeaLevelPressureInPa, 0.1902949571836346));
+    float altitude = 44330.0 * (1.0 - pow(pressure / currentSeaLevelPressureInPa, 0.19029495718363465568));
     return altitude;
   } 
 
