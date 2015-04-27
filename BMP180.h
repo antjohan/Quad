@@ -9,6 +9,8 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
 
  #define BMP180_Address 0x77
 
