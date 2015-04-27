@@ -46,35 +46,23 @@ void Initialize(){
   if (a==-1){
     printf("mkfifoerror: %s",strerror(errno));
   }
-    printf("ooopa1\n");
   barometerfifofd=open(barometerfifo, O_WRONLY);
-    printf("ooopa2\n");
-
   printf("%d\n",barometerfifofd);
-    printf("???\n");
-
   sample();
 }
  void sample(){
   float RelativeAltitude;
   char WriteBuf[10];
   while(1){
-    printf("1\n");    
     float AltitudeSum=0;
     for (int i=0;i<4;++i){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
     }
-        printf("2\n");    
-
     RelativeAltitude=AltitudeSum/(float)4;
     //printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
-        printf("4\n");    
-
     sprintf(WriteBuf,"%f",RelativeAltitude);
-    printf("5\n");
-    printf("ALTSTRING: %s\n",WriteBuf);
+    //printf("FUSION-STRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
-    printf("6\n");
   }
  }
 
