@@ -52,6 +52,9 @@ int barometerfifofd;
  int Calibration_MC;
  int Calibration_MD;
 
+int main(){
+  Initialize();
+}
 void Initialize(){
  ConversionWaitTimeMs = 5;
  OversamplingSetting = 3;
