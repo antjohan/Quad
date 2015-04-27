@@ -42,7 +42,9 @@ void Initialize(){
   //open fifo
   char* barometerfifo = "/barometerfifo";
   int a = mkfifo(barometerfifo,0666);
-  printf("mkfifo: %d\n", a);
+  if (a==-1){
+    printf("mkfifoerror: %s",strerror(errno));
+  }
   barometerfifofd=open(barometerfifo, O_WRONLY);
   printf("%d\n",barometerfifofd);
   sample();
