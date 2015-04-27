@@ -7,6 +7,8 @@
  #include <math.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <fcntl.h>
+
 
  #define BMP180_Address 0x77
 
