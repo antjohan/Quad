@@ -28,7 +28,7 @@ double speed; //info from gps
 
 void init(){ 
 	//name of all fifos, will need to be matching in respective sensor programs
-	char* barometerfifo = "/barometerfifo";
+	char* barometerfifo = "/tmp/barometerfifo";
 	char* ultrasonicfifo = "/tmp/ultrasonicfifo";
 	char* magnetometerfifo = "/tmp/magnetometerfifo";
 	char* gpsfifo = "/tmp/gpsfifo";

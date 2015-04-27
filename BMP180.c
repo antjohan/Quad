@@ -40,7 +40,7 @@ void Initialize(){
   printf("Initial pressure: %f\n",InitialPressurePa);
   */
   //open fifo
-  char* barometerfifo = "/barometerfifo";
+  char* barometerfifo = "/tmp/barometerfifo";
   int a = mkfifo(barometerfifo,0666);
   if (a==-1){
     printf("mkfifoerror: %s",strerror(errno));
