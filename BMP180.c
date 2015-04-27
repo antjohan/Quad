@@ -36,7 +36,7 @@ void Initialize(){
     delay(100);
   }
   InitialPressurePa=pasum/(float)30.0;
-  printf("Initial pressure: %d\n",InitialPressurePa);
+  printf("Initial pressure: %f\n",InitialPressurePa);
   //open fifo
   char* barometerfifo = "./tmp/barometerfifo";
   mkfifo(barometerfifo,0666);
