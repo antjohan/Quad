@@ -117,7 +117,6 @@ int main(){
 			printf("[3]	Testa hoverToStep\n");
 			printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Tillbaks\n");
-			printf("[6]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest

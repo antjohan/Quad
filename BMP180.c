@@ -54,9 +54,9 @@ void Initialize(){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
     }
     RelativeAltitude=AltitudeSum/(float)4;
-    printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
-    //sprintf(WriteBuf,"%f.1",RelativeAltitude);
-    //write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    //printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
+    sprintf(WriteBuf,"%f.1",RelativeAltitude);
+    write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
   }
  }
 
