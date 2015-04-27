@@ -38,33 +38,113 @@ int getUltra() {
         return distance;
 }
 
+
+// I funktionen kan man välja antal mätningar i varje set (tot 3 set) 
 int getCM(){
  int val = 5;
- int tmp;
  int sum;
  
+ // Första mätningen, val=antal mätvärden,
+ int m1[val];
+ int tmp;
+ int length1 = 0;
  
- tmp = 0;
- sum = 0;
   for(int i = 0; i<val; i++){
- //  while(1){
    tmp = getUltra();
-   sum = sum+tmp;
-   printf("%i\n", tmp);
+   
+   if(tmp < 400){
+    m1[length1] = tmp;
+    length1 = length1 + 1;
+    }
    delay(100);
   }
-  int res_1 = sum/val;
   
-  tmp = 0;
-    for(int i = 0; i<val; i++){
- //  while(1){
+  
+ // Andra mätningen, val=antal mätvärden,
+  // värden större än 400cm förkastas
+ int m2[val];
+ int tmp;
+ int length2 = 0;
+ 
+  for(int i = 0; i<val; i++){
    tmp = getUltra();
-   sum = sum+tmp;
-   printf("%i\n", tmp);
+   
+   if(tmp < 400){
+    m2[length2] = tmp;
+    length2 = length2 + 1;
+    }
    delay(100);
   }
-  int res_1 = sum/val;
+ 
+ 
+ // Tredje mätningen, val=antal mätvärden, 
+ // värden större än 400cm förkastas
+ int m3[val];
+ int tmp;
+ int length3 = 0;
+ 
+  for(int i = 0; i<val; i++){
+   tmp = getUltra();
+   
+   if(tmp < 400){
+    m3[length3] = tmp;
+    length3 = length3 + 1;
+    }
+   delay(100);
+  }
   
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+  // De tre mätningarnas medelvärde (medelvärde av 3*val mätvärden)
+  int medel_tot = (medel_1 + medel_2 + medel_3) / 3;
+
+ // Mätvärdenas individuella differens från medelvärdet
+ 
+ // Värden större än 4 meter plockas bort
+ int m[3 * val] = {tmp_1, tmp_2, tmp_3};
+ for(int i = 0; i<3*val; i++){
+  if( m[i] )
+  
+ }
+ 
+ int diff[3 * val];
+ int diff_tot = 0;
+ int count_diff = 0;
+ 
+  for(int i = 0; i<3*val; i++){
+   
+   
+   
+   
+   diff[i] = abs(medel_tot-m[i]);
+   
+   if(m[i] > 400){
+    m[i] = 0;
+    
+    }
+   
+  
+  
+  diff = diff/count_diff;
+}
+
+  for(int i = 0; i<3*val; i++){
+   if
+   
+   
+   
+  }
   
   
   // Skriver till fil
