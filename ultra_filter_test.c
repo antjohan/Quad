@@ -111,7 +111,7 @@ int getCM(){
  diff[i] = abs(medel - m[i]);        // Differens i längd
  diff_medel = diff_medel + diff[i];  // Summerar alla differenser för att kunna ta medelvärde
  }
- diff_medel = diff_medel/length      // Tar medevärdet
+ diff_medel = diff_medel/length;      // Tar medevärdet
 
 // Filtrerar bort de mätningar som är vars avvikelse är 
 // längre bort än medelavvikelsen + 5 cm
