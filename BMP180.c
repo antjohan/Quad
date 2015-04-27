@@ -53,15 +53,22 @@ void Initialize(){
   float RelativeAltitude;
   char WriteBuf[10];
   while(1){
+    printf("1\n");    
     float AltitudeSum=0;
     for (int i=0;i<4;++i){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
     }
+        printf("2\n");    
+
     RelativeAltitude=AltitudeSum/(float)4;
     //printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
-    sprintf(WriteBuf,"%f.1",RelativeAltitude);
+        printf("4\n");    
+
+    sprintf(WriteBuf,"%f",RelativeAltitude);
+    printf("5\n");
     printf("ALTSTRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    printf("6\n");
   }
  }
 
