@@ -14,7 +14,7 @@ void Initialize(){
  AcceptableTemperatureLatencyForPressure = 1000;
  wiringPiSetupSys();
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- SetResolution(BMP180_Mode_UltraHighResolution, true);
+ SetResolution(BMP180_Mode_UltraHighResolution, false);
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
   Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
