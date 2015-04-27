@@ -47,10 +47,12 @@ void Initialize(){
   float RelativeAltitude;
   char WriteBuf[10];
   while(1){
-    RelativeAltitude=GetAltitude(InitialPressurePa);
-    printf("Barometer: h = %f  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
-    sprintf(WriteBuf,"%f.1",RelativeAltitude);
-    write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    //RelativeAltitude=GetAltitude(InitialPressurePa);
+    //printf("Barometer: h = %f  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
+    //sprintf(WriteBuf,"%f.1",RelativeAltitude);
+    //write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    int newpres =CompensatePressure(GetUncompensatedPressure()); 
+    printf("Calibration values: %d\n",newpres);
     delay(100);
   }
  }
