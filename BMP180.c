@@ -14,7 +14,7 @@ void Initialize(){
  AcceptableTemperatureLatencyForPressure = 1000;
  wiringPiSetupSys();
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- SetResolution(BMP180_Mode_Standard, false);
+ SetResolution(BMP180_Mode_UltraHighResolution, true);
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
   Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
@@ -46,7 +46,7 @@ void Initialize(){
   char WriteBuf[10];
   while(1){
     RelativeAltitude=GetAltitude(InitialPressurePa);
-    printf("Barometer: h = %f  p = %d  ut = %d\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), GetUncompensatedTemperature());
+    printf("Barometer: h = %f  p = %d  t = %d\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature());
     sprintf(WriteBuf,"%f.1",RelativeAltitude);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
     delay(OutputSpeed);
