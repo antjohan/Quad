@@ -12,6 +12,7 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 	RUD -> 4 -> P1-15
 ----------------------------------------------------
 */
+//Functions for motorcontroll
 
 void Set_Serv(int num, int pos){
 
@@ -39,11 +40,12 @@ void setHover(){
 
 /*
 Testcase1, Step from hover
-When the function is called. Hover is triggered. After 4 seconds a step in the thrust is given.
-Four seconds later hover is set again, and the loop is exited.
-Setup: Doubled inputs from RC reciever to the MUX on all ports except from thrust
-which is controlled by the rPI in one of the sets of the inputs. For safety; all servos are set 
-to idle, so that if they are controlled through the mux aswell it will stay stationary, hovering.
+Idea:	Test roll capabilities of the quadcopter without sensordata.
+Action:	When the function is called. Hover is triggered. After 4 seconds a step in the thrust is given.
+	Four seconds later hover is set again, and the loop is exited.
+Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thrust
+	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
+	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 
 int testHoverToStep(void){
@@ -63,12 +65,13 @@ int testHoverToStep(void){
 
 /*
 Testcase2, Rotera ett varv
-Sets hover, after 4 seconds sets a predetermined value to yaw, clockwise direction.
-After 4 seconds, sets hover for 4 seconds. Then sets a counter clockwise rotation for 4 seconds.
-Initially it is controlled by time and not the magnetometer (TODO).
-Setup: Doubled inputs from RC reciever to the MUX on all ports except from yaw
-which is controlled by the rPI in one of the sets of the inputs. For safety; all servos are set 
-to idle, so that if they are controlled through the mux aswell it will stay stationary, hovering.
+Idea:	Test yaw capabilities of the quadcopter without magnetometer sensordata.
+Action:	Sets hover, after 4 seconds sets a predetermined value to yaw, clockwise direction.
+	After 4 seconds, sets hover for 4 seconds. Then sets a counter clockwise rotation for 4 seconds.
+	Initially it is controlled by time and not the magnetometer.
+Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
+	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
+	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int testOneRotation(void){
   const int yawSpeed = 30;
@@ -92,15 +95,16 @@ int testOneRotation(void){
 
 /*
 Testcase3, pitch
-	Sets hover, after 4 seconds sets a predetermined value of to pitch, forward direction.
+Idea:	Test pitch capabilities of the quadcopter without magnetometer sensordata.
+Action:	Sets hover, after 4 seconds sets a predetermined value of to pitch, forward direction.
 	After 4 seconds, sets hover for 4 seconds. Then sets a backwards direction for 4 seconds.
-	Initially it is controlled by force and not the magnetometer (TODO?).
-	Setup: Doubled inputs from RC reciever to the MUX on all ports except from pitch
-	which is controlled by the rPI in one of the sets of the inputs. For safety; all servos are set 
-	to idle, so that if they are controlled through the mux aswell it will stay stationary, hovering.
+	Initially it is controlled by force and not the magnetometer.
+Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from pitch
+	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
+	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int pitchTest(void){
-	const int pitchSpeed = 30;
+  const int pitchSpeed = 30;
   printf("Startar pitch test, setter hover\n");
   setHover();
   sleep(4);
@@ -119,12 +123,13 @@ int pitchTest(void){
 }
 /*
 Testcase4, roll
-	Sets hover, after 4 seconds sets a predetermined value of to roll, right direction.
+Idea:	Test roll capabilities of the quadcopter without magnetometer sensordata.
+Action:	Sets hover, after 4 seconds sets a predetermined value of to roll, right direction.
 	After 4 seconds, sets hover for 4 seconds. Then sets a left direction for 4 seconds.
-	Initially it is controlled by force and not the magnetometer (TODO?).
-	Setup: Doubled inputs from RC reciever to the MUX on all ports except from roll
-	which is controlled by the rPI in one of the sets of the inputs. For safety; all servos are set 
-	to idle, so that if they are controlled through the mux aswell it will stay stationary, hovering.
+	Initially it is controlled by force and not the magnetometer.
+Setup:	Doubled inputs from RC reciever to the MUX on all ports except from roll
+	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
+	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int rollTest(void){
 	const int rollSpeed = 30;
@@ -144,3 +149,27 @@ int rollTest(void){
   setHover();
   return 0;
 }
+
+/* 
+Testcase 5, height regulated by ultra sensor
+Idea:	Motorforce is controlled by a PID controller using height given by the ultra sensor as input,
+	and the output being a number between 0-100, setting motorforce. The goal is to hover at a given
+	height, inside an acceptable range. The range for the ultra sensor to work is 5 cm to 300 cm.
+Action:	The motor is first given an offset to achieve hover. The pilot controlls the copter to a height 
+	between 20 cm and 300 cm. A goal is set as an argument to the function and the program is initiated.
+	Current height and goal height is sent into the PID and a motorforce is calculated. This is then
+	sent to the thrust servo and a new value is calculated shortly later.
+Setup:	The ultra sensor should be placed facing downwards. Doubled signals from the RC reciever is sent
+	to the MUX, except for the thrust which is sent from the rPI on one set of inputs.
+*/
+int pidHeightTest(void){
+  const int hoverOffset = 70;
+  printf("Startar PID height test, setter hover\n");
+  //FYLLA UT MED KOD
+  printf("Klar med PID height test, setter hover\n");
+  setHover();
+  return 0;
+}
+
+
+
