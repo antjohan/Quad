@@ -163,6 +163,7 @@ Setup:	The ultra sensor should be placed facing downwards. Doubled signals from 
 	to the MUX, except for the thrust which is sent from the rPI on one set of inputs.
 */
 int pidHeightTest(int refHeight){
+  /* //kompilerar ej..
   const int hoverOffset = 70;
   FILE *fp;
   fp=fopen("heightAndSpeed.txt","r+");
@@ -172,7 +173,7 @@ int pidHeightTest(int refHeight){
   for(int i = 0; i<100; i++){
     printf("Ny Iteration\n");
     int currentHeight = getHeight(); //Use the ultra sensor to get height
-    //int reqThrust = getThrust(refHeight-currentHeight);//PID function
+    int reqThrust = getThrust(refHeight-currentHeight);//PID function
     fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
     Set_Serv(3, reqThrust);
     delay(100);//0.1 second
@@ -181,6 +182,7 @@ int pidHeightTest(int refHeight){
   setHover();//Should not be needed if the PID works nicely
   fclose(fp);
   return 0;
+  */
 }
 
 
