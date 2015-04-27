@@ -60,6 +60,7 @@ void Initialize(){
     RelativeAltitude=AltitudeSum/(float)4;
     //printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
     sprintf(WriteBuf,"%f.1",RelativeAltitude);
+    printf("%s",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
   }
  }
