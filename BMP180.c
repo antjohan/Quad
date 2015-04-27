@@ -28,7 +28,7 @@ void Initialize(){
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
   printf("Calibrating initial pressure...\n");
   delay(200);
-  int pasum=0;
+  float pasum=0.0;
   for (int i=0;i<30;++i){
     float newpres =CompensatePressure(GetUncompensatedPressure()); 
     printf("Calibration values: %f\n",newpres);
