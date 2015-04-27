@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
-#include <BMP180.h>
+#include "BMP180.h"
 
 int main(){
   Initialize();
