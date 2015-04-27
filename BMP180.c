@@ -26,15 +26,15 @@ void Initialize(){
   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
+  printf("Calibrating initial pressure...\n");
   delay(200);
   int pasum=0;
-  printf("Calibrating initial pressure...");
   for (int i=0;i<30;++i){
-    pasum=pasum+CompensatePressure(GetPressure());
+    pasum=pasum+CompensatePressure(GetUncompensatedPressure());
     delay(100);
   }
   InitialPressurePa=pasum/30;
-  printf("Initial pressure: %d",InitialPressurePa);
+  printf("Initial pressure: %d\n",InitialPressurePa);
   //open fifo
   char* barometerfifo = "./tmp/barometerfifo";
   mkfifo(barometerfifo,0666);
@@ -46,7 +46,7 @@ void Initialize(){
   char WriteBuf[10];
   while(1){
     RelativeAltitude=GetAltitude(InitialPressurePa);
-    printf("Barometer: h = %f  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetPressure()), CompensateTemperature(GetTemperature()));
+    printf("Barometer: h = %f  p = %d  ut = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), GetUncompensatedTemperature());
     sprintf(WriteBuf,"%f.1",RelativeAltitude);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
     delay(OutputSpeed);
