@@ -32,7 +32,7 @@
  #define BMP180_Mode_HighResolution    2
  #define BMP180_Mode_UltraHighResolution 3
 
-float InitialPressurePa=100300;
+float InitialPressurePa=101300;
 int barometerfifofd;
 
  uint8_t OversamplingSetting;
