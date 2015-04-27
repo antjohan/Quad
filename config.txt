@@ -1,21 +1,29 @@
-exempel
+#exempel, använd libconfig
 
-[Magnetometer]
-sampling=10
-gain=1
+sensors
+{
+    magnetometer{
+        sampling=5
+        gain=1
+    }
+    barometer{}
+    ultrasonic{}
+    gps{}
 
-
-[Barometer]
-settings
-
-[Ultrasonic]
-settings
-
-[GPS]
-settings
-
-
-
-
-[CONTROL]
-parametrar
+}
+control{
+    height{
+        P=1
+        I=1
+        D=1
+    }
+    yaw{
+        P=1
+        I=1
+        D=1
+    }
+    roll{
+    
+    }
+    pitch{}
+}
