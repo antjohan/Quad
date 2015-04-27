@@ -1,14 +1,14 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-//#include <libconfig.h>
+#include <libconfig.h>
 
-//#include <unistd.h>
+#include <unistd.h>
 
 #define MAX_BUF 256 //Amount of characters that can be sent through the fifos
  
- //char * configfile= "./config.txt"
- //config_t * config;
+ char * configfile= "./config.txt"
+ config_t * config;
 
 
 int barometerfifofd;
@@ -25,14 +25,12 @@ double speed; //info from gps
 
 
 
-int main(){
-	/*
+int main(){//test
 	config_init(config)
 	config_read_file(config,configfile);
 	double test;
 	config_lookup_float(config,"sensors.magnetometer.sampling",test);
 	printf("%f", test);
-	*/
 
 }
 void init(){ 
