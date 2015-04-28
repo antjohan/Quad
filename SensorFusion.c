@@ -46,14 +46,31 @@ void sfinit(){
 
 
 //initialize all rdonly- fifos
+	//wait for created baro fifo
+	//printf("connecting-baro-fifo...\n");
+    char buf[14];
+  	while(strcmp(buf,"baro-fifo-open")==0){
+  		printf("Looking for: baro-fifo-open");
+   		fgets(buf,30,stdin);
+  	}
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	if (barometerfifofd==-1){
     	printf("barometerfifofoerror: %s\n",strerror(errno));
- 	 }
- 	 delay(200);
-	ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
+ 	} else {
+  		printf("baro-fifo-connected\n");
+ 	}
+
+ 	char buf[15];
+  	while(strcmp(buf,"ultra-fifo-open")==0){
+  		printf("Looking for: ultra-fifo-open");
+   		fgets(buf,30,stdin);
+   		printf("baro-fifo-connected\n");
+  	}
+		ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
 		printf("ultrasonicfifofoerror: %s\n",strerror(errno));
+	} else {
+		printf("ultra-fifo-connected"\n);
 	}
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
 	//gpsfifofd=open(gpsfifo,O_RDONLY);	
@@ -87,6 +104,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 
 }
 double getBHeight(){
+	printf("hej11\n");
 	double bh; //barometer height
 	char barometerbuffer[MAX_BUF];
 	read(barometerfifofd,barometerbuffer,MAX_BUF);
@@ -95,6 +113,7 @@ double getBHeight(){
 
 }
 double getUHeight(){
+	printf("hej10\n");
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
 	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);

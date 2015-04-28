@@ -28,12 +28,12 @@ void getCMloop();
 
 int ultrasonicfifofd;
 
-/*int main(){
+int main(){
   ultraSetup();
   printf("hej7\n");
   sample();
 
-}*/
+}
 void sample(){
   long currentHeight;
   char WriteBuf[10];
@@ -41,8 +41,8 @@ void sample(){
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
-    printf("UH-int: %s", WriteBuf);
-    //write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
+    //printf("UH-int: %s", WriteBuf);
+    write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
   }
 }
  
@@ -62,8 +62,19 @@ void ultraSetup() {
   delay(200);
   printf("hej4\n");
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
-  printf("hej5\n");
-        wiringPiSetupSys();
+  if (ultrasonicfifofd==-1){ 
+    printf("mkfifoerror-ultra: %s\n",strerror(errno));
+  } else {
+   printf("ultra-fifo-open\n");
+  }
+  char buf[30];
+  while(strcmp(buf,"ultra-fifo-connected")==0){
+   printf("Looking for: ultra-fifo-connected\n");
+   fgets(buf,30,stdin);
+   printf("ultra-fifo-open\n");
+  }
+  printf("ultra-fifo-connection-successful\n");
+        wiringPiSetup();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
  
