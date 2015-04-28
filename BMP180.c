@@ -75,6 +75,7 @@ void Initialize(){
     sprintf(WriteBuf,"%f",RelativeAltitude);
     //printf("FUSION-STRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    delay(100);
   }
  }
 
