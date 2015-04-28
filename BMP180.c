@@ -26,28 +26,24 @@ void Initialize(){
   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
-  /*printf("Calibrating initial pressure...\n");
+  printf("Calibrating initial pressure...\n");
   delay(200);
-  float pasum=0.0;
-  for (int i=0;i<30;++i){
-    float newpres =CompensatePressure(GetUncompensatedPressure()); 
+  float hsum=0.0;
+  for (int i=0;i<100;++i){
+    float newh =GetAltitude(InitialPressurePa); 
     printf("Calibration values: %f\n",newpres);
     pasum=pasum+newpres;
-    delay(100);
   }
-  InitialPressurePa=pasum/(float)30.0;
+  InitialHeight=pasum/(float)100.0;
+  printf("Initial height set at: %f\n",InitialHeight);
   
-  printf("Initial pressure: %f\n",InitialPressurePa);
-  */
   //open fifo
-  printf("ooopa\n");
   char* barometerfifo = "/tmp/barometerfifo";
   int a = mkfifo(barometerfifo,0666);
   if (a==-1){
     printf("mkfifoerror: %s",strerror(errno));
   }
   barometerfifofd=open(barometerfifo, O_WRONLY);
-  printf("%d\n",barometerfifofd);
   sample();
 }
  void sample(){
@@ -60,6 +56,7 @@ void Initialize(){
     }
     RelativeAltitude=AltitudeSum/(float)4;
     //printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
+    RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
     //printf("FUSION-STRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));

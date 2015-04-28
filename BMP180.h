@@ -36,6 +36,7 @@
 
 float InitialPressurePa=101300;
 int barometerfifofd;
+float InitialHeight;
 
  uint8_t OversamplingSetting;
  bool Oversample;

@@ -20,7 +20,7 @@ int gpsfifofd;
 int fusionlogfd;
 
 //variables
-double height; //height form ultrasonic/barometer
+double height; //height from ultrasonic/barometer
 double bearing; //bearing from magnetometer
 double coordinate[3]; //lat, long, quality from gps
 double speed; //info from gps
@@ -93,6 +93,6 @@ double * getCoordinate(){
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
-	
+
 
 }
