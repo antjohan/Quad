@@ -18,7 +18,7 @@ void ultraSetup() {
 }
 
 
-int getUltra() {
+long getUltra() {
         //Send trig pulse
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
@@ -33,7 +33,7 @@ int getUltra() {
         long travelTime = micros() - startTime;
  
         //Get distance in cm
-        int distance = travelTime / 58;
+        long distance = travelTime / 58;
  
         return distance;
 }
@@ -41,19 +41,19 @@ int getUltra() {
 
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
-int getCM(){
- int ans = 0;
+long getCM(){
+ long ans = 0;
  while(1){
- int val = 10;
- int sum;
+ long val = 10;
+ long sum;
 
  
  // Första mätningen, val=antal mätvärden,
  // värden större än 400cm förkastas
- int m1[val];
- int tmp;
- int medel1 = 0;
- int length1 = 0;
+ long m1[val];
+ long tmp;
+ long medel1 = 0;
+ long length1 = 0;
  
   for(int i = 0; i<val; i++){
    tmp = getUltra();         // Gör en mätning
@@ -71,13 +71,13 @@ int getCM(){
   }
   
   // Mätningarnas medelvärde 
-  int medel = medel1  / length1;
+  long medel = medel1  / length1;
 
  // Mätvärdenas individuella differens från medelvärdet (diff)
  // och medelvärde av avvikelssen (diff_medel)
 
- int diff[length1];    // Vektor att fylla med individuella skillnader
- int diff_medel = 0;
+ long diff[length1];    // Vektor att fylla med individuella skillnader
+ long diff_medel = 0;
 
  for(int i = 0; i<length1; i++){
  diff[i] = abs(medel1 - m1[i]);        // Differens i längd
@@ -87,8 +87,8 @@ int getCM(){
 
 // Filtrerar bort de mätningar som är vars avvikelse är 
 // längre bort än medelavvikelsen + 5 cm
- int count = 0;                      // Räknare för indexering då vektorn blir kortare
- int res[val];
+ long count = 0;                      // Räknare för indexering då vektorn blir kortare
+ long res[val];
  for(int i = 0; i<length1; i++){
   if(diff[i] < diff_medel + 5 ){     // Krav för att bli godkänd
    res[count] = m1[i];                // Skrivs in i vektorn
@@ -111,7 +111,7 @@ fp=fopen("data.txt","r+");
 //fprintf(fp, "%i", ans, "\n");
 fclose(fp);
 
-printf("%i\n", ans);
+printf("%l\n", ans);
  }
   return ans;
   
