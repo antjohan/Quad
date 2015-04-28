@@ -17,6 +17,15 @@
 #define TRIG 4
 #define ECHO 5
 
+//functions
+void sample();
+long getCM();
+void getCMloop();
+void ultraSetup();
+long getUltra();
+long getCMloop();
+
+
 int ultrasonicfifofd;
 
 int main(){
@@ -79,7 +88,7 @@ long getUltra() {
 
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
-long int getCM(){
+long getCM(){
  long val = 10;
  long sum;
 
