@@ -42,7 +42,7 @@ int getUltra() {
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
 int getCM(){
- int val = 5;
+ int val = 10;
  int sum;
  
  // Första mätningen, val=antal mätvärden,
@@ -63,7 +63,7 @@ int getCM(){
      printf("Avståndet är längre än 4m\n");
      return -1;
     }
-   delay(100);               // Fördröjning för att det ska fungera, tror 30 är lagom
+   delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom
   }
   
   // Mätningarnas medelvärde 
