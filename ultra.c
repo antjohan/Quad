@@ -80,7 +80,7 @@ int getCM(){
 // Filtrerar bort de mätningar som är vars avvikelse är 
 // längre bort än medelavvikelsen + 5 cm
  int count = 0;                      // Räknare för indexering då vektorn blir kortare
- int res[];
+ int res[val];
  for(int i = 0; i<length1; i++){
   if(diff[i] < diff_medel + 5 ){     // Krav för att bli godkänd
    res[count] = m1[i];                // Skrivs in i vektorn
