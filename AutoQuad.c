@@ -115,8 +115,8 @@ int main(){
 
 			printf("[1]	Testa barometer\n");
 			printf("[2]	Testa ultra sensor\n");
-			printf("[3]	Testa hoverToStep\n");
-			printf("[4]	Testa ett varv rotation\n");
+		//	printf("[3]	Testa hoverToStep\n");
+		//	printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
@@ -140,11 +140,12 @@ int main(){
 				printf("Done!\n");
 			}
 			//Test hoverToStep
-			else if(test == 3){
+		/*	else if(test == 3){
 				testHoverToStep();
 				
 			}else if(test == 4){
 				testOneRotation();
+		*/
 			}else if(test == 5){
 				
 			}else{
