@@ -55,10 +55,10 @@ void Initialize(){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
     }
     RelativeAltitude=AltitudeSum/(float)4;
-    //printf("Barometer: h = %f\n", RelativeAltitude ); //  p = %d  t = %f\n",RelativeAltitude, CompensatePressure(GetUncompensatedPressure()), CompensateTemperature(GetUncompensatedTemperature()));
+    printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
-    //printf("FUSION-STRING: %s\n",WriteBuf);
+    printf("FUSION-STRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
   }
  }
