@@ -59,6 +59,10 @@ int getCM(){
     length1 = length1 + 1;   // Ökar indexeringen
     medel1 = tmp + medel1;   // Summerar för att kunna göra medelvärde
     }
+    if (length1 == 0){
+     printf("Avståndet är längre än 4m\n");
+     return -1;
+    }
    delay(100);               // Fördröjning för att det ska fungera, tror 30 är lagom
   }
   
