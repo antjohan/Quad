@@ -45,7 +45,7 @@ void ultraSetup() {
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
   }
   delay(200);
-  ultrasonicfifofd=open(barometerfifo, O_WRONLY);
+  ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
 
         wiringPiSetup();
         pinMode(TRIG, OUTPUT);
@@ -148,10 +148,10 @@ fclose(fp);
 
 printf("%ld\n", ans);
  }
-  return ans;
+  return (ans);
 }
 
-void getCMloop{
+void getCMloop(){
  long l;
  while(1){
  l = getCM();
