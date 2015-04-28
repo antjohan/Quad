@@ -53,13 +53,13 @@ void sfinit(){
  	if (ultrasonicfifofd==-1){
 		printf("ultrasonicfifofoerror: %s\n",strerror(errno));
 	} else {
-		printf("sf-ultra-fifo-open");
+		printf("sf-ultra-fifo-open\n");
 	}
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	if (barometerfifofd==-1){
     	printf("barometerfifofoerror: %s\n",strerror(errno));
  	} else {
- 		printf("sf-baro-fifo-open");
+ 		printf("sf-baro-fifo-open\n");
  	}
 
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);

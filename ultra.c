@@ -56,7 +56,7 @@ void ultraSetup() {
   if (a==-1){
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
   } else {
-    printf("ultra-fifo-created");
+    printf("ultra-fifo-created\n");
   }
   delay(200);
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
