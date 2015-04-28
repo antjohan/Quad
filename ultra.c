@@ -47,7 +47,7 @@ void sample(){
 }
  
 void ultraSetup() {
-   wiringPiSetupSys();
+   wiringPiSetup();
   //open fifo
   char* ultrasonicfifo = "/home/pi/tmp/ultrasonicfifo";
   //delete in case it already exists
