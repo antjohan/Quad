@@ -78,7 +78,7 @@ long getUltra() {
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
         digitalWrite(TRIG, LOW);
- 
+        printf("Derp1");
         //Wait for echo start
         while(digitalRead(ECHO) == LOW);
  
@@ -86,7 +86,7 @@ long getUltra() {
         long startTime = micros();
         while(digitalRead(ECHO) == HIGH);
         long travelTime = micros() - startTime;
- 
+        printf("Derp2");
         //Get distance in cm
         long distance = travelTime / 58;
  
