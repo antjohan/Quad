@@ -74,6 +74,7 @@ void ultraSetup() {
    printf("Looking for: ultra-fifo-connected\n");
    fgets(buf,20,stdin);
    printf("ultra-fifo-open\n");
+   delay(500);
   }
   printf("ultra-fifo-connection-successful\n");
   printf("hej5\n");

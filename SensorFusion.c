@@ -53,6 +53,7 @@ void sfinit(){
   		printf("sfbuf: %s",buf);
   		printf("Looking for: baro-fifo-open");
    		fgets(buf,14,stdin);
+   		delay(500);
   	}
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	if (barometerfifofd==-1){
@@ -67,6 +68,7 @@ void sfinit(){
   		printf("Looking for: ultra-fifo-open");
    		fgets(buf1,15,stdin);
    		printf("baro-fifo-connected\n");
+   		delay(500);
   	}
 		ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
