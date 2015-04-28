@@ -92,6 +92,7 @@ int testHoverToStep(void){
   printf("Set_servo\n");
 //  Set_Servo(3, afterStep);
   printf("servo satt\n");
+  ultraSetup();//Hårdkod, ska bort senare
   for (int i = 0; i<50;i++){
     printf("Iteration\n");
     long currentHeight = getUltra(); //Use the ultra sensor to get height
