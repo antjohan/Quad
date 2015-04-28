@@ -68,10 +68,11 @@ void ultraSetup() {
   } else {
    printf("ultra-fifo-open\n");
   }
-  char buf[30];
+  char buf[20];
   while(strcmp(buf,"ultra-fifo-connected")==0){
+   printf("ubuf: %s",buf);
    printf("Looking for: ultra-fifo-connected\n");
-   fgets(buf,30,stdin);
+   fgets(buf,20,stdin);
    printf("ultra-fifo-open\n");
   }
   printf("ultra-fifo-connection-successful\n");
