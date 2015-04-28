@@ -49,18 +49,19 @@ void sfinit(){
 	//wait for created baro fifo
 	//printf("connecting-baro-fifo...\n");
 
-	barometerfifofd=open(barometerfifo, O_RDONLY);
-	if (barometerfifofd==-1){
-    	printf("barometerfifofoerror: %s\n",strerror(errno));
- 	} else {
- 		printf("sf-baro-fifo-open");
- 	}
 		ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
 		printf("ultrasonicfifofoerror: %s\n",strerror(errno));
 	} else {
 		printf("sf-ultra-fifo-open");
 	}
+	barometerfifofd=open(barometerfifo, O_RDONLY);
+	if (barometerfifofd==-1){
+    	printf("barometerfifofoerror: %s\n",strerror(errno));
+ 	} else {
+ 		printf("sf-baro-fifo-open");
+ 	}
+
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
 	//gpsfifofd=open(gpsfifo,O_RDONLY);	
 
