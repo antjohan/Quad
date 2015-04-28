@@ -42,8 +42,6 @@ long getUltra() {
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
 long getCM(){
- long ans = 0;
- while(1){
  long val = 10;
  long sum;
 
@@ -64,8 +62,7 @@ long getCM(){
     }
     if (length1 == 0){
      printf("Avståndet är längre än 4m\n");
-     
-     //return -1;
+     return -1;
     }
    delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom
   }
@@ -98,7 +95,7 @@ long getCM(){
  
  
  // De mätvärden som är godkända summeras och medelvärdes tas
- ans = 0;                       
+ long ans = 0;                       
  for(int i = 0; i<count; i++){ 
   ans = ans + res[i];             
  }
@@ -108,12 +105,24 @@ long getCM(){
   // Skriver till fil
     FILE *fp;
 fp=fopen("data.txt","r+");
-//fprintf(fp, "%i", ans, "\n");
+//fprintf(fp, "%ld\n", ans);
 fclose(fp);
 
 printf("%ld\n", ans);
  }
   return ans;
-  
- 
 }
+
+void getCMloop{
+ long l;
+ while(1){
+ l = getCM();
+ printf("%ld\n", l);
+ }
+}
+
+
+
+
+
+
