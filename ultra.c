@@ -47,6 +47,7 @@ void sample(){
 }
  
 void ultraSetup() {
+   wiringPiSetupSys();
   //open fifo
   char* ultrasonicfifo = "/tmp/ultrasonicfifo";
   //delete in case it already exists
@@ -61,7 +62,6 @@ void ultraSetup() {
   }
   delay(200);
   printf("hej4\n");
-<<<<<<< HEAD
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   if (ultrasonicfifofd==-1){ 
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
@@ -76,11 +76,7 @@ void ultraSetup() {
   }
   printf("ultra-fifo-connection-successful\n");
         wiringPiSetup();
-=======
- // ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   printf("hej5\n");
-//        wiringPiSetupSys();
->>>>>>> origin/master
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
    printf("hej6\n");
