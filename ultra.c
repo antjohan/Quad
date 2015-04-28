@@ -66,7 +66,7 @@ void ultraSetup() {
   printf("hej4\n");
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   if (ultrasonicfifofd==-1){ 
-    printf("mkfifoerror-ultra: %s\n",strerror(errno));
+    printf("openfifoerror-ultra: %s\n",strerror(errno));
   } else {
    printf("ultra-fifo-open\n");
   }
