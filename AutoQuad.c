@@ -160,7 +160,7 @@ int main(){
 		}else if(val==6){//recieve barometer data
 			while(1){
 				printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
-				delay(100);
+				//delay(100);
 			}
 
 		}

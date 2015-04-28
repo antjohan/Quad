@@ -41,7 +41,7 @@ void sample(){
     sprintf(WriteBuf,"%ld",currentHeight);
     //printf("UH-int: %s", WriteBuf);
     write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
-    delay(500);
+    //delay(500);
   }
 }
  
