@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <sys/time.h>
 const int hoverConst = 70;
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
@@ -50,6 +51,7 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 
 int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
+  
   int afterStep = 75;
   FILE *fp;
   fp=fopen("hoverToStepTest.txt","r+");
@@ -59,8 +61,9 @@ int testHoverToStep(void){
   //Initiate step
   Set_Serv(3, afterStep);
   for (int i = 0; i<3000;i++){
-  	fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
-  	delay(40);
+    int currentHeight = getHeight(); //Use the ultra sensor to get height
+    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
+    delay(40);
   }
   printf("Klar med test, setter hover\n");
   //Hover
@@ -81,6 +84,19 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 */
 int testOneRotation(void){
   const int yawSpeed = 30;
+ struct timeval tval_before, tval_after, tval_result;
+
+gettimeofday(&tval_before, NULL);
+
+// Some code you want to time, for example:
+sleep(1);
+
+gettimeofday(&tval_after, NULL);
+
+timersub(&tval_after, &tval_before, &tval_result);
+
+printf("Time elapsed: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
+
   printf("Startar yaw rotations test, setter hover\n");
   setHover();
   sleep(4);
