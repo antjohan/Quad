@@ -15,14 +15,14 @@ void Initialize(){
  AcceptableTemperatureLatencyForPressure = 1000;
 
    //open fifo
-  char* barometerfifo = "~/tmp/barometerfifo";
+  char* barometerfifo = "/home/pi/tmp/barometerfifo";
   //delete in case it already exists
   unlink(barometerfifo);
   delay (300);
   int a = mkfifo(barometerfifo,0666);
   delay(200);
   if (a==-1){
-    printf("mkfifoerror: %s\n",strerror(errno));
+    printf("bmkfifoerror: %s\n",strerror(errno));
   } else{
     printf("baro-fifo-created\n");
   }

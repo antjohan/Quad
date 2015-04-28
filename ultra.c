@@ -49,7 +49,7 @@ void sample(){
 void ultraSetup() {
    wiringPiSetupSys();
   //open fifo
-  char* ultrasonicfifo = "~/tmp/ultrasonicfifo";
+  char* ultrasonicfifo = "/home/pi/tmp/ultrasonicfifo";
   //delete in case it already exists
   printf("hej1\n");
   unlink(ultrasonicfifo);
