@@ -54,8 +54,8 @@ int getCM(){
  
   for(int i = 0; i<val; i++){
    tmp = getUltra();         // Gör en mätning
-   if(tmp < 400){            // Kollar om värdet är rimligt (kortare än 400cm)
-    m3[length1] = tmp;       // Sparar undan värdet
+   if(tmp < 400 && tmp > 0){            // Kollar om värdet är rimligt (kortare än 400cm)
+    m1[length1] = tmp;       // Sparar undan värdet
     length1 = length1 + 1;   // Ökar indexeringen
     medel1 = tmp + medel1;   // Summerar för att kunna göra medelvärde
     }
@@ -71,7 +71,7 @@ int getCM(){
  int diff[length1];    // Vektor att fylla med individuella skillnader
  int diff_medel = 0;
 
- for(int i = 0; i<length; i++){
+ for(int i = 0; i<length1; i++){
  diff[i] = abs(medel1 - m1[i]);        // Differens i längd
  diff_medel = diff_medel + diff[i];  // Summerar alla differenser för att kunna ta medelvärde
  }
@@ -80,7 +80,7 @@ int getCM(){
 // Filtrerar bort de mätningar som är vars avvikelse är 
 // längre bort än medelavvikelsen + 5 cm
  int count = 0;                      // Räknare för indexering då vektorn blir kortare
-
+ int res[];
  for(int i = 0; i<length1; i++){
   if(diff[i] < diff_medel + 5 ){     // Krav för att bli godkänd
    res[count] = m1[i];                // Skrivs in i vektorn
