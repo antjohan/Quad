@@ -17,7 +17,7 @@ void Initialize(){
   char* barometerfifo = "/tmp/barometerfifo";
   //delete in case it already exists
   unlink(barometerfifo);
-  delay (300)
+  delay (300);
   int a = mkfifo(barometerfifo,0666);
   if (a==-1){
     printf("mkfifoerror: %s\n",strerror(errno));
