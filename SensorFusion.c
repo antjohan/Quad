@@ -43,12 +43,12 @@ void sfinit(){
 
 //initialize all rdonly- fifos
 	barometerfifofd=open(barometerfifo, O_RDONLY);
-	ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
-	magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
-	gpsfifofd=open(gpsfifo,O_RDONLY);	
+	//ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
+	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
+	//gpsfifofd=open(gpsfifo,O_RDONLY);	
 
 //initialize flight log
-	fusionlogfd=open(fusionlog, O_WRONLY);
+	//fusionlogfd=open(fusionlog, O_WRONLY);
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
