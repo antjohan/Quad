@@ -30,18 +30,16 @@ int ultrasonicfifofd;
 
 int main(){
   ultraSetup();
-  printf("hej7\n");
   sample();
 
 }
 void sample(){
   long currentHeight;
   char WriteBuf[10];
-  printf("hej8\n");
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
-    printf("UH-int: %s", WriteBuf);
+    //printf("UH-int: %s", WriteBuf);
     write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
   }
 }
@@ -51,33 +49,26 @@ void ultraSetup() {
   //open fifo
   char* ultrasonicfifo = "/home/pi/tmp/ultrasonicfifo";
   //delete in case it already exists
-  printf("hej1\n");
   unlink(ultrasonicfifo);
   delay (500);
-  printf("hej2\n");
   int a = mkfifo(ultrasonicfifo,0666);
-  printf("hej3\n");
   if (a==-1){
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
   } else {
     printf("ultra-fifo-created");
   }
   delay(200);
-  printf("hej4\n");
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   if (ultrasonicfifofd==-1){ 
     printf("openfifoerror-ultra: %s\n",strerror(errno));
   } else {
    printf("ultra-fifo-open\n");
   }
-  printf("hej5\n");
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
-   printf("hej6\n");
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
         delay(30);
-   printf("hej6\n");
 }
 
 long getUltra() {
@@ -119,7 +110,7 @@ long getCM(){
          medel1 = tmp + medel1;   // Summerar för att kunna göra medelvärde
       }
       if (length1 == 0){
-      printf("Avståndet är längre än 4m\n");
+      //printf("Avståndet är längre än 4m\n");
       return ((long)-1);
       }
       delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom

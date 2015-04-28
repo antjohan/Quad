@@ -94,7 +94,6 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 
 }
 double getBHeight(){
-	printf("hej11\n");
 	double bh; //barometer height
 	char barometerbuffer[MAX_BUF];
 	read(barometerfifofd,barometerbuffer,MAX_BUF);
@@ -104,18 +103,14 @@ double getBHeight(){
 
 }
 double getUHeight(){
-	printf("hej12\n");
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
-	printf("hej13\n");
 	int a = read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
 	if (a==-1){
 		printf("UHeightReadError: %s\n",strerror(errno));
 	}	
-	printf("hej14\n");
-	sscanf(ultrasonicbuffer, "%lf", &uh);
-	printf("hej15\n");
-	printf("uh: %lf\n",uh);
+	sscanf(ultrasonicbuffer, "%ld", &uh);
+	printf("uh: %ld\n",uh);
 	return (uh);
 }
 
