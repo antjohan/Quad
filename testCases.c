@@ -81,19 +81,6 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 */
 int testOneRotation(void){
   const int yawSpeed = 30;
- struct timeval tval_before, tval_after, tval_result;
-
-gettimeofday(&tval_before, NULL);
-
-// Some code you want to time, for example:
-sleep(1);
-
-gettimeofday(&tval_after, NULL);
-
-timersub(&tval_after, &tval_before, &tval_result);
-
-printf("Time elapsed: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
-
   printf("Startar yaw rotations test, setter hover\n");
   setHover();
   sleep(4);
