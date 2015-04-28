@@ -31,8 +31,8 @@ void Initialize(){
   float hsum=0.0;
   for (int i=0;i<100;++i){
     float newh =GetAltitude(InitialPressurePa); 
-    printf("Calibration values: %f\n",newpres);
-    pasum=pasum+newpres;
+    printf("Calibration values: %f\n",newh);
+    pasum=pasum+newh;
   }
   InitialHeight=pasum/(float)100.0;
   printf("Initial height set at: %f\n",InitialHeight);
