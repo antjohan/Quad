@@ -27,12 +27,12 @@ void getCMloop();
 
 
 int ultrasonicfifofd;
-
+/*
 int main(){
   ultraSetup();
   sample();
 
-}
+}*/
 void sample(){
   long currentHeight;
   char WriteBuf[10];
