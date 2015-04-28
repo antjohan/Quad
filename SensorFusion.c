@@ -48,33 +48,18 @@ void sfinit(){
 //initialize all rdonly- fifos
 	//wait for created baro fifo
 	//printf("connecting-baro-fifo...\n");
-    char buf[14];
-  	while(strcmp(buf,"baro-fifo-open")!=0){
-  		printf("sfbuf: %s",buf);
-  		printf("Looking for: baro-fifo-open");
-   		fgets(buf,14,stdin);
-   		delay(500);
-  	}
+
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	if (barometerfifofd==-1){
     	printf("barometerfifofoerror: %s\n",strerror(errno));
  	} else {
-  		printf("baro-fifo-connected\n");
+ 		printf("sf-baro-fifo-open");
  	}
-
- 	char buf1[15];
-  	while(strcmp(buf,"ultra-fifo-open")!=0){
-  		printf("sfbuf1: %s",buf1);
-  		printf("Looking for: ultra-fifo-open");
-   		fgets(buf1,15,stdin);
-   		printf("baro-fifo-connected\n");
-   		delay(500);
-  	}
 		ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
 		printf("ultrasonicfifofoerror: %s\n",strerror(errno));
 	} else {
-		printf("ultra-fifo-connected\n");
+		printf("sf-ultra-fifo-open");
 	}
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
 	//gpsfifofd=open(gpsfifo,O_RDONLY);	

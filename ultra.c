@@ -59,6 +59,8 @@ void ultraSetup() {
   printf("hej3\n");
   if (a==-1){
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
+  } else {
+    printf("ultra-fifo-created");
   }
   delay(200);
   printf("hej4\n");
@@ -68,15 +70,6 @@ void ultraSetup() {
   } else {
    printf("ultra-fifo-open\n");
   }
-  char buf[20];
-  while(strcmp(buf,"ultra-fifo-connected")!=0){
-   printf("ubuf: %s",buf);
-   printf("Looking for: ultra-fifo-connected\n");
-   fgets(buf,20,stdin);
-   printf("ultra-fifo-open\n");
-   delay(500);
-  }
-  printf("ultra-fifo-connection-successful\n");
   printf("hej5\n");
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);

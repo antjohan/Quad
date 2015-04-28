@@ -23,18 +23,17 @@ void Initialize(){
   delay(200);
   if (a==-1){
     printf("mkfifoerror: %s\n",strerror(errno));
+  } else{
+    printf("baro-fifo-created\n");
+  }
+
+  barometerfifofd=open(barometerfifo, O_WRONLY);
+  if (barometerfifofd==-1){
+    printf("openbarofifoerror: %s\n",strerror(errno));
   } else {
     printf("baro-fifo-open\n");
   }
-  barometerfifofd=open(barometerfifo, O_WRONLY);
-  char buf[30];
-  while(strcmp(buf,"baro-fifo-connected")!=0){
-      printf("bbuf: %s",buf);
-      printf("Looking for: baro-fifo-connected\n");
-      fgets(buf,30,stdin);
-      printf("baro-fifo-open\n");
-  }
- printf("baro-fifo-connection-successful\n");
+
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
  SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
