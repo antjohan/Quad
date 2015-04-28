@@ -111,7 +111,7 @@ fp=fopen("data.txt","r+");
 //fprintf(fp, "%i", ans, "\n");
 fclose(fp);
 
-printf("%l\n", ans);
+printf("%i\n", ans);
  }
   return ans;
   
