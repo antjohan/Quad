@@ -145,8 +145,9 @@ int main(){
 				
 			}else if(test == 4){
 				testOneRotation();
-		*/
-			}else if(test == 5){
+		
+			}*/
+			else if(test == 5){
 				
 			}else{
 				printf("Invalid\n");
