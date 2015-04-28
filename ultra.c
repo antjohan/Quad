@@ -75,13 +75,13 @@ void ultraSetup() {
 
 long getUltra() {
         //Send trig pulse
-        printf("Derp1");
+        printf("Derp1\n");
         digitalWrite(TRIG, HIGH);
-        printf("Derp2");
+        printf("Derp2\n");
         delayMicroseconds(20);
-        printf("Derp3");
+        printf("Derp3\n");
         digitalWrite(TRIG, LOW);
-        printf("Derp4");
+        printf("Derp4\n");
         //Wait for echo start
         while(digitalRead(ECHO) == LOW);
  
