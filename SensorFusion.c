@@ -51,7 +51,7 @@ void sfinit(){
     char buf[14];
   	while(strcmp(buf,"baro-fifo-open")==0){
   		printf("Looking for: baro-fifo-open");
-   		fgets(&buf,14,stdin);
+   		fgets(buf,14,stdin);
   	}
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	if (barometerfifofd==-1){
@@ -60,10 +60,10 @@ void sfinit(){
   		printf("baro-fifo-connected\n");
  	}
 
- 	char buf[15];
+ 	char buf1[15];
   	while(strcmp(buf,"ultra-fifo-open")==0){
   		printf("Looking for: ultra-fifo-open");
-   		fgets(&buf,15,stdin);
+   		fgets(buf1,15,stdin);
    		printf("baro-fifo-connected\n");
   	}
 		ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
