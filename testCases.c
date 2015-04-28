@@ -83,24 +83,24 @@ int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
   
   int afterStep = 75;
-  FILE *fp;
-  fp=fopen("hoverToStepTest.txt","r+");
+  //FILE *fp;
+  //fp=fopen("hoverToStepTest.txt","r+");
   setHover();
-  sleep(4);
+  //sleep(4);
   printf("Initierar steg och skriver ner värden\n");
   //Initiate step
-      printf("Set_servo");
+  printf("Set_servo");
   Set_Servo(3, afterStep);
-      printf("servo satt");
+  printf("servo satt");
   for (int i = 0; i<50;i++){
     printf("Iteration");
     long currentHeight = getUltra(); //Use the ultra sensor to get height
-    fprintf(fp, "#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
+    //fprintf(fp, "#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
    // delay(40);
   }
   printf("Klar med test, setter hover\n");
   //Hover
-  fclose(fp);
+  //fclose(fp);
   setHover();
   return 0;
 }
