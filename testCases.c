@@ -60,9 +60,9 @@ int testHoverToStep(void){
   printf("Initierar steg och skriver ner värden\n");
   //Initiate step
   Set_Serv(3, afterStep);
-  for (int i = 0; i<3000;i++){
-    int currentHeight = getHeight(); //Use the ultra sensor to get height
-    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
+  for (int i = 0; i<300;i++){
+//    int currentHeight = getHeight(); //Use the ultra sensor to get height
+//    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
     delay(40);
   }
   printf("Klar med test, setter hover\n");
