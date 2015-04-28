@@ -71,6 +71,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 		return (bh);
 	}
 */
+	height = bh;
 	return bh;
 
 }
@@ -92,5 +93,6 @@ double * getCoordinate(){
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
+	
 
 }
