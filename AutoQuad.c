@@ -134,10 +134,11 @@ int main(){
 			}
 			//Ultra sensor
 			else if(test == 2){
-				ultraSetup();
+			/*	ultraSetup();
 				printf("Testar avstand\n");
 				printf("%l\n", getCM());
 				printf("Done!\n");
+			*/
 			}
 			//Test hoverToStep
 		/*	else if(test == 3){
