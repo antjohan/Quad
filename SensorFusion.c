@@ -46,12 +46,12 @@ void sfinit(){
 
 
 //initialize all rdonly- fifos
-	printf("sfinit1");
+	printf("sfinit1\n");
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	 if (barometerfifofd==-1){
     printf("barometerfifofderror: %s\n",strerror(errno));
  	 }
- 	 	printf("sfinit2");
+ 	 	printf("sfinit2\n");
 
 	//ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
@@ -82,7 +82,6 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	}
 */
 	height = bh;
-	printf("Returned value: %lf\n", height);
 	return bh;
 
 }
