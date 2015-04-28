@@ -1,13 +1,52 @@
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdlib.h>
-#include <wiringPi.h>
+ #include <wiringPiI2C.h>
+ #include <wiringPi.h>
+ #include <inttypes.h>
+ #include <stdbool.h>
+ #include <math.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
  
 // #define TRUE 1
  
 #define TRIG 4
 #define ECHO 5
+
+int ultrasonicfifofd;
+
+int main(){
+  ultraSetup();
+  sample();
+
+}
+void sample(){
+  long currentHeight;
+  char * WriteBuf[10];
+  while(1){
+    currentHeight=getCM();
+    sprintf(WriteBuf,"%ld",currentHeight);
+    write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
+  }
+}
  
 void ultraSetup() {
+  //open fifo
+  char* ultrasonicfifo = "/tmp/ultrasonicfifo";
+  //delete in case it already exists
+  unlink(ultrasonicfifo);
+  delay (300);
+  int a = mkfifo(ultrasonicfifo,0666);
+  if (a==-1){
+    printf("mkfifoerror-ultra: %s\n",strerror(errno));
+  }
+  delay(200)
+  ultrasonicfifofd=open(barometerfifo, O_WRONLY);
+
         wiringPiSetup();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
@@ -16,7 +55,6 @@ void ultraSetup() {
         digitalWrite(TRIG, LOW);
         delay(30);
 }
-
 
 long getUltra() {
         //Send trig pulse

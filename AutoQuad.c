@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <wiringPiI2C.h>
 //#include "BMP180.c"
-#include "ultra.c"
+//#include "ultra.c"
 //#include "testCases.c" /lagt externt
 #include "SensorFusion.c"
 
@@ -157,8 +157,8 @@ int main(){
 			break;
 		}else if(val==6){//recieve barometer data
 			while(1){
-				printf("AutoQuad::::: %lf\n",getHeight());
-				delay(1000);
+				printf("Barometer: %lf   Ultrasonic: %ld\n",getBHeight(),getUHeight(););
+				delay(100);
 			}
 
 		}

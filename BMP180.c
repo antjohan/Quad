@@ -19,6 +19,7 @@ void Initialize(){
   unlink(barometerfifo);
   delay (300);
   int a = mkfifo(barometerfifo,0666);
+  delay(200)
   if (a==-1){
     printf("mkfifoerror: %s\n",strerror(errno));
   }
