@@ -53,7 +53,7 @@ void ultraSetup() {
   //delete in case it already exists
   printf("hej1\n");
   unlink(ultrasonicfifo);
-  delay (300);
+  delay (500);
   printf("hej2\n");
   int a = mkfifo(ultrasonicfifo,0666);
   printf("hej3\n");
