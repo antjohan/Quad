@@ -62,64 +62,28 @@ int getCM(){
    delay(100);               // Fördröjning för att det ska fungera, tror 30 är lagom
   }
   
-  
- // Andra mätningen, val=antal mätvärden,
- // värden större än 400cm förkastas
- int m2[val];
- int tmp;
- int medel2 = 0;
- int length2 = 0;
- 
-  for(int i = 0; i<val; i++){
-   tmp = getUltra();
-   if(tmp < 400){
-    m3[length2] = tmp;
-    length2 = length2 + 1;
-    medel2 = tmp + medel2;
-    }
-   delay(100);
-  }
- 
- // Tredje mätningen, val=antal mätvärden, 
- // värden större än 400cm förkastas
- int m3[val];
- int tmp;
- int medel3 = 0;
- int length3 = 0;
- 
-  for(int i = 0; i<val; i++){
-   tmp = getUltra();
-   if(tmp < 400){
-    m3[length3] = tmp;
-    length3 = length3 + 1;
-    medel3 = tmp + medel3;
-    }
-   delay(100);
-  }
- 
-  // De tre mätningarnas medelvärde 
-  int medel = (medel1 + medel2 + medel3) / (length1 + length2 + length3);
+  // Mätningarnas medelvärde 
+  int medel = medel1  / length1;
 
  // Mätvärdenas individuella differens från medelvärdet (diff)
  // och medelvärde av avvikelssen (diff_medel)
- int length = length1 + length2 + length3;
- int m[length] = {m1, m2, m3};
 
- int diff[length];    // Vektor att fylla med individuella skillnader
+ int diff[length1];    // Vektor att fylla med individuella skillnader
+ int diff_medel = 0;
 
  for(int i = 0; i<length; i++){
- diff[i] = abs(medel - m[i]);        // Differens i längd
+ diff[i] = abs(medel1 - m1[i]);        // Differens i längd
  diff_medel = diff_medel + diff[i];  // Summerar alla differenser för att kunna ta medelvärde
  }
- diff_medel = diff_medel/length;      // Tar medevärdet
+ diff_medel = diff_medel/length1;      // Tar medevärdet
 
 // Filtrerar bort de mätningar som är vars avvikelse är 
 // längre bort än medelavvikelsen + 5 cm
  int count = 0;                      // Räknare för indexering då vektorn blir kortare
 
- for(int i = 0; i<length; i++){
+ for(int i = 0; i<length1; i++){
   if(diff[i] < diff_medel + 5 ){     // Krav för att bli godkänd
-   res[count] = m[i];                // Skrivs in i vektorn
+   res[count] = m1[i];                // Skrivs in i vektorn
    count = count + 1;                // Indexering ökar
    }
  }
