@@ -46,10 +46,13 @@ void sfinit(){
 
 
 //initialize all rdonly- fifos
+	printf("sfinit1");
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	 if (barometerfifofd==-1){
     printf("barometerfifofderror: %s\n",strerror(errno));
  	 }
+ 	 	printf("sfinit2");
+
 	//ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
 	//gpsfifofd=open(gpsfifo,O_RDONLY);	
