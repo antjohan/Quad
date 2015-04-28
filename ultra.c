@@ -63,10 +63,10 @@ void ultraSetup() {
   printf("hej4\n");
  // ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   printf("hej5\n");
-        wiringPiSetupSys();
+//        wiringPiSetupSys();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
- 
+   printf("hej6\n");
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
         delay(30);
@@ -74,7 +74,6 @@ void ultraSetup() {
 }
 
 long getUltra() {
-        ultraSetup();
         //Send trig pulse
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
