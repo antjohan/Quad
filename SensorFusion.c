@@ -50,7 +50,7 @@ void sfinit(){
 	if (barometerfifofd==-1){
     	printf("barometerfifofderror: %s\n",strerror(errno));
  	 }
- 	 delay(200)
+ 	 delay(200);
 	ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
 		printf("ultrasonicfifofderror: %s\n",strerror(errno));
