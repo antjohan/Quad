@@ -61,6 +61,7 @@ void ultraSetup() {
   }
   delay(200);
   printf("hej4\n");
+<<<<<<< HEAD
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   if (ultrasonicfifofd==-1){ 
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
@@ -75,9 +76,14 @@ void ultraSetup() {
   }
   printf("ultra-fifo-connection-successful\n");
         wiringPiSetup();
+=======
+ // ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
+  printf("hej5\n");
+//        wiringPiSetupSys();
+>>>>>>> origin/master
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
- 
+   printf("hej6\n");
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
         delay(30);
@@ -89,15 +95,12 @@ long getUltra() {
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
         digitalWrite(TRIG, LOW);
- 
         //Wait for echo start
         while(digitalRead(ECHO) == LOW);
- 
         //Wait for echo end
         long startTime = micros();
         while(digitalRead(ECHO) == HIGH);
         long travelTime = micros() - startTime;
- 
         //Get distance in cm
         long distance = travelTime / 58;
  

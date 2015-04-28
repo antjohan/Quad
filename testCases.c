@@ -89,11 +89,14 @@ int testHoverToStep(void){
   sleep(4);
   printf("Initierar steg och skriver ner värden\n");
   //Initiate step
+  printf("Set_servo\n");
   Set_Servo(3, afterStep);
-  for (int i = 0; i<50;i++){
-    
-    int currentHeight = getUltra(); //Use the ultra sensor to get height
-    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
+  printf("servo satt\n");
+  ultraSetup();//Hårdkod, ska bort senare
+  for (int i = 0; i<100;i++){
+    printf("Iteration\n");
+    long currentHeight = getUltra(); //Use the ultra sensor to get height
+    printf("#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
    // delay(40);
   }
   printf("Klar med test, setter hover\n");
@@ -224,7 +227,7 @@ int pidHeightTest(int refHeight){
 }
 
 int main(){
-//	sfinit();
+	wiringPiSetup();
 	while(1){
 		printf("---------------------------------\n");
 		printf("Make a choice:\n");
