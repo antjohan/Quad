@@ -35,13 +35,13 @@ int main(){
 }
 void sample(){
   long currentHeight;
-  char WriteBuf[10];
+  char WriteBuf[56];
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
     //printf("UH-int: %s", WriteBuf);
     write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
-    delay(200);
+    delay(500);
   }
 }
  

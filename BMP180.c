@@ -63,7 +63,7 @@ void Initialize(){
 }
  void sample(){
   float RelativeAltitude;
-  char WriteBuf[10];
+  char WriteBuf[64];
   while(1){
     float AltitudeSum=0;
     for (int i=0;i<4;++i){
@@ -75,7 +75,7 @@ void Initialize(){
     sprintf(WriteBuf,"%f",RelativeAltitude);
     //printf("FUSION-STRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
-    delay(100);
+    delay(500);
   }
  }
 
