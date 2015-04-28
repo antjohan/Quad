@@ -72,6 +72,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	}
 */
 	height = bh;
+	printf("Returned value: %lf", height);
 	return bh;
 
 }
