@@ -3,6 +3,8 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+
 //#include <libconfig.h>
 
 #include <unistd.h>
@@ -43,6 +45,9 @@ void sfinit(){
 
 //initialize all rdonly- fifos
 	barometerfifofd=open(barometerfifo, O_RDONLY);
+	 if (barometerfifofd==-1){
+    printf("barometerfifofderror: %s\n",strerror(errno));
+ 	 }
 	//ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
 	//gpsfifofd=open(gpsfifo,O_RDONLY);	
