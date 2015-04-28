@@ -42,6 +42,7 @@ int getUltra() {
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
 int getCM(){
+ while(1){
  int val = 10;
  int sum;
  
@@ -106,8 +107,10 @@ int getCM(){
 fp=fopen("data.txt","r+");
 //fprintf(fp, "%i", ans, "\n");
 fclose(fp);
-  
+
+printf("%i", ans, "\n");
+ }
   return ans;
   
-  
+ 
 }
