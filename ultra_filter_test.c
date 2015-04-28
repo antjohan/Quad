@@ -39,7 +39,7 @@ int getUltra() {
 }
 
 
-// I funktionen/filtret kan man välja antal mätningar(val) i varje set (tot 3 set) 
+// I funktionen/filtret kan man välja antal mätningar(val) 
 
 int getCM(){
  int val = 5;
