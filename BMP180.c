@@ -29,12 +29,12 @@ void Initialize(){
   printf("Calibrating initial pressure...\n");
   delay(200);
   float hsum=0.0;
-  for (int i=0;i<100;++i){
+  for (int i=0;i<50;++i){
     float newh =GetAltitude(InitialPressurePa); 
     printf("Calibration values: %f\n",newh);
     hsum=hsum+newh;
   }
-  InitialHeight=hsum/(float)100.0;
+  InitialHeight=hsum/(float)50.0;
   printf("Initial height set at: %f\n",InitialHeight);
   
   //open fifo
