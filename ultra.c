@@ -44,7 +44,7 @@ void ultraSetup() {
   if (a==-1){
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
   }
-  delay(200)
+  delay(200);
   ultrasonicfifofd=open(barometerfifo, O_WRONLY);
 
         wiringPiSetup();

@@ -98,8 +98,8 @@ double getUHeight(){
 	char ultrasonicbuffer[MAX_BUF];
 	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
 	sscanf(ultrasonicbuffer, "%lf", &uh);
-	height = bh;
-	return bh;
+	height = uh;
+	return uh;
 }
 
 double getBearing(){ //returns current bearing based on magnetometric sensor output
