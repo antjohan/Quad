@@ -86,11 +86,10 @@ double getBearing(){ //returns current bearing based on magnetometric sensor out
 
 }
 double * getCoordinate(){
-	double coord[3];
 	char gpsbuffer[MAX_BUF];
 	read(gpsfifofd, gpsbuffer, MAX_BUF);
-	sscanf(gpsbuffer, "%lf, %lf, %lf", &coord);
-	return(coord);
+	sscanf(gpsbuffer, "%lf, %lf, %lf", &coordinate);
+	return(coordinate);
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
