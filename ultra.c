@@ -28,12 +28,12 @@ void getCMloop();
 
 int ultrasonicfifofd;
 
-int main(){
+/*int main(){
   ultraSetup();
   printf("hej7\n");
   sample();
 
-}
+}*/
 void sample(){
   long currentHeight;
   char WriteBuf[10];
@@ -41,7 +41,8 @@ void sample(){
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
-    write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
+    printf("UH-int: %s", WriteBuf);
+    //write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
   }
 }
  
