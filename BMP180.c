@@ -4,6 +4,7 @@ int main(){
   Initialize();
 }
 void Initialize(){
+  wiringPiSetupSys();
  ConversionWaitTimeMs = 5;
  OversamplingSetting = 3;
  Oversample = true;
@@ -32,8 +33,7 @@ void Initialize(){
       fgets(buf,30,stdin);
       printf("baro-fifo-open\n");
   }
- printf("baro-fifo-connection-successful");
- wiringPiSetupSys();
+ printf("baro-fifo-connection-successful\n");
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
  SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
