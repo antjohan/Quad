@@ -42,9 +42,11 @@ int getUltra() {
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
 int getCM(){
+ int ans = 0;
  while(1){
  int val = 10;
  int sum;
+
  
  // Första mätningen, val=antal mätvärden,
  // värden större än 400cm förkastas
@@ -96,7 +98,7 @@ int getCM(){
  
  
  // De mätvärden som är godkända summeras och medelvärdes tas
- int ans = 0;                       
+ ans = 0;                       
  for(int i = 0; i<count; i++){ 
   ans = ans + res[i];             
  }
