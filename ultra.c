@@ -75,10 +75,13 @@ void ultraSetup() {
 
 long getUltra() {
         //Send trig pulse
-        digitalWrite(TRIG, HIGH);
-        delayMicroseconds(20);
-        digitalWrite(TRIG, LOW);
         printf("Derp1");
+        digitalWrite(TRIG, HIGH);
+        printf("Derp2");
+        delayMicroseconds(20);
+        printf("Derp3");
+        digitalWrite(TRIG, LOW);
+        printf("Derp4");
         //Wait for echo start
         while(digitalRead(ECHO) == LOW);
  
@@ -86,7 +89,6 @@ long getUltra() {
         long startTime = micros();
         while(digitalRead(ECHO) == HIGH);
         long travelTime = micros() - startTime;
-        printf("Derp2");
         //Get distance in cm
         long distance = travelTime / 58;
  
