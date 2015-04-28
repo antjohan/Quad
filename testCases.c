@@ -91,9 +91,10 @@ int testHoverToStep(void){
   //Initiate step
   Set_Servo(3, afterStep);
   for (int i = 0; i<50;i++){
-    int currentHeight = getCM(); //Use the ultra sensor to get height
+    
+    int currentHeight = getUltra(); //Use the ultra sensor to get height
     fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
-    delay(40);
+   // delay(40);
   }
   printf("Klar med test, setter hover\n");
   //Hover
