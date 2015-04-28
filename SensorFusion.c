@@ -48,12 +48,12 @@ void sfinit(){
 //initialize all rdonly- fifos
 	barometerfifofd=open(barometerfifo, O_RDONLY);
 	if (barometerfifofd==-1){
-    	printf("barometerfifofderror: %s\n",strerror(errno));
+    	printf("barometerfifofoerror: %s\n",strerror(errno));
  	 }
  	 delay(200);
 	ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
-		printf("ultrasonicfifofderror: %s\n",strerror(errno));
+		printf("ultrasonicfifofoerror: %s\n",strerror(errno));
 	}
 	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
 	//gpsfifofd=open(gpsfifo,O_RDONLY);	
@@ -98,8 +98,8 @@ double getUHeight(){
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
 	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
-	sscanf(ultrasonicbuffer, "%ld", &uh);
-	return ((double)uh);
+	sscanf(ultrasonicbuffer, "%lf", &uh);
+	return (uh);
 }
 
 double getBearing(){ //returns current bearing based on magnetometric sensor output
