@@ -61,7 +61,7 @@ void ultraSetup() {
   }
   delay(200);
   printf("hej4\n");
-  ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
+ // ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
   printf("hej5\n");
         wiringPiSetupSys();
         pinMode(TRIG, OUTPUT);
