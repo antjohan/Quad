@@ -23,7 +23,7 @@ long getCM();
 void getCMloop();
 void ultraSetup();
 long getUltra();
-long getCMloop();
+void getCMloop();
 
 
 int ultrasonicfifofd;
@@ -35,7 +35,7 @@ int main(){
 }
 void sample(){
   long currentHeight;
-  char * WriteBuf[10];
+  char WriteBuf[10];
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
