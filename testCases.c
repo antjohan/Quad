@@ -49,16 +49,22 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 */
 
 int testHoverToStep(void){
-	printf("Startar hover to step test, setter hover\n");
+  printf("Startar hover to step test, setter hover\n");
   int afterStep = 75;
+  FILE *fp;
+  fp=fopen("hoverToStepTest.txt","r+");
   setHover();
   sleep(4);
-  printf("Initierar steg\n");
+  printf("Initierar steg och skriver ner värden\n");
   //Initiate step
   Set_Serv(3, afterStep);
-  sleep(4);
+  for (int i = 0; i<3000;i++){
+  	fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
+  	delay(40);
+  }
   printf("Klar med test, setter hover\n");
   //Hover
+  fclose(fp);
   setHover();
   return 0;
 }
@@ -75,7 +81,19 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 */
 int testOneRotation(void){
   const int yawSpeed = 30;
- 
+ struct timeval tval_before, tval_after, tval_result;
+
+gettimeofday(&tval_before, NULL);
+
+// Some code you want to time, for example:
+sleep(1);
+
+gettimeofday(&tval_after, NULL);
+
+timersub(&tval_after, &tval_before, &tval_result);
+
+printf("Time elapsed: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
+
   printf("Startar yaw rotations test, setter hover\n");
   setHover();
   sleep(4);
