@@ -5,7 +5,6 @@
 #include <wiringPiI2C.h>
 //#include "BMP180.c"
 #include "ultra.c"
-//#include "testCases.c" /lagt externt
 const int hoverConst = 70;
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
@@ -84,21 +83,21 @@ int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
   
   int afterStep = 75;
-//  FILE *fp;
-//  fp=fopen("hoverToStepTest.txt","r+");
+  FILE *fp;
+  fp=fopen("hoverToStepTest.txt","r+");
   setHover();
   sleep(4);
   printf("Initierar steg och skriver ner värden\n");
   //Initiate step
   Set_Servo(3, afterStep);
   for (int i = 0; i<50;i++){
-//    int currentHeight = getHeight(); //Use the ultra sensor to get height
-//    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
+    int currentHeight = getCM(); //Use the ultra sensor to get height
+    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
     delay(40);
   }
   printf("Klar med test, setter hover\n");
   //Hover
-//  fclose(fp);
+  fclose(fp);
   setHover();
   return 0;
 }
