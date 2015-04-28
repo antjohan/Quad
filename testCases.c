@@ -93,10 +93,10 @@ int testHoverToStep(void){
   Set_Servo(3, afterStep);
   printf("servo satt\n");
   ultraSetup();//Hårdkod, ska bort senare
-  for (int i = 0; i<50;i++){
+  for (int i = 0; i<100;i++){
     printf("Iteration\n");
     long currentHeight = getUltra(); //Use the ultra sensor to get height
-    //fprintf(fp, "#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
+    printf("#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
    // delay(40);
   }
   printf("Klar med test, setter hover\n");
