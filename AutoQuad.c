@@ -158,7 +158,6 @@ int main(){
 		}else if (val == 5){
 			break;
 		}else if(val==6){//recieve barometer data
-			printf("hej9\n");
 			while(1){
 				printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
 				delay(100);

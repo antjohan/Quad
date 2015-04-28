@@ -154,7 +154,7 @@ long getCM(){
    fclose(fp);
    */
 
-   printf("%ld\n", ans);
+   //printf("%ld\n", ans);
    return ((long)ans);
 }
 
