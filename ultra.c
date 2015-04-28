@@ -79,7 +79,7 @@ long getUltra() {
 
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
-long getCM(){
+long int getCM(){
  long val = 10;
  long sum;
 
@@ -140,11 +140,12 @@ long getCM(){
  ans = ans/count;
  
  
-  // Skriver till fil
+/*  // Skriver till fil
     FILE *fp;
 fp=fopen("data.txt","r+");
 //fprintf(fp, "%ld\n", ans);
 fclose(fp);
+*/
 
 printf("%ld\n", ans);
  }
