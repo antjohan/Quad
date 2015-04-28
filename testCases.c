@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
-#include <sys/time.h>
+#include <wiringPiI2C.h>
+//#include "BMP180.c"
+#include "ultra.c"
+//#include "testCases.c" /lagt externt
 const int hoverConst = 70;
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
@@ -193,5 +196,7 @@ int pidHeightTest(int refHeight){
   */
 }
 
-
-
+int main(void){
+	
+	return 0;
+}
