@@ -41,7 +41,7 @@ void sample(){
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
-    //printf("UH-int: %s", WriteBuf);
+    printf("UH-int: %s", WriteBuf);
     write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
   }
 }
