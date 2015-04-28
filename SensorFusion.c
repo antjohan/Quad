@@ -103,11 +103,14 @@ double getBHeight(){
 
 }
 double getUHeight(){
-	printf("hej10\n");
+	printf("hej12\n");
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
-	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
+	printf("hej13\n");
+	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);	
+	printf("hej14\n");
 	sscanf(ultrasonicbuffer, "%lf", &uh);
+	printf("hej15\n");
 	printf("uh: %lf\n",uh);
 	return (uh);
 }
