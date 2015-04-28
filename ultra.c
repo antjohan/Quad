@@ -30,12 +30,14 @@ int ultrasonicfifofd;
 
 int main(){
   ultraSetup();
+  printf("hej7\n");
   sample();
 
 }
 void sample(){
   long currentHeight;
   char WriteBuf[10];
+  printf("hej8\n");
   while(1){
     currentHeight=getCM();
     sprintf(WriteBuf,"%ld",currentHeight);
@@ -47,22 +49,27 @@ void ultraSetup() {
   //open fifo
   char* ultrasonicfifo = "/tmp/ultrasonicfifo";
   //delete in case it already exists
+  printf("hej1\n");
   unlink(ultrasonicfifo);
   delay (300);
+  printf("hej2\n");
   int a = mkfifo(ultrasonicfifo,0666);
+  printf("hej3\n");
   if (a==-1){
     printf("mkfifoerror-ultra: %s\n",strerror(errno));
   }
   delay(200);
+  printf("hej4\n");
   ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
-
-        wiringPiSetup();
+  printf("hej5\n");
+        wiringPiSetupSys();
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
  
         //TRIG pin must start LOW
         digitalWrite(TRIG, LOW);
         delay(30);
+   printf("hej6\n");
 }
 
 long getUltra() {
