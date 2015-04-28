@@ -74,6 +74,7 @@ void ultraSetup() {
 }
 
 long getUltra() {
+        ultraSetup();
         //Send trig pulse
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
