@@ -12,6 +12,17 @@ void Initialize(){
  LastTemperatureData = 0;
 
  AcceptableTemperatureLatencyForPressure = 1000;
+ 
+   //open fifo
+  char* barometerfifo = "/tmp/barometerfifo";
+  //delete in case it already exists
+  unlink(barometerfifo);
+  int a = mkfifo(barometerfifo,0666);
+  if (a==-1){
+    printf("mkfifoerror: %s\n",strerror(errno));
+  }
+  barometerfifofd=open(barometerfifo, O_WRONLY);
+
  wiringPiSetupSys();
  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
  SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
@@ -26,6 +37,7 @@ void Initialize(){
   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
+
   printf("Calibrating initial pressure...\n");
   delay(200);
   float hsum=0.0;
@@ -37,17 +49,6 @@ void Initialize(){
   InitialHeight=hsum/(float)50.0;
   printf("Initial height set at: %f\n",InitialHeight);
   
-  //open fifo
-  char* barometerfifo = "/tmp/barometerfifo";
-
-  //delete in case it already exists
-  unlink(barometerfifo);
-
-  int a = mkfifo(barometerfifo,0666);
-  if (a==-1){
-    printf("mkfifoerror: %s\n",strerror(errno));
-  }
-  barometerfifofd=open(barometerfifo, O_WRONLY);
   sample();
 }
  void sample(){
