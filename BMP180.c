@@ -28,7 +28,7 @@ void Initialize(){
   }
   barometerfifofd=open(barometerfifo, O_WRONLY);
   char buf[30];
-  while(strcmp(buf,"baro-fifo-connected")==0){
+  while(strcmp(buf,"baro-fifo-connected")!=0){
       printf("bbuf: %s",buf);
       printf("Looking for: baro-fifo-connected\n");
       fgets(buf,30,stdin);

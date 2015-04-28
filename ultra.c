@@ -69,7 +69,7 @@ void ultraSetup() {
    printf("ultra-fifo-open\n");
   }
   char buf[20];
-  while(strcmp(buf,"ultra-fifo-connected")==0){
+  while(strcmp(buf,"ultra-fifo-connected")!=0){
    printf("ubuf: %s",buf);
    printf("Looking for: ultra-fifo-connected\n");
    fgets(buf,20,stdin);

@@ -49,7 +49,7 @@ void sfinit(){
 	//wait for created baro fifo
 	//printf("connecting-baro-fifo...\n");
     char buf[14];
-  	while(strcmp(buf,"baro-fifo-open")==0){
+  	while(strcmp(buf,"baro-fifo-open")!=0){
   		printf("sfbuf: %s",buf);
   		printf("Looking for: baro-fifo-open");
    		fgets(buf,14,stdin);
@@ -62,7 +62,7 @@ void sfinit(){
  	}
 
  	char buf1[15];
-  	while(strcmp(buf,"ultra-fifo-open")==0){
+  	while(strcmp(buf,"ultra-fifo-open")!=0){
   		printf("sfbuf1: %s",buf1);
   		printf("Looking for: ultra-fifo-open");
    		fgets(buf1,15,stdin);
