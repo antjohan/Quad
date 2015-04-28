@@ -27,12 +27,12 @@ void getCMloop();
 
 
 int ultrasonicfifofd;
-/*
+
 int main(){
   ultraSetup();
   sample();
 
-}*/
+}
 void sample(){
   long currentHeight;
   char WriteBuf[10];
@@ -48,7 +48,6 @@ void sample(){
 void ultraSetup() {
    wiringPiSetup();
   //open fifo
-  /*
   char* ultrasonicfifo = "/home/pi/tmp/ultrasonicfifo";
   //delete in case it already exists
   unlink(ultrasonicfifo);
@@ -65,7 +64,7 @@ void ultraSetup() {
     printf("openfifoerror-ultra: %s\n",strerror(errno));
   } else {
    printf("ultra-fifo-open\n");
-  }*/
+  }
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
         //TRIG pin must start LOW
