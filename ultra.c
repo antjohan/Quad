@@ -100,7 +100,7 @@ long getCM(){
     }
     if (length1 == 0){
      printf("Avståndet är längre än 4m\n");
-     return -1;
+     return ((long)-1);
     }
    delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom
   }
@@ -148,7 +148,7 @@ fclose(fp);
 
 printf("%ld\n", ans);
  }
-  return (ans);
+  return ((long)ans);
 }
 
 void getCMloop(){
