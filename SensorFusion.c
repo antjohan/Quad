@@ -50,6 +50,7 @@ void sfinit(){
 	if (barometerfifofd==-1){
     	printf("barometerfifofderror: %s\n",strerror(errno));
  	 }
+ 	 delay(200)
 	ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
  	if (ultrasonicfifofd==-1){
 		printf("ultrasonicfifofderror: %s\n",strerror(errno));
@@ -98,7 +99,7 @@ double getUHeight(){
 	char ultrasonicbuffer[MAX_BUF];
 	read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
 	sscanf(ultrasonicbuffer, "%ld", &uh);
-	return ((long)uh);
+	return ((double)uh);
 }
 
 double getBearing(){ //returns current bearing based on magnetometric sensor output

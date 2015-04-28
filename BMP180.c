@@ -40,12 +40,12 @@ void Initialize(){
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
 
-  printf("Calibrating initial pressure...\n");
+  //printf("Calibrating initial pressure...\n");
   delay(200);
   float hsum=0.0;
   for (int i=0;i<50;++i){
     float newh =GetAltitude(InitialPressurePa); 
-    printf("Calibration values: %f\n",newh);
+    //printf("Calibration values: %f\n",newh);
     hsum=hsum+newh;
   }
   InitialHeight=hsum/(float)50.0;
