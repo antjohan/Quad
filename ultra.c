@@ -75,7 +75,6 @@ void ultraSetup() {
    printf("ultra-fifo-open\n");
   }
   printf("ultra-fifo-connection-successful\n");
-        wiringPiSetup();
   printf("hej5\n");
         pinMode(TRIG, OUTPUT);
         pinMode(ECHO, INPUT);
