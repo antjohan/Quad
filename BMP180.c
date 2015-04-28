@@ -15,7 +15,7 @@ void Initialize(){
  AcceptableTemperatureLatencyForPressure = 1000;
 
    //open fifo
-  char* barometerfifo = "/tmp/barometerfifo";
+  char* barometerfifo = "~//tmp/barometerfifo";
   //delete in case it already exists
   unlink(barometerfifo);
   delay (300);

@@ -32,11 +32,11 @@ double speed; //info from gps
 
 void sfinit(){ 
 	//name of all fifos, will need to be matching in respective sensor programs
-	char* barometerfifo = "/tmp/barometerfifo";
-	char* ultrasonicfifo = "/tmp/ultrasonicfifo";
-	char* magnetometerfifo = "/tmp/magnetometerfifo";
-	char* gpsfifo = "/tmp/gpsfifo";
-	char* fusionlog = "/fusionlog.txt";
+	char* barometerfifo = "~//tmp/barometerfifo";
+	char* ultrasonicfifo = "~//tmp/ultrasonicfifo";
+	char* magnetometerfifo = "~//tmp/magnetometerfifo";
+	char* gpsfifo = "~//tmp/gpsfifo";
+	char* fusionlog = "~/fusionlog.txt";
 
 
 
