@@ -83,14 +83,14 @@ int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
   
   int afterStep = 75;
-  //FILE *fp;
-  //fp=fopen("hoverToStepTest.txt","r+");
+  FILE *fp;
+  fp=fopen("hoverToStepTest.txt","r+");
   setHover();
-  //sleep(4);
+  sleep(4);
   printf("Initierar steg och skriver ner värden\n");
   //Initiate step
   printf("Set_servo\n");
-//  Set_Servo(3, afterStep);
+  Set_Servo(3, afterStep);
   printf("servo satt\n");
   ultraSetup();//Hårdkod, ska bort senare
   for (int i = 0; i<50;i++){
@@ -101,7 +101,7 @@ int testHoverToStep(void){
   }
   printf("Klar med test, setter hover\n");
   //Hover
-  //fclose(fp);
+  fclose(fp);
   setHover();
   return 0;
 }
