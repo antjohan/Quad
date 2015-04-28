@@ -18,7 +18,7 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 */
 //Functions for motorcontroll
 
-void Set_Serv(int num, int pos){
+void Set_Servo(int num, int pos){
 
 	if((num <= 4 || num >= 1) && (pos <= 100 || pos >= 0)){
 		char* echo = "echo";
@@ -38,10 +38,38 @@ void setHover(){
 	int hover[4] = {50,50,hoverConst,50};
 	
 	for (int i = 0; i<4;i++){
-	  Set_Serv(servo[i],hover[i]);
+	  Set_Servo(servo[i],hover[i]);
+	}
+}
+void Arm_FlightController(){
+	int servo[4] = {1,2,3,4};
+	int arm[4] = {0,0,0,0};
+	int normal[4] = {50,50,0,50};
+
+	for(int i = 0; i < 4; i++){
+		Set_Servo(servo[i],arm[i]);
+	}
+	sleep(2);
+
+	for(int i = 0; i < 4; i++){
+		Set_Servo(servo[i],normal[i]);
 	}
 }
 
+void Disarm_FlightController(){
+	int servo[4] = {1,2,3,4};
+	int disarm[4] = {0,0,0,100};
+	int normal[4] = {50,50,0,50};
+
+	for(int i = 0; i < 4; i++){
+		Set_Servo(servo[i],disarm[i]);
+	}
+	sleep(2);
+
+	for(int i = 0; i < 4; i++){
+		Set_Servo(servo[i],normal[i]);
+	}
+} 
 /*
 Testcase1, Step from hover
 Idea:	Test roll capabilities of the quadcopter without sensordata.
@@ -62,7 +90,7 @@ int testHoverToStep(void){
   sleep(4);
   printf("Initierar steg och skriver ner värden\n");
   //Initiate step
-  Set_Serv(3, afterStep);
+  Set_Servo(3, afterStep);
   for (int i = 0; i<300;i++){
 //    int currentHeight = getHeight(); //Use the ultra sensor to get height
 //    fprintf(fp, "#Iteration = %i, Höjd = %i", i, currentHeight, "\n");
@@ -85,19 +113,19 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-int testOneRotation(void){
+int testRotation(void){
   const int yawSpeed = 30;
   printf("Startar yaw rotations test, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar clockwise rotation\n");
-  Set_Serv(4,50+yawSpeed);
+  Set_Servo(4,50+yawSpeed);
   sleep(4);
   printf("Klar med clockwise, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar counter clockwise rotation\n");
-  Set_Serv(4, 50-yawSpeed);
+  Set_Servo(4, 50-yawSpeed);
   sleep(4);
   printf("Klar med test, setter hover\n");
   setHover();
@@ -120,13 +148,13 @@ int pitchTest(void){
   setHover();
   sleep(4);
   printf("Initierar framåt\n");
-  Set_Serv(1,50+pitchSpeed);
+  Set_Servo(1,50+pitchSpeed);
   sleep(4);
   printf("Klar med framåt, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar bakåt\n");
-  Set_Serv(1, 50-pitchSpeed);
+  Set_Servo(1, 50-pitchSpeed);
   sleep(4);
   printf("Klar med pitch test, setter hover\n");
   setHover();
@@ -148,13 +176,13 @@ int rollTest(void){
   setHover();
   sleep(4);
   printf("Initierar höger\n");
-  Set_Serv(2,50+rollSpeed);
+  Set_Servo(2,50+rollSpeed);
   sleep(4);
   printf("Klar med höger, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar vänster\n");
-  Set_Serv(2, 50-rollSpeed);
+  Set_Servo(2, 50-rollSpeed);
   sleep(4);
   printf("Klar med roll test, setter hover\n");
   setHover();
@@ -196,7 +224,67 @@ int pidHeightTest(int refHeight){
   */
 }
 
-int main(void){
-	
-	return 0;
+int main(){
+	sfinit();
+	while(1){
+		printf("---------------------------------\n");
+		printf("Make a choice:\n");
+		printf("---------------------------------\n");
+		printf("[1]	Arm FlightController\n");
+		printf("[2]	Disrm FlightController\n");
+		printf("[3]	Hover\n");
+		printf("[4]	testHoverToStep\n");
+		printf("[5]	testRotation\n");
+		printf("[6]	pitchTest\n");	
+		printf("[7]	rollTest\n");	
+		printf("[8]	pidHeightTest\n");	
+		printf("[9]	Quit\n");
+		printf("---------------------------------\n");
+
+		int val;
+
+		scanf("%d", &val);
+		if(val == 1){
+			printf("Arming...\n");
+			Arm_FlightController();
+			printf("Done!\n");
+
+
+		}else if( val == 2){
+			printf("Disarming...\n");
+			Disarm_FlightController();
+			printf("Done!\n");
+
+		}else if(val == 3){
+			printf("Hovering\n");
+			setHover();
+			printf("Done!\n");
+			
+		}else if(val == 4){
+			printf("Test hover to step\n");
+			testHoverToStep();
+			printf("Done!\n");
+		}else if(val == 5){
+			printf("Test rotation\n");
+			testRotation();
+			printf("Done!\n");
+		}else if(val == 6){
+			printf("Pitch test\n");
+			pitchTest();
+			printf("Done!\n");
+		}else if(val == 7){
+			printf("Roll test\n");
+			rollTest();
+			printf("Done!\n");
+		}else if(val == 8){
+			printf("Pid regulated height test\n");
+			pidHeightTest();
+			printf("Done!\n");
+		}
+		else{
+			printf("Invalid\n");
+		}
+	}
+	///////////////////
+	return 1;
 }
