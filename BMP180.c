@@ -39,9 +39,13 @@ void Initialize(){
   
   //open fifo
   char* barometerfifo = "/tmp/barometerfifo";
+
+  //delete in case it already exists
+  unlink(barometerfifo);
+
   int a = mkfifo(barometerfifo,0666);
   if (a==-1){
-    printf("mkfifoerror: %s",strerror(errno));
+    printf("mkfifoerror: %s\n",strerror(errno));
   }
   barometerfifofd=open(barometerfifo, O_WRONLY);
   sample();
@@ -55,10 +59,10 @@ void Initialize(){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
     }
     RelativeAltitude=AltitudeSum/(float)4;
-    printf("ABSOLUTE ALTITUDE", RelativeAltitude);
+    //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
-    printf("FUSION-STRING: %s\n",WriteBuf);
+    //printf("FUSION-STRING: %s\n",WriteBuf);
     write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
   }
  }
