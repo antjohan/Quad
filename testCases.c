@@ -227,7 +227,7 @@ int pidHeightTest(int refHeight){
 }
 
 int main(){
-//	sfinit();
+	wiringPiSetupSys();
 	while(1){
 		printf("---------------------------------\n");
 		printf("Make a choice:\n");
