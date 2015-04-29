@@ -104,7 +104,7 @@ void sfinit(){
 	} else {
 		printf("to_ultra_fifo=open\n");
 	}
-
+	delay(200);
 	mkfifo(to_baro_fifo,0666);
  	delay(300);
 	to_baro_fd=open(to_baro_fifo, O_WRONLY);
