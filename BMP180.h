@@ -61,6 +61,9 @@ float InitialHeight;
 
 //Functions
 void Initialize();
+void connectFifos();
+void calibrateBaro();
+void setCurrentHeight(float height);
 void sample();
 void Write();
 uint8_t Read(int address);

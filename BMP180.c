@@ -36,14 +36,14 @@ void connectFifos(){
   }
 
   from_baro_fd=open(from_baro_fifo, O_WRONLY);
-  if (barometerfifofd==-1){
+  if (from_baro_fd==-1){
     printf("from_baro_fifo=error: %s\n",strerror(errno));
   } else {
     printf("from_baro_fifo=connected\n");
   }
 
   to_baro_fd=open(to_baro_fifo, O_RDONLY);
-  if (barometerfifofd==-1){
+  if (to_baro_fd==-1){
     printf("to_baro_fifo=error: %s\n",strerror(errno));
   } else {
     printf("to_baro_fifo=connected\n");
@@ -65,7 +65,7 @@ void calibrateBaro(){
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
 }
 
-void setCurrentHeight(double height){ //readjust the barometer's height(relative to ground) tracking
+void setCurrentHeight(float height){ //readjust the barometer's height(relative to ground) tracking
   InitialHeight=InitialHeight-GetAltitude(InitialPressurePa)+height;
 }
 
@@ -82,7 +82,7 @@ void setCurrentHeight(double height){ //readjust the barometer's height(relative
     RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
     //printf("FUSION-STRING: %s\n",WriteBuf);
-    write(barometerfifofd,WriteBuf,sizeof(WriteBuf));
+    write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
     //delay(500);
   }
  }

@@ -40,7 +40,7 @@ void sample(){
       currentHeight=getCM();
       sprintf(WriteBuf,"%ld",currentHeight);
       //printf("UH-int: %s", WriteBuf);
-      write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
+      write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
       delay(100);
    }
 }
@@ -67,7 +67,7 @@ void connectFifos(){
     printf("make_from_ultra=error: %s\n",strerror(errno));
   } 
   from_ultra_fd=open(from_ultra_fifo, O_WRONLY);
-  if (ultrasonicfifofd==-1){ 
+  if (from_ultra_fd==-1){ 
     printf("from_ultra_fifo=error: %s\n",strerror(errno));
   } else {
    printf("from_ultra_fifo=open\n");

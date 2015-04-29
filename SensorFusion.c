@@ -145,7 +145,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	//char ultrasonicbuffer[MAX_BUF];
 	char barometerbuffer[MAX_BUF];
 	//read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
-	read(barometerfifofd,barometerbuffer,MAX_BUF);
+	read(from_baro_fd,barometerbuffer,MAX_BUF);
 
 	//sscanf(ultrasonicbuffer, "%lf", &uh);
 	sscanf(barometerbuffer, "%lf", &bh);
@@ -166,7 +166,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 double getBHeight(){
 	double bh; //barometer height
 	char barometerbuffer[MAX_BUF];
-	read(barometerfifofd,barometerbuffer,MAX_BUF);
+	read(from_baro_fd,barometerbuffer,MAX_BUF);
 	sscanf(barometerbuffer, "%lf", &bh);
 	//printf("bh: %lf\n",bh);
 	return bh;
@@ -175,7 +175,7 @@ double getBHeight(){
 double getUHeight(){
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
-	int a = read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
+	int a = read(from_ultra_fd,ultrasonicbuffer,MAX_BUF);
 	if (a==-1){
 		printf("UHeightReadError: %s\n",strerror(errno));
 	}	
@@ -187,16 +187,29 @@ double getUHeight(){
 double getBearing(){ //returns current bearing based on magnetometric sensor output
 	double br;
 	char magnetometerbuffer[MAX_BUF];
-	read(magnetometerfifofd, magnetometerbuffer, MAX_BUF);
+	read(from_mag_fd, magnetometerbuffer, MAX_BUF);
 	sscanf(magnetometerbuffer, "%lf", &br);
 	return(br);
 
 }
 double * getCoordinate(){
 	char gpsbuffer[MAX_BUF];
-	read(gpsfifofd, gpsbuffer, MAX_BUF);
+	read(from_gps_fd, gpsbuffer, MAX_BUF);
 	sscanf(gpsbuffer, "%lf, %lf, %lf", &coordinate);
 	return(coordinate);
+}
+
+void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or gps
+	int sensor_fd;
+	if (strcmp(sensor, "mag")==0){
+		sensor_fd=to_mag_fd;
+	} else if (strcmp(sensor, "ultra")==0){
+		sensor_fd=to_ultra_fd;
+	} else if (strcmp(sensor, "gps")==0){
+		sensor_fd=to_gps_fd;
+	}else if (strcmp(sensor, "baro")==0){
+		sensor_fd=to_baro_fd;
+	}
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
