@@ -230,6 +230,7 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	}else if (strcmp(sensor, str4)==0){
 		sensor_fd=to_baro_fd;
 	}
+	write(sensor_fd,command,sizeof(command));
 }
 
 void updateLog(){//enters all current sensor data into fusionlog

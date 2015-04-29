@@ -91,6 +91,7 @@ void checkPipe(){
    strcpy(str1,"ping");
 
    if (read(from_ultra_fd, buffer, MAX_BUF)>0){
+         printf("Ultrasonic sensor says hi!\n");
        if (strcmp(buffer,str1)==0){
          printf("Ultrasonic sensor says hi!\n");
        }
