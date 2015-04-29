@@ -17,11 +17,17 @@
  //config_t * config;
 
 
-int barometerfifofd;
-int ultrasonicfifofd;
-int magnetometerfifofd;
-int gpsfifofd;
-int fusionlogfd;
+int from_baro_fd;
+int from_ultra_fd;
+int from_mag_fd;
+int from_gps_fd;
+
+int to_baro_fd;
+int to_ultra_fd;
+int to_mag_fd;
+int to_gps_fd;
+
+int to_log_file;
 
 //variables
 double height; //height from ultrasonic/barometer
@@ -32,41 +38,105 @@ double speed; //info from gps
 
 void sfinit(){ 
 	//name of all fifos, will need to be matching in respective sensor programs
-	char* barometerfifo = "/home/pi/tmp/barometerfifo";
-	char* ultrasonicfifo = "/home/pi/tmp/ultrasonicfifo";
-	char* magnetometerfifo = "/home/pi/tmp/magnetometerfifo";
-	char* gpsfifo = "/home/pi/tmp/gpsfifo";
-	char* fusionlog = "/home/pi/fusionlog.txt";
+	char* from_baro_fifo = "/home/pi/tmp/from_baro_fifo";
+	char* from_ultra_fifo = "/home/pi/tmp/from_ultra_fifo";
+	char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
+	char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
 
+	char* to_baro_fifo = "/home/pi/tmp/to_baro_fifo";
+	char* to_ultra_fifo = "/home/pi/tmp/to_ultra_fifo";
+	char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
+	char* to_gps_fifo = "/home/pi/tmp/to_gps_fifo";
+	
 
+	char* to_log_file = "/home/pi/fusionlog.txt";
 
-//initialize all sensors and wronly- fifos
+	//Clear all to-fifos, should they exist!
+	unlink(to_baro_fifo);
+	unlink(to_ultra_fifo);
+	unlink(to_mag_fifo);
+	unlink(to_gps_fifo);
+
+//initialize all sensors and corresponding fifos
 	//run sensors manually or script them to start!
 
-
-
 //initialize all rdonly- fifos
-	//wait for created baro fifo
-	//printf("connecting-baro-fifo...\n");
+	printf("Initializing fifos...\n");
 
-		ultrasonicfifofd=open(ultrasonicfifo, O_RDONLY);
- 	if (ultrasonicfifofd==-1){
-		printf("ultrasonicfifofoerror: %s\n",strerror(errno));
+	from_ultra_fd=open(from_ultra_fifo, O_RDONLY);
+ 	if (from_ultra_fd==-1){
+		printf("from_ultra_fifo=error: %s\n",strerror(errno));
 	} else {
-		printf("sf-ultra-fifo-open\n");
+		printf("from_ultra_fifo=open\n");
 	}
-	barometerfifofd=open(barometerfifo, O_RDONLY);
-	if (barometerfifofd==-1){
-    	printf("barometerfifofoerror: %s\n",strerror(errno));
- 	} else {
- 		printf("sf-baro-fifo-open\n");
- 	}
 
-	//magnetometerfifofd=open(magnetometerfifo, O_RDONLY);
-	//gpsfifofd=open(gpsfifo,O_RDONLY);	
+	from_baro_fd=open(from_baro_fifo, O_RDONLY);
+	if (from_baro_fd==-1){
+    	printf("from_baro_fifo=error: %s\n",strerror(errno));
+ 	} else {
+ 		printf("from_baro_fifo=open\n");
+ 	}
+ 	/*
+ 	from_mag_fd=open(from_mag_fifo, O_RDONLY);
+ 	if (from_mag_fd==-1){
+		printf("from_mag_fifo_error: %s\n",strerror(errno));
+	} else {
+		printf("from_mag_fifo=open\n");
+	}
+
+	from_gps_fd=open(from_gps_fifo, O_RDONLY);
+	if (from_gps_fd==-1){
+    	printf("from_gps_fifo_error: %s\n",strerror(errno));
+ 	} else {
+ 		printf("from_gps_fifo=open\n");
+ 	}
+	*/
+ 	printf("from_fifos=connected!\n");
+ 	mkfifo(to_ultra_fifo,0666);
+ 	delay(200);
+ 	to_ultra_fd=open(to_ultra_fifo, O_WRONLY);
+ 	if (to_ultra_fd==-1){
+		printf("to_ultra_fifo=error: %s\n",strerror(errno));
+	} else {
+		printf("to_ultra_fifo=open\n");
+	}
+
+	mkfifo(from_baro_fifo,0666);
+ 	delay(200);
+	to_baro_fd=open(to_baro_fifo, O_WRONLY);
+	if (from_baro_fd==-1){
+    	printf("to_baro_fifo=error: %s\n",strerror(errno));
+ 	} else {
+ 		printf("to_baro_fifo=open\n");
+ 	}
+ 	/*
+
+ 	mkfifo(to_mag_fifo,0666);
+ 	delay(200);
+ 	to_mag_fd=open(to_mag_fifo, O_WRONLY);
+ 	if (to_mag_fd==-1){
+		printf("to_mag_fifo=error: %s\n",strerror(errno));
+	} else {
+		printf("to_mag_fifo=open\n");
+	}
+
+	mkfifo(to_gps_fifo,0666);
+ 	delay(200);
+	to_gps_fd=open(to_gps_fifo, O_WRONLY);
+	if (to_gps_fd==-1){
+    	printf("from_gps_fifo=error: %s\n",strerror(errno));
+ 	} else {
+ 		printf("from_gps_fifo=open\n");
+ 	}
+	*/
+
+ 	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 
 //initialize flight log
 	//fusionlogfd=open(fusionlog, O_WRONLY);
+
+	//initialize wronly fifos
+
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input

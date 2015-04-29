@@ -14,27 +14,43 @@ void Initialize(){
 
  AcceptableTemperatureLatencyForPressure = 1000;
 
-   //open fifo
-  char* barometerfifo = "/home/pi/tmp/barometerfifo";
+connectFifos();
+calibrateBaro();
+setCurrentHeight(0.0);
+sample();
+}
+void connectFifos(){
+     //open fifo
+  char* from_baro_fifo = "/home/pi/tmp/from_baro_fifo";
+  char* to_baro_fifo = "/home/pi/tmp/to_baro_fifo";
   //delete in case it already exists
-  unlink(barometerfifo);
+  unlink(from_baro_fifo);
   delay (300);
-  int a = mkfifo(barometerfifo,0666);
+  int a = mkfifo(from_baro_fifo,0666);
   delay(200);
+
   if (a==-1){
-    printf("bmkfifoerror: %s\n",strerror(errno));
+    printf("make_from_baro=error: %s\n",strerror(errno));
   } else{
-    printf("baro-fifo-created\n");
+    printf("from_baro_fifo=created\n");
   }
 
-  barometerfifofd=open(barometerfifo, O_WRONLY);
+  from_baro_fd=open(from_baro_fifo, O_WRONLY);
   if (barometerfifofd==-1){
-    printf("openbarofifoerror: %s\n",strerror(errno));
+    printf("from_baro_fifo=error: %s\n",strerror(errno));
   } else {
-    printf("baro-fifo-open\n");
+    printf("from_baro_fifo=connected\n");
   }
 
- BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
+  to_baro_fd=open(to_baro_fifo, O_RDONLY);
+  if (barometerfifofd==-1){
+    printf("to_baro_fifo=error: %s\n",strerror(errno));
+  } else {
+    printf("to_baro_fifo=connected\n");
+  }  
+}
+void calibrateBaro(){
+   BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
  SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
@@ -47,20 +63,12 @@ void Initialize(){
   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
-
-  //printf("Calibrating initial pressure...\n");
-  delay(200);
-  float hsum=0.0;
-  for (int i=0;i<50;++i){
-    float newh =GetAltitude(InitialPressurePa); 
-    //printf("Calibration values: %f\n",newh);
-    hsum=hsum+newh;
-  }
-  InitialHeight=hsum/(float)50.0;
-  printf("Initial height set at: %f\n",InitialHeight);
-  
-  sample();
 }
+
+void setCurrentHeight(double height){ //readjust the barometer's height(relative to ground) tracking
+  InitialHeight=InitialHeight-GetAltitude(InitialPressurePa)+height;
+}
+
  void sample(){
   float RelativeAltitude;
   char WriteBuf[64];

@@ -25,8 +25,8 @@ void ultraSetup();
 long getUltra();
 void getCMloop();
 
-
-int ultrasonicfifofd;
+int from_ultra_fd;
+int to_ultra_fd;
 
 int main(){
   ultraSetup();
@@ -34,42 +34,52 @@ int main(){
 
 }
 void sample(){
-  long currentHeight;
-  char WriteBuf[56];
-  while(1){
-    currentHeight=getCM();
-    sprintf(WriteBuf,"%ld",currentHeight);
-    //printf("UH-int: %s", WriteBuf);
-    write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
-    delay(100);
-  }
+   long currentHeight;
+   char WriteBuf[56];
+   while(1){
+      currentHeight=getCM();
+      sprintf(WriteBuf,"%ld",currentHeight);
+      //printf("UH-int: %s", WriteBuf);
+      write(ultrasonicfifofd,WriteBuf,sizeof(WriteBuf));
+      delay(100);
+   }
 }
  
 void ultraSetup() {
    wiringPiSetup();
-  //open fifo
-  char* ultrasonicfifo = "/home/pi/tmp/ultrasonicfifo";
+   connectFifos();
+   pinMode(TRIG, OUTPUT);
+   pinMode(ECHO, INPUT);
+   //TRIG pin must start LOW
+   digitalWrite(TRIG, LOW);
+   delay(30);
+}
+
+void connectFifos(){
+   char* from_ultra_fifo = "/home/pi/tmp/from_ultra_fifo";
+   char* to_ultra_fifo = "/home/pi/tmp/to_ultra_fifo";
   //delete in case it already exists
-  unlink(ultrasonicfifo);
-  delay (500);
-  int a = mkfifo(ultrasonicfifo,0666);
-  if (a==-1){
-    printf("mkfifoerror-ultra: %s\n",strerror(errno));
-  } else {
-    printf("ultra-fifo-created\n");
-  }
+  unlink(from_ultra_fifo);
+  delay (300);
+  int a = mkfifo(from_ultra_fifo,0666);
   delay(200);
-  ultrasonicfifofd=open(ultrasonicfifo, O_WRONLY);
+  if (a==-1){
+    printf("make_from_ultra=error: %s\n",strerror(errno));
+  } 
+  from_ultra_fd=open(from_ultra_fifo, O_WRONLY);
   if (ultrasonicfifofd==-1){ 
-    printf("openfifoerror-ultra: %s\n",strerror(errno));
+    printf("from_ultra_fifo=error: %s\n",strerror(errno));
   } else {
-   printf("ultra-fifo-open\n");
+   printf("from_ultra_fifo=open\n");
   }
-        pinMode(TRIG, OUTPUT);
-        pinMode(ECHO, INPUT);
-        //TRIG pin must start LOW
-        digitalWrite(TRIG, LOW);
-        delay(30);
+
+  to_ultra_fd=open(to_ultra_fifo,=O_RDONLY);
+  if (to_ultra_fd==-1){
+       printf("to_ultra_fifo=error: %s\n",strerror(errno));
+  } else {
+         printf("to_ultra_fifo=open\n");
+  }
+
 }
 
 long getUltra() {
