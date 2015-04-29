@@ -122,60 +122,64 @@ int main(){
 			scanf("%d",&test);
 			//barometertest
 			if (test == 1){
-				int pingprompt;
-				printf("ping to see if program->sensor communication (pipe) is working");
-				printf("[1]	Barometer\n");
-				printf("[2]	Ultrasonic sensor\n");
-				printf("[3]	Magnetometer\n");
-				printf("[4]	GPS\n");
-				printf("[5]	All\n");
-				printf("[6] Back");
-				printf("---------------------------------\n");
-				scanf("%d",&pingprompt);
-				if(pingprompt==1){
-					commandSensor("baro", "ping");
-				} else if (pingprompt==2){
-					commandSensor("ultra", "ping");
-				} else if (pingprompt==3){
-					commandSensor("mag", "ping");
-				} else if (pingprompt==4){
-					commandSensor("gps", "ping");
-				} else if (pingprompt==5){
-					commandSensor("baro", "ping");
-					commandSensor("ultra", "ping");
-					commandSensor("mag", "ping");
-					commandSensor("gps", "ping");
-				} else if (pingprompt==6){
-					//nothing
+				int pingprompt=0;
+				while (pingprompt>=0){
+					printf("ping to see if program->sensor communication (pipe) is working\n");
+					printf("[1]	Barometer\n");
+					printf("[2]	Ultrasonic sensor\n");
+					printf("[3]	Magnetometer\n");
+					printf("[4]	GPS\n");
+					printf("[5]	All\n");
+					printf("[6] Back\n");
+					printf("---------------------------------\n");
+					scanf("%d",&pingprompt);
+					if(pingprompt==1){
+						commandSensor("baro", "ping");
+					} else if (pingprompt==2){
+						commandSensor("ultra", "ping");
+					} else if (pingprompt==3){
+						commandSensor("mag", "ping");
+					} else if (pingprompt==4){
+						commandSensor("gps", "ping");
+					} else if (pingprompt==5){
+						commandSensor("baro", "ping");
+						commandSensor("ultra", "ping");
+						commandSensor("mag", "ping");
+						commandSensor("gps", "ping");
+					} else if (pingprompt==6){
+						pingprompt=-1;
+					}
 				}
 			}
 			//Ultra sensor
 			else if(test == 2){
-				int recdataprompt;
-				printf("recieve 1 data to see if sensor->program communication (pipe) is working");
-				printf("[1]	Barometer\n");
-				printf("[2]	Ultrasonic sensor\n");
-				printf("[3]	Magnetometer\n");
-				printf("[4]	GPS\n");
-				printf("[5]	All\n");
-				printf("[6] Back");
-				printf("---------------------------------\n");
-				scanf("%d",&recdataprompt);
-				if(recdataprompt==1){
-					printf("Barometer height(m): %lf\n", getBHeight);
-				} else if (recdataprompt==2){
-					printf("Ultrasonic height(cm): %lf\n", getUHeight);
-				} else if (recdataprompt==3){
-					printf("Magnetometer bearing(deg): %lf\n", getBearing);
-				} else if (recdataprompt==4){
-					printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
-				} else if (recdataprompt==5){
-					printf("Barometer height(m): %lf\n", getBHeight);
-					printf("Ultrasonic height(cm): %lf\n", getUHeight);
-					printf("Magnetometer bearing(deg): %lf\n", getBearing);
-					printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
-				} else if (recdataprompt==6){
-					//nothing
+				int recdataprompt=0;
+				while (recdataprompt>=0){
+					printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
+					printf("[1]	Barometer\n");
+					printf("[2]	Ultrasonic sensor\n");
+					printf("[3]	Magnetometer\n");
+					printf("[4]	GPS\n");
+					printf("[5]	All\n");
+					printf("[6] Back");
+					printf("---------------------------------\n");
+					scanf("%d",&recdataprompt);
+					if(recdataprompt==1){
+						printf("Barometer height(m): %lf\n", getBHeight);
+					} else if (recdataprompt==2){
+						printf("Ultrasonic height(cm): %lf\n", getUHeight);
+					} else if (recdataprompt==3){
+						printf("Magnetometer bearing(deg): %lf\n", getBearing);
+					} else if (recdataprompt==4){
+						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
+					} else if (recdataprompt==5){
+						printf("Barometer height(m): %lf\n", getBHeight);
+						printf("Ultrasonic height(cm): %lf\n", getUHeight);
+						printf("Magnetometer bearing(deg): %lf\n", getBearing);
+						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
+					} else if (recdataprompt==6){
+						recdataprompt=-1;
+					}
 				}
 			}
 			//Test hoverToStep
