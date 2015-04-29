@@ -68,7 +68,6 @@ void Disarm_FlightController(){
 
 int main(){
 	sfinit();
-	printf("klarinit\n");
 	while(1){
 		printf("---------------------------------\n");
 		printf("Make a choice:\n");
@@ -124,7 +123,7 @@ int main(){
 			//barometertest
 			if (test == 1){
 				int pingprompt;
-				printf("ping to see if program->sensor communication (pipe) is working")
+				printf("ping to see if program->sensor communication (pipe) is working");
 				printf("[1]	Barometer\n");
 				printf("[2]	Ultrasonic sensor\n");
 				printf("[3]	Magnetometer\n");
@@ -153,7 +152,7 @@ int main(){
 			//Ultra sensor
 			else if(test == 2){
 				int recdataprompt;
-				printf("recieve 1 data to see if sensor->program communication (pipe) is working")
+				printf("recieve 1 data to see if sensor->program communication (pipe) is working");
 				printf("[1]	Barometer\n");
 				printf("[2]	Ultrasonic sensor\n");
 				printf("[3]	Magnetometer\n");
