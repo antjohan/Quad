@@ -210,13 +210,25 @@ double * getCoordinate(){
 void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or gps
 	int sensor_fd;
 	printf("%s%s\n",sensor,command);
-	if (strcmp(sensor, "mag")==0){
+
+	char str1[10];
+	char str2[10];
+	char str3[10];
+	char str4[10];
+
+	strcpy(str1,"mag");
+	strcpy(str2,"ultra");
+	strcpy(str3,"gps");
+	strcpy(str4,"baro");
+
+	if (strcmp(sensor, str1)==0){
 		sensor_fd=to_mag_fd;
-	} else if (strcmp(sensor, "ultra")==0){
+	} else if (strcmp(sensor, str2)==0){
+			printf("%s%s\n",sensor,command);
 		sensor_fd=to_ultra_fd;
-	} else if (strcmp(sensor, "gps")==0){
+	} else if (strcmp(sensor, str3)==0){
 		sensor_fd=to_gps_fd;
-	}else if (strcmp(sensor, "baro")==0){
+	}else if (strcmp(sensor, str4)==0){
 		sensor_fd=to_baro_fd;
 	}
 }
