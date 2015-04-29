@@ -67,24 +67,22 @@ void connectFifos(){
    char* to_ultra_fifo = "/home/pi/tmp/to_ultra_fifo";
   //delete in case it already exists
   unlink(from_ultra_fifo);
-  delay (300);
-  int a = mkfifo(from_ultra_fifo,0666);
-  delay(200);
-  if (a==-1){
-    printf("make_from_ultra=error: %s\n",strerror(errno));
+  delay(500);
+  if (mkfifo(from_ultra_fifo,0666)==-1){
+    printf("u_make_from_ultra=error: %s\n",strerror(errno));
   } 
   from_ultra_fd=open(from_ultra_fifo, O_WRONLY);
   if (from_ultra_fd==-1){ 
-    printf("from_ultra_fifo=error: %s\n",strerror(errno));
+    printf("u_from_ultra_fifo=error: %s\n",strerror(errno));
   } else {
-   printf("from_ultra_fifo=open\n");
+   printf("u_from_ultra_fifo=open\n");
   }
 
   to_ultra_fd=open(to_ultra_fifo, O_RDONLY);
   if (to_ultra_fd==-1){
-       printf("to_ultra_fifo=error: %s\n",strerror(errno));
+       printf("u_to_ultra_fifo=error: %s\n",strerror(errno));
   } else {
-         printf("to_ultra_fifo=open\n");
+         printf("u_to_ultra_fifo=open\n");
   }
 }
 void checkPipe(){

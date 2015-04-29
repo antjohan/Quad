@@ -25,28 +25,23 @@ void connectFifos(){
   char* to_baro_fifo = "/home/pi/tmp/to_baro_fifo";
   //delete in case it already exists
   unlink(from_baro_fifo);
-  delay (300);
-  int a = mkfifo(from_baro_fifo,0666);
-  delay(200);
-
-  if (a==-1){
-    printf("make_from_baro=error: %s\n",strerror(errno));
-  } else{
-    printf("from_baro_fifo=created\n");
+  delay (500);
+  if (mkfifo(from_baro_fifo,0666)==-1){
+    printf("b_make_from_baro=error: %s\n",strerror(errno));
   }
 
   from_baro_fd=open(from_baro_fifo, O_WRONLY);
   if (from_baro_fd==-1){
-    printf("from_baro_fifo=error: %s\n",strerror(errno));
+    printf("b_from_baro_fifo=error: %s\n",strerror(errno));
   } else {
-    printf("from_baro_fifo=connected\n");
+    printf("b_from_baro_fifo=connected\n");
   }
 
   to_baro_fd=open(to_baro_fifo, O_RDONLY);
   if (to_baro_fd==-1){
-    printf("to_baro_fifo=error: %s\n",strerror(errno));
+    printf("b_to_baro_fifo=error: %s\n",strerror(errno));
   } else {
-    printf("to_baro_fifo=connected\n");
+    printf("b_to_baro_fifo=connected\n");
   }  
 }
 void calibrateBaro(){

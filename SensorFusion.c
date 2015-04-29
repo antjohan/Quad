@@ -96,22 +96,26 @@ void sfinit(){
  	}
 	*/
  	printf("from_fifos=connected!\n");
- 	mkfifo(to_ultra_fifo,0666);
+ 	if (mkfifo(to_ultra_fifo,0666)==-1){
+ 		printf("sf_make_to_ultra=error: %s\n",strerror(errno));
+ 	}
  	delay(300);
  	to_ultra_fd=open(to_ultra_fifo, O_WRONLY);
  	if (to_ultra_fd==-1){
-		printf("to_ultra_fifo=error: %s\n",strerror(errno));
+		printf("sf_to_ultra_fifo=error: %s\n",strerror(errno));
 	} else {
-		printf("to_ultra_fifo=open\n");
+		printf("sf_to_ultra_fifo=open\n");
 	}
 	delay(200);
-	mkfifo(to_baro_fifo,0666);
+	if (mkfifo(to_baro_fifo,0666)==-1){
+		printf("sf_to_baro_fifo=error: %s\n",strerror(errno));
+	}
  	delay(300);
 	to_baro_fd=open(to_baro_fifo, O_WRONLY);
 	if (to_baro_fd==-1){
-    	printf("to_baro_fifo=error: %s\n",strerror(errno));
+    	printf("sf_to_baro_fifo=error: %s\n",strerror(errno));
  	} else {
- 		printf("to_baro_fifo=open\n");
+ 		printf("sf_to_baro_fifo=open\n");
  	}
  	/*
 
