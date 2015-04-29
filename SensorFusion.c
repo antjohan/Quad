@@ -105,10 +105,10 @@ void sfinit(){
 		printf("to_ultra_fifo=open\n");
 	}
 
-	mkfifo(from_baro_fifo,0666);
+	mkfifo(to_baro_fifo,0666);
  	delay(300);
 	to_baro_fd=open(to_baro_fifo, O_WRONLY);
-	if (from_baro_fd==-1){
+	if (to_baro_fd==-1){
     	printf("to_baro_fifo=error: %s\n",strerror(errno));
  	} else {
  		printf("to_baro_fifo=open\n");
