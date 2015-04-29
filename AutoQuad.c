@@ -74,7 +74,7 @@ int main(){
 		printf("Make a choice:\n");
 		printf("---------------------------------\n");
 		printf("[1]	Arm FlightController\n");
-		printf("[2]	Disrm FlightController\n");
+		printf("[2]	Disarm FlightController\n");
 		printf("[3]	Set Servo\n");
 		printf("[4]	Test prog\n");
 		printf("[5]	Quit\n");
@@ -114,8 +114,8 @@ int main(){
 		else if(val == 4){
 			int test;
 
-			printf("[1]	Testa barometer\n");
-			printf("[2]	Testa ultra sensor\n");
+			printf("[1]	ping...\n");
+			printf("[2]	recieve data\n");
 		//	printf("[3]	Testa hoverToStep\n");
 		//	printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Tillbaks\n");
@@ -123,23 +123,61 @@ int main(){
 			scanf("%d",&test);
 			//barometertest
 			if (test == 1){
-				/*Initialize();
-				
-				PrintCalibrationData();
-				printf("Uncompensated temperature: %d\n",GetUncompensatedTemperature());
-				printf("Uncompensated pressure: %d\n",GetUncompensatedPressure());
-
-				printf("Compensated temperature: %f\n", GetTemperature());
-				printf("Compensated pressure: %d\n", GetPressure());
-				printf("Height: %f\n", GetAltitude(100500));*/
+				int pingprompt;
+				printf("ping to see if program->sensor communication (pipe) is working")
+				printf("[1]	Barometer\n");
+				printf("[2]	Ultrasonic sensor\n");
+				printf("[3]	Magnetometer\n");
+				printf("[4]	GPS\n");
+				printf("[5]	All\n");
+				printf("[6] Back");
+				printf("---------------------------------\n");
+				scanf("%d",&pingprompt);
+				if(pingprompt==1){
+					commandSensor("baro", "ping");
+				} else if (pingprompt==2){
+					commandSensor("ultra", "ping");
+				} else if (pingprompt==3){
+					commandSensor("mag", "ping");
+				} else if (pingprompt==4){
+					commandSensor("gps", "ping");
+				} else if (pingprompt==5){
+					commandSensor("baro", "ping");
+					commandSensor("ultra", "ping");
+					commandSensor("mag", "ping");
+					commandSensor("gps", "ping");
+				} else if (pingprompt==6){
+					//nothing
+				}
 			}
 			//Ultra sensor
 			else if(test == 2){
-			/*	ultraSetup();
-				printf("Testar avstand\n");
-				printf("%l\n", getCM());
-				printf("Done!\n");
-			*/
+				int recdataprompt;
+				printf("recieve 1 data to see if sensor->program communication (pipe) is working")
+				printf("[1]	Barometer\n");
+				printf("[2]	Ultrasonic sensor\n");
+				printf("[3]	Magnetometer\n");
+				printf("[4]	GPS\n");
+				printf("[5]	All\n");
+				printf("[6] Back");
+				printf("---------------------------------\n");
+				scanf("%d",&recdataprompt);
+				if(recdataprompt==1){
+					printf("Barometer height(m): %lf\n", getBHeight);
+				} else if (recdataprompt==2){
+					printf("Ultrasonic height(cm): %lf\n", getUHeight);
+				} else if (recdataprompt==3){
+					printf("Magnetometer bearing(deg): %lf\n", getBearing);
+				} else if (recdataprompt==4){
+					printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
+				} else if (recdataprompt==5){
+					printf("Barometer height(m): %lf\n", getBHeight);
+					printf("Ultrasonic height(cm): %lf\n", getUHeight);
+					printf("Magnetometer bearing(deg): %lf\n", getBearing);
+					printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
+				} else if (recdataprompt==6){
+					//nothing
+				}
 			}
 			//Test hoverToStep
 		/*	else if(test == 3){

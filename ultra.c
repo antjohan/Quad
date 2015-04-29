@@ -16,6 +16,9 @@
  
 #define TRIG 4
 #define ECHO 5
+#define MAX_BUF 256
+
+bool sampling=TRUE; //ultra will loop and report sampled data
 
 //functions
 void sample();
@@ -37,7 +40,8 @@ int main(){
 void sample(){
    long currentHeight;
    char WriteBuf[56];
-   while(1){
+   while(sampling=TRUE){
+      checkPipe();
       currentHeight=getUltra();
       sprintf(WriteBuf,"%ld",currentHeight);
       //printf("UH-int: %s", WriteBuf);
@@ -80,6 +84,15 @@ void connectFifos(){
   } else {
          printf("to_ultra_fifo=open\n");
   }
+}
+void checkPipe(){
+   double br;
+   char buffer[MAX_BUF];
+   if (read(from_mag_fd, buffer, MAX_BUF)>0){
+       if (strcmp(buffer,"ping")==0){
+         printf("Ultrasonic sensor says hi!\n");
+       }
+   }
 }
 
 long getUltra() {

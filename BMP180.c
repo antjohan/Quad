@@ -93,46 +93,8 @@ void Write(int address, int data){
 
 uint8_t Read(int address)
 {
- // Wire.beginTransmission(BMP180_Address);
-  //Wire.write(address);
-  //Wire.endTransmission();
-  
-  //Wire.beginTransmission(BMP180_Address);
-  //Wire.requestFrom(BMP180_Address, length);
-
-  //uint8_t buffer[length];
-  //while(Wire.available())
-  //{
-//   for(uint8_t i = 0; i < length; i++)
-  // {
-    //buffer[i] = wiringPiI2CReadReg8(BMP180_Sensor, address);
-    //address = address + 0x01;
-  //}
-  //}
-  //Wire.endTransmission();
-
   return wiringPiI2CReadReg8(BMP180_Sensor, address);
 }
-
-/*void Read2(int address, int length, uint8_t buffer[])
-{
-  
-  Wire.beginTransmission(BMP180_Address);
-  Wire.write(address);
-  Wire.endTransmission();
-  
-  Wire.beginTransmission(BMP180_Address);
-  Wire.requestFrom(BMP180_Address, length);
-
-  while(Wire.available())
-  {
-    for(uint8_t i = 0; i < length; i++)
-    {
-      buffer[i] = Wire.read();
-    }
-  }
-  Wire.endTransmission();
-}*/
 
 uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
   OversamplingSetting = sampleResolution;
@@ -154,22 +116,6 @@ uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
     default:
     return ErrorCode_1_Num;
   }
-}
-
-
-void PrintCalibrationData(){
-	printf("AC1:\t"); printf("%d\n",Calibration_AC1);
-	printf("AC2:\t"); printf("%d\n",Calibration_AC2);
-	printf("AC3:\t"); printf("%d\n",Calibration_AC3);
-	printf("AC4:\t"); printf("%d\n",Calibration_AC4);
-	printf("AC5:\t"); printf("%d\n",Calibration_AC5);
-	printf("AC6:\t"); printf("%d\n",Calibration_AC6);
-	printf("B1:\t"); printf("%d\n",Calibration_B1);
-	printf("B2:\t"); printf("%d\n",Calibration_B2);
-	printf("MB:\t"); printf("%d\n",Calibration_MB);
-	printf("MC:\t"); printf("%d\n",Calibration_MC);
-	printf("MD:\t"); printf("%d\n",Calibration_MD);
-
 }
 
 int GetUncompensatedTemperature(){

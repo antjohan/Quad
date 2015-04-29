@@ -68,7 +68,6 @@ void sample();
 void Write();
 uint8_t Read(int address);
 uint8_t SetResolution(uint8_t sampleResolution, bool oversample);
-void PrintCalibrationData();
 int GetUncompensatedTemperature();
 long GetUncompensatedPressure();
 float CompensateTemperature(int uncompensatedTemperature);
