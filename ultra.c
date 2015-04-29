@@ -18,7 +18,8 @@
 #define ECHO 5
 #define MAX_BUF 256
 
-bool sampling=TRUE; //ultra will loop and report sampled data
+
+int sampling=1; //ultra will loop and report sampled data
 
 //functions
 void sample();
@@ -41,7 +42,7 @@ int main(){
 void sample(){
    long currentHeight;
    char WriteBuf[56];
-   while(sampling==TRUE){
+   while(sampling==1){
       checkPipe();
       currentHeight=getUltra();
       sprintf(WriteBuf,"%ld",currentHeight);
