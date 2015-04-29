@@ -5,19 +5,20 @@ int main(){
 }
 void Initialize(){
   wiringPiSetupSys();
- ConversionWaitTimeMs = 5;
- OversamplingSetting = 3;
- Oversample = true;
+  ConversionWaitTimeMs = 5;
+  OversamplingSetting = 3;
+  Oversample = true;
 
- LastTemperatureTime = -1000;
- LastTemperatureData = 0;
+  LastTemperatureTime = -1000;
+  LastTemperatureData = 0;
+  calibrateBaro();
 
- AcceptableTemperatureLatencyForPressure = 1000;
-
-connectFifos();
-calibrateBaro();
-setCurrentHeight(0.0);
-sample();
+  AcceptableTemperatureLatencyForPressure = 1000;
+  InitialPressurePa=CompensatePressure(GetUncompensatedPressure);
+  InitialHeight=GetAltitude(InitialPressurePa);
+  connectFifos();
+  setCurrentHeight(0.0);
+  sample();
 }
 void connectFifos(){
      //open fifo
