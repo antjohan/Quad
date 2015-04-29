@@ -168,7 +168,7 @@ double getBHeight(){
 	char barometerbuffer[MAX_BUF];
 	read(from_baro_fd,barometerbuffer,MAX_BUF);
 	sscanf(barometerbuffer, "%lf", &bh);
-	//printf("bh: %lf\n",bh);
+	printf("bh: %lf\n",bh);
 	return bh;
 
 }
