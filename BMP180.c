@@ -14,7 +14,7 @@ void Initialize(){
   calibrateBaro();
 
   AcceptableTemperatureLatencyForPressure = 1000;
-  InitialPressurePa=CompensatePressure(GetUncompensatedPressure);
+  InitialPressurePa=GetPressure();
   InitialHeight=GetAltitude(InitialPressurePa);
   connectFifos();
   sample();
