@@ -20,6 +20,7 @@
 //functions
 void sample();
 long getCM();
+void connectFifos();
 void getCMloop();
 void ultraSetup();
 long getUltra();
@@ -73,13 +74,12 @@ void connectFifos(){
    printf("from_ultra_fifo=open\n");
   }
 
-  to_ultra_fd=open(to_ultra_fifo,=O_RDONLY);
+  to_ultra_fd=open(to_ultra_fifo, O_RDONLY);
   if (to_ultra_fd==-1){
        printf("to_ultra_fifo=error: %s\n",strerror(errno));
   } else {
          printf("to_ultra_fifo=open\n");
   }
-
 }
 
 long getUltra() {
