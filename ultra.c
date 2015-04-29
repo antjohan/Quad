@@ -24,6 +24,7 @@ bool sampling=TRUE; //ultra will loop and report sampled data
 void sample();
 long getCM();
 void connectFifos();
+void checkPipe();
 void getCMloop();
 void ultraSetup();
 long getUltra();
@@ -40,7 +41,7 @@ int main(){
 void sample(){
    long currentHeight;
    char WriteBuf[56];
-   while(sampling=TRUE){
+   while(sampling==TRUE){
       checkPipe();
       currentHeight=getUltra();
       sprintf(WriteBuf,"%ld",currentHeight);
@@ -88,7 +89,7 @@ void connectFifos(){
 void checkPipe(){
    double br;
    char buffer[MAX_BUF];
-   if (read(from_mag_fd, buffer, MAX_BUF)>0){
+   if (read(from_ultra_fd, buffer, MAX_BUF)>0){
        if (strcmp(buffer,"ping")==0){
          printf("Ultrasonic sensor says hi!\n");
        }
