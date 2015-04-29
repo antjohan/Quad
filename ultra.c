@@ -38,7 +38,7 @@ void sample(){
    long currentHeight;
    char WriteBuf[56];
    while(1){
-      currentHeight=getCM();
+      currentHeight=getUltra();
       sprintf(WriteBuf,"%ld",currentHeight);
       //printf("UH-int: %s", WriteBuf);
       write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
