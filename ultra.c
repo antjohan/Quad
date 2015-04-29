@@ -42,7 +42,7 @@ void sample(){
       sprintf(WriteBuf,"%ld",currentHeight);
       //printf("UH-int: %s", WriteBuf);
       write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
-      delay(100);
+      delay(300);
    }
 }
  

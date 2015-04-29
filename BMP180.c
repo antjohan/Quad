@@ -17,7 +17,6 @@ void Initialize(){
   InitialPressurePa=CompensatePressure(GetUncompensatedPressure);
   InitialHeight=GetAltitude(InitialPressurePa);
   connectFifos();
-  setCurrentHeight(0.0);
   sample();
 }
 void connectFifos(){
