@@ -72,7 +72,7 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
  void sample(){
   float RelativeAltitude;
   char WriteBuf[64];
-  while(1){
+  while(sampling==1){
     float AltitudeSum=0;
     for (int i=0;i<4;++i){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
@@ -81,9 +81,9 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
-    //printf("FUSION-STRING: %s\n",WriteBuf);
+    printf("baro sampling: %s\n",WriteBuf);
     write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
-    //delay(500);
+    delay(2000);
   }
  }
 

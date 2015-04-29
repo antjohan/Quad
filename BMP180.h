@@ -34,10 +34,11 @@
  #define BMP180_Mode_HighResolution    2
  #define BMP180_Mode_UltraHighResolution 3
 
-float InitialPressurePa=101300;
+long InitialPressurePa=101300;
 int from_baro_fd;
 int to_baro_fd;
 float InitialHeight;
+int sampling=1;
 
  uint8_t OversamplingSetting;
  bool Oversample;
