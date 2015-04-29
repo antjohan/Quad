@@ -84,7 +84,6 @@ void connectFifos(){
   }
 }
 void checkPipe(){
-   double br;
    char buffer[MAX_BUF];
 
    char str1[10];
