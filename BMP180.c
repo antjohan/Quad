@@ -36,7 +36,7 @@ void connectFifos(){
   } else {
     printf("b_from_baro_fifo=connected\n");
   }
-  delay(1000);
+  delay(2000);
   to_baro_fd=open(to_baro_fifo, O_RDONLY);
   if (to_baro_fd==-1){
     printf("b_to_baro_fifo=error: %s\n",strerror(errno));
