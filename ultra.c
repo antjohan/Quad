@@ -66,8 +66,6 @@ void connectFifos(){
    char* from_ultra_fifo = "/home/pi/tmp/from_ultra_fifo";
    char* to_ultra_fifo = "/home/pi/tmp/to_ultra_fifo";
   //delete in case it already exists
-  unlink(from_ultra_fifo);
-  delay(500);
   if (mkfifo(from_ultra_fifo,0666)==-1){
     printf("u_make_from_ultra=error: %s\n",strerror(errno));
   } 

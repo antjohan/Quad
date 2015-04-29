@@ -53,14 +53,14 @@ void sfinit(){
 
 	//Clear all to-fifos, should they exist!
 	unlink(to_baro_fifo);
-	delay(200);
 	unlink(to_ultra_fifo);
-	delay(200);
 	unlink(to_mag_fifo);
-	delay(200);
 	unlink(to_gps_fifo);
-	delay(200);
-
+	unlink(from_baro_fifo);
+	unlink(from_ultra_fifo);
+  	unlink(from_mag_fifo);
+  	unlink(from_gps_fifo);
+  	delay (200);
 //initialize all sensors and corresponding fifos
 	//run sensors manually or script them to start!
 

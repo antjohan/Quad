@@ -24,8 +24,6 @@ void connectFifos(){
   char* from_baro_fifo = "/home/pi/tmp/from_baro_fifo";
   char* to_baro_fifo = "/home/pi/tmp/to_baro_fifo";
   //delete in case it already exists
-  unlink(from_baro_fifo);
-  delay (500);
   if (mkfifo(from_baro_fifo,0666)==-1){
     printf("b_make_from_baro=error: %s\n",strerror(errno));
   }
@@ -76,7 +74,7 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
-    printf("baro sampling: %s\n",WriteBuf);
+    //printf("baro sampling: %s\n",WriteBuf);
     write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
     delay(2000);
   }
