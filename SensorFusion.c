@@ -11,7 +11,7 @@
 
 #include <unistd.h>
 
-#define MAX_BUF 256 //Amount of characters that can be sent through the fifos
+#define MAX_BUF 56 //Amount of characters that can be sent through the fifos
  
  //char * configfile= "./config.txt"
  //config_t * config;
@@ -185,7 +185,7 @@ double getUHeight(){
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrasonicbuffer,MAX_BUF);
-	printf("READ: %s\n letters: %d",ultrasonicbuffer, a);
+	printf("READ: %s letters: %d\n",ultrasonicbuffer, a);
 	if (a==-1){
 		printf("UHeightReadError: %s\n",strerror(errno));
 	}	
