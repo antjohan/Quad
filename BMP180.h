@@ -39,6 +39,7 @@ long InitialPressurePa=101300;
 int from_baro_fd;
 int to_baro_fd;
 float InitialHeight;
+float RelativeAltitude;
 int sampling=1;
 
  uint8_t OversamplingSetting;

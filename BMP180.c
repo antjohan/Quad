@@ -65,8 +65,6 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
 }
 
  void sample(){
-  float RelativeAltitude;
-  char WriteBuf[MAX_BUF];
   while(sampling==1){
     checkPipe();
     float AltitudeSum=0;
@@ -74,23 +72,31 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
     }
     RelativeAltitude=AltitudeSum/(float)4;
-    //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     RelativeAltitude=RelativeAltitude-InitialHeight;
-    sprintf(WriteBuf,"%f",RelativeAltitude);
-    printf("baro sampling: %s\n",WriteBuf);
-    write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
+    //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
+
     delay(200);
   }
  }
 
+  void writeOutput(){
+    char WriteBuf[MAX_BUF];
+    sprintf(WriteBuf,"%f",RelativeAltitude);
+    write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
+  }
  void checkPipe(){
    char buffer[10];
    char str1[10];
+   char str2[10];
+
    strcpy(str1,"ping");
+   strcpy(str2,"read")
 
    if (read(to_baro_fd, buffer, 10)>0){
-       if (strcmp(buffer,str1)==0){
+       if (strcmp(buffer,str1)==0){ //ping
          printf("Barometer sensor says hi!\n");
+       } else if(strcmp(buffer,str2)==0) { //read
+          writeOutput();
        }
    }
 }
