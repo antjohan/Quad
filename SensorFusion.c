@@ -136,16 +136,16 @@ void sfinit(){
  		printf("from_gps_fifo=open\n");
  	}
 	*/
- 	/*/setting non-block
+ 	//setting non-block
  	fcntl(from_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(from_ultra_fd, F_SETFL, O_NONBLOCK);
- 	fcntl(from_mag_fd, F_SETFL, O_NONBLOCK);
- 	fcntl(from_gps_fd, F_SETFL, O_NONBLOCK);
+ 	//fcntl(from_mag_fd, F_SETFL, O_NONBLOCK);
+ 	//fcntl(from_gps_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_ultra_fd, F_SETFL, O_NONBLOCK);
- 	fcntl(to_mag_fd, F_SETFL, O_NONBLOCK);
- 	fcntl(to_gps_fd, F_SETFL, O_NONBLOCK);
-*/
+ 	//fcntl(to_mag_fd, F_SETFL, O_NONBLOCK);
+ 	//fcntl(to_gps_fd, F_SETFL, O_NONBLOCK);
+
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	//fusionlogfd=open(fusionlog, O_WRONLY);

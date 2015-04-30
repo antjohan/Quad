@@ -77,7 +77,7 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     RelativeAltitude=RelativeAltitude-InitialHeight;
     sprintf(WriteBuf,"%f",RelativeAltitude);
-    //printf("baro sampling: %s\n",WriteBuf);
+    printf("baro sampling: %s\n",WriteBuf);
     write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
     delay(200);
   }
