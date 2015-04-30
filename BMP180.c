@@ -90,7 +90,9 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
        if (strcmp(buffer,str1)==0){
          printf("Barometer sensor says hi!\n");
        }
-   }
+   } else {
+          printf("nothing here...\n");
+   } 
 }
 
 void Write(int address, int data){

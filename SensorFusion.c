@@ -236,6 +236,8 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 		sensor_fd=to_gps_fd;
 	}else if (strcmp(sensorstr, str4)==0){
 		sensor_fd=to_baro_fd;
+		printf("Ping to baro...\n");
+
 	} else {
 		printf("Incorrect sensor string\n");
 	}
