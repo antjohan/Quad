@@ -74,7 +74,6 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
     RelativeAltitude=AltitudeSum/(float)4;
     RelativeAltitude=RelativeAltitude-InitialHeight;
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
-
     delay(100);
   }
  }

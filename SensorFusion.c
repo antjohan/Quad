@@ -188,7 +188,7 @@ double getBHeight(){
 
 }
 double getUHeight(){
-	commandSensor("baro", "read");
+	commandSensor("ultra", "read");
 	long uh; //ultrasonic height
 	char ultrabuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
@@ -250,7 +250,6 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 		printf("Incorrect sensor string\n");
 	}
 	int tmp = write(sensor_fd,sendstr,sizeof(sendstr));
-	printf("commandSensor write result: %d\n",tmp);
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
