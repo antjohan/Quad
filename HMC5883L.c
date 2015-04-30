@@ -53,7 +53,7 @@ int GetZ(){
    short z = (short)((MSB << 8) | LSB);
    return z;
 }
-double computeHeading(int X, int Y, int Z){
+double computeHeading(int x, int y, int z){
    double heading;
    if (y>0){
       heading=90-atan((double)x/(double)y)*(180/PI);

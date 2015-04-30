@@ -66,6 +66,7 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
   float RelativeAltitude;
   char WriteBuf[MAX_BUF];
   while(sampling==1){
+    void checkPipe();
     float AltitudeSum=0;
     for (int i=0;i<4;++i){
       AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
