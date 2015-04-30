@@ -80,6 +80,18 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
   }
  }
 
+ void checkPipe(){
+   char buffer[10];
+   char str1[10];
+   strcpy(str1,"ping");
+
+   if (read(to_baro_fd, buffer, 10)>0){
+       if (strcmp(buffer,str1)==0){
+         printf("Barometer sensor says hi!\n");
+       }
+   }
+}
+
 void Write(int address, int data){
   wiringPiI2CWriteReg8(BMP180_Sensor,address, data);  
 }

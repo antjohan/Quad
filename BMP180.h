@@ -67,6 +67,7 @@ void connectFifos();
 void calibrateBaro();
 void setCurrentHeight(float height);
 void sample();
+void checkPipe();
 void Write();
 uint8_t Read(int address);
 uint8_t SetResolution(uint8_t sampleResolution, bool oversample);

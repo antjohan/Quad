@@ -3,6 +3,7 @@
  #include <wiringPi.h>
  #include <inttypes.h>
  #include <stdbool.h>
+ #include <math.h>
 
 #define HMC5883L_Address 0x1E
  #define ModeRegister_Address 0x02
@@ -15,6 +16,8 @@
 #define ZData_LSB 0x06
 #define YData_MSB 0x07
 #define YData_LSB 0x08
+
+int sampling=1;
 
 int HMC5883L_Sensor;
 
@@ -50,13 +53,33 @@ int GetZ(){
    short z = (short)((MSB << 8) | LSB);
    return z;
 }
+double computeHeading(int X, int Y, int Z){
+   double heading;
+   if (y>0){
+      heading=90-atan((double)x/(double)y)*(180/PI);
+   } else if (y<0){
+      heading=270-atan((double)x/(double)y)*(180/PI);
+   } else if(y==0&6x<0){
+      heading=180.0;
+   } else if(y==0&&x>0){
+      heading=0.0;
+   }
+   return(heading);
+
+}
+void sample(){
+   while(sampling==1){
+      int x =GetX(); 
+      int y=GetY();
+      int z=GetZ();
+      double heading=computeHeading(x,y,z);
+      printf("-------------\nx=%d y=%d z=%d h=%lf\n", x, y, z, heading);
+      delay(500);
+
+   }   
+}
 
 int main(){
    HMC5883L_init();
-   while(1){
-      delay(500);
-      printf("-------------\n%d\n", GetX());
-      printf("%d\n", GetY());
-      printf("%d\n", GetZ());
-   }
+   sample();
 }
