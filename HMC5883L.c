@@ -17,6 +17,8 @@
 #define YData_MSB 0x07
 #define YData_LSB 0x08
 
+#define PI 3.14159265358979323846
+
 int sampling=1;
 
 int HMC5883L_Sensor;
@@ -59,7 +61,7 @@ double computeHeading(int x, int y, int z){
       heading=90-atan((double)x/(double)y)*(180/PI);
    } else if (y<0){
       heading=270-atan((double)x/(double)y)*(180/PI);
-   } else if(y==0&6x<0){
+   } else if(y==0&&x<0){
       heading=180.0;
    } else if(y==0&&x>0){
       heading=0.0;
