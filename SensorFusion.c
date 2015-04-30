@@ -235,7 +235,7 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	}else if (strcmp(sensorstr, str4)==0){
 		sensor_fd=to_baro_fd;
 	} else {
-		printf("Incorrect sensor string\n")
+		printf("Incorrect sensor string\n");
 	}
 	int tmp = write(sensor_fd,command,sizeof(command));
 	printf("commandSensor write result: %d\n",tmp);
