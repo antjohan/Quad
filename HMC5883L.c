@@ -34,6 +34,11 @@ double offset_x=0;
 double offset_y=0;
 double offset_z=0;
 
+   char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
+   char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
+   int to_mag_fd;
+   int from_mag_fd;
+
 void HMC5883L_init(){
    wiringPiSetupSys();
    HMC5883L_Sensor =  wiringPiI2CSetup (HMC5883L_Address);
