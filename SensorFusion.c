@@ -230,6 +230,8 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 		sensor_fd=to_mag_fd;
 	} else if (strcmp(sensorstr, str2)==0){
 		sensor_fd=to_ultra_fd;
+		printf("Ping to ultra...\n");
+
 	} else if (strcmp(sensorstr, str3)==0){
 		sensor_fd=to_gps_fd;
 	}else if (strcmp(sensorstr, str4)==0){
@@ -237,7 +239,7 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	} else {
 		printf("Incorrect sensor string\n");
 	}
-	int tmp = write(sensor_fd,command,sizeof(command));
+	int tmp = write(sensor_fd,sendstr,sizeof(sendstr));
 	printf("commandSensor write result: %d\n",tmp);
 }
 
