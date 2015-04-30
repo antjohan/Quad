@@ -89,7 +89,7 @@ void connectFifos(){
 }
 void writeOutput(){
    char WriteBuf[56];
-   sprintf(WriteBuf,"%ld",heading);
+   sprintf(WriteBuf,"%lf",heading);
    write(from_mag_fd,WriteBuf,sizeof(WriteBuf));
 }
 void checkPipe(){
