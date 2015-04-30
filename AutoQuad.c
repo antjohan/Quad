@@ -164,7 +164,7 @@ int main(){
 					printf("[6] Back");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
-					printf("promtp %d\n", recdataprompt);
+					printf("prompt %d\n", recdataprompt);
 					if(recdataprompt==1){
 						printf("Barometer height(m): %lf\n", getBHeight());
 					} else if (recdataprompt==2){
@@ -181,7 +181,7 @@ int main(){
 					} else if (recdataprompt==6){
 						recdataprompt=-1;
 					}
-					printf("promtp %d\n", recdataprompt);
+					printf("prompt %d\n", recdataprompt);
 				}
 			}
 			//Test hoverToStep
