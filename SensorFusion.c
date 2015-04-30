@@ -214,23 +214,28 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	char str3[10];
 	char str4[10];
 
+	char sensorstr[10];
 	char sendstr[10];
 
 	strcpy(str1,"mag");
 	strcpy(str2,"ultra");
 	strcpy(str3,"gps");
 	strcpy(str4,"baro");
+
+	strcpy(sensorstr,sensor);
 	sprintf(sendstr,"%s",command);
 
 
-	if (strcmp(sensor, str1)==0){
+	if (strcmp(sensorstr, str1)==0){
 		sensor_fd=to_mag_fd;
-	} else if (strcmp(sensor, str2)==0){
+	} else if (strcmp(sensorstr, str2)==0){
 		sensor_fd=to_ultra_fd;
-	} else if (strcmp(sensor, str3)==0){
+	} else if (strcmp(sensorstr, str3)==0){
 		sensor_fd=to_gps_fd;
-	}else if (strcmp(sensor, str4)==0){
+	}else if (strcmp(sensorstr, str4)==0){
 		sensor_fd=to_baro_fd;
+	} else {
+		printf("Incorrect sensor string\n")
 	}
 	int tmp = write(sensor_fd,command,sizeof(command));
 	printf("commandSensor write result: %d\n",tmp);
