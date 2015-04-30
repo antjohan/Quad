@@ -1,9 +1,16 @@
- #include <wiringPiI2C.h>
  #include <stdio.h>
+#include <stdlib.h>
+ #include <wiringPiI2C.h>
  #include <wiringPi.h>
  #include <inttypes.h>
  #include <stdbool.h>
  #include <math.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
 
 #define HMC5883L_Address 0x1E
  #define ModeRegister_Address 0x02
