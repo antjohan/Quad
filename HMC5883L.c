@@ -153,11 +153,11 @@ void sample(){
    int z;
    while(sampling==1){
       checkPipe();
-      x =GetX(); 
+      x = GetX(); 
       y = GetY();
       z = GetZ();
       heading=computeHeading(x,y,z);
-      //printf("-------------\nx=%d y=%d z=%d h=%lf\n", x, y, z, heading);
+      printf("Heading: %lf\n", heading);
       delay(100);
    }   
 }
