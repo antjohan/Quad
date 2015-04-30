@@ -185,7 +185,7 @@ double getUHeight(){
 	long uh; //ultrasonic height
 	char ultrasonicbuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrasonicbuffer,MAX_BUF);
-	printf("READ: %s\n",ultrasonicbuffer);
+	printf("READ: %s\n letters: %d",ultrasonicbuffer, a);
 	if (a==-1){
 		printf("UHeightReadError: %s\n",strerror(errno));
 	}	
