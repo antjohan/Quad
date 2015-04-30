@@ -165,18 +165,18 @@ int main(){
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
 					if(recdataprompt==1){
-						printf("Barometer height(m): %lf\n", getBHeight);
+						printf("Barometer height(m): %lf\n", getBHeight());
 					} else if (recdataprompt==2){
-						printf("Ultrasonic height(cm): %lf\n", getUHeight);
+						printf("Ultrasonic height(cm): %lf\n", getUHeight());
 					} else if (recdataprompt==3){
-						printf("Magnetometer bearing(deg): %lf\n", getBearing);
+						printf("Magnetometer bearing(deg): %lf\n", getBearing());
 					} else if (recdataprompt==4){
-						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
+						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==5){
-						printf("Barometer height(m): %lf\n", getBHeight);
-						printf("Ultrasonic height(cm): %lf\n", getUHeight);
-						printf("Magnetometer bearing(deg): %lf\n", getBearing);
-						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight);
+						printf("Barometer height(m): %lf\n", getBHeight());
+						printf("Ultrasonic height(cm): %lf\n", getUHeight());
+						printf("Magnetometer bearing(deg): %lf\n", getBearing());
+						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==6){
 						recdataprompt=-1;
 					}
