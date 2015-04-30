@@ -214,10 +214,13 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	char str3[10];
 	char str4[10];
 
+	char sendstr[10];
+
 	strcpy(str1,"mag");
 	strcpy(str2,"ultra");
 	strcpy(str3,"gps");
 	strcpy(str4,"baro");
+	sprintf(sendstr,"%s",command);
 
 
 	if (strcmp(sensor, str1)==0){
@@ -229,7 +232,8 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	}else if (strcmp(sensor, str4)==0){
 		sensor_fd=to_baro_fd;
 	}
-	printf("commandSensor write result: %d",write(sensor_fd,command,sizeof(command)));
+	int tmp = write(sensor_fd,command,sizeof(command));
+	printf("commandSensor write result: %d\n",tmp);
 }
 
 void updateLog(){//enters all current sensor data into fusionlog

@@ -94,6 +94,8 @@ void checkPipe(){
        if (strcmp(buffer,str1)==0){
          printf("Ultrasonic sensor says hi!\n");
        }
+   } else {
+      printf("nothing read...\n");
    }
 }
 
