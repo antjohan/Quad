@@ -47,7 +47,7 @@ void sample(){
       currentHeight=getUltra();
       sprintf(WriteBuf,"%ld\0",currentHeight);
       //printf("UH-int: %s\n", WriteBuf);
-      write(from_ultra_fd,WriteBuf,sizeof(WriteBuf)+1);
+      write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
       delay(300);
    }
 }
