@@ -164,12 +164,8 @@ int main(){
 					printf("[6] Back");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
-					printf("prompt %d\n", recdataprompt);
 					if(recdataprompt==1){
-						printf("hejx\n");
 						printf("Barometer height(m): %lf\n", getBHeight());
-						printf("hejy\n");
-
 					} else if (recdataprompt==2){
 						printf("Ultrasonic height(cm): %lf\n", getUHeight());
 					} else if (recdataprompt==3){
@@ -184,7 +180,6 @@ int main(){
 					} else if (recdataprompt==6){
 						recdataprompt=-1;
 					}
-					printf("prompt %d\n", recdataprompt);
 				}
 			}
 			//Test hoverToStep
@@ -206,7 +201,7 @@ int main(){
 		}else if(val==6){//recieve barometer data
 			while(1){
 				printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
-				//delay(100);
+				delay(100);
 			}
 
 		}
