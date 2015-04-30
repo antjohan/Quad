@@ -60,11 +60,14 @@ void sfinit(){
   //	unlink(from_gps_fifo);
   	delay (1000);
 
-  	 	if (mkfifo(to_ultra_fifo,0666)==-1){
+	if (mkfifo(to_ultra_fifo,0666)==-1){
  		printf("sf_make_to_ultra=error: %s\n",strerror(errno));
  	}
- 		if (mkfifo(to_baro_fifo,0666)==-1){
+	if (mkfifo(to_baro_fifo,0666)==-1){
 		printf("sf_to_baro_fifo=error: %s\n",strerror(errno));
+	}
+	if (mkfifo(to_mag_fifo,0666)==-1){
+		printf("sf_to_mag_fifo=error: %s\n",strerror(errno));
 	}
 //initialize all sensors and corresponding fifos
 	//run sensors manually or script them to start!
