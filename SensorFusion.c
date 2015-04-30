@@ -179,19 +179,16 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 
 }
 double getBHeight(){
-	printf("hej1\n");
+	commandSensor("baro", "read");
 	double bh; //barometer height
 	char barobuffer[MAX_BUF];
 	int a = read(from_baro_fd,barobuffer,MAX_BUF);
-		printf("hej2\n");
-
 	sscanf(barobuffer, "%lf", &bh);
-		printf("hej3\n");
-
 	return bh;
 
 }
 double getUHeight(){
+	commandSensor("baro", "read");
 	long uh; //ultrasonic height
 	char ultrabuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
