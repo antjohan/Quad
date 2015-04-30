@@ -65,8 +65,8 @@ void HMC5883L_init(){
 }
 
 void connectFifos(){
-   char* from_mag_fifo = "/home/pi/tmp/from_ultra_fifo";
-   char* to_mag_fifo = "/home/pi/tmp/to_ultra_fifo";
+   char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
+   char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
   //delete in case it already exists
    unlink(from_mag_fifo);
    delay(200);
