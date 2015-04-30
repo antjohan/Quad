@@ -101,7 +101,7 @@ void checkPipe(){
        if (strcmp(buffer,str1)==0){
          printf("Ultrasonic sensor says hi!\n");
        } else if(strcmp(buffer,str2)==0){
-
+         writeOutput();
        }
    }
 }
