@@ -180,6 +180,7 @@ int main(){
 					} else if (recdataprompt==6){
 						recdataprompt=-1;
 					}
+					printf("promtp %d", recdataprompt);
 				}
 			}
 			//Test hoverToStep
