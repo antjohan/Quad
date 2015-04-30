@@ -90,7 +90,7 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
    char str2[10];
 
    strcpy(str1,"ping");
-   strcpy(str2,"read")
+   strcpy(str2,"read");
 
    if (read(to_baro_fd, buffer, 10)>0){
        if (strcmp(buffer,str1)==0){ //ping
