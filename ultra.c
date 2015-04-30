@@ -46,7 +46,7 @@ void sample(){
       checkPipe();
       currentHeight=getUltra();
       sprintf(WriteBuf,"%ld",currentHeight);
-      printf("UH-int: %s", WriteBuf);
+      printf("UH-int: %s\n", WriteBuf);
       write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
       delay(300);
    }
