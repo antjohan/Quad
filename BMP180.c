@@ -93,7 +93,7 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
 
    if (read(to_baro_fd, buffer, 10)>0){
        if (strcmp(buffer,str1)==0){ //ping
-         printf("Barometer sensor says hi!\n");
+         printf("Barometer says hi! :D\n");
        } else if(strcmp(buffer,str2)==0) { //read
           writeOutput();
        }

@@ -100,7 +100,7 @@ void checkPipe(){
 
    if (read(to_ultra_fd, buffer, 10)>0){
        if (strcmp(buffer,str1)==0){
-         printf("Ultrasonic sensor says hi!\n");
+         printf("Ultrasonic says hi :>!\n");
        } else if(strcmp(buffer,str2)==0){
          writeOutput();
        }

@@ -149,6 +149,7 @@ double computeHeading(int x, int y, int z){
 
 void sample(){
    while(sampling==1){
+      checkPipe();
       int x =GetX(); 
       int y=GetY();
       int z=GetZ();
