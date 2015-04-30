@@ -20,6 +20,8 @@
 
 
 int sampling=1; //ultra will loop and report sampled data
+long currentHeight;
+
 
 //functions
 void sample();
@@ -40,15 +42,11 @@ int main(){
 
 }
 void sample(){
-   long currentHeight;
-   char WriteBuf[56];
    while(sampling==1){
       checkPipe();
       currentHeight=getUltra();
-      sprintf(WriteBuf,"%ld",currentHeight);
       //printf("UH-int: %s\n", WriteBuf);
-      write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
-      delay(300);
+      delay(100);
    }
 }
  
@@ -85,15 +83,25 @@ void connectFifos(){
          printf("u_to_ultra_fifo=open\n");
   }
 }
+void writeOutput(){
+   char WriteBuf[56];
+   sprintf(WriteBuf,"%ld",currentHeight);
+   write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
+}
 void checkPipe(){
    char buffer[10];
 
    char str1[10];
+   char str2[10];
+
    strcpy(str1,"ping");
+   strcpy(str2, "read");
 
    if (read(to_ultra_fd, buffer, 10)>0){
        if (strcmp(buffer,str1)==0){
          printf("Ultrasonic sensor says hi!\n");
+       } else if(strcmp(buffer,str2)==0){
+
        }
    }
 }
