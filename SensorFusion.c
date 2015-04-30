@@ -56,10 +56,8 @@ void sfinit(){
 	unlink(to_ultra_fifo);
 	unlink(to_mag_fifo);
 	unlink(to_gps_fifo);
-	unlink(from_baro_fifo);
-	unlink(from_ultra_fifo);
-  	unlink(from_mag_fifo);
-  	unlink(from_gps_fifo);
+//  	unlink(from_mag_fifo);
+  //	unlink(from_gps_fifo);
   	delay (1000);
 
   	 	if (mkfifo(to_ultra_fifo,0666)==-1){
