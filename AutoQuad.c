@@ -166,7 +166,10 @@ int main(){
 					scanf("%d",&recdataprompt);
 					printf("prompt %d\n", recdataprompt);
 					if(recdataprompt==1){
+						printf("hejx\n");
 						printf("Barometer height(m): %lf\n", getBHeight());
+						printf("hejy\n");
+
 					} else if (recdataprompt==2){
 						printf("Ultrasonic height(cm): %lf\n", getUHeight());
 					} else if (recdataprompt==3){
