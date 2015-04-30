@@ -175,7 +175,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 double getBHeight(){
 	double bh; //barometer height
 	char barobuffer[MAX_BUF];
-	read(from_baro_fd,barobuffer,MAX_BUF);
+	int a = read(from_baro_fd,barobuffer,MAX_BUF);
 	printf("READ: %s letters: %d\n",barobuffer, a);
 	sscanf(barobuffer, "%lf", &bh);
 	printf("bh: %lf\n",bh);
