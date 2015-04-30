@@ -174,31 +174,32 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 }
 double getBHeight(){
 	double bh; //barometer height
-	char barometerbuffer[MAX_BUF];
-	read(from_baro_fd,barometerbuffer,MAX_BUF);
-	sscanf(barometerbuffer, "%lf", &bh);
+	char barobuffer[MAX_BUF];
+	read(from_baro_fd,barobuffer,MAX_BUF);
+	printf("READ: %s letters: %d\n",barobuffer, a);
+	sscanf(barobuffer, "%lf", &bh);
 	printf("bh: %lf\n",bh);
 	return bh;
 
 }
 double getUHeight(){
 	long uh; //ultrasonic height
-	char ultrasonicbuffer[MAX_BUF];
-	int a = read(from_ultra_fd,ultrasonicbuffer,MAX_BUF);
-	printf("READ: %s letters: %d\n",ultrasonicbuffer, a);
+	char ultrabuffer[MAX_BUF];
+	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
+	//printf("READ: %s letters: %d\n",ultrasonicbuffer, a);
 	if (a==-1){
 		printf("UHeightReadError: %s\n",strerror(errno));
 	}	
-	sscanf(ultrasonicbuffer, "%ld", &uh);
+	sscanf(ultrabuffer, "%ld", &uh);
 	//printf("uh: %ld\n",uh);
 	return (uh);
 }
 
 double getBearing(){ //returns current bearing based on magnetometric sensor output
 	double br;
-	char magnetometerbuffer[MAX_BUF];
-	read(from_mag_fd, magnetometerbuffer, MAX_BUF);
-	sscanf(magnetometerbuffer, "%lf", &br);
+	char magbuffer[MAX_BUF];
+	read(from_mag_fd, magbuffer, MAX_BUF);
+	sscanf(magbuffer, "%lf", &br);
 	return(br);
 
 }
