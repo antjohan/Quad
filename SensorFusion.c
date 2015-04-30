@@ -176,9 +176,7 @@ double getBHeight(){
 	double bh; //barometer height
 	char barobuffer[MAX_BUF];
 	int a = read(from_baro_fd,barobuffer,MAX_BUF);
-	printf("READ: %s letters: %d\n",barobuffer, a);
 	sscanf(barobuffer, "%lf", &bh);
-	printf("bh: %lf\n",bh);
 	return bh;
 
 }
@@ -186,12 +184,10 @@ double getUHeight(){
 	long uh; //ultrasonic height
 	char ultrabuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
-	//printf("READ: %s letters: %d\n",ultrasonicbuffer, a);
 	if (a==-1){
 		printf("UHeightReadError: %s\n",strerror(errno));
 	}	
 	sscanf(ultrabuffer, "%ld", &uh);
-	//printf("uh: %ld\n",uh);
 	return (uh);
 }
 

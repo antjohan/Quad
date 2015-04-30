@@ -84,12 +84,12 @@ void connectFifos(){
   }
 }
 void checkPipe(){
-   char buffer[MAX_BUF];
+   char buffer[10];
 
    char str1[10];
    strcpy(str1,"ping");
 
-   if (read(from_ultra_fd, buffer, MAX_BUF)>0){
+   if (read(from_ultra_fd, buffer, 10)>0){
          printf("Ultrasonic sensor says hi!\n");
        if (strcmp(buffer,str1)==0){
          printf("Ultrasonic sensor says hi!\n");

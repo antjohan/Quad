@@ -134,18 +134,18 @@ int main(){
 					printf("---------------------------------\n");
 					scanf("%d",&pingprompt);
 					if(pingprompt==1){
-						commandSensor("baro", "ping");
+						commandSensor("baro\0", "ping\0");
 					} else if (pingprompt==2){
-						commandSensor("ultra", "ping");
+						commandSensor("ultra\0", "ping\0");
 					} else if (pingprompt==3){
-						commandSensor("mag", "ping");
+						commandSensor("mag\0", "ping\0");
 					} else if (pingprompt==4){
-						commandSensor("gps", "ping");
+						commandSensor("gps\0", "ping\0");
 					} else if (pingprompt==5){
-						commandSensor("baro", "ping");
-						commandSensor("ultra", "ping");
-						commandSensor("mag", "ping");
-						commandSensor("gps", "ping");
+						commandSensor("baro\0", "ping\0");
+						commandSensor("ultra\0", "ping\0");
+						commandSensor("mag\0", "ping\0");
+						commandSensor("gps\0", "ping\0");
 					} else if (pingprompt==6){
 						pingprompt=-1;
 					}
