@@ -44,7 +44,7 @@ int main(){
 void sample(){
    while(sampling==1){
       checkPipe();
-      currentHeight=getCM();
+      currentHeight=getUltra();
       //printf("UH-int: %s\n", WriteBuf);
       delay(100);
    }
