@@ -83,6 +83,7 @@ void connectFifos(){
          printf("u_to_ultra_fifo=open\n");
   }
 }
+
 void writeOutput(){
    char WriteBuf[56];
    sprintf(WriteBuf,"%ld",currentHeight);

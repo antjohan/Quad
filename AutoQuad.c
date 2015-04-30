@@ -161,7 +161,8 @@ int main(){
 					printf("[3]	Magnetometer\n");
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
-					printf("[6] Back");
+					printf("[6] ENDLESS LOOP ALL SENSOR OUTPUT :D")
+					printf("[7] Back");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
 					if(recdataprompt==1){
@@ -169,15 +170,20 @@ int main(){
 					} else if (recdataprompt==2){
 						printf("Ultrasonic height(cm): %lf\n", getUHeight());
 					} else if (recdataprompt==3){
-						printf("Magnetometer bearing(deg): %lf\n", getBearing());
+						printf("Magnetometer heading(deg): %lf\n", getHeading());
 					} else if (recdataprompt==4){
 						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==5){
 						printf("Barometer height(m): %lf\n", getBHeight());
 						printf("Ultrasonic height(cm): %lf\n", getUHeight());
-						printf("Magnetometer bearing(deg): %lf\n", getBearing());
+						printf("Magnetometer heading(deg): %lf\n", getHeading());
 						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==6){
+						while(1){
+							printf("Barometer: %lf   Ultrasonic: %lf Magnetometer: %lf\n",getBHeight(),getUHeight(), getHeading());
+							delay(100);
+						}
+					} else if (recdataprompt==7){
 						recdataprompt=-1;
 					}
 				}
@@ -200,8 +206,8 @@ int main(){
 			break;
 		}else if(val==6){//recieve barometer data
 			while(1){
-				printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
-				delay(100);
+				//printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
+				//delay(100);
 			}
 
 		}

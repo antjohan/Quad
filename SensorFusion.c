@@ -74,32 +74,26 @@ void sfinit(){
 
 	from_ultra_fd=open(from_ultra_fifo, O_RDONLY);
  	if (from_ultra_fd==-1){
-		printf("from_ultra_fifo=error: %s\n",strerror(errno));
+		printf("sf_from_ultra_fifo=error: %s\n",strerror(errno));
 	} else {
-		printf("from_ultra_fifo=open\n");
+		printf("sf_from_ultra_fifo=open\n");
 	}
 
 	from_baro_fd=open(from_baro_fifo, O_RDONLY);
 	if (from_baro_fd==-1){
-    	printf("from_baro_fifo=error: %s\n",strerror(errno));
+    	printf("sf_from_baro_fifo=error: %s\n",strerror(errno));
  	} else {
- 		printf("from_baro_fifo=open\n");
+ 		printf("sf_from_baro_fifo=open\n");
  	}
- 	/*
+ 	
  	from_mag_fd=open(from_mag_fifo, O_RDONLY);
- 	if (from_mag_fd==-1){
-		printf("from_mag_fifo_error: %s\n",strerror(errno));
-	} else {
-		printf("from_mag_fifo=open\n");
-	}
-
-	from_gps_fd=open(from_gps_fifo, O_RDONLY);
-	if (from_gps_fd==-1){
-    	printf("from_gps_fifo_error: %s\n",strerror(errno));
+	if (from_mag_fd==-1){
+    	printf("sf_from_mag_fifo=error: %s\n",strerror(errno));
  	} else {
- 		printf("from_gps_fifo=open\n");
+ 		printf("sf_from_mag_fifo=open\n");
  	}
-	*/
+
+ 	////from fifos connected
  	printf("from_fifos=connected!\n");
 
  	delay(300);
@@ -116,25 +110,17 @@ void sfinit(){
  	} else {
  		printf("sf_to_baro_fifo=open\n");
  	}
+ 	delay(200);
+	to_mag_fd=open(to_mag_fifo, O_WRONLY);
+	if (to_mag_fd==-1){
+    	printf("sf_to_mag_fifo=error: %s\n",strerror(errno));
+ 	} else {
+ 		printf("sf_to_mag_fifo=open\n");
+ 	}
+
  	/*
 
- 	mkfifo(to_mag_fifo,0666);
- 	delay(200);
- 	to_mag_fd=open(to_mag_fifo, O_WRONLY);
- 	if (to_mag_fd==-1){
-		printf("to_mag_fifo=error: %s\n",strerror(errno));
-	} else {
-		printf("to_mag_fifo=open\n");
-	}
 
-	mkfifo(to_gps_fifo,0666);
- 	delay(200);
-	to_gps_fd=open(to_gps_fifo, O_WRONLY);
-	if (to_gps_fd==-1){
-    	printf("from_gps_fifo=error: %s\n",strerror(errno));
- 	} else {
- 		printf("from_gps_fifo=open\n");
- 	}
 	*/
  	/*setting non-block
  	fcntl(from_baro_fd, F_SETFL, O_NONBLOCK);
