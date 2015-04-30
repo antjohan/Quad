@@ -161,7 +161,7 @@ int main(){
 					printf("[3]	Magnetometer\n");
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
-					printf("[6] ENDLESS LOOP ALL SENSOR OUTPUT :D")
+					printf("[6] ENDLESS LOOP ALL SENSOR OUTPUT :D");
 					printf("[7] Back");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);

@@ -39,13 +39,29 @@ double offset_z=0;
    int to_mag_fd;
    int from_mag_fd;
 
+   //functions
+   void HMC5883L_init();
+   void connectFifos();
+   void writeOutput();
+   void checkPipe();
+   int GetX();
+   int GetY();
+   int GetZ();
+   double computeHeading(int x, int y, int z);
+   void sample();
+   void calibrate();
+
+int main(){
+   HMC5883L_init();
+   connectFifos();
+   sample();
+}
+
 void HMC5883L_init(){
    wiringPiSetupSys();
    HMC5883L_Sensor =  wiringPiI2CSetup (HMC5883L_Address);
    wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
    wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
-   connectFifos();
-   sample();
 }
 
 void connectFifos(){
@@ -74,7 +90,7 @@ void connectFifos(){
 void writeOutput(){
    char WriteBuf[56];
    sprintf(WriteBuf,"%ld",heading);
-   write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
+   write(from_mag_fd,WriteBuf,sizeof(WriteBuf));
 }
 void checkPipe(){
    char buffer[10];
@@ -186,7 +202,3 @@ void calibrate(){
    offset_z=(min_z+max_z)/2.0;
 }
 
-int main(){
-   HMC5883L_init();
-   sample();
-}

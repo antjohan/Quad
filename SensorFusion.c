@@ -31,7 +31,7 @@ int to_log_file;
 
 //variables
 double height; //height from ultrasonic/barometer
-double bearing; //bearing from magnetometer
+double heading; //heading from magnetometer
 double coordinate[3]; //lat, long, quality from gps
 double speed; //info from gps
 
@@ -185,7 +185,8 @@ double getUHeight(){
 	return (uh);
 }
 
-double getBearing(){ //returns current bearing based on magnetometric sensor output
+double getHeading(){ //returns current heading based on magnetometric sensor output
+	commandSensor("mag", "read");
 	double br;
 	char magbuffer[MAX_BUF];
 	read(from_mag_fd, magbuffer, MAX_BUF);
