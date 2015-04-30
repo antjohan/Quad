@@ -134,25 +134,28 @@ int GetZ(){
 }
 
 double computeHeading(int x, int y, int z){
-   double heading;
+   double hd;
    if (y>0){
-      heading=90-atan((double)x/(double)y)*(180/PI);
+      hd=90-atan((double)x/(double)y)*(180/PI);
    } else if (y<0){
-      heading=270-atan((double)x/(double)y)*(180/PI);
+      hd=270-atan((double)x/(double)y)*(180/PI);
    } else if(y==0&&x<0){
-      heading=180.0;
+      hd=180.0;
    } else if(y==0&&x>0){
-      heading=0.0;
+      hd=0.0;
    }
-   return(heading);
+   return(hd);
 }
 
 void sample(){
+   int x;
+   int y;
+   int z;
    while(sampling==1){
       checkPipe();
-      int x =GetX(); 
-      int y=GetY();
-      int z=GetZ();
+      x =GetX(); 
+      y = GetY();
+      z = GetZ();
       heading=computeHeading(x,y,z);
       //printf("-------------\nx=%d y=%d z=%d h=%lf\n", x, y, z, heading);
       delay(100);
