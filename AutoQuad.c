@@ -155,7 +155,7 @@ int main(){
 			//Ultra sensor
 			else if(test == 2){
 				int recdataprompt=0;
-				while (recdataprompt>=0
+				while (recdataprompt>=0){
 					printf("---------------------------------\n");					
 					printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
 					printf("[1]	Barometer\n");
