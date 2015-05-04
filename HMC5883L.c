@@ -167,7 +167,7 @@ void sample(){
 }
 
 void calibrate(){
-   int calsamp=20000;
+   int calsamp=10000;
    int xvalues[calsamp];
    int yvalues[calsamp];
    int zvalues[calsamp];
@@ -181,6 +181,7 @@ void calibrate(){
 
    printf("Move magnetometer around in circles! All axes\n");
    for (int i=0; i<calsamp;++i){
+      delay(20);
       xvalues[i]=GetX();
       yvalues[i]=GetY();
       zvalues[i]=GetZ();
