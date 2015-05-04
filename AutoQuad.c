@@ -189,6 +189,7 @@ int main(){
 					} else if (recdataprompt==7){
 							while(1){
 								  printf("Combined height: %lf\n",getHeight());  
+								  delay(200);
 							}
 					}else if (recdataprompt==8){
 						recdataprompt=-1;
