@@ -139,9 +139,12 @@ int GetZ(){
 
 double computeHeading(int x, int y, int z){
    double hd;
+   int tmp=x;
+   x=y;
+   y=tmp;
 
-   x=x-offset_x;
-   y=y-offset_y;
+   x=x-offset_y;
+   y=y-offset_x;
    z=z-offset_z;
 
    if (y>0){
