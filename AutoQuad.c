@@ -163,6 +163,7 @@ int main(){
 					printf("[5]	All\n");
 					printf("[6] ENDLESS LOOP ALL SENSOR OUTPUT >:o\n");
 					printf("[7] Back");
+					printf("[8] Back");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
 					if(recdataprompt==1){
@@ -184,6 +185,11 @@ int main(){
 							delay(100);
 						}
 					} else if (recdataprompt==7){
+							while(1){
+								updateLog();
+								delay(100);
+							}
+					}else if (recdataprompt==8){
 						recdataprompt=-1;
 					}
 				}
