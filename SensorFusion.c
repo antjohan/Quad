@@ -140,7 +140,7 @@ void sfinit(){
  	*/
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
-	to_log_file=open(to_log_file, O_RDWR);
+	to_log_file=fopen(to_log_file, "w+");
 	t1=clock();
 }
 
