@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <wiringPiI2C.h>
+#include <wiringPi.h>
 //#include "BMP180.c"
 //#include "ultra.c"
 //#include "testCases.c" /lagt externt
@@ -67,6 +68,7 @@ void Disarm_FlightController(){
 
 
 int main(){
+	wiringPiSetupSys();
 	sfinit();
 	while(1){
 		printf("---------------------------------\n");

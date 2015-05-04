@@ -155,7 +155,7 @@ void InitPipes(){
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	to_log_file=fopen(log_path, "w+");
-	if (to_log_file==-1){
+	if (*to_log_file==-1){
 		printf("log_file=error: %s\n",strerror(errno));
 	}
 }
@@ -173,7 +173,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 }
 double getBHeight(){
 	commandSensor("baro", "read");
-	double bh; //barometer height
+	double bh=-1; //barometer height
 	char barobuffer[MAX_BUF];
 	int a = read(from_baro_fd,barobuffer,MAX_BUF);
 	sscanf(barobuffer, "%lf", &bh);
@@ -182,7 +182,7 @@ double getBHeight(){
 }
 double getUHeight(){
 	commandSensor("ultra", "read");
-	double uh; //ultrasonic height
+	double uh=-1; //ultrasonic height
 	char ultrabuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
 	if (a==-1){
@@ -194,7 +194,7 @@ double getUHeight(){
 
 double getHeading(){ //returns current heading based on magnetometric sensor output
 	commandSensor("mag", "read");
-	double br;
+	double br=-1;
 	char magbuffer[MAX_BUF];
 	read(from_mag_fd, magbuffer, MAX_BUF);
 	sscanf(magbuffer, "%lf", &br);
@@ -246,7 +246,7 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 
 void updateLog(){//enters all current sensor data into fusionlog
 	char logstr[100];
-	double current_time_seconds=micros()/1000000000.0;
+	double current_time_seconds=millis()/1000000.0;
 	sprintf(logstr,"Time: %lf Barometer: %lf Ultrasonic: %lf Height: %lf Magnetometer: %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
 	
