@@ -177,15 +177,13 @@ void calibrate(){
    int yvalues[calsamp];
    int zvalues[calsamp];
 
-   int max_x;
-   int max_y;
-   int max_z;
-   int min_x;
-   int min_y;
-   int min_z;
-   GetX();
-   GetY();
-   GetZ();
+   int max_x=0;
+   int max_y=0;
+   int max_z=0;
+   int min_x=0;
+   int min_y=0;
+   int min_z=0;
+
    printf("Move magnetometer around in circles! All axes\n");
    for (int i=0; i<calsamp;++i){
       delay(20);
