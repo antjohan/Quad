@@ -162,8 +162,8 @@ int main(){
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
 					printf("[6] ENDLESS LOOP ALL SENSOR OUTPUT >:o\n");
-					printf("[7] Back");
-					printf("[8] Back");
+					printf("[7] Start logging\n");
+					printf("[8] Back\n");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
 					if(recdataprompt==1){
