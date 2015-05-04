@@ -52,7 +52,7 @@ void sfinit(){
 	char* to_gps_fifo = "/home/pi/tmp/to_gps_fifo";
 	
 
-	char* to_log_file = "/home/pi/fusionlog.txt";
+	char* to_log_file = "/home/pi/logs/fusionlog.txt";
 
 	//Clear all to-fifos, should they exist!
 	unlink(to_baro_fifo);
@@ -140,7 +140,7 @@ void sfinit(){
  	*/
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
-	to_log_file=open(to_log_file, O_WRONLY);
+	to_log_file=open(to_log_file, O_RDWR);
 	t1=clock();
 }
 
