@@ -141,6 +141,9 @@ void sfinit(){
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	to_log_file=fopen(to_log_file, "w+");
+	if (to_log_file==-1){
+		printf("make_log_file=error: %s\n",strerror(errno));
+	}
 	t1=clock();
 }
 
@@ -241,8 +244,11 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 
 void updateLog(){//enters all current sensor data into fusionlog
 	char logstr[100];
-	printf("cps: %f", CLOCKS_PER_SEC);
+	printf("cps: %lf\n", CLOCKS_PER_SEC);
 	sprintf(logstr,"T %lf B %lf U %lf M %lf\n",(float)t1/(float)CLOCKS_PER_SEC,getBHeight(),getUHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
-	write(to_log_file,logstr,sizeof(logstr));
+	
+	if (write(to_log_file,logstr,sizeof(logstr))==-1){
+		printf("write_to_log=error: %s\n",strerror(errno));
+	}
 }
