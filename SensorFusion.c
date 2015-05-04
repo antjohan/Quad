@@ -243,11 +243,12 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
+	//något här är skumt!
 	char logstr[100];
 	sprintf(logstr,"B %lf U %lf M %lf\n",getBHeight(),getUHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
 	
-	if (fputs(logstr, to_log_file)==-1){
+	if (fputc(logstr, to_log_file)==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
 	}
 }
