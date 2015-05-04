@@ -186,7 +186,7 @@ double getUHeight(){
 	char ultrabuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
 	if (a==-1){
-		printf("UHeightReadError: %s\n",strerror(errno));
+		//printf("UHeightReadError: %s\n",strerror(errno));
 	}	
 	sscanf(ultrabuffer, "%ld", &uh);
 	return (uh);

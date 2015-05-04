@@ -46,7 +46,7 @@ void sample(){
       checkPipe();
       currentHeight=getUltra();
       //printf("UH-int: %s\n", WriteBuf);
-      delay(100);
+      delay(50);
    }
 }
  
@@ -97,13 +97,14 @@ void checkPipe(){
 
    strcpy(str1,"ping");
    strcpy(str2, "read");
-
-   if (read(to_ultra_fd, buffer, 10)>0){
-       if (strcmp(buffer,str1)==0){
-         printf("Ultrasonic says hi :>!\n");
-       } else if(strcmp(buffer,str2)==0){
-         writeOutput();
-       }
+   if (){
+      if (read(to_ultra_fd, buffer, 10)>0){
+          if (strcmp(buffer,str1)==0){
+            printf("Ultrasonic says hi :>!\n");
+          } else if(strcmp(buffer,str2)==0){
+            writeOutput();
+          }
+      }
    }
 }
 
