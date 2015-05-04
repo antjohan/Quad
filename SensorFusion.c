@@ -28,7 +28,7 @@ int to_ultra_fd;
 int to_mag_fd;
 int to_gps_fd;
 
-int to_log_file;
+FILE *to_log_file;
 
 //variables
 double BaroInitialHeight;
@@ -52,7 +52,6 @@ void updateLog();
 void sfinit(){ 
 	InitPipes();
 	BaroInitialHeight=getBHeight();
-	t1=clock();
 }
 
 void InitPipes(){
@@ -68,15 +67,14 @@ void InitPipes(){
 	char* to_gps_fifo = "/home/pi/tmp/to_gps_fifo";
 	
 
-	char* to_log_file = "/home/pi/logs/fusionlog.txt";
+	char* log_path = "/home/pi/logs/fusionlog.txt";
 
 	//Clear all to-fifos, should they exist!
 	unlink(to_baro_fifo);
 	unlink(to_ultra_fifo);
 	unlink(to_mag_fifo);
 	unlink(to_gps_fifo);
-//  	unlink(from_mag_fifo);
-  //	unlink(from_gps_fifo);
+
   	delay (1000);
 
 	if (mkfifo(to_ultra_fifo,0666)==-1){
@@ -147,19 +145,19 @@ void InitPipes(){
  	//setting non-block
  	fcntl(from_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(from_ultra_fd, F_SETFL, O_NONBLOCK);
- 	//fcntl(from_mag_fd, F_SETFL, O_NONBLOCK);
+ 	fcntl(from_mag_fd, F_SETFL, O_NONBLOCK);
  	//fcntl(from_gps_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_ultra_fd, F_SETFL, O_NONBLOCK);
- 	//fcntl(to_mag_fd, F_SETFL, O_NONBLOCK);
+ 	fcntl(to_mag_fd, F_SETFL, O_NONBLOCK);
  	//fcntl(to_gps_fd, F_SETFL, O_NONBLOCK);
  	//*/
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
-	//to_log_file=fopen(to_log_file, "w+");
-	//if (to_log_file==-1){
-	//	printf("make_log_file=error: %s\n",strerror(errno));
-	//}
+	to_log_file=fopen(log_path, "w+");
+	if (to_log_file==-1){
+		printf("log_file=error: %s\n",strerror(errno));
+	}
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
@@ -249,10 +247,11 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 void updateLog(){//enters all current sensor data into fusionlog
 	//något här är skumt!
 	char logstr[100];
-	sprintf(logstr,"B %lf U %lf M %lf\n",getBHeight(),getUHeight(),getHeading());
+	double current_time_seconds=micros()/1000000000.0;
+	sprintf(logstr,"T %lf B %lf U %lf M %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
 	
-	if (fprintf(to_log_file,logstr)==-1){
+	if (fprintf(to_log_file,"%s",logstr)==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
 	}
 }
