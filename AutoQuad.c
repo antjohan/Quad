@@ -117,7 +117,8 @@ int main(){
 			printf("[2]	recieve data\n");
 		//	printf("[3]	Testa hoverToStep\n");
 		//	printf("[4]	Testa ett varv rotation\n");
-			printf("[5]	Tillbaks\n");
+			printf("[5]	Calibrate magnetometer\n");
+			printf("[6]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
@@ -197,7 +198,7 @@ int main(){
 		
 			}*/
 			else if(test == 5){
-				
+				commandSensor("mag", "calibrate");
 			}else{
 				printf("Invalid\n");
 			}
