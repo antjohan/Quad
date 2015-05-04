@@ -97,15 +97,19 @@ void checkPipe(){
 
    char str1[10];
    char str2[10];
+   char str3[10];
 
    strcpy(str1,"ping");
    strcpy(str2, "read");
+   strcpy(str3,"calibrate");
 
    if (read(to_mag_fd, buffer, 10)>0){
        if (strcmp(buffer,str1)==0){
          printf("Magnetometer says hi! :)\n");
        } else if(strcmp(buffer,str2)==0){
          writeOutput();
+       } else if(strcmp(buffer,str3)==0){
+         calibrate();
        }
    }
 }
@@ -199,10 +203,15 @@ void calibrate(){
       if (zvalues[i]<min_z){
          min_z=zvalues[i];
       }
+
+      if (i%(calsamp/10)==0){
+         printf("Calibration %d%% done\n", i*100/calsamp);
+      }
    }
    printf("DONE moving..\n");
    offset_x=(min_x+max_x)/2.0;
    offset_y=(min_y+max_y)/2.0;
    offset_z=(min_z+max_z)/2.0;
+   printf("Magnetometer hard-iron compensated!\n");
 }
 
