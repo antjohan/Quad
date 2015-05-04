@@ -31,16 +31,23 @@ int to_gps_fd;
 int to_log_file;
 
 //variables
-double height; //height from ultrasonic/barometer
-double heading; //heading from magnetometer
-double coordinate[3]; //lat, long, quality from gps
-double speed; //info from gps
+double BaroInitialHeight;
+//double height; //height from ultrasonic/barometer
+//double heading; //heading from magnetometer
+//double coordinate[3]; //lat, long, quality from gps
+//double speed; //info from gps
 
 clock_t t1;
 
 
 void sfinit(){ 
-	//name of all fifos, will need to be matching in respective sensor programs
+	InitPipes();
+	BaroInitialHeight=getBHeight();
+	t1=clock();
+}
+
+void InitPipes(){
+		//name of all fifos, will need to be matching in respective sensor programs
 	char* from_baro_fifo = "/home/pi/tmp/from_baro_fifo";
 	char* from_ultra_fifo = "/home/pi/tmp/from_ultra_fifo";
 	char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
@@ -144,31 +151,17 @@ void sfinit(){
 	if (to_log_file==-1){
 		printf("make_log_file=error: %s\n",strerror(errno));
 	}
-	t1=clock();
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
-	double uh; //ultrasonic height
-	double bh; //barometer height
-	//char ultrasonicbuffer[MAX_BUF];
-	char barometerbuffer[MAX_BUF];
-	//read(ultrasonicfifofd,ultrasonicbuffer,MAX_BUF);
-	read(from_baro_fd,barometerbuffer,MAX_BUF);
-
-	//sscanf(ultrasonicbuffer, "%lf", &uh);
-	sscanf(barometerbuffer, "%lf", &bh);
-
-	//logic for which value to return
-
-/*
-	if (uh<4){//easiest possible...
-		return (uh);
+	double uh=getUHeight(); //ultrasonic height
+	double bh=getBHeight(); //barometer height
+	if (uh<450){
+		BaroInitialHeight=bh-(uh/100.0);
+		return(uh/100.0);
 	} else {
 		return (bh);
 	}
-*/
-	height = bh;
-	return bh;
 
 }
 double getBHeight(){

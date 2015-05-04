@@ -183,7 +183,7 @@ int main(){
 						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==6){
 						while(1){
-							printf("Barometer: %lf   Ultrasonic: %lf    Magnetometer: %lf\n",getBHeight(),getUHeight(), getHeading());
+							printf("Barometer: %lf   Ultrasonic: %lf    Combined height: %lf    Magnetometer: %lf\n",getBHeight(),getUHeight(),getHeight(), getHeading());
 							delay(200);
 						}
 					} else if (recdataprompt==7){
