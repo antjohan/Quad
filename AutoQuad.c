@@ -184,7 +184,7 @@ int main(){
 					} else if (recdataprompt==6){
 						while(1){
 							printf("Barometer: %lf   Ultrasonic: %lf    Magnetometer: %lf\n",getBHeight(),getUHeight(), getHeading());
-							delay(100);
+							delay(200);
 						}
 					} else if (recdataprompt==7){
 							while(1){
