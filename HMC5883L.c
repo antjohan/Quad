@@ -167,7 +167,7 @@ void sample(){
 }
 
 void calibrate(){
-   int calsamp=10000;
+   int calsamp=20000;
    int xvalues[calsamp];
    int yvalues[calsamp];
    int zvalues[calsamp];
@@ -208,10 +208,10 @@ void calibrate(){
          printf("Calibration %d%% done\n", i*100/calsamp);
       }
    }
-   printf("DONE moving..\n");
+   printf("Calibration 100%% done\n");
    offset_x=(min_x+max_x)/2.0;
    offset_y=(min_y+max_y)/2.0;
    offset_z=(min_z+max_z)/2.0;
-   printf("Magnetometer hard-iron compensated!\n");
+   printf("Offsets:\nx=%d\ny=%d\nz=%d\nMagnetometer hard-iron compensated!\n", offset_x,offset_y,offset_z);
 }
 
