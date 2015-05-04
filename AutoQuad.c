@@ -206,10 +206,10 @@ int main(){
 		}else if (val == 5){
 			break;
 		}else if(val==6){//recieve barometer data
-			while(1){
+			//while(1){
 				//printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
 				//delay(100);
-			}
+			//}
 
 		}
 		else{
@@ -217,5 +217,6 @@ int main(){
 		}
 	}
 	///////////////////
+	printf("Program stopping\n");
 	return 1;
 }
