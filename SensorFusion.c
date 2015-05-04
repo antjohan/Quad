@@ -241,7 +241,8 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 
 void updateLog(){//enters all current sensor data into fusionlog
 	char logstr[100];
-	sprintf(logstr,"T %lf B %lf U %lf M %lf\n",(float)t1/CLOCKS_PER_SEC,getBHeight(),getUHeight(),getHeading());
+	printf("cps: %f", CLOCKS_PER_SEC):
+	sprintf(logstr,"T %lf B %lf U %lf M %lf\n",(float)t1/(float)CLOCKS_PER_SEC,getBHeight(),getUHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
 	write(to_log_file,logstr,sizeof(logstr));
 }
