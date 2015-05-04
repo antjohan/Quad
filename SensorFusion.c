@@ -140,7 +140,7 @@ void sfinit(){
  	*/
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
-	fusionlogfd=open(fusionlog, O_WRONLY);
+	fusionlogfd=open(to_log_file, O_WRONLY);
 	t1=clock();
 }
 
