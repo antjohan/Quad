@@ -30,9 +30,12 @@ int sampling=1;
 int HMC5883L_Sensor;
 double heading;
 
+
+
 int offset_x=0;
 int offset_y=0;
 int offset_z=0;
+
 
    char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
    char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
@@ -139,12 +142,9 @@ int GetZ(){
 
 double computeHeading(int x, int y, int z){
    double hd;
-   int tmp=x;
-   x=y;
-   y=tmp;
 
-   x=x-offset_y;
-   y=y-offset_x;
+   x=x-offset_x;
+   y=y-offset_y
    z=z-offset_z;
 
    if (y>0){
