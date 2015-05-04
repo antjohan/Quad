@@ -184,6 +184,7 @@ void calibrate(){
       xvalues[i]=GetX();
       yvalues[i]=GetY();
       zvalues[i]=GetZ();
+      printf("X: %d Y: %d Z: %d\n",xvalues[i],yvalues[i],zvalues[i]);
 
       if (xvalues[i]>max_x){
          max_x=xvalues[i];
