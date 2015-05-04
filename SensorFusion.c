@@ -155,9 +155,6 @@ void InitPipes(){
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	to_log_file=fopen(log_path, "w+");
-	if (*to_log_file==-1){
-		printf("log_file=error: %s\n",strerror(errno));
-	}
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
