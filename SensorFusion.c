@@ -156,10 +156,10 @@ void InitPipes(){
  	//*/
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
-	to_log_file=fopen(to_log_file, "w+");
-	if (to_log_file==-1){
-		printf("make_log_file=error: %s\n",strerror(errno));
-	}
+	//to_log_file=fopen(to_log_file, "w+");
+	//if (to_log_file==-1){
+	//	printf("make_log_file=error: %s\n",strerror(errno));
+	//}
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
@@ -204,10 +204,12 @@ double getHeading(){ //returns current heading based on magnetometric sensor out
 
 }
 double * getCoordinate(){
-	char gpsbuffer[MAX_BUF];
+	/*char gpsbuffer[MAX_BUF];
 	read(from_gps_fd, gpsbuffer, MAX_BUF);
 	sscanf(gpsbuffer, "%lf, %lf, %lf", &coordinate);
 	return(coordinate);
+	*/
+	return(1);
 }
 
 void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or gps
