@@ -14,8 +14,7 @@ void Initialize(){
   calibrateBaro();
 
   AcceptableTemperatureLatencyForPressure = 1000;
-  InitialPressurePa=GetPressure();
-  InitialHeight=GetAltitude(InitialPressurePa);
+  //InitialPressurePa=GetPressure();
   connectFifos();
   sample();
 }
@@ -60,22 +59,17 @@ void calibrateBaro(){
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
 }
 
-void setCurrentHeight(float height){ //readjust the barometer's height(relative to ground) tracking
-  InitialHeight=InitialHeight-GetAltitude(InitialPressurePa)+height;
-}
-
  void sample(){
   while(sampling==1){
     checkPipe(); 
-    RelativeAltitude=GetAltitude(InitialPressurePa);
-    RelativeAltitude=RelativeAltitude-InitialHeight;
+    AbsoluteAltitude=GetAltitude(InitialPressurePa);
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
   }
  }
 
   void writeOutput(){
     char WriteBuf[MAX_BUF];
-    sprintf(WriteBuf,"%f",RelativeAltitude);
+    sprintf(WriteBuf,"%f",AbsoluteAltitude);
     write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
   }
  void checkPipe(){

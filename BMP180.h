@@ -38,8 +38,7 @@
 long InitialPressurePa=101300;
 int from_baro_fd;
 int to_baro_fd;
-float InitialHeight;
-float RelativeAltitude;
+float AbsoluteAltitude;
 int sampling=1;
 
  uint8_t OversamplingSetting;
@@ -66,7 +65,6 @@ int sampling=1;
 void Initialize();
 void connectFifos();
 void calibrateBaro();
-void setCurrentHeight(float height);
 void sample();
 void checkPipe();
 void Write();
