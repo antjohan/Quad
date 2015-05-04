@@ -144,7 +144,7 @@ double computeHeading(int x, int y, int z){
    double hd;
 
    x=x-offset_x;
-   y=y-offset_y
+   y=y-offset_y;
    z=z-offset_z;
 
    if (y>0){
