@@ -111,7 +111,7 @@ int main(){
 		//testcases
 		else if(val == 4){
 			int test;
-
+			printf("---------------------------------\n");
 			printf("[1]	ping...\n");
 			printf("[2]	recieve data\n");
 		//	printf("[3]	Testa hoverToStep\n");
@@ -124,6 +124,7 @@ int main(){
 			if (test == 1){
 				int pingprompt=0;
 				while (pingprompt>=0){
+					printf("---------------------------------\n");
 					printf("ping to see if program->sensor communication (pipe) is working\n");
 					printf("[1]	Barometer\n");
 					printf("[2]	Ultrasonic sensor\n");
@@ -154,14 +155,14 @@ int main(){
 			//Ultra sensor
 			else if(test == 2){
 				int recdataprompt=0;
-				while (recdataprompt>=0){
-					printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
+				while (recdataprompt>=0
+					printf("---------------------------------\n");					printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
 					printf("[1]	Barometer\n");
 					printf("[2]	Ultrasonic sensor\n");
 					printf("[3]	Magnetometer\n");
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
-					printf("[6] ENDLESS LOOP ALL SENSOR OUTPUT >:o\n");
+					printf("[6]	ENDLESS LOOP ALL SENSOR OUTPUT >:o\n");
 					printf("[7] Start logging\n");
 					printf("[8] Back\n");
 					printf("---------------------------------\n");
