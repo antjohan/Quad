@@ -175,13 +175,13 @@ double getBHeight(){
 }
 double getUHeight(){
 	commandSensor("ultra", "read");
-	long uh; //ultrasonic height
+	double uh; //ultrasonic height
 	char ultrabuffer[MAX_BUF];
 	int a = read(from_ultra_fd,ultrabuffer,MAX_BUF);
 	if (a==-1){
 		//printf("UHeightReadError: %s\n",strerror(errno));
 	}	
-	sscanf(ultrabuffer, "%ld", &uh);
+	sscanf(ultrabuffer, "%lf", &uh);
 	return (uh);
 }
 
