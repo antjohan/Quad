@@ -30,9 +30,9 @@ int sampling=1;
 int HMC5883L_Sensor;
 double heading;
 
-double offset_x=0;
-double offset_y=0;
-double offset_z=0;
+int offset_x=0;
+int offset_y=0;
+int offset_z=0;
 
    char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
    char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
@@ -118,7 +118,7 @@ int GetX(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
    short x = (short)((MSB << 8) | LSB);
-   return x-(int)offset_x;
+   return x-offset_x;
 }
 
 int GetY(){
@@ -126,7 +126,7 @@ int GetY(){
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
 
    short y = (short)((MSB << 8) | LSB);
-   return y-(int)offset_y;
+   return y-offset_y;
 }
 
 int GetZ(){
@@ -134,7 +134,7 @@ int GetZ(){
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_LSB);
 
    short z = (short)((MSB << 8) | LSB);
-   return z-(int)offset_z;
+   return z-offset_z;
 }
 
 double computeHeading(int x, int y, int z){
