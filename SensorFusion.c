@@ -245,10 +245,9 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
-	//något här är skumt!
 	char logstr[100];
 	double current_time_seconds=micros()/1000000000.0;
-	sprintf(logstr,"T %lf B %lf U %lf M %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeading());
+	sprintf(logstr,"Time: %lf Barometer: %lf Ultrasonic: %lf Height: %lf Magnetometer: %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
 	
 	if (fprintf(to_log_file,"%s",logstr)==-1){
