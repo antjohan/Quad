@@ -118,7 +118,7 @@ int GetX(){
    uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
    short x = (short)((MSB << 8) | LSB);
-   return x-offset_x;
+   return x;
 }
 
 int GetY(){
@@ -126,7 +126,7 @@ int GetY(){
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
 
    short y = (short)((MSB << 8) | LSB);
-   return y-offset_y;
+   return y;
 }
 
 int GetZ(){
@@ -134,11 +134,16 @@ int GetZ(){
    uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,ZData_LSB);
 
    short z = (short)((MSB << 8) | LSB);
-   return z-offset_z;
+   return z;
 }
 
 double computeHeading(int x, int y, int z){
    double hd;
+
+   x=x-offset_x;
+   y=y-offset_y;
+   z=z-offset_z;
+
    if (y>0){
       hd=90-atan((double)x/(double)y)*(180/PI);
    } else if (y<0){
@@ -167,7 +172,7 @@ void sample(){
 }
 
 void calibrate(){
-   int calsamp=10000;
+   int calsamp=2000;
    int xvalues[calsamp];
    int yvalues[calsamp];
    int zvalues[calsamp];
@@ -185,7 +190,7 @@ void calibrate(){
       xvalues[i]=GetX();
       yvalues[i]=GetY();
       zvalues[i]=GetZ();
-      printf("X: %d Y: %d Z: %d\n",xvalues[i],yvalues[i],zvalues[i]);
+      printf("X: %d Y: %d Z: %d current x:%d %d y:%d %d z:%d %d\n",xvalues[i],yvalues[i],zvalues[i],max_x,min_x,max_y,min_y,max_z,min_z);
 
       if (xvalues[i]>max_x){
          max_x=xvalues[i];
