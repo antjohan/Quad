@@ -66,12 +66,8 @@ void setCurrentHeight(float height){ //readjust the barometer's height(relative 
 
  void sample(){
   while(sampling==1){
-    checkPipe();
-    float AltitudeSum=0;
-    for (int i=0;i<4;++i){
-      AltitudeSum=AltitudeSum+GetAltitude(InitialPressurePa);
-    }
-    RelativeAltitude=AltitudeSum/(float)4;
+    checkPipe(); 
+    RelativeAltitude=GetAltitude(InitialPressurePa);
     RelativeAltitude=RelativeAltitude-InitialHeight;
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
   }
