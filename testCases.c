@@ -78,6 +78,42 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
+/*
+float PIDcal(float diff) {    
+	static float pre_error = 0;    
+	static float integral = 0;   
+	float epsilon = 0.01;
+	float dt = 0.01; //100ms loop time 
+	float MAX = hoverConst+5;  //for Current Saturation 
+	float MIN = hoverConst-5;
+	float Kp = 0.1;
+	float Kd = 0.01;
+	float Ki = 0.005;
+	float error; 
+	float derivative;    
+	float output;
+  //Caculate P,I,D    
+  error = diff/100;  //hur gör man detta om till fel i hastighet?
+  //In case of error too small then stop integration    
+  if(abs(error) > epsilon)    {        
+  	integral = integral + error*dt;    
+  }    
+  derivative = (error - pre_error)/dt;    
+  output = (Kp*error + Ki*integral + Kd*derivative)+hoverConst;
+  //Saturation Filter    
+  if(output > MAX)    {        
+  	output = MAX;    
+  }    
+  else if(output < MIN)    {        
+  	output = MIN;    
+  }        //Update error        
+  pre_error = error;
+ 	return output;
+}
+int getThrust(int diffHeight){
+	
+}
+*/
 
 int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
@@ -214,10 +250,10 @@ int pidHeightTest(int refHeight){
   
   for(int i = 0; i<100; i++){
     printf("Ny Iteration\n");
-   // int currentHeight = getHeight(); //Use the ultra sensor to get height
-   // int reqThrust = getThrust(refHeight-currentHeight);//PID function
-   // fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
-   // Set_Serv(3, reqThrust);
+  	// int currentHeight = getHeight(); //Use the ultra sensor to get height
+  	// int reqThrust = PIDcal(float(refHeight-currentHeight));//PID function
+  	// fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
+  	// Set_Serv(3, reqThrust);
     delay(100);//0.1 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
