@@ -209,9 +209,10 @@ void calibrate(){
       }
    }
    printf("Calibration 100%% done\n");
-   offset_x=(min_x+max_x)/2.0;
-   offset_y=(min_y+max_y)/2.0;
-   offset_z=(min_z+max_z)/2.0;
+   offset_x=(min_x+max_x)/2;
+   offset_y=(min_y+max_y)/2;
+   offset_z=(min_z+max_z)/2;
+   printf("x: %d %d\ny: %d %d\n z: %d %d\n",min_x, max_x, min_y, max_y, min_z, max_z);
    printf("Offsets:\nx=%d\ny=%d\nz=%d\nMagnetometer hard-iron compensated!\n", offset_x,offset_y,offset_z);
 }
 
