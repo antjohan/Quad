@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <time.h>
 
 
 //#include <libconfig.h>
@@ -34,6 +35,8 @@ double height; //height from ultrasonic/barometer
 double heading; //heading from magnetometer
 double coordinate[3]; //lat, long, quality from gps
 double speed; //info from gps
+
+clock_t t1;
 
 
 void sfinit(){ 
@@ -137,10 +140,8 @@ void sfinit(){
  	*/
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
-	//fusionlogfd=open(fusionlog, O_WRONLY);
-
-	//initialize wronly fifos
-
+	fusionlogfd=open(fusionlog, O_WRONLY);
+	t1=clock();
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
@@ -239,6 +240,7 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 }
 
 void updateLog(){//enters all current sensor data into fusionlog
-
-
+	char logstr[40];
+	sprintf(logstr,"T %f B %lf U %lf M %lf\n",t1,getBHeight(),getUHeight(),getHeading());
+	write(to_log_file,logstr,sizeof(logstr));
 }

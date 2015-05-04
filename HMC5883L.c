@@ -167,7 +167,7 @@ void sample(){
 }
 
 void calibrate(){
-   int calsamp=20000;
+   int calsamp=2000;
    int xvalues[calsamp];
    int yvalues[calsamp];
    int zvalues[calsamp];
