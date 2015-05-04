@@ -165,7 +165,7 @@ void InitPipes(){
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
 	double uh=getUHeight(); //ultrasonic height
 	double bh=getBHeight(); //barometer height
-	if (uh<450){
+	if (uh<450 && uh>0){
 		BaroInitialHeight=bh-(uh/100.0);
 		return(uh/100.0);
 	} else {

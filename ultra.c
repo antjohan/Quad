@@ -97,7 +97,7 @@ void checkPipe(){
 
    strcpy(str1,"ping");
    strcpy(str2, "read");
-   
+
       if (read(to_ultra_fd, buffer, 10)>0){
           if (strcmp(buffer,str1)==0){
             printf("Ultrasonic says hi :>!\n");
@@ -116,7 +116,11 @@ long getUltra() {
         while(digitalRead(ECHO) == LOW);
         //Wait for echo end
         long startTime = micros();
-        while(digitalRead(ECHO) == HIGH);
+        while(digitalRead(ECHO) == HIGH){
+         if (micros()-startTime>30000){
+            return(-1);
+         }
+        }
         long travelTime = micros() - startTime;
         //Get distance in cm
         long distance = travelTime / 58;
