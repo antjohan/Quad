@@ -248,7 +248,7 @@ void updateLog(){//enters all current sensor data into fusionlog
 	sprintf(logstr,"B %lf U %lf M %lf\n",getBHeight(),getUHeight(),getHeading());
 	printf("log entry: %s\n",logstr);
 	
-	if (fputs(logstr, to_log_file)==-1){
+	if (fprintf(to_log_file,logstr)==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
 	}
 }
