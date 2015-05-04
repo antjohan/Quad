@@ -39,6 +39,15 @@ double BaroInitialHeight;
 
 clock_t t1;
 
+void sfinit();
+void InitPipes();
+double getHeight();
+double getBHeight();
+double getUHeight();
+double getHeading();
+double * getCoordinate();
+void commandSensor(char * sensor, char * command);
+void updateLog();
 
 void sfinit(){ 
 	InitPipes();
