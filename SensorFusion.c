@@ -31,7 +31,7 @@ int to_gps_fd;
 FILE *to_log_file;
 
 //variables
-double BaroInitialHeight;
+double BaroInitialHeight=0;
 //double height; //height from ultrasonic/barometer
 //double heading; //heading from magnetometer
 //double coordinate[3]; //lat, long, quality from gps
