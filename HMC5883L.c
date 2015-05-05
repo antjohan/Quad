@@ -180,7 +180,7 @@ void sample(){
 }
 
 void calibrate(){
-   int calsamp=2000;
+   int calsamp=10000;
    int xvalues[calsamp];
    int yvalues[calsamp];
    int zvalues[calsamp];
@@ -194,11 +194,10 @@ void calibrate(){
 
    printf("Move magnetometer around in circles! All axes\n");
    for (int i=0; i<calsamp;++i){
-      delay(20);
       xvalues[i]=GetX();
       yvalues[i]=GetY();
       zvalues[i]=GetZ();
-      printf("X: %d Y: %d Z: %d current x:%d %d y:%d %d z:%d %d\n",xvalues[i],yvalues[i],zvalues[i],max_x,min_x,max_y,min_y,max_z,min_z);
+
 
       if (xvalues[i]>max_x){
          max_x=xvalues[i];
@@ -221,6 +220,9 @@ void calibrate(){
 
       if (i%(calsamp/10)==0){
          printf("Calibration %d%% done\n", i*100/calsamp);
+      
+      if (i%calsamp/100==0){
+         printf("X: %d Y: %d Z: %d current x:%d %d y:%d %d z:%d %d\n",xvalues[i],yvalues[i],zvalues[i],max_x,min_x,max_y,min_y,max_z,min_z);
       }
    }
    printf("Calibration 100%% done\n");
