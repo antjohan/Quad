@@ -19,6 +19,8 @@
 
 int main()
 {
+	     printf("Program running\n");
+
     char c;
     FILE *fp;
     int fromlen;
@@ -85,7 +87,11 @@ int main()
      * Then we read some strings from the client and
      * print them out.
      */
+     printf("Program ran\n");
 	while(1){
+		printf("scanning for input data\n");
+		delay(1000);
+
         while ((c = fgetc(fp)) != EOF) {
             putchar(c);
 
