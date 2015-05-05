@@ -202,7 +202,7 @@ int main(){
 			//Test hoverToStep
 			else if(test == 3){
 				testHoverToStep();
-				
+				printf("Hover to stepTest klar\n");
 			}else if(test == 4){
 				testRotation();
 		
