@@ -166,7 +166,7 @@ int main(){
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
 					printf("[6]	Loop all sensors and log data\n");
-					printf("[7] empty\n");
+					printf("[7] Loop height fast\n");
 					printf("[8] Back\n");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
@@ -196,7 +196,8 @@ int main(){
 							delay(200);
 						}
 					} else if (recdataprompt==7){
-			
+						printf("H: %lf",getHeight());
+						delay(50);
 					}else if (recdataprompt==8){
 						recdataprompt=-1;
 					}
