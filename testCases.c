@@ -32,9 +32,9 @@ float PIDcal(float diff) {
 	float dt = 0.01; //100ms loop time 
 	float MAX = 5;  //for Current Saturation 
 	float MIN = -5; //hoverconst-..
-	float Kp = 2;
-	float Kd = 0.1;
-	float Ki = 0.5;
+	float Kp = 5;
+	float Kd = 0.2;
+	float Ki = 1;
 	float error = diff; 
 	float derivative;    
 	float output = 0;
@@ -63,7 +63,7 @@ float PIDcal(float diff) {
   	 	output = MIN;    
   	}        //Update error        
 	pre_error = error; //pre error måste lagras samma plats som denna kod används
-	output = floor(output);
+	output = round(output);
  	printf("Output (post max/min/floor) : %lf \n", output);
    }
    return output;
