@@ -32,14 +32,13 @@ float PIDcal(float diff) {
 	float dt = 0.01; //100ms loop time 
 	float MAX = 5;  //for Current Saturation 
 	float MIN = -5; //hoverconst-..
-	float Kp = 10;
-	float Kd = 1;
-	float Ki = 0.5;
-	float error; 
+	float Kp = 1;
+	float Kd = 0.1;
+	float Ki = 0.05;
+	float error = diff; 
 	float derivative;    
 	float output = 0;
-   error = diff;
-   for (int i = 0; i < 100; i++){
+   for (int i = 0; i < 20; i++){
    	printf("Iteration\n");
    	printf("Gammal error: %lf \n", error);
 	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
