@@ -33,7 +33,7 @@ float PIDcal(float diff) {
 	float epsilon = 0.01;
 float dt = 0.01; //100ms loop time 
 float MAX = 5;  //for Current Saturation 
-float MIN =  5; //hoverconst-..
+float MIN = 5; //hoverconst-..
 float Kp = 12;
 float Kd = 0.2;
 float Ki = 0.2;
@@ -60,9 +60,9 @@ float output = 0;
 
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
 	//Saturation Filter    
-	if(output > MAX)    {        
+//	if(output > MAX)    {        
 	  	output = MAX;    
-	}    
+//	}    
 	else if(output < MIN)    {        
   	 	output = MIN;    
   	}        //Update error        
