@@ -166,14 +166,16 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	if (uh<450 && uh>0){
 		BaroInitialHeight=bh-(uh/100.0);
 		return(uh/100.0);
-	} else {
+	} else if (bh > -1000){
 		return (bh-BaroInitialHeight);
+	} else {
+		return (-1);
 	}
 
 }
 double getBHeight(){ //take a value directly from barometer
 	commandSensor("baro", "read");
-	double bh=-1; //barometer height
+	double bh=-1000; //barometer height
 	char barobuffer[MAX_BUF];
 	int a = read(from_baro_fd,barobuffer,MAX_BUF);
 	sscanf(barobuffer, "%lf", &bh);
