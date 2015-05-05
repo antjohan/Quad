@@ -32,7 +32,7 @@ float PIDcal(float diff) {
 	float dt = 0.01; //100ms loop time 
 	float MAX = 5;  //for Current Saturation 
 	float MIN = -5; //hoverconst-..
-	float Kp = 15;
+	float Kp = 12;
 	float Kd = 0.2;
 	float Ki = 0.2;
 	float error = diff; 
