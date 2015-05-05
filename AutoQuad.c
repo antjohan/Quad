@@ -6,7 +6,6 @@
 #include <wiringPi.h>
 //#include "BMP180.c"
 //#include "ultra.c"
-#include "testCases.c" //lagt externt
 #include "SensorFusion.c"
 
 /*
@@ -35,6 +34,8 @@ void Set_Servo(int num, int pos){
 		printf("Invalid!");
 	}
 }
+
+#include "testCases.c" //Test!
 
 void Arm_FlightController(){
 	int servo[4] = {1,2,3,4};
