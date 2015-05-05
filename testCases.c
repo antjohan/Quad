@@ -32,14 +32,14 @@ float PIDcal(float diff) {
 	float dt = 0.01; //100ms loop time 
 	float MAX = 5;  //for Current Saturation 
 	float MIN = -5; //hoverconst-..
-	float Kp = 0.1;
+	float Kp = 1;
 	float Kd = 0.01;
 	float Ki = 0.005;
 	float error; 
 	float derivative;    
 	float output;
    error = diff;
-   for (int i = 0; i < 10; i++){
+   for (int i = 0; i < 100; i++){
 
 	 //Caculate P,I,D    
   	  //hur gör man detta om till fel i hastighet?
