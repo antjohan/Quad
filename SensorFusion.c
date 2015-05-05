@@ -135,7 +135,7 @@ void InitPipes(){
  	delay(200);
 	to_mag_fd=open(to_mag_fifo, O_WRONLY);
 	if (to_mag_fd==-1){
-    	printf("pipe_to_mag=error: %s\n",strerror(errno));
+    	printf("pipe_to_lsmag=error: %s\n",strerror(errno));
 	} else {
 		printf("pipe_to_mag=connected\n");
 	}
