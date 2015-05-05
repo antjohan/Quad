@@ -40,7 +40,10 @@ float PIDcal(float diff) {
 	float output = 0;
    error = diff;
    for (int i = 0; i < 100; i++){
+   	printf("Iteration\n");
+   	printf("Gammal error: %lf \n", error);
 	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
+	printf("Ny error: %lf \n", error);
 	 //Caculate P,I,D    
   	  //hur gör man detta om till fel i hastighet?
   	//In case of error too small then stop integration    
@@ -49,7 +52,7 @@ float PIDcal(float diff) {
 	}    
 	derivative = (error - pre_error)/dt;    
 	printf("Derivative: %lf \n", derivative);
-	printf("Error: %lf \n", error);
+
 	printf("Integral: %lf \n", integral);
   	printf("Output (pre max/min) : %lf \n", output);
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
