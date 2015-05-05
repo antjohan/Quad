@@ -119,7 +119,8 @@ int main(){
 			printf("[3]	Testa hoverToStep\n");
 			printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Calibrate magnetometer\n");
-			printf("[6]	Tillbaks\n");
+			printf("[6]	Test PID regulator\n");
+			printf("[7]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
@@ -213,6 +214,8 @@ int main(){
 			}
 			else if(test == 5){
 				commandSensor("mag", "calibrate");
+			}else if(test == 6){
+				pidTest();	
 			}else{
 				printf("Invalid\n");
 			}
