@@ -28,7 +28,7 @@ void Set_Servo(int num, int pos){
 		char* procent = "%%";
 		char cmd[256];
 		snprintf(cmd, sizeof cmd, "%s %i%s%i%s %s", echo, num, equal,pos, procent, destination);
-		//system(cmd);
+		system(cmd);
 		//printf("%s\n",cmd);
 	}else{
 		printf("Invalid!");
