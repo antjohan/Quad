@@ -40,7 +40,7 @@ float PIDcal(float diff) {
 	float output = 0;
    error = diff;
    for (int i = 0; i < 100; i++){
-	// error = error - output
+	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
 	 //Caculate P,I,D    
   	  //hur gör man detta om till fel i hastighet?
   	//In case of error too small then stop integration    
