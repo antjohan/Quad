@@ -34,11 +34,11 @@ float PIDcal(float diff) {
 	float MIN = -5; //hoverconst-..
 	float Kp = 10;
 	float Kd = 0.1;
-	float Ki = 0.05;
+	float Ki = 0.1;
 	float error = diff; 
 	float derivative;    
 	float output = 0;
-   for (int i = 0; i < 20; i++){
+   for (int i = 0; i < 50; i++){
    	printf("Iteration\n");
    	printf("Gammal error: %lf \n", error);
 	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
