@@ -196,8 +196,10 @@ int main(){
 							delay(200);
 						}
 					} else if (recdataprompt==7){
-						printf("H: %lf",getHeight());
-						delay(50);
+						while(1){
+							printf("H: %lf",getHeight());
+							delay(50);
+						}
 					}else if (recdataprompt==8){
 						recdataprompt=-1;
 					}
