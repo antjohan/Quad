@@ -25,7 +25,7 @@ void Set_Servo(int num, int pos){
 		char* echo = "echo";
 		char* destination = " > /dev/servoblaster \n";
 		char* equal = "=";
-		char* procent = "%%";
+		char* procent = "%";
 		char cmd[256];
 		snprintf(cmd, sizeof cmd, "%s %i%s%i%s %s", echo, num, equal,pos, procent, destination);
 		system(cmd);
@@ -111,7 +111,6 @@ int main(){
 			Set_Servo(servo, speed);
 
 		}
-		//testcases
 		else if(val == 4){
 			int test;
 			printf("---------------------------------\n");
