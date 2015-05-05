@@ -34,8 +34,10 @@ char* log_path = "/home/pi/logs/fusionlog.txt";
 
 //variables
 double BaroInitialHeight=0;
-//double height; //height from ultrasonic/barometer
-//double heading; //heading from magnetometer
+//double height=0;
+//double bheight=0;
+//double uheight=0;
+//double heading=0;
 //double coordinate[3]; //lat, long, quality from gps
 //double speed; //info from gps
 
@@ -43,6 +45,7 @@ clock_t t1;
 
 void sfinit();
 void InitPipes();
+void updateSensorValues();
 double getHeight();
 double getBHeight();
 double getUHeight();
@@ -200,8 +203,8 @@ double getHeading(){ //returns current heading based on magnetometric sensor out
 	read(from_mag_fd, magbuffer, MAX_BUF);
 	sscanf(magbuffer, "%lf", &br);
 	return(br);
-
 }
+
 /*double * getCoordinate(){
 	char gpsbuffer[MAX_BUF];
 	read(from_gps_fd, gpsbuffer, MAX_BUF);
