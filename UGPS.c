@@ -86,7 +86,7 @@ int main()
      * Then we read some strings from the client and
      * print them out.
      */
-	while(1){}
+	while(1){
         while ((c = fgetc(fp)) != EOF) {
             putchar(c);
 
