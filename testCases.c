@@ -28,7 +28,7 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 
 float PIDcal(float diff) {    
 	static float integral = 0;  
-	printf("Diff: %ld \n", diff);
+	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.01; //100ms loop time 
 	float MAX = 5;  //for Current Saturation 
@@ -46,10 +46,10 @@ float PIDcal(float diff) {
   		integral = integral + error*dt;    
 	}    
 	derivative = (error - pre_error)/dt;    
-	printf("Derivative: %ld \n", derivative);
-	printf("Error: %ld \n", error);
-	printf("Integral: %ld \n", integral);
-  	printf("Output: %ld \n", output);
+	printf("Derivative: %lf \n", derivative);
+	printf("Error: %lf \n", error);
+	printf("Integral: %lf \n", integral);
+  	printf("Output: %lf \n", output);
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
 	 //Saturation Filter    
 	  if(output > MAX)    {        
