@@ -6,7 +6,6 @@
 //#include "BMP180.c"
 //include "ultra.c"
 const int hoverConst = 70;
-static float pre_error = 0; 
 //Functions for motorcontroll
 void setHover(){
 	int servo[4] = {1,2,3,4};
@@ -25,9 +24,9 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-
-float PIDcal(float diff) {    
-	static float integral = 0;  
+static float pre_error = 0; 
+static float integral = 0;  
+float PIDcal(float diff) {   
 	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.01; //100ms loop time 
@@ -39,8 +38,11 @@ float PIDcal(float diff) {
 	float error; 
 	float derivative;    
 	float output;
+   error = diff;
+   for (int i = 0; i < 10; i++){
+
 	 //Caculate P,I,D    
-  	error = diff;  //hur gör man detta om till fel i hastighet?
+  	  //hur gör man detta om till fel i hastighet?
   	//In case of error too small then stop integration    
   	if(abs(error) > epsilon)    {        
   		integral = integral + error*dt;    
@@ -49,7 +51,7 @@ float PIDcal(float diff) {
 	printf("Derivative: %lf \n", derivative);
 	printf("Error: %lf \n", error);
 	printf("Integral: %lf \n", integral);
-  	printf("Output: %lf \n", output);
+  	printf("Output (pre max/min) : %lf \n", output);
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
 	 //Saturation Filter    
 	  if(output > MAX)    {        
@@ -59,7 +61,9 @@ float PIDcal(float diff) {
   	 	output = MIN;    
   	}        //Update error        
 	pre_error = error; //pre error måste lagras samma plats som denna kod används
- 	return output;
+ 	//return output;
+   }
+   return output;
 }
 
 
