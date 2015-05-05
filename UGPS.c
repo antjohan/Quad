@@ -15,7 +15,7 @@
 #include <errno.h>
 #include <string.h>
 
-char * address= "GPSsocket";
+#define ADDRESS= "GPSsocket";
 
 
 int main()
