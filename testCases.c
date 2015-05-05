@@ -37,10 +37,10 @@ float PIDcal(float diff) {
 	float Ki = 0.5;
 	float error; 
 	float derivative;    
-	float output;
+	float output = 0;
    error = diff;
    for (int i = 0; i < 100; i++){
-
+	// error = error - output
 	 //Caculate P,I,D    
   	  //hur gör man detta om till fel i hastighet?
   	//In case of error too small then stop integration    
@@ -53,8 +53,8 @@ float PIDcal(float diff) {
 	printf("Integral: %lf \n", integral);
   	printf("Output (pre max/min) : %lf \n", output);
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
-	 //Saturation Filter    
-	  if(output > MAX)    {        
+	//Saturation Filter    
+	if(output > MAX)    {        
 	  	output = MAX;    
 	}    
 	else if(output < MIN)    {        
