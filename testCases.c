@@ -27,21 +27,18 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 */
 static float pre_error = 0; 
 static float integral = 0;  
-
-
 float PIDcal(float diff) {   
-	float epsilon = 0.01;
-float dt = 0.01; //100ms loop time 
-float MAX = 5;  //for Current Saturation 
-float MIN = 5; //hoverconst-..
-float Kp = 12;
-float Kd = 0.2;
-float Ki = 0.2;
-float error; 
-float derivative;    
-float output = 0;
 	printf("Diff: %lf \n", diff);
-	error = diff;
+	float epsilon = 0.01;
+	float dt = 0.01; //100ms loop time 
+	float MAX = 5;  //for Current Saturation 
+	float MIN = -5; //hoverconst-..
+	float Kp = 12;
+	float Kd = 0.2;
+	float Ki = 0.2;
+	float error = diff; 
+	float derivative;    
+	float output = 0;
    for (int i = 0; i < 50; i++){
    	printf("Iteration\n");
    	printf("Gammal error: %lf \n", error);
@@ -60,12 +57,12 @@ float output = 0;
 
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
 	//Saturation Filter    
-//	if(output > MAX)    {        
+	if(output > MAX)    {        
 	  	output = MAX;    
-//	}    
-//	else if(output < MIN)    {        
+	}    
+	else if(output < MIN)    {        
   	 	output = MIN;    
-  //	}        //Update error        
+  	}        //Update error        
 	pre_error = error; //pre error måste lagras samma plats som denna kod används
 	output = round(output);
  	printf("Output (post max/min/floor) : %lf \n", output);
