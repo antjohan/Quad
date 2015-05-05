@@ -190,6 +190,7 @@ int main(){
 							delay(200);
 						}
 					} else if (recdataprompt==7){
+							printf("Logging at 5Hz\n");
 							while(1){
 								updateLog();
 								delay(200);
