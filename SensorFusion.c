@@ -249,5 +249,7 @@ void updateLog(){//enters all current sensor data into fusionlog
 	double current_time_seconds=millis()/1000.0;
 	if (fprintf(to_log_file,"%lf %lf %lf %lf %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading())==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
+	} else {
+		printf("entry logged\n");
 	}
 }
