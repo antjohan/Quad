@@ -217,7 +217,7 @@ int main(){
 			}else if(test == 6){
 				float diff;
 				scanf("%ld",&diff);
-				pidTest(diff);	
+				PIDcal(diff);	
 			}else{
 				printf("Invalid\n");
 			}
