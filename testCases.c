@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <wiringPiI2C.h>
 //#include "BMP180.c"
-#include "ultra.c"
+//include "ultra.c"
 const int hoverConst = 70;
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
@@ -17,7 +17,7 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 */
 //Functions for motorcontroll
 
-void Set_Servo(int num, int pos){
+/*void Set_Servo(int num, int pos){
 
 	if((num <= 4 || num >= 1) && (pos <= 100 || pos >= 0)){
 		char* echo = "echo";
@@ -32,14 +32,7 @@ void Set_Servo(int num, int pos){
 		printf("Invalid!");
 	}
 }
-void setHover(){
-	int servo[4] = {1,2,3,4};
-	int hover[4] = {50,50,hoverConst,50};
-	
-	for (int i = 0; i<4;i++){
-	  Set_Servo(servo[i],hover[i]);
-	}
-}
+
 void Arm_FlightController(){
 	int servo[4] = {1,2,3,4};
 	int arm[4] = {0,0,0,0};
@@ -69,6 +62,15 @@ void Disarm_FlightController(){
 		Set_Servo(servo[i],normal[i]);
 	}
 } 
+*/
+void setHover(){
+	int servo[4] = {1,2,3,4};
+	int hover[4] = {50,50,hoverConst,50};
+	
+	for (int i = 0; i<4;i++){
+	  Set_Servo(servo[i],hover[i]);
+	}
+}
 /*
 Testcase1, Step from hover
 Idea:	Test roll capabilities of the quadcopter without sensordata.
@@ -128,10 +130,10 @@ int testHoverToStep(void){
   printf("Set_servo\n");
   Set_Servo(3, afterStep);
   printf("servo satt\n");
-  ultraSetup();//Hårdkod, ska bort senare
+//  ultraSetup();//Hårdkod, ska bort senare
   for (int i = 0; i<100;i++){
     printf("Iteration\n");
-    long currentHeight = getUltra(); //Use the ultra sensor to get height
+    long currentHeight = getHeight(); //Use the ultra sensor to get height
     printf("#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
    // delay(40);
   }
@@ -241,7 +243,6 @@ Setup:	The ultra sensor should be placed facing downwards. Doubled signals from 
 	to the MUX, except for the thrust which is sent from the rPI on one set of inputs.
 */
 int pidHeightTest(int refHeight){
-   //kompilerar ej..
   const int hoverOffset = 70;
   FILE *fp;
   fp=fopen("heightAndSpeed.txt","r+");
@@ -254,14 +255,14 @@ int pidHeightTest(int refHeight){
   	// int reqThrust = PIDcal(float(refHeight-currentHeight));//PID function
   	// fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
   	// Set_Serv(3, reqThrust);
-    delay(100);//0.1 second
+    delay(10);//0.01 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
   setHover();//Should not be needed if the PID works nicely
   fclose(fp);
   return 0;
 }
-
+/*
 int main(){
 	wiringPiSetup();
 	while(1){
@@ -326,3 +327,4 @@ int main(){
 	///////////////////
 	return 1;
 }
+*/
