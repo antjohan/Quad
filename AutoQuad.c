@@ -215,7 +215,9 @@ int main(){
 			else if(test == 5){
 				commandSensor("mag", "calibrate");
 			}else if(test == 6){
-				pidTest();	
+				float diff;
+				scanf("%ld",&diff);
+				pidTest(diff);	
 			}else{
 				printf("Invalid\n");
 			}
