@@ -84,7 +84,6 @@ int main(){
 
 		int val;
 		scanf("%d", &val);
-		val = int (val);
 		if(val == 1){
 			printf("Arming...\n");
 			Arm_FlightController();
@@ -216,9 +215,7 @@ int main(){
 			else if(test == 5){
 				commandSensor("mag", "calibrate");
 			}else if(test == 6){
-				float diff;
-				scanf("%ld",&diff);
-				PIDcal(diff);	
+				PIDcal(1.2);	
 				printf("Test klart");
 			}else{
 				printf("Invalid\n");
