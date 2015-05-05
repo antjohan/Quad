@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <math.h>
 #include <wiringPiI2C.h>
 //#include "BMP180.c"
 //include "ultra.c"
@@ -33,13 +34,13 @@ float MIN =  5; //hoverconst-..
 float Kp = 12;
 float Kd = 0.2;
 float Ki = 0.2;
-float error = diff; 
+float error; 
 float derivative;    
 float output = 0;
 
 float PIDcal(float diff) {   
 	printf("Diff: %lf \n", diff);
-
+	error = diff;
    for (int i = 0; i < 50; i++){
    	printf("Iteration\n");
    	printf("Gammal error: %lf \n", error);
