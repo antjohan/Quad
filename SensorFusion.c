@@ -140,10 +140,6 @@ void InitPipes(){
 		printf("pipe_to_mag=connected\n");
 	}
 
- 	/*
-
-
-	*/
  	//setting non-block
  	fcntl(from_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(from_ultra_fd, F_SETFL, O_NONBLOCK);
