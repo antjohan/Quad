@@ -63,9 +63,9 @@ float output = 0;
 //	if(output > MAX)    {        
 	  	output = MAX;    
 //	}    
-	else if(output < MIN)    {        
+//	else if(output < MIN)    {        
   	 	output = MIN;    
-  	}        //Update error        
+  //	}        //Update error        
 	pre_error = error; //pre error måste lagras samma plats som denna kod används
 	output = round(output);
  	printf("Output (post max/min/floor) : %lf \n", output);
