@@ -84,6 +84,7 @@ int main(){
 
 		int val;
 		scanf("%d", &val);
+		val = int (val);
 		if(val == 1){
 			printf("Arming...\n");
 			Arm_FlightController();
