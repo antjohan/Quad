@@ -159,6 +159,7 @@ void InitPipes(){
 	if (fprintf(to_log_file,"Time:    Barometer:    Ultrasonic:    Height:    Magnetometer:     \n")==-1){
 		printf("initialize_fusion_log=error: %s\n",strerror(errno));
 	}
+	fclose(to_log_file);
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
@@ -247,7 +248,9 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 
 void updateLog(){//enters all current sensor data into fusionlog
 	double current_time_seconds=millis()/1000.0;
+	to_log_file=fopen(log_path, "a");
 	if (fprintf(to_log_file,"%lf %lf %lf %lf %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading())==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
 	}
+	fclose(to_log_file);
 }
