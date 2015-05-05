@@ -92,6 +92,7 @@ int main()
 
             if (c == '\n')
                 break;
-        }
+        	}
+    	}
     }
 }
