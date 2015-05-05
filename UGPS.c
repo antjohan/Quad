@@ -20,11 +20,10 @@
 int main()
 {
 	     printf("Program running\n");
-
     char c;
     FILE *fp;
     int fromlen;
-    register int i, s, ns, len;
+    int i, s, ns, len;
     struct sockaddr_un saun, fsaun;
 
     /*
@@ -32,10 +31,13 @@ int main()
      * be in the UNIX domain, and will be a
      * stream socket.
      */
+    printf("1\n");
+
     if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) < 0) {
         perror("server: socket");
         exit(1);
     }
+    printf("2\n");
 
     /*
      * Create the address we will be binding to.
@@ -52,6 +54,7 @@ int main()
      * the structure, not just the length of the
      * socket name.
      */
+     printf("3\n");
     unlink(ADDRESS);
     len = sizeof(saun.sun_family) + strlen(saun.sun_path);
 
@@ -63,6 +66,7 @@ int main()
     /*
      * Listen on the socket.
      */
+     printf("4\n");
     if (listen(s, 5) < 0) {
         perror("server: listen");
         exit(1);
@@ -73,6 +77,7 @@ int main()
      * will be connected to the client.  fsaun will
      * contain the address of the client.
      */
+     printf("5\n");
     if ((ns = accept(s, &fsaun, &fromlen)) < 0) {
         perror("server: accept");
         exit(1);
@@ -81,13 +86,14 @@ int main()
     /*
      * We'll use stdio for reading the socket.
      */
+     printf("6\n");
     fp = fdopen(ns, "r");
 
     /*
      * Then we read some strings from the client and
      * print them out.
      */
-     printf("Program ran\n");
+     printf("7\n");
 	while(1){
 		printf("scanning for input data\n");
 		delay(1000);
