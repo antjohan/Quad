@@ -53,7 +53,7 @@ float PIDcal(float diff) {
 	printf("Derivative: %lf \n", derivative);
 
 	printf("Integral: %lf \n", integral);
-  	printf("Output (pre max/min) : %lf \n", output);
+
 	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
 	//Saturation Filter    
 	if(output > MAX)    {        
@@ -63,7 +63,8 @@ float PIDcal(float diff) {
   	 	output = MIN;    
   	}        //Update error        
 	pre_error = error; //pre error måste lagras samma plats som denna kod används
- 	//return output;
+	output = floor(output);
+ 	printf("Output (post max/min/floor) : %lf \n", output);
    }
    return output;
 }
