@@ -22,8 +22,12 @@ int main()
 	     printf("Program running\n");
     char c;
     FILE *fp;
+    printf("0.1\n");
+
     int fromlen;
     int i, s, ns, len;
+    printf("0.2\n");
+
     struct sockaddr_un saun, fsaun;
 
     /*
