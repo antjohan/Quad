@@ -220,7 +220,7 @@ void calibrate(){
 
       if (i%(calsamp/10)==0){
          printf("Calibration %d%% done\n", i*100/calsamp);
-      
+      }
       if (i%calsamp/100==0){
          printf("X: %d Y: %d Z: %d current x:%d %d y:%d %d z:%d %d\n",xvalues[i],yvalues[i],zvalues[i],max_x,min_x,max_y,min_y,max_z,min_z);
       }
