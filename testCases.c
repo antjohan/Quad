@@ -113,20 +113,35 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 */
 int testRotation(void){
   const int yawSpeed = 30;
+  FILE *fp;
+  fp=fopen("/home/pi/logs/testRotation.txt","w");
+  fprintf(fp, "Nytt test, testRotation\n");
+ 
   printf("Startar yaw rotations test, setter hover\n");
   setHover();
   sleep(4);
+  double start_time = millis();
   printf("Initierar clockwise rotation\n");
   Set_Servo(4,50+yawSpeed);
-  sleep(4);
+  for(int i = 0; i < 60; i++){
+  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
+  	delay(50);
+  }
+  fprintf(fp, "Klar med en rotation, börjar nästa\n");
   printf("Klar med clockwise, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar counter clockwise rotation\n");
+  start_time = millis();
   Set_Servo(4, 50-yawSpeed);
-  sleep(4);
+  for(int i = 0; i < 60; i++){
+  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
+  	delay(50);
+  }
+  fclose(fp);
   printf("Klar med test, setter hover\n");
   setHover();
+  
   return 0;
 }
 
