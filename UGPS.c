@@ -11,12 +11,10 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
-#include <rtklib.h>
+#include "rtklib.h"
 
 
-Ublox GPS;
 
 int main(){
-	GPS.testConnection();
 
 }
