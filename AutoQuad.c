@@ -6,7 +6,7 @@
 #include <wiringPi.h>
 //#include "BMP180.c"
 //#include "ultra.c"
-//#include "testCases.c" /lagt externt
+#include "testCases.c" /lagt externt
 #include "SensorFusion.c"
 
 /*
