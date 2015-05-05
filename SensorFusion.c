@@ -152,7 +152,7 @@ void InitPipes(){
  	fcntl(to_mag_fd, F_SETFL, O_NONBLOCK);
  	//fcntl(to_gps_fd, F_SETFL, O_NONBLOCK);
  	//*/
- 	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
+ 	printf("PIPES CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	to_log_file=fopen(log_path, "w+");
 	delay(200);
@@ -249,7 +249,5 @@ void updateLog(){//enters all current sensor data into fusionlog
 	double current_time_seconds=millis()/1000.0;
 	if (fprintf(to_log_file,"%lf %lf %lf %lf %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading())==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
-	} else {
-		printf("entry logged\n");
 	}
 }
