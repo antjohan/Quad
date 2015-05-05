@@ -169,7 +169,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	} else if (bh > -1000){
 		return (bh-BaroInitialHeight);
 	} else {
-		return (-1);
+		return (0);
 	}
 
 }
