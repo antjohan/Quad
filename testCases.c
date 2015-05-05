@@ -75,7 +75,7 @@ int testHoverToStep(void){
   
   int afterStep = 75;
   FILE *fp;
-  fp=fopen("hoverToStepTest.txt","r+");
+  fp=fopen("hoverToStepTest.txt","a");
   setHover();
   sleep(4);
   printf("Initierar steg och skriver ner värden\n");
