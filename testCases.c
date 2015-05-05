@@ -27,7 +27,10 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 */
 static float pre_error = 0; 
 static float integral = 0;  
-float epsilon = 0.01;
+
+
+float PIDcal(float diff) {   
+	float epsilon = 0.01;
 float dt = 0.01; //100ms loop time 
 float MAX = 5;  //for Current Saturation 
 float MIN =  5; //hoverconst-..
@@ -37,8 +40,6 @@ float Ki = 0.2;
 float error; 
 float derivative;    
 float output = 0;
-
-float PIDcal(float diff) {   
 	printf("Diff: %lf \n", diff);
 	error = diff;
    for (int i = 0; i < 50; i++){
