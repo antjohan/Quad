@@ -155,6 +155,7 @@ void InitPipes(){
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	to_log_file=fopen(log_path, "w+");
+	fprintf(to_log_file,"Time:    Barometer:    Ultrasonic:    Height:    Magnetometer:     \n");
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
@@ -243,8 +244,7 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 
 void updateLog(){//enters all current sensor data into fusionlog
 	double current_time_seconds=millis()/1000.0;
-	
-	if (fprintf(to_log_file,"Time: %lf Barometer: %lf Ultrasonic: %lf Height: %lf Magnetometer: %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading())==-1){
+	if (fprintf(to_log_file,"%lf %lf %lf %lf %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading())==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
 	}
 }
