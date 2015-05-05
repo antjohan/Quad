@@ -29,6 +29,8 @@ int to_mag_fd;
 int to_gps_fd;
 
 FILE *to_log_file;
+char* log_path = "/home/pi/logs/fusionlog.txt";
+
 
 //variables
 double BaroInitialHeight=0;
@@ -66,9 +68,6 @@ void InitPipes(){
 	char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
 	char* to_gps_fifo = "/home/pi/tmp/to_gps_fifo";
 	
-
-	char* log_path = "/home/pi/logs/fusionlog.txt";
-
 	//Clear all to-fifos, should they exist!
 	unlink(to_baro_fifo);
 	unlink(to_ultra_fifo);
