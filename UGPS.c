@@ -81,7 +81,8 @@ int main()
      * will be connected to the client.  fsaun will
      * contain the address of the client.
      */
-     printf("5\n");
+    printf("5\n");
+
     if ((ns = accept(s, &fsaun, &fromlen)) < 0) {
         perror("server: accept");
         exit(1);
