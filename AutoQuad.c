@@ -218,6 +218,7 @@ int main(){
 				float diff;
 				scanf("%ld",&diff);
 				PIDcal(diff);	
+				printf("Test klart");
 			}else{
 				printf("Invalid\n");
 			}
