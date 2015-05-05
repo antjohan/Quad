@@ -6,7 +6,7 @@
 #include <wiringPi.h>
 //#include "BMP180.c"
 //#include "ultra.c"
-#include "testCases.c" /lagt externt
+#include "testCases.c" //lagt externt
 #include "SensorFusion.c"
 
 /*
@@ -116,8 +116,8 @@ int main(){
 			printf("---------------------------------\n");
 			printf("[1]	ping...\n");
 			printf("[2]	recieve data\n");
-		//	printf("[3]	Testa hoverToStep\n");
-		//	printf("[4]	Testa ett varv rotation\n");
+			printf("[3]	Testa hoverToStep\n");
+			printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Calibrate magnetometer\n");
 			printf("[6]	Tillbaks\n");
 			printf("---------------------------------\n");
@@ -199,13 +199,13 @@ int main(){
 				}
 			}
 			//Test hoverToStep
-		/*	else if(test == 3){
+			else if(test == 3){
 				testHoverToStep();
 				
 			}else if(test == 4){
-				testOneRotation();
+				testRotation();
 		
-			}*/
+			}
 			else if(test == 5){
 				commandSensor("mag", "calibrate");
 			}else{
