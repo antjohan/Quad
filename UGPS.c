@@ -90,7 +90,7 @@ int main()
         while ((c = fgetc(fp)) != EOF) {
             putchar(c);
 
-            if (c == '\n')
+            if (c == '\n'){
                 break;
         	}
     	}
