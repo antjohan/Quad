@@ -171,7 +171,7 @@ double getHeight(){ //returns the best value for height, using both barometer/ul
 	}
 
 }
-double getBHeight(){
+double getBHeight(){ //take a value directly from barometer
 	commandSensor("baro", "read");
 	double bh=-1; //barometer height
 	char barobuffer[MAX_BUF];
@@ -180,7 +180,7 @@ double getBHeight(){
 	return bh;
 
 }
-double getUHeight(){
+double getUHeight(){ //take a value directly from ultrasonic sensor
 	commandSensor("ultra", "read");
 	double uh=-1; //ultrasonic height
 	char ultrabuffer[MAX_BUF];
@@ -192,7 +192,7 @@ double getUHeight(){
 	return (uh);
 }
 
-double getHeading(){ //returns current heading based on magnetometric sensor output
+double getHeading(){ //take a value directly from magnetometer
 	commandSensor("mag", "read");
 	double br=-1;
 	char magbuffer[MAX_BUF];
@@ -244,10 +244,10 @@ void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or
 	int tmp = write(sensor_fd,sendstr,sizeof(sendstr));
 }
 
-void updateLog(){//enters all current sensor data into fusionlog
+void updateLog(double bheight, double uheight, double height, double heading){//enters all current sensor data into fusionlog
 	double current_time_seconds=millis()/1000.0;
 	to_log_file=fopen(log_path, "a");
-	if (fprintf(to_log_file,"%lf %lf %lf %lf %lf\n",current_time_seconds,getBHeight(),getUHeight(),getHeight(),getHeading())==-1){
+	if (fprintf(to_log_file,"%lf %lf %lf %lf %lf\n",current_time_seconds,bheight,uheight,height,heading)==-1){
 		printf("write_to_log=error: %s\n",strerror(errno));
 	}
 	fclose(to_log_file);

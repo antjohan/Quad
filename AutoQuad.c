@@ -166,8 +166,8 @@ int main(){
 					printf("[3]	Magnetometer\n");
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
-					printf("[6]	Loop all sensors\n");
-					printf("[7] Log 5hz\n");
+					printf("[6]	Loop all sensors and log data\n");
+					printf("[7] empty\n");
 					printf("[8] Back\n");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
@@ -186,15 +186,18 @@ int main(){
 						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==6){
 						while(1){
-							printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",getBHeight(),getUHeight(),getHeight(), getHeading());
+								double uh=getUHeight();
+								double bh=getBHeight();
+								double h=getHeight();
+								double hd=getHeading();
+
+								updateLog(bh, uh, h, hd);
+
+							printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd);
 							delay(200);
 						}
 					} else if (recdataprompt==7){
-							printf("Logging at 5Hz\n");
-							while(1){
-								updateLog();
-								delay(200);
-							}
+			
 					}else if (recdataprompt==8){
 						recdataprompt=-1;
 					}
