@@ -86,13 +86,13 @@ int testHoverToStep(void){
   double start_time = millis();
   printf("servo satt\n");
 //  ultraSetup();//Hårdkod, ska bort senare
-  for (int i = 0; i<100;i++){
+  for (int i = 0; i<80;i++){
     double currentHeight = getHeight(); //Use the ultra sensor to get height
     
-    fprintf(fp, "#Time = %lf, Höjd = %lf\n", millis()-start_time, currentHeight);
+    fprintf(fp, "Time = %lf, Höjd = %lf\n", millis()-start_time, currentHeight);
    // fprintf(fp, "#Iteration = %i, Höjd = %lf\n", i, currentHeight);
-    //printf("#Iteration = %i, Höjd = %lf\n", i, currentHeight);
-    //delay(40);
+    printf("Time = %lf, Höjd = %lf\n", millis()-start_time, currentHeight);
+    delay(50);
   }
   printf("Klar med test, setter hover\n");
   //Hover
