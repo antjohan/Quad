@@ -193,7 +193,7 @@ int main(){
 								updateLog(bh, uh, h, hd);
 
 							printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd);
-							delay(200);
+							delay(100);
 						}
 					} else if (recdataprompt==7){
 						while(1){
