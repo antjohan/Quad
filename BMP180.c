@@ -31,17 +31,19 @@ void connectFifos(){
 
   from_baro_fd=open(from_baro_fifo, O_WRONLY);
   if (from_baro_fd==-1){
-    printf("b_from_baro_fifo=error: %s\n",strerror(errno));
+    printf("pipe_from_baro=error: %s\n",strerror(errno));
   } else {
-    printf("b_from_baro_fifo=connected\n");
+    printf("pipe_from_baro=connected\n");
   }
+
   delay(2000);
   to_baro_fd=open(to_baro_fifo, O_RDONLY);
   if (to_baro_fd==-1){
-    printf("b_to_baro_fifo=error: %s\n",strerror(errno));
+    printf("pipe_to_baro=error: %s\n",strerror(errno));
   } else {
-    printf("b_to_baro_fifo=connected\n");
-  }  
+     // printf("pipe_to_baro=connected\n");
+  }
+
 }
 void calibrateBaro(){
    BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);

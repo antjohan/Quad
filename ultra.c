@@ -71,17 +71,19 @@ void connectFifos(){
   } 
   from_ultra_fd=open(from_ultra_fifo, O_WRONLY);
   if (from_ultra_fd==-1){ 
-    printf("u_from_ultra_fifo=error: %s\n",strerror(errno));
+      printf("pipe_from_ultra=error: %s\n",strerror(errno));
   } else {
-   printf("u_from_ultra_fifo=open\n");
+      printf("pipe_from_ultra=connected\n");
   }
+
 
   to_ultra_fd=open(to_ultra_fifo, O_RDONLY);
   if (to_ultra_fd==-1){
-       printf("u_to_ultra_fifo=error: %s\n",strerror(errno));
+       printf("pipe_to_ultra=error: %s\n",strerror(errno));
   } else {
-         printf("u_to_ultra_fifo=open\n");
+      //printf("pipe_to_ultra=connected\n");
   }
+
 }
 
 void writeOutput(){

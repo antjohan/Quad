@@ -167,7 +167,7 @@ int main(){
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
 					printf("[6]	Loop all sensors\n");
-					printf("[7] Loop combined height\n");
+					printf("[7] Log 5hz\n");
 					printf("[8] Back\n");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);

@@ -45,7 +45,7 @@ double getHeight();
 double getBHeight();
 double getUHeight();
 double getHeading();
-double * getCoordinate();
+//double * getCoordinate();
 void commandSensor(char * sensor, char * command);
 void updateLog();
 
@@ -94,49 +94,49 @@ void InitPipes(){
 
 	from_ultra_fd=open(from_ultra_fifo, O_RDONLY);
  	if (from_ultra_fd==-1){
-		printf("sf_from_ultra_fifo=error: %s\n",strerror(errno));
+		printf("pipe_from_ultra=error: %s\n",strerror(errno));
 	} else {
-		printf("sf_from_ultra_fifo=open\n");
+		//printf("pipe_from_ultra=connected\n");
 	}
 
 	from_baro_fd=open(from_baro_fifo, O_RDONLY);
 	if (from_baro_fd==-1){
-    	printf("sf_from_baro_fifo=error: %s\n",strerror(errno));
- 	} else {
- 		printf("sf_from_baro_fifo=open\n");
- 	}
+    	printf("pipe_from_baro=error: %s\n",strerror(errno));
+	} else {
+		//printf("pipe_from_baro=connected\n");
+	}
  	
  	from_mag_fd=open(from_mag_fifo, O_RDONLY);
 	if (from_mag_fd==-1){
-    	printf("sf_from_mag_fifo=error: %s\n",strerror(errno));
- 	} else {
- 		printf("sf_from_mag_fifo=open\n");
- 	}
+    	printf("pipe_from_mag=error: %s\n",strerror(errno));
+	} else {
+		//printf("pipe_from_mag=connected\n");
+	}
 
  	////from fifos connected
- 	printf("from_fifos=connected!\n");
+ 	//printf("from_fifos=connected!\n");
 
  	delay(300);
  	to_ultra_fd=open(to_ultra_fifo, O_WRONLY);
  	if (to_ultra_fd==-1){
-		printf("sf_to_ultra_fifo=error: %s\n",strerror(errno));
+		printf("pipe_to_ultra=error: %s\n",strerror(errno));
 	} else {
-		printf("sf_to_ultra_fifo=open\n");
+		printf("pipe_to_ultra=connected\n");
 	}
 	delay(200);
 	to_baro_fd=open(to_baro_fifo, O_WRONLY);
 	if (to_baro_fd==-1){
-    	printf("sf_to_baro_fifo=error: %s\n",strerror(errno));
- 	} else {
- 		printf("sf_to_baro_fifo=open\n");
- 	}
+    	printf("pipe_to_baro=error: %s\n",strerror(errno));
+	} else {
+		printf("pipe_to_baro=connected\n");
+	}
  	delay(200);
 	to_mag_fd=open(to_mag_fifo, O_WRONLY);
 	if (to_mag_fd==-1){
-    	printf("sf_to_mag_fifo=error: %s\n",strerror(errno));
- 	} else {
- 		printf("sf_to_mag_fifo=open\n");
- 	}
+    	printf("pipe_to_mag=error: %s\n",strerror(errno));
+	} else {
+		printf("pipe_to_mag=connected\n");
+	}
 
  	/*
 
@@ -155,7 +155,10 @@ void InitPipes(){
  	printf("to_fifos=connected!\nFIFOS CONNECTED SUCCESSFULLY\n");
 //initialize flight log
 	to_log_file=fopen(log_path, "w+");
-	fprintf(to_log_file,"Time:    Barometer:    Ultrasonic:    Height:    Magnetometer:     \n");
+	delay(200):
+	if (fprintf(to_log_file,"Time:    Barometer:    Ultrasonic:    Height:    Magnetometer:     \n")==-1){
+		printf("initialize_fusion_log=error: %s\n",strerror(errno));
+	}
 }
 
 double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
@@ -199,14 +202,14 @@ double getHeading(){ //returns current heading based on magnetometric sensor out
 	return(br);
 
 }
-double * getCoordinate(){
-	/*char gpsbuffer[MAX_BUF];
+/*double * getCoordinate(){
+	char gpsbuffer[MAX_BUF];
 	read(from_gps_fd, gpsbuffer, MAX_BUF);
 	sscanf(gpsbuffer, "%lf, %lf, %lf", &coordinate);
 	return(coordinate);
-	*/
+	
 	return(1);
-}
+}*/
 
 void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or gps
 	int sensor_fd;
