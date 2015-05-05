@@ -46,9 +46,9 @@ float PIDcal(float diff) {
 	 //Caculate P,I,D    
   	  //hur gör man detta om till fel i hastighet?
   	//In case of error too small then stop integration    
-  	if(abs(error) > epsilon)    {        
+  //	if(abs(error) > epsilon)    {        
   		integral = integral + error*dt;    
-	}    
+	//}    
 	derivative = (error - pre_error)/dt;    
 	printf("Derivative: %lf \n", derivative);
 
