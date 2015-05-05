@@ -16,53 +16,6 @@ Pinout FlightController -> Servo_Num -> Raspberry Pi
 ----------------------------------------------------
 */
 //Functions for motorcontroll
-
-/*void Set_Servo(int num, int pos){
-
-	if((num <= 4 || num >= 1) && (pos <= 100 || pos >= 0)){
-		char* echo = "echo";
-		char* destination = " > /dev/servoblaster \n";
-		char* equal = "=";
-		char* procent = "%";
-		char cmd[256];
-		snprintf(cmd, sizeof cmd, "%s %i%s%i%s %s", echo, num, equal,pos, procent, destination);
-		//system(cmd);
-		//printf("%s\n",cmd);
-	}else{
-		printf("Invalid!");
-	}
-}
-
-void Arm_FlightController(){
-	int servo[4] = {1,2,3,4};
-	int arm[4] = {0,0,0,0};
-	int normal[4] = {50,50,0,50};
-
-	for(int i = 0; i < 4; i++){
-		Set_Servo(servo[i],arm[i]);
-	}
-	sleep(2);
-
-	for(int i = 0; i < 4; i++){
-		Set_Servo(servo[i],normal[i]);
-	}
-}
-
-void Disarm_FlightController(){
-	int servo[4] = {1,2,3,4};
-	int disarm[4] = {0,0,0,100};
-	int normal[4] = {50,50,0,50};
-
-	for(int i = 0; i < 4; i++){
-		Set_Servo(servo[i],disarm[i]);
-	}
-	sleep(2);
-
-	for(int i = 0; i < 4; i++){
-		Set_Servo(servo[i],normal[i]);
-	}
-} 
-*/
 void setHover(){
 	int servo[4] = {1,2,3,4};
 	int hover[4] = {50,50,hoverConst,50};
@@ -132,7 +85,6 @@ int testHoverToStep(void){
   printf("servo satt\n");
 //  ultraSetup();//Hårdkod, ska bort senare
   for (int i = 0; i<100;i++){
-    printf("Iteration\n");
     long currentHeight = getHeight(); //Use the ultra sensor to get height
     printf("#Iteration = %i, Höjd = %ld", i, currentHeight, "\n");
    // delay(40);
