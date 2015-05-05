@@ -87,7 +87,7 @@ int testHoverToStep(void){
 //  ultraSetup();//Hårdkod, ska bort senare
   for (int i = 0; i<100;i++){
     double currentHeight = getHeight(); //Use the ultra sensor to get height
-    fprintf("#Iteration = %i, Höjd = %lf\n", i, currentHeight);
+    fprintf(fp, "#Iteration = %i, Höjd = %lf\n", i, currentHeight);
     printf("#Iteration = %i, Höjd = %lf\n", i, currentHeight);
     delay(40);
   }
