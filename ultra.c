@@ -57,7 +57,7 @@ void ultraSetup() {
    pinMode(ECHO, INPUT);
    //TRIG pin must start LOW
    digitalWrite(TRIG, LOW);
-   delay(30);
+   delay(20);
 }
 
 void connectFifos(){
