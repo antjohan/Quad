@@ -14,8 +14,8 @@
  
 // #define TRUE 1
  
-#define TRIG 4
-#define ECHO 5
+#define TRIG 10
+#define ECHO 11
 #define MAX_BUF 256
 
 
