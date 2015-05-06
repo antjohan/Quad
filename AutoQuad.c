@@ -199,7 +199,7 @@ int main(){
 						}
 					} else if (recdataprompt==7){
 						while(1){
-							printf("H: %lf\n",getHeight());
+							printf("H: %lf\n",getHeight(getUHeight(),getBHeight()));
 							delay(200);
 						}
 					}else if (recdataprompt==8){
