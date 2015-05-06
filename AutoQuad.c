@@ -121,7 +121,7 @@ int main(){
 			printf("[5]	Calibrate magnetometer\n");
 			printf("[6]	Test PID regulator\n");
 			printf("[7]	Set hover\n");
-			printf("[8]	PIDtest, 1.5m\n");
+			printf("[8]	PIDtest, 0.3m\n");
 			printf("[9]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
@@ -222,7 +222,7 @@ int main(){
 			}else if(test == 7){
 				setHover();
 			}else if(test == 8){
-				pidInsideTest(1.5);
+				pidInsideTest(0.3);
 			}else{
 				printf("Invalid\n");				
 			}
