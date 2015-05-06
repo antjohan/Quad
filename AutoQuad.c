@@ -120,7 +120,8 @@ int main(){
 			printf("[4]	Testa ett varv rotation\n");
 			printf("[5]	Calibrate magnetometer\n");
 			printf("[6]	Test PID regulator\n");
-			printf("[7]	Tillbaks\n");
+			printf("[7]	Set hover\n");
+			printf("[8]	Tilbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
@@ -217,8 +218,10 @@ int main(){
 			}else if(test == 6){
 				PIDcal(1.2);	
 				printf("Test klart");
+			}else if(test == 7){
+				setHover();
 			}else{
-				printf("Invalid\n");
+				printf("Invalid\n");				
 			}
 			
 		}else if (val == 5){
