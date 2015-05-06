@@ -39,7 +39,7 @@ float PIDcal(float diff) {
 	float error = diff; 
 	float derivative;    
 	float output = 0;
-   for (int i = 0; i < 50; i++){
+  // for (int i = 0; i < 50; i++){
    	printf("Iteration\n");
    	printf("Gammal error: %lf \n", error);
 	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
@@ -66,7 +66,7 @@ float PIDcal(float diff) {
 	pre_error = error; //pre error måste lagras samma plats som denna kod används
 	output = round(output);
  	printf("Output (post max/min/floor) : %lf \n", output);
-   }
+//   }
    return output;
 }
 
@@ -88,7 +88,7 @@ int testHoverToStep(void){
   printf("servo satt\n");
 //  ultraSetup();//Hårdkod, ska bort senare
   for (int i = 0; i<80;i++){
-    double currentHeight = getHeight(); //Use the ultra sensor to get height
+    double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
     
     fprintf(fp, "Time = %lf, Höjd = %lf\n", millis()-start_time, currentHeight);
    // fprintf(fp, "#Iteration = %i, Höjd = %lf\n", i, currentHeight);
