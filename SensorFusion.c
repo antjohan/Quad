@@ -160,9 +160,9 @@ void InitPipes(){
 	fclose(to_log_file);
 }
 
-double getHeight(){ //returns the best value for height, using both barometer/ultrasonic sensor input
-	double uh=getUHeight(); //ultrasonic height
-	double bh=getBHeight(); //barometer height
+double getHeight(double uh, double bh){ //returns the best value for height, using both barometer/ultrasonic sensor input
+	//double uh=getUHeight(); //ultrasonic height
+	//double bh=getBHeight(); //barometer height
 	if (uh<450 && uh>0){
 		BaroInitialHeight=bh-(uh/100.0);
 		return(uh/100.0);

@@ -189,7 +189,7 @@ int main(){
 						while(1){
 								double uh=getUHeight();
 								double bh=getBHeight();
-								double h=getHeight();
+								double h=getHeight(uh,bh);
 								double hd=getHeading();
 
 								updateLog(bh, uh, h, hd);
