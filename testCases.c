@@ -235,9 +235,9 @@ int pidHeightTest(int refHeight){
   return 0;
 }
 
-int pidInsideTest(int refHeight){
+int pidInsideTest(float refHeight){
 	for(int i = 0; i < 100; i++){
-		int currentHeight = getHeight(getUHeight(), getBHeight());
+		float currentHeight = getHeight(getUHeight(), getBHeight());
 		int reqThrust = PIDcal(refHeight-currentHeight);
 		printf("%fl\n", reqThrust);
 		delay(300);
