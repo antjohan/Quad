@@ -34,7 +34,7 @@ float PIDcal(float diff) {
 	float MAX = 5;  //for Current Saturation 
 	float MIN = -5; //hoverconst-..
 	float Kp = 12;
-	float Kd = 0.5;
+	float Kd = 0.2;
 	float Ki = 0.2;
 	float error = diff; 
 	float derivative;    
