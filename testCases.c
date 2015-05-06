@@ -234,6 +234,16 @@ int pidHeightTest(int refHeight){
   fclose(fp);
   return 0;
 }
+
+int pidInsideTest(int refHeight){
+	for(int i = 0; i < 100; i++){
+		int currentHeight = getHeight(getUHeight(), getBHeight());
+		int reqThrust = PIDcal(refHeight-currentHeight);
+		printf("%fl\n", reqThrust);
+		delay(300);
+	}
+	return 0;
+}
 /*
 int main(){
 	wiringPiSetup();
