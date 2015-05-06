@@ -121,7 +121,8 @@ int main(){
 			printf("[5]	Calibrate magnetometer\n");
 			printf("[6]	Test PID regulator\n");
 			printf("[7]	Set hover\n");
-			printf("[8]	Tilbaks\n");
+			printf("[8]	PIDtest, 1.5m\n");
+			printf("[9]	Tillbaks\n");
 			printf("---------------------------------\n");
 			scanf("%d",&test);
 			//barometertest
@@ -168,7 +169,7 @@ int main(){
 					printf("[4]	GPS\n");
 					printf("[5]	All\n");
 					printf("[6]	Loop all sensors and log data\n");
-					printf("[7] Loop height fast\n");
+					printf("[7] 	Loop height fast\n");
 					printf("[8] Back\n");
 					printf("---------------------------------\n");
 					scanf("%d",&recdataprompt);
@@ -220,6 +221,8 @@ int main(){
 				printf("Test klart");
 			}else if(test == 7){
 				setHover();
+			}else if(test == 8){
+				pidHeightTest(1.5);
 			}else{
 				printf("Invalid\n");				
 			}
