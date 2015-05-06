@@ -224,9 +224,9 @@ int pidHeightTest(int refHeight){
   for(int i = 0; i<100; i++){
     printf("Ny Iteration\n");
   	int currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
-  	int reqThrust = PIDcal(float(refHeight-currentHeight));//PID function
+  	int reqThrust = PIDcal(refHeight-currentHeight);//PID function
   	fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
-  	Set_Serv(3, reqThrust);
+  	Set_Servo(3, reqThrust);
     delay(100);//0.01 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
