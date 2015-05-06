@@ -31,19 +31,18 @@ float PIDcal(float diff) {
 	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.01; //100ms loop time 
-	float MAX = 5;  //for Current Saturation 
-	float MIN = -5; //hoverconst-..
+	float MAX = hoverConst+5;  //for Current Saturation 
+	float MIN = hoverConst-5; //hoverconst-..
 	float Kp = 12;
 	float Kd = 0.2;
 	float Ki = 0.2;
 	float error = diff; 
-	float derivative;    
+	float derivative;
 	float output = 0;
   // for (int i = 0; i < 50; i++){
    	printf("Iteration\n");
-   	printf("Gammal error: %lf \n", error);
-	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
-	printf("Ny error: %lf \n", error);
+//	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
+	printf("Error: %lf \n", error);
 	 //Caculate P,I,D    
   	  //hur gör man detta om till fel i hastighet?
   	//In case of error too small then stop integration    
@@ -55,7 +54,7 @@ float PIDcal(float diff) {
 
 	printf("Integral: %lf \n", integral);
 
-	output = (Kp*error + Ki*integral + Kd*derivative);//+hoverConst
+	output = hoverConst+(Kp*error + Ki*integral + Kd*derivative);//+hoverConst
 	//Saturation Filter    
 	if(output > MAX)    {        
 	  	output = MAX;    
@@ -224,11 +223,11 @@ int pidHeightTest(int refHeight){
   
   for(int i = 0; i<100; i++){
     printf("Ny Iteration\n");
-  	// int currentHeight = getHeight(); //Use the ultra sensor to get height
-  	// int reqThrust = PIDcal(float(refHeight-currentHeight));//PID function
-  	// fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
-  	// Set_Serv(3, reqThrust);
-    delay(10);//0.01 second
+  	int currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
+  	int reqThrust = PIDcal(float(refHeight-currentHeight));//PID function
+  	fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
+  	Set_Serv(3, reqThrust);
+    delay(100);//0.01 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
   setHover();//Should not be needed if the PID works nicely
