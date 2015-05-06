@@ -6,7 +6,7 @@ int main(){
 void Initialize(){
   wiringPiSetupSys();
   ConversionWaitTimeMs = 5;
-  OversamplingSetting = 2;
+  OversamplingSetting = 1;
   Oversample = false;
 
   LastTemperatureTime = -1000;
