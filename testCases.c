@@ -236,12 +236,14 @@ int pidHeightTest(int refHeight){
 }
 
 int pidInsideTest(float refHeight){
+	integral = 0;
 	for(int i = 0; i < 100; i++){
 		float currentHeight = getHeight(getUHeight(), getBHeight());
 		int reqThrust = PIDcal(refHeight-currentHeight);
 		printf("%fl\n", reqThrust);
 		delay(300);
 	}
+
 	return 0;
 }
 /*
