@@ -222,7 +222,7 @@ int main(){
 			}else if(test == 7){
 				setHover();
 			}else if(test == 8){
-				pidHeightTest(1.5);
+				pidInsideTest(1.5);
 			}else{
 				printf("Invalid\n");				
 			}
