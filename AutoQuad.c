@@ -177,40 +177,6 @@ int main(){
 					scanf("%d",&recdataprompt);
 					if(recdataprompt==1){
 						printf("Barometer height(m): %lf\n", getBHeight());
-					} else if (recdataprompt==2){
-						printf("Ultrasonic height(cm): %lf\n", getUHeight());
-					} else if (recdataprompt==3){
-						printf("Magnetometer heading(deg): %lf\n", getHeading());
-					} else if (recdataprompt==4){
-						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
-					} else if (recdataprompt==5){
-						printf("Barometer height(m): %lf\n", getBHeight());
-						printf("Ultrasonic height(cm): %lf\n", getUHeight());
-						printf("Magnetometer heading(deg): %lf\n", getHeading());
-						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
-					} else if (recdataprompt==6){
-						while(1){
-								double uh=getUHeight();
-								double bh=getBHeight();
-								double h=getHeight(uh,bh);
-								double hd=getHeading();
-
-								updateLog(bh, uh, h, hd);
-
-							printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd);
-							delay(100);
-						}
-					} else if (recdataprompt==7){
-						while(1){
-							printf("H: %lf\n",getHeight(getUHeight(),getBHeight()));
-							delay(200);
-						}
-					}else if (recdataprompt==8){
-						recdataprompt=-1;
-					}
-				}
-			}
-
 						} else if (recdataprompt==2){
 							printf("Ultrasonic height(cm): %lf\n", getUHeight());
 							} else if (recdataprompt==3){
@@ -232,7 +198,7 @@ int main(){
 												updateLog(bh, uh, h, hd);
 
 												printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd);
-												delay(50);
+												delay(100);
 											}
 											} else if (recdataprompt==7){
 												while(1){
@@ -244,6 +210,7 @@ int main(){
 												}
 											}
 										}
+
 			//Test hoverToStep
 			else if(test == 3){
 				testHoverToStep();
@@ -264,11 +231,11 @@ int main(){
 								}
 
 
-		}else if (val == 5){
-			int rate = Quad.Sensors.RefresRate;
-			print("%d", rate);
-		}else if (val == 6){
-			break;
+								}else if (val == 5){
+									int rate = Quad.Sensors.RefresRate;
+									print("%d", rate);
+									}else if (val == 6){
+										break;
 		//}else if(val==6){//recieve barometer data
 			//while(1){
 				//printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
