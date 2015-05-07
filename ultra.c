@@ -44,7 +44,7 @@ int main(){
 void sample(){
    while(sampling==1){
       checkPipe();
-      currentHeight=getUltra();
+      currentHeight=getCM();
       //printf("UH-int: %s\n", WriteBuf);
       delay(30);
    }
@@ -155,7 +155,7 @@ long getCM(){
       //printf("Avståndet är längre än 4m\n");
       return ((long)-1);
       }
-      delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom
+      //delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom
    }
    // Mätningarnas medelvärde 
    long medel = medel1  / length1;
