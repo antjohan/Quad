@@ -177,7 +177,6 @@ int main(){
 					scanf("%d",&recdataprompt);
 					if(recdataprompt==1){
 						printf("Barometer height(m): %lf\n", getBHeight());
-<<<<<<< Updated upstream
 					} else if (recdataprompt==2){
 						printf("Ultrasonic height(cm): %lf\n", getUHeight());
 					} else if (recdataprompt==3){
@@ -211,7 +210,7 @@ int main(){
 					}
 				}
 			}
-=======
+
 						} else if (recdataprompt==2){
 							printf("Ultrasonic height(cm): %lf\n", getUHeight());
 							} else if (recdataprompt==3){
@@ -245,7 +244,6 @@ int main(){
 												}
 											}
 										}
->>>>>>> Stashed changes
 			//Test hoverToStep
 			else if(test == 3){
 				testHoverToStep();
