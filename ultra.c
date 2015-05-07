@@ -48,7 +48,7 @@ void sample(){
       checkPipe();
       currentHeight=getUltra();
       //printf("UH-int: %s\n", WriteBuf);
-      delay(50);
+      delay(15);
    }
 }
  
