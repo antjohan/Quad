@@ -232,8 +232,22 @@ int main(){
 
 
 								}else if (val == 5){
-									int rate = Quad.Sensors.RefresRate;
-									print("%d", rate);
+									config_t cfg;
+									config_setting_t *setting;
+									const char *str;
+
+									config_init(&cfg);
+
+									/* Read the file. If there is an error, report it and exit. */
+									if(! config_read_file(&cfg, "config.cfg"))
+									{
+										fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
+											config_error_line(&cfg), config_error_text(&cfg));
+										config_destroy(&cfg);
+										return(EXIT_FAILURE);
+									}
+
+
 									}else if (val == 6){
 										break;
 		//}else if(val==6){//recieve barometer data
