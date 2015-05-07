@@ -239,7 +239,7 @@ int main(){
 									config_init(&cfg);
 
 									/* Read the file. If there is an error, report it and exit. */
-									if(! config_read_file(&cfg, "config.cfg"))
+									if(! config_read_file(&cfg, "c.cfg"))
 									{
 										fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
 											config_error_line(&cfg), config_error_text(&cfg));
