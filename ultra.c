@@ -134,7 +134,7 @@ long getUltra() {
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
 long getCM(){
-   long val = 10;
+   long val = 5;
    long sum;
 
 
