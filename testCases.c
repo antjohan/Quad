@@ -92,7 +92,7 @@ int testHoverToStep(void){
     fprintf(fp, "Time = %lf, Höjd = %lf\n", millis()-start_time, currentHeight);
    // fprintf(fp, "#Iteration = %i, Höjd = %lf\n", i, currentHeight);
     printf("Time = %lf, Höjd = %lf\n", millis()-start_time, currentHeight);
-    delay(50);
+    delay(300);
   }
   printf("Klar med test, setter hover\n");
   //Hover
