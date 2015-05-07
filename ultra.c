@@ -35,6 +35,8 @@ void getCMloop();
 
 int from_ultra_fd;
 int to_ultra_fd;
+long offset=3;
+
 
 int main(){
   ultraSetup();
@@ -46,7 +48,7 @@ void sample(){
       checkPipe();
       currentHeight=getUltra();
       //printf("UH-int: %s\n", WriteBuf);
-      delay(20);
+      delay(50);
    }
 }
  
@@ -88,7 +90,7 @@ void connectFifos(){
 
 void writeOutput(){
    char WriteBuf[56];
-   sprintf(WriteBuf,"%ld",currentHeight);
+   sprintf(WriteBuf,"%ld",currentHeight-offset);
    write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
 }
 void checkPipe(){
