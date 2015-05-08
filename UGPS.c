@@ -41,7 +41,7 @@ int initialize(){
 }
 
 int sample(){
-    double date,time,
+    double date,tim;
     while(1){
         char buf [300];
         if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
