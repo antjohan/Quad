@@ -1,4 +1,5 @@
 #include "HMC588L.h"
+#include <libconfig.h>
 
 
 int main(){
