@@ -250,7 +250,7 @@ int main(){
 									root = config_root_setting(&cfg);
 									sensors = config_setting_get_member(root, "Sensors");
 									int rate = 0; 
-									config_setting_lookup_int(sensors, "RefresRate", rate);
+									config_setting_lookup_int(sensors, "RefresRate", &rate);
 									printf("%d",rate);
 
 
