@@ -275,13 +275,6 @@ int main(){
 			else
 				printf("No 'param2' setting in configuration file.\n");
 
-			if (config_setting_lookup_float(misc, "pi", &pi))
-			{
-				printf("pi: %f\n", pi);
-			}
-			else
-				printf("No 'param2' setting in configuration file.\n");
-
 /*
 			config_setting_lookup_int(sensors, "RefresRate", &rate);
 			printf("5");

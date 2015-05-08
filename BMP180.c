@@ -31,10 +31,10 @@ void initConfig(){
   if(config_setting_lookup_bool(bmp180, "Oversample", &os))
   if(os){
     Oversample = true;
-      printf("oversampel = true");
+      printf("oversampel = true\n");
   }else{
     Oversample = false;
-      printf("oversampel = false");
+      printf("oversampel = false\n");
   }
   else
   fprintf(stderr, "No 'name' setting in configuration file.\n");
