@@ -46,9 +46,9 @@ void cfg_init(){
 void printOut(){
   if(debug){
     printf("\n----HMC588L Configuration data---\n");
-    printf("offset_x: %d\n", &offset_x);
-    printf("offset_y: %d\n", &offset_y);
-    printf("offset_z: %d\n", &offset_z);
+    printf("offset_x: %d\n", offset_x);
+    printf("offset_y: %d\n", offset_y);
+    printf("offset_z: %d\n", offset_z);
     printf("---------------------------------\n\n");
   }
 }
