@@ -182,7 +182,7 @@ int socketxy()
 int socketyy(){
     /* Sample TCP client */
    int sockfd,n;
-   char * ip=172.0.0.1;
+   char * ip="172.0.0.1";
    struct sockaddr_in servaddr,cliaddr;
    char sendline[1000];
    char recvline[1000];
