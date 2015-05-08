@@ -38,7 +38,7 @@ int pipe1(){
     printf(gpsbuffer);
     }
 }
-int socket()
+int socketxx()
 {
 	     printf("Program running\n");
     char c;
