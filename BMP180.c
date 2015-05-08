@@ -28,7 +28,7 @@ void initConfig(){
 
   int os = 0;
   int oss = 0;
-  int debug = 0;
+  int debug = 5;
   config_setting_lookup_bool(bmp180, "Oversample", &os);
   if(os){
     Oversample = true;
