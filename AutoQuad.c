@@ -75,7 +75,7 @@ int main(){
 	while(1){
 		system("clear");
 		printf("---------------------------------\n");
-		printf("Make a choice:\n");
+		printf("Main Menu\n");
 		printf("---------------------------------\n");
 		printf("[1]	Arm FlightController\n");
 		printf("[2]	Disarm FlightController\n");
@@ -112,8 +112,11 @@ int main(){
 					printf("[4] Set Ruder\n");
 					printf("---------------------------------\n");
 					scanf("%d",&servo);
-
+					system("clear");
+					printf("---------------------------------\n");
 					printf("Set Speed (0-100)\n");
+					printf("---------------------------------\n");
+
 					scanf("%d", &speed);
 
 					Set_Servo(servo, speed);
