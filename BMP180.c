@@ -45,23 +45,20 @@ void initConfig(){
     printf("OversamplingSetting: %d\n", OversamplingSetting);
   }
   else
-  printf("No 'param2' setting in configuration file.\n");
+  printf("No 'OversamplingSetting' setting in configuration file.\n");
 
 
   if (config_setting_lookup_int(bmp180, "refreshrate", &refreshrate))
-  {
     printf("refreshrate: %d\n", refreshrate);
-  }
   else
-  printf("No 'param2' setting in configuration file.\n");
+  printf("No 'refreshrate' setting in configuration file.\n");
 
 
   if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
-  {
     printf("InitialPressurePa: %d\n", InitialPressurePa);
-  }
   else
-  printf("No 'param2' setting in configuration file.\n");
+  printf("No 'InitialPressurePa' setting in configuration file.\n");
+
   config_destroy(&cfg);
 
 }
@@ -70,7 +67,6 @@ void Initialize(){
   ConversionWaitTimeMs = 5;
   //OversamplingSetting = 0;
   //Oversample = false;
-
   LastTemperatureTime = -1000;
   LastTemperatureData = 0;
   calibrateBaro();
