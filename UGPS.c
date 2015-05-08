@@ -35,7 +35,9 @@ int pipe1(){
   while(1){
     char gpsbuffer[MAX_BUF];
     int a = read(from_gps_fd,gpsbuffer,MAX_BUF);
-    printf(gpsbuffer);
+    printf("%s\n", gpsbuffer);
+    delay(100);
+    printf("Not yet...\n")
     }
 }
 int socketxx()
