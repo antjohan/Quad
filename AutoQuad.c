@@ -251,7 +251,7 @@ int main(){
 
 
 			int rate = 0; 
-			int pi = 0;
+			float pi = 0;
 			float h = 0;
 			const char *s;
 
@@ -272,9 +272,9 @@ int main(){
 			else
 				printf("No 'param2' setting in configuration file.\n");
 
-			if (config_setting_lookup_int(misc, "pi", &pi))
+			if (config_setting_lookup_float(misc, "pi", &pi))
 			{
-				printf("pi: %d\n", pi);
+				printf("pi: %f\n", pi);
 			}
 			else
 				printf("No 'param2' setting in configuration file.\n");
