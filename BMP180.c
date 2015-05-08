@@ -37,7 +37,7 @@ void initConfig(){
       Oversample = false;
     }
 
-    config_setting_lookup_int(bmp180, "Debug", &debug);
+    config_setting_lookup_bool(bmp180, "Debug", &debug);
     config_setting_lookup_int(bmp180, "OversamplingSetting", &oss);
     config_setting_lookup_int(bmp180, "refreshrate", &refreshrate);
     config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa);
