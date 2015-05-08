@@ -88,6 +88,9 @@ void InitPipes(){
 	if (mkfifo(to_mag_fifo,0666)==-1){
 		printf("sf_to_mag_fifo=error: %s\n",strerror(errno));
 	}
+	if (mkfifo(to_gps_fifo,0666)==-1){
+		printf("sf_to_gps_fifo=error: %s\n",strerror(errno));
+	}
 //initialize all sensors and corresponding fifos
 	//run sensors manually or script them to start!
 
@@ -115,6 +118,13 @@ void InitPipes(){
 		//printf("pipe_from_mag=connected\n");
 	}
 
+	from_gps_fd=open(from_gps_fifo, O_RDONLY);
+	if (from_gps_fd==-1){
+    	printf("pipe_from_gps=error: %s\n",strerror(errno));
+	} else {
+		//printf("pipe_from_gps=connected\n");
+	}
+
  	////from fifos connected
  	//printf("from_fifos=connected!\n");
 
@@ -135,20 +145,28 @@ void InitPipes(){
  	delay(200);
 	to_mag_fd=open(to_mag_fifo, O_WRONLY);
 	if (to_mag_fd==-1){
-    	printf("pipe_to_lsmag=error: %s\n",strerror(errno));
+    	printf("pipe_to_mag=error: %s\n",strerror(errno));
 	} else {
 		printf("pipe_to_mag=connected\n");
 	}
+	delay(200);
+	to_gps_fd=open(to_gps_fifo, O_WRONLY);
+	if (to_gps_fd==-1){
+    	printf("pipe_to_gps=error: %s\n",strerror(errno));
+	} else {
+		printf("pipe_to_gps=connected\n");
+	}
+
 
  	//setting non-block
  	fcntl(from_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(from_ultra_fd, F_SETFL, O_NONBLOCK);
  	fcntl(from_mag_fd, F_SETFL, O_NONBLOCK);
- 	//fcntl(from_gps_fd, F_SETFL, O_NONBLOCK);
+ 	fcntl(from_gps_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_baro_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_ultra_fd, F_SETFL, O_NONBLOCK);
  	fcntl(to_mag_fd, F_SETFL, O_NONBLOCK);
- 	//fcntl(to_gps_fd, F_SETFL, O_NONBLOCK);
+ 	fcntl(to_gps_fd, F_SETFL, O_NONBLOCK);
  	//*/
  	printf("PIPES CONNECTED SUCCESSFULLY\n");
 //initialize flight log
