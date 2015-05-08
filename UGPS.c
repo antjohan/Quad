@@ -20,7 +20,7 @@
 int from_gps_fd;
 
 int main(){
-    socketxy();
+    socketyy();
 }
 int pipe1(){
        char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
@@ -170,12 +170,45 @@ int socketxy()
      printf("something connected?!\n");
 
      while(1){
-        bzero(buffer,1000);
-        if (read(newsockfd,buffer,999)>0){   
+        char buffer[200];
+            if (read(newsockfd,buffer,200)>0){   
             printf("something was read\n");
             printf("%s\n",buffer);     
         }
         delay(100);
      }
      return 0; 
+}
+int socketyy(){
+    /* Sample TCP client */
+   int sockfd,n;
+   char * ip=172.0.0.1;
+   struct sockaddr_in servaddr,cliaddr;
+   char sendline[1000];
+   char recvline[1000];
+
+   sockfd=socket(AF_INET,SOCK_STREAM,0);
+
+   bzero(&servaddr,sizeof(servaddr));
+   servaddr.sin_family = AF_INET;
+   servaddr.sin_addr.s_addr=inet_addr(ip);
+   servaddr.sin_port=23;
+   printf("something attempting to connect\n");
+
+   connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
+   printf("something connected?\n");
+ /*  while (fgets(sendline, 10000,stdin) != NULL)
+   {
+      sendto(sockfd,sendline,strlen(sendline),0,
+             (struct sockaddr *)&servaddr,sizeof(servaddr));
+      n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
+      recvline[n]=0;
+      fputs(recvline,stdout);
+   }*/
+      char BUF[500];
+      while(1){
+        read(sockfd,BUF,sizeof(BUF));
+        printf("something read?\n");
+        printf("%s\n",BUF);
+      }
 }
