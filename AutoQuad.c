@@ -233,11 +233,13 @@ int main(){
 
 								}else if (val == 5){
 									config_t cfg;
+									printf("1");
 									config_setting_t *sensors, *root;
+									printf("2");
 									const char *str;
-
+									printf("3");
 									config_init(&cfg);
-
+									printf("4");
 									/* Read the file. If there is an error, report it and exit. */
 									if(! config_read_file(&cfg, "c.cfg"))
 									{
