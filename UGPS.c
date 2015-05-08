@@ -20,7 +20,7 @@
 int from_gps_fd;
 
 int main(){
-    socketyy();
+    socketxy();
 }
 int pipe1(){
        char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
