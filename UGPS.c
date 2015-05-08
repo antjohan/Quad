@@ -144,7 +144,7 @@ void error(char *msg)
 
 int socketxy()
 {
-    int portno=23;
+    int portno=60;
      int sockfd, newsockfd, clilen;
      char buffer[256];
      struct sockaddr_in serv_addr, cli_addr;
@@ -193,7 +193,7 @@ int socketyy(){
    servaddr.sin_family = AF_INET;
    servaddr.sin_addr.s_addr=inet_addr(ip);
    servaddr.sin_port=23;
-   printf("something attempting to connect\n");
+   printf("attempting to connect\n");
 
    connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
    printf("something connected?\n");
