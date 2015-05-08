@@ -19,7 +19,7 @@ void initConfig(){
   if(! config_read_file(&cfg, "c.cfg"))
   {
     fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
-    config_error_line(&cfg), config_error_text(&cfg));
+      config_error_line(&cfg), config_error_text(&cfg));
     config_destroy(&cfg);
     //return(EXIT_FAILURE);
   }
@@ -31,40 +31,40 @@ void initConfig(){
   if(config_setting_lookup_bool(bmp180, "Oversample", &os))
   if(os){
     Oversample = true;
-      printf("oversampel = true\n");
-  }else{
-    Oversample = false;
+    printf("oversampel = true\n");
+    }else{
+      Oversample = false;
       printf("oversampel = false\n");
-  }
-  else
-  fprintf(stderr, "No 'name' setting in configuration file.\n");
+    }
+    else
+    fprintf(stderr, "No 'name' setting in configuration file.\n");
 
-  if (config_setting_lookup_int(bmp180, "OversamplingSetting", &oss))
-  {
-    OversamplingSetting = (uint8_t)oss;
-    printf("OversamplingSetting: %d\n", OversamplingSetting);
-  }
-  else
-  printf("No 'OversamplingSetting' setting in configuration file.\n");
+    if (config_setting_lookup_int(bmp180, "OversamplingSetting", &oss))
+    {
+      OversamplingSetting = (uint8_t)oss;
+      printf("OversamplingSetting: %d\n", OversamplingSetting);
+    }
+    else
+    printf("No 'OversamplingSetting' setting in configuration file.\n");
 
 
-  if (config_setting_lookup_int(bmp180, "refreshrate", &refreshrate))
+    if (config_setting_lookup_int(bmp180, "refreshrate", &refreshrate))
     printf("refreshrate: %d\n", refreshrate);
-  else
-  printf("No 'refreshrate' setting in configuration file.\n");
+    else
+    printf("No 'refreshrate' setting in configuration file.\n");
 
 
-  if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
+    if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
     printf("InitialPressurePa: %d\n", InitialPressurePa);
-  else
-  printf("No 'InitialPressurePa' setting in configuration file.\n");
+    else
+    printf("No 'InitialPressurePa' setting in configuration file.\n");
 
-  config_destroy(&cfg);
+    config_destroy(&cfg);
 
-}
-void Initialize(){
-  wiringPiSetupSys();
-  ConversionWaitTimeMs = 5;
+  }
+  void Initialize(){
+    wiringPiSetupSys();
+    ConversionWaitTimeMs = 5;
   //OversamplingSetting = 0;
   //Oversample = false;
   LastTemperatureTime = -1000;
@@ -102,22 +102,46 @@ void connectFifos(){
 
  }
  void calibrateBaro(){
-   BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
-   SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
-   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
-   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
-   Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
-   Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
-   Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
-   Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
-   Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
-   Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
-   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
-   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
-   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
- }
 
- void sample(){
+  config_t cfg;
+  config_setting_t *AC1;
+  const char *str;
+  config_init(&cfg);
+
+
+  if(! config_read_file(&cfg, "c.cfg"))
+  {
+    fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
+      config_error_line(&cfg), config_error_text(&cfg));
+    config_destroy(&cfg);
+    //return(EXIT_FAILURE);
+  }
+  root = config_root_setting(&cfg);
+  bmp180 = config_lookup(&cfg, "BMP180");
+
+
+  BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
+  SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
+  Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
+  Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
+  Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
+  Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
+  Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
+  Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
+  Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
+  Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
+  Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
+  Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
+  Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
+
+  AC1 = config_lookup(&cfg, "BMP180.Calibration_AC1");
+  config_setting_set_int(AC1, Calibration_AC1);
+  config_destroy(&cfg);
+
+
+}
+
+void sample(){
   while(sampling==1){
     checkPipe(); 
     AbsoluteAltitude=GetAltitude(InitialPressurePa);
