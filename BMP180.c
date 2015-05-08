@@ -159,7 +159,7 @@ void connectFifos(){
   MC = config_lookup(&cfg, "BMP180.Calibration_MC");
   MD = config_lookup(&cfg, "BMP180.Calibration_MD");
 
-  config_setting_set_int(AC1, (int)Calibration_AC1);
+  config_setting_set_int(AC1, Calibration_AC1);
   config_setting_set_int(AC2, Calibration_AC2);
   config_setting_set_int(AC3, Calibration_AC3);
   config_setting_set_int(AC4, Calibration_AC4);
