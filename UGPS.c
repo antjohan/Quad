@@ -172,7 +172,7 @@ int socketxy()
      while(1){
         bzero(buffer,256);
         n = read(newsockfd,buffer,255);   
-        printf(n);     
+        printf("%s\n",n);     
      }
      return 0; 
 }
