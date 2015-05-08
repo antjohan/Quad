@@ -232,8 +232,10 @@ int main(){
 
 
 								}else if (val == 5){
+
+									printf("ewfewf");
 									config_t cfg;
-									printf("1");
+									printf("fr");
 									config_setting_t *sensors, *root;
 									printf("2");
 									const char *str;
