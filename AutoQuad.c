@@ -232,7 +232,7 @@ int main(){
 
 
 								}else if (val == 5){
-									/*
+									
 									printf("ewfewf");
 									config_t cfg;
 									printf("fr");
@@ -242,6 +242,7 @@ int main(){
 									printf("3");
 									config_init(&cfg);
 									printf("4");
+									/*
 
 									if(! config_read_file(&cfg, "c.cfg"))
 									{
