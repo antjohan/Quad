@@ -62,7 +62,7 @@ void connectFifos(){
     printf("u_make_from_gps=error: %s\n",strerror(errno));
   } 
   from_gps_fd=open(from_gps_fifo, O_WRONLY);
-  if (from_ultra_fd==-1){ 
+  if (from_gps_fd==-1){ 
       printf("pipe_from_gps=error: %s\n",strerror(errno));
   } else {
       printf("pipe_from_gps=connected\n");
