@@ -8,6 +8,7 @@
 //#include "ultra.c"
 #include "SensorFusion.c"
 #include <libconfig.h>
+#include <conio.h>
 
 /*
 Pinout FlightController -> Servo_Num -> Raspberry Pi
@@ -192,7 +193,7 @@ int main(){
 						printf("Magnetometer heading(deg): %lf\n", getHeading());
 						printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
 					} else if (recdataprompt==6){
-						while(1){
+						while (!kbhit()){
 							double uh=getUHeight();
 							double bh=getBHeight();
 							double h=getHeight(uh,bh);
