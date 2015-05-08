@@ -49,6 +49,8 @@ void printOut(){
     printf("offset_x: %d\n", offset_x);
     printf("offset_y: %d\n", offset_y);
     printf("offset_z: %d\n", offset_z);
+    printf("\n");
+    printf("refreshrate: %d\n", refreshrate);
     printf("---------------------------------\n\n");
   }
 }
