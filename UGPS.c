@@ -25,6 +25,7 @@ char * teststring="2015/04/17 14:36:29.400   57.688079292   11.975502620    90.0
 double data[13];
 
 int main(){
+    connectFifos();
     initialize();
     sample();
 }
