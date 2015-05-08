@@ -104,7 +104,7 @@ void connectFifos(){
  void calibrateBaro(){
 
   config_t cfg;
-  config_setting_t *AC1;
+  config_setting_t *AC2;
   const char *str;
   config_init(&cfg);
 
