@@ -242,7 +242,7 @@ int main(){
 									printf("3");
 									config_init(&cfg);
 									printf("4");
-									/*
+
 
 									if(! config_read_file(&cfg, "c.cfg"))
 									{
@@ -252,6 +252,7 @@ int main(){
 										return(EXIT_FAILURE);
 									}
 									printf("1");
+									/*
 									root = config_root_setting(&cfg);
 									printf("2");
 									sensors = config_setting_get_member(root, "Sensors");
