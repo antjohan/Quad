@@ -42,6 +42,7 @@ int sample(){
     while(1){
         char buf [300];
         char * str;
+        printf("gps-loop\n");
         if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
                 strcpy(str, buf);
                 char * end;
