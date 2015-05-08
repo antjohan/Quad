@@ -29,8 +29,8 @@ void initConfig(){
   int os = 0;
   int oss = 0;
   int debug = 5;
+
   config_setting_lookup_bool(bmp180, "Oversample", &os);
-  printf("%d\n", os);
   if(os){
     Oversample = true;
     }else{
@@ -42,8 +42,6 @@ void initConfig(){
     config_setting_lookup_int(bmp180, "refreshrate", &refreshrate);
     config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa);
     OversamplingSetting = (uint8_t)oss;
-    printf("%d\n",debug);
-
 
     if(debug){
       printf("OversamplingSetting: %d\n", OversamplingSetting);
