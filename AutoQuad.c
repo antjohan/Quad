@@ -106,6 +106,8 @@ int main(){
 					int speed;
 					system("clear");
 					printf("---------------------------------\n");
+					printf("Servo Menu\n");
+					printf("---------------------------------\n");					
 					printf("[1] Set Aileron\n");
 					printf("[2] Set Elevation\n");
 					printf("[3] Set Throttle\n");
@@ -126,6 +128,8 @@ int main(){
 					int test;
 					system("clear");
 					printf("---------------------------------\n");
+					printf("Test Menu\n");
+					printf("---------------------------------\n");					
 					printf("[1]	ping...\n");
 					printf("[2]	recieve data\n");
 					printf("[3]	Testa hoverToStep\n");
@@ -143,6 +147,8 @@ int main(){
 				while (pingprompt>=0){
 					system("clear");
 					printf("---------------------------------\n");
+					printf("Ping Menu\n");
+					printf("---------------------------------\n");					
 					printf("ping to see if program->sensor communication (pipe) is working\n");
 					printf("[1]	Barometer\n");
 					printf("[2]	Ultrasonic sensor\n");
