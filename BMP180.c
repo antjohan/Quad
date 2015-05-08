@@ -21,15 +21,20 @@ void initConfig(){
     fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
     config_error_line(&cfg), config_error_text(&cfg));
     config_destroy(&cfg);
-    return(EXIT_FAILURE);
+    //return(EXIT_FAILURE);
   }
   root = config_root_setting(&cfg);
   bmp180 = config_lookup(&cfg, "BMP180");
 
-
-  if(config_setting_lookup_bool(bmp180, "Oversample", &Oversample))
-  if(!oversample)
-  printf("oversampel = false");
+  int os = 0;
+  if(config_setting_lookup_bool(bmp180, "Oversample", &os))
+  if(os){
+    Oversample = true;
+      printf("oversampel = true");
+  }else{
+    Oversample = false
+      printf("oversampel = false");
+  }
   else
   fprintf(stderr, "No 'name' setting in configuration file.\n");
 
