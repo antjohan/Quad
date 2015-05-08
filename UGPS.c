@@ -44,7 +44,9 @@ set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no pa
 while(1){
     char buf [300];
     if(read (fd, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
+        printf("lalala\n");
         printf("%s\n",buf);
+
      }   
 }
 
