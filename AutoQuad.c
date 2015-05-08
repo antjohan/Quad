@@ -233,7 +233,7 @@ int main(){
 
 								}else if (val == 5){
 									config_t cfg;
-									config_setting_t *setting;
+									config_setting_t *sensors, *root;
 									const char *str;
 
 									config_init(&cfg);
@@ -247,6 +247,11 @@ int main(){
 										return(EXIT_FAILURE);
 									}
 									printf("YAAY");
+									root = config_root_setting(&cfg);
+									sensors = config_setting_get_member(root, "Sensors");
+									int rate = 0; 
+									config_setting_lookup_int(sensors, "RefresRate", rate);
+									printf("%d",rate);
 
 
 									}else if (val == 6){
