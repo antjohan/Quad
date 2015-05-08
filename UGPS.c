@@ -15,7 +15,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define ADDRESS "GPSsocket"
+#define ADDRESS "/home/pi/tmp/GPSsocket"
 
 int main()
 {
@@ -48,6 +48,8 @@ int main()
      */
     saun.sun_family = AF_UNIX;
     strcpy(saun.sun_path, ADDRESS);
+    printf("family: %s\n",saun.sun_family);
+    printf("path: s\n",saun.sun_path);
 
     /*
      * Try to bind the address to the socket.  We
@@ -61,7 +63,6 @@ int main()
      printf("3\n");
     unlink(ADDRESS);
     len = sizeof(saun.sun_family) + strlen(saun.sun_path);
-    printf("%s\n",&saun);
     if (bind(s, &saun, len) < 0) {
         perror("server: bind");
         exit(1);
