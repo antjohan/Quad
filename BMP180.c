@@ -28,36 +28,32 @@ void initConfig(){
 
   int os = 0;
   int oss = 0;
-  if(config_setting_lookup_bool(bmp180, "Oversample", &os))
+  int debug = 0;
+  config_setting_lookup_bool(bmp180, "Oversample", &os);
   if(os){
     Oversample = true;
-    printf("oversampel = true\n");
     }else{
       Oversample = false;
-      printf("oversampel = false\n");
     }
-    else
-    fprintf(stderr, "No 'name' setting in configuration file.\n");
 
-    if (config_setting_lookup_int(bmp180, "OversamplingSetting", &oss))
-    {
-      OversamplingSetting = (uint8_t)oss;
+    config_setting_lookup_int(bmp180, "Debug", &debug);
+    config_setting_lookup_int(bmp180, "OversamplingSetting", &oss);
+    config_setting_lookup_int(bmp180, "refreshrate", &refreshrate);
+    config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa);
+    OversamplingSetting = (uint8_t)oss;
+
+
+    if(debug){
       printf("OversamplingSetting: %d\n", OversamplingSetting);
+      printf("refreshrate: %d\n", refreshrate);
+      printf("InitialPressurePa: %d\n", InitialPressurePa);
+      if(os)
+      printf("Oversampel = true");
+      else
+      printf("Oversampel = false");
     }
-    else
-    printf("No 'OversamplingSetting' setting in configuration file.\n");
 
 
-    if (config_setting_lookup_int(bmp180, "refreshrate", &refreshrate))
-    printf("refreshrate: %d\n", refreshrate);
-    else
-    printf("No 'refreshrate' setting in configuration file.\n");
-
-
-    if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
-    printf("InitialPressurePa: %d\n", InitialPressurePa);
-    else
-    printf("No 'InitialPressurePa' setting in configuration file.\n");
 
     config_destroy(&cfg);
 
