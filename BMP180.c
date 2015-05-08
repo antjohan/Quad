@@ -6,7 +6,7 @@ int main(){
   initConfig();
   Initialize();
   connectFifos();
-  debug();
+  printOut();
   sample();
 }
 
@@ -46,13 +46,10 @@ void initConfig(){
 
   }
 
-  void debug(){
-
-
+  void printOut(){
     if(debug){
 
-      printf("----BMP180 Configuration data----\n");
-
+      printf("\n----BMP180 Configuration data----\n");
       printf("OversamplingSetting: %d\n", OversamplingSetting);
       printf("refreshrate: %d\n", refreshrate);
       printf("InitialPressurePa: %d\n", InitialPressurePa);
