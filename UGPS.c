@@ -171,8 +171,10 @@ int socketxy()
 
      while(1){
         bzero(buffer,256);
-        n = read(newsockfd,buffer,255);   
-        printf("%s\n",n);     
+        if (read(newsockfd,buffer,255)>0){   
+            printf("%s\n",buffer);     
+        }
+        delay(100);
      }
      return 0; 
 }
