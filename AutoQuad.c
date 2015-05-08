@@ -248,10 +248,10 @@ int main(){
 			root = config_root_setting(&cfg);
 			sensors = config_setting_get_member(root, "Sensors");
 			int rate = 0; 
-			const char *str;
+			const char *s;
 
-			if(config_lookup_string(&cfg, "name", &str))
-				printf("name: %s\n\n", str);
+			if(config_lookup_string(&cfg, "name", &s))
+				printf("name: %s\n\n", s);
 			else
 				fprintf(stderr, "No 'name' setting in configuration file.\n");
 /*
