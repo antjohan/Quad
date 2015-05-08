@@ -170,8 +170,8 @@ int socketxy()
      printf("something connected?!\n");
 
      while(1){
-        bzero(buffer,256);
-        if (read(newsockfd,buffer,255)>0){   
+        bzero(buffer,1000);
+        if (read(newsockfd,buffer,999)>0){   
             printf("%s\n",buffer);     
         }
         delay(100);
