@@ -9,59 +9,103 @@
  #include <stdbool.h>
  #include <math.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
-
-#define ADDRESS "/home/pi/tmp/GPSsocket"
-#define MAX_BUF 500
-int from_gps_fd;
-
-int main(){
-    serialread();
-
-
-    }
-
-
 #include <termios.h>
 
-int serialread(){
 char *portname = "/dev/ttyGPS";
- int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
-if (fd < 0)
-{
-       // error_message ("error %d opening %s: %s", errno, portname, strerror (errno));
-        return;
+int fd_rtk;
+int from_gps_fd;
+int to_gps_fd;
+char * teststring="2015/04/17 14:36:29.400   57.688079292   11.975502620    90.0067   5   5   3.3981   3.6186   7.1490  -1.5006   1.2235   1.5307   0.00    0.0";
+int main(){
+    //initialize();
+    //sample();
+    char * end;
+    double d;
+    for (int i =0;i<10;++i){
+        d = strtod(teststring, &end);
+        printf("Value%d=%lf\n",i,d);
+        d=end;
+    }
 }
 
-set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
+int initialize(){
 
+    fd_rtk = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
+    set_interface_attribs (fd_rtk, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
+    fcntl(fd_rtk, F_SETFL, O_NONBLOCK);
 
-
-while(1){
-    char buf [300];
-    if(read (fd, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
-        printf("lalala\n");
-        printf("%s\n",buf);
-
-     }   
 }
 
+int sample(){
+    double date,time,
+    while(1){
+        char buf [300];
+        if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
+            printf("%s\n",buf);
 
+         }   
+         delay(50);
+    }
+}
+
+void connectFifos(){
+   char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
+   char* to_gps_fifo = "/home/pi/tmp/to_gps_fifo";
+  //delete in case it already exists
+   unlink(from_gps_fifo);
+   delay(200);
+  if (mkfifo(from_gps_fifo,0666)==-1){
+    printf("u_make_from_gps=error: %s\n",strerror(errno));
+  } 
+  from_gps_fd=open(from_gps_fifo, O_WRONLY);
+  if (from_ultra_fd==-1){ 
+      printf("pipe_from_gps=error: %s\n",strerror(errno));
+  } else {
+      printf("pipe_from_gps=connected\n");
+  }
+
+
+  to_gps_fd=open(to_gps_fifo, O_RDONLY);
+  if (to_gps_fd==-1){
+       printf("pipe_to_gps=error: %s\n",strerror(errno));
+  } else {
+      //printf("pipe_to_gps=connected\n");
+  }
+
+}
+
+void writeOutput(){
+   char WriteBuf[56];
+   sprintf(WriteBuf,"%ld",currentHeight-offset);
+   write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
+}
+
+void checkPipe(){
+   char buffer[10];
+
+   char str1[10];
+   char str2[10];
+
+   strcpy(str1,"ping");
+   strcpy(str2, "read");
+
+      if (read(to_ultra_fd, buffer, 10)>0){
+          if (strcmp(buffer,str1)==0){
+            printf("GPS-process sends his regards\n");
+          } else if(strcmp(buffer,str2)==0){
+            writeOutput();
+          }
+      }
 }
 
 int set_interface_attribs (int fd, int speed, int parity)
 {
         struct termios tty;
         memset (&tty, 0, sizeof tty);
-        if (tcgetattr (fd, &tty) != 0)
-        {
-             //   error_message ("error %d from tcgetattr", errno);
-                return -1;
-        }
 
         cfsetospeed (&tty, speed);
         cfsetispeed (&tty, speed);
@@ -75,21 +119,12 @@ int set_interface_attribs (int fd, int speed, int parity)
         tty.c_oflag = 0;                // no remapping, no delays
         tty.c_cc[VMIN]  = 0;            // read doesn't block
         tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
-
         tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
-
         tty.c_cflag |= (CLOCAL | CREAD);// ignore modem controls,
                                         // enable reading
         tty.c_cflag &= ~(PARENB | PARODD);      // shut off parity
         tty.c_cflag |= parity;
-        //tty.c_cflag &= ~CSTOPB;
-      //  tty.c_cflag &= ~CRTSCTS;
 
-        if (tcsetattr (fd, TCSANOW, &tty) != 0)
-        {
-                //error_message ("error %d from tcsetattr", errno);
-                return -1;
-        }
         return 0;
 }
 
