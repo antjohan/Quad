@@ -255,7 +255,7 @@ int main(){
 			else
 				fprintf(stderr, "No 'name' setting in configuration file.\n");
 
-			if (config_lookup_int(&cfg, "enabled", &rate))
+			if (config_lookup_int(&cfg, "rate", &rate))
 				printf("rate: %d\n", &rate);
 			else 				
 				fprintf(stderr, "No 'rate' setting in configuration file.\n");
