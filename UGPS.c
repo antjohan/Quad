@@ -20,9 +20,9 @@
 int from_gps_fd;
 
 int main(){
-    pipe();
+    pipe1();
 }
-int pipe(){
+int pipe1(){
        char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
   //delete in case it already exists
    unlink(from_gps_fifo);
