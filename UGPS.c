@@ -29,7 +29,7 @@ int main(){
 #include <termios.h>
 
 int serialread(){
-char *portname = "/dev/ttyGPS"
+char *portname = "/dev/ttyGPS";
  int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
 if (fd < 0)
 {
@@ -82,8 +82,8 @@ int set_interface_attribs (int fd, int speed, int parity)
                                         // enable reading
         tty.c_cflag &= ~(PARENB | PARODD);      // shut off parity
         tty.c_cflag |= parity;
-        tty.c_cflag &= ~CSTOPB;
-        tty.c_cflag &= ~CRTSCTS;
+        //tty.c_cflag &= ~CSTOPB;
+      //  tty.c_cflag &= ~CRTSCTS;
 
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
         {
