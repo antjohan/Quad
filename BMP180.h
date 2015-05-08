@@ -35,11 +35,12 @@
  #define BMP180_Mode_UltraHighResolution 3
  #define MAX_BUF 56
 
-long InitialPressurePa=101300;
+long InitialPressurePa;
 int from_baro_fd;
 int to_baro_fd;
 float AbsoluteAltitude;
 int sampling=1;
+int refreshrate;
 
  uint8_t OversamplingSetting;
  bool Oversample;
@@ -63,6 +64,7 @@ int sampling=1;
 
 //Functions
 void Initialize();
+void initConfig();
 void connectFifos();
 void calibrateBaro();
 void sample();

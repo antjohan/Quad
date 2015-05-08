@@ -1,13 +1,66 @@
 #include "BMP180.h"
 
 int main(){
+  initConfig();
   Initialize();
+  connectFifos();
+  sample();
+}
+
+void initConfig(){
+  config_t cfg;
+  config_setting_t *bmp180, *root;
+  const char *str;
+  config_init(&cfg);
+
+
+  if(! config_read_file(&cfg, "c.cfg"))
+  {
+    fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
+    config_error_line(&cfg), config_error_text(&cfg));
+    config_destroy(&cfg);
+    return(EXIT_FAILURE);
+  }
+  root = config_root_setting(&cfg);
+  bmp180 = config_lookup(&cfg, "BMP180");
+
+
+  if(config_lookup_bool(bmp180, "Oversample", &Oversample))
+  if(!oversample)
+  printf("oversampel = false");
+  else
+  fprintf(stderr, "No 'name' setting in configuration file.\n");
+
+  if (config_setting_lookup_int(bmp180, "OversamplingSetting", &OversamplingSetting))
+  {
+    printf("OversamplingSetting: %d\n", OversamplingSetting);
+  }
+  else
+  printf("No 'param2' setting in configuration file.\n");
+
+
+  if (config_setting_lookup_int(bmp180, "refreshrate", &refreshrate))
+  {
+    printf("refreshrate: %d\n", refreshrate);
+  }
+  else
+  printf("No 'param2' setting in configuration file.\n");
+
+
+  if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
+  {
+    printf("InitialPressurePa: %d\n", InitialPressurePa);
+  }
+  else
+  printf("No 'param2' setting in configuration file.\n");
+  config_destroy(&cfg);
+
 }
 void Initialize(){
   wiringPiSetupSys();
   ConversionWaitTimeMs = 5;
-  OversamplingSetting = 0;
-  Oversample = false;
+  //OversamplingSetting = 0;
+  //Oversample = false;
 
   LastTemperatureTime = -1000;
   LastTemperatureData = 0;
@@ -15,16 +68,14 @@ void Initialize(){
 
   AcceptableTemperatureLatencyForPressure = 1000;
   //InitialPressurePa=GetPressure();
-  connectFifos();
-  sample();
 }
 void connectFifos(){
      //open fifo
-  char* from_baro_fifo = "/home/pi/tmp/from_baro_fifo";
-  char* to_baro_fifo = "/home/pi/tmp/to_baro_fifo";
+     char* from_baro_fifo = "/home/pi/tmp/from_baro_fifo";
+     char* to_baro_fifo = "/home/pi/tmp/to_baro_fifo";
   //delete in case it already exists
-    unlink(from_baro_fifo);
-    delay(200);
+  unlink(from_baro_fifo);
+  delay(200);
   if (mkfifo(from_baro_fifo,0666)==-1){
     printf("b_make_from_baro=error: %s\n",strerror(errno));
   }
@@ -32,34 +83,34 @@ void connectFifos(){
   from_baro_fd=open(from_baro_fifo, O_WRONLY);
   if (from_baro_fd==-1){
     printf("pipe_from_baro=error: %s\n",strerror(errno));
-  } else {
-    printf("pipe_from_baro=connected\n");
-  }
+    } else {
+      printf("pipe_from_baro=connected\n");
+    }
 
-  delay(2000);
-  to_baro_fd=open(to_baro_fifo, O_RDONLY);
-  if (to_baro_fd==-1){
-    printf("pipe_to_baro=error: %s\n",strerror(errno));
-  } else {
+    delay(2000);
+    to_baro_fd=open(to_baro_fifo, O_RDONLY);
+    if (to_baro_fd==-1){
+      printf("pipe_to_baro=error: %s\n",strerror(errno));
+      } else {
      // printf("pipe_to_baro=connected\n");
-  }
+   }
 
-}
-void calibrateBaro(){
+ }
+ void calibrateBaro(){
    BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
- SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
-  Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
-  Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
-  Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
-  Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
-  Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
-  Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
-  Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
-  Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
-  Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
-  Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
-  Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
-}
+   SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
+   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
+   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
+   Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
+   Calibration_AC4 = (unsigned short)((Read(0xB0) <<8) | Read(0xB1));
+   Calibration_AC5 = (unsigned short)((Read(0xB2) <<8) | Read(0xB3));
+   Calibration_AC6 = (unsigned short)((Read(0xB4) <<8) | Read(0xB5));
+   Calibration_B1 = (short)((Read(0xB6) <<8) | Read(0xB7));
+   Calibration_B2 = (short)((Read(0xB8) <<8) | Read(0xB9));
+   Calibration_MB = (short)((Read(0xBA) <<8) | Read(0xBB)); 
+   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
+   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
+ }
 
  void sample(){
   while(sampling==1){
@@ -67,62 +118,62 @@ void calibrateBaro(){
     AbsoluteAltitude=GetAltitude(InitialPressurePa);
     //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
   }
- }
+}
 
-  void writeOutput(){
-    char WriteBuf[MAX_BUF];
-    sprintf(WriteBuf,"%f",AbsoluteAltitude);
-    write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
-  }
- void checkPipe(){
-   char buffer[10];
-   char str1[10];
-   char str2[10];
+void writeOutput(){
+  char WriteBuf[MAX_BUF];
+  sprintf(WriteBuf,"%f",AbsoluteAltitude);
+  write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
+}
+void checkPipe(){
+ char buffer[10];
+ char str1[10];
+ char str2[10];
 
-   strcpy(str1,"ping");
-   strcpy(str2,"read");
+ strcpy(str1,"ping");
+ strcpy(str2,"read");
 
-   if (read(to_baro_fd, buffer, 10)>0){
+ if (read(to_baro_fd, buffer, 10)>0){
        if (strcmp(buffer,str1)==0){ //ping
          printf("Barometer says hi! :D\n");
        } else if(strcmp(buffer,str2)==0) { //read
-          writeOutput();
-       }
-   }
-}
-
-void Write(int address, int data){
-  wiringPiI2CWriteReg8(BMP180_Sensor,address, data);  
-}
-
-uint8_t Read(int address)
-{
-  return wiringPiI2CReadReg8(BMP180_Sensor, address);
-}
-
-uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
-  OversamplingSetting = sampleResolution;
-  Oversample = oversample;
-  switch (sampleResolution)
-  {
-    case 0:
-    ConversionWaitTimeMs = 5;
-    break;
-    case 1:
-    ConversionWaitTimeMs = 8;
-    break;
-    case 2:
-    ConversionWaitTimeMs = 14;
-    break;
-    case 3:
-    ConversionWaitTimeMs = 26;
-    break;
-    default:
-    return ErrorCode_1_Num;
+        writeOutput();
+      }
+    }
   }
-}
 
-int GetUncompensatedTemperature(){
+  void Write(int address, int data){
+    wiringPiI2CWriteReg8(BMP180_Sensor,address, data);  
+  }
+
+  uint8_t Read(int address)
+  {
+    return wiringPiI2CReadReg8(BMP180_Sensor, address);
+  }
+
+  uint8_t SetResolution(uint8_t sampleResolution, bool oversample){
+    OversamplingSetting = sampleResolution;
+    Oversample = oversample;
+    switch (sampleResolution)
+    {
+      case 0:
+      ConversionWaitTimeMs = 5;
+      break;
+      case 1:
+      ConversionWaitTimeMs = 8;
+      break;
+      case 2:
+      ConversionWaitTimeMs = 14;
+      break;
+      case 3:
+      ConversionWaitTimeMs = 26;
+      break;
+      default:
+      return ErrorCode_1_Num;
+    }
+  }
+
+  int GetUncompensatedTemperature(){
     // Instruct device to perform a conversion.
     Write(Reg_Control, ControlInstruction_MeasureTemperature);
     // Wait for the conversion to complete.
