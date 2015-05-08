@@ -232,7 +232,7 @@ int main(){
 
 
 								}else if (val == 5){
-
+									/*
 									printf("ewfewf");
 									config_t cfg;
 									printf("fr");
@@ -242,7 +242,7 @@ int main(){
 									printf("3");
 									config_init(&cfg);
 									printf("4");
-									/* Read the file. If there is an error, report it and exit. */
+
 									if(! config_read_file(&cfg, "c.cfg"))
 									{
 										fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
@@ -260,6 +260,7 @@ int main(){
 									config_setting_lookup_int(sensors, "RefresRate", &rate);
 									printf("5");
 									printf("%d",rate);
+									*/
 									printf("6");
 
 
