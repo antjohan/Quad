@@ -47,11 +47,11 @@ void initConfig(){
       printf("OversamplingSetting: %d\n", OversamplingSetting);
       printf("refreshrate: %d\n", refreshrate);
       printf("InitialPressurePa: %d\n", InitialPressurePa);
-      printf("Oversampel %d", os);
+      printf("Oversampel %d\n", os);
       if(os)
-      printf("Oversampel = true");
+      printf("Oversampel = true\n");
       else
-      printf("Oversampel = false");
+      printf("Oversampel = false\n");
     }
 
 
