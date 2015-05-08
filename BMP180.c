@@ -116,8 +116,6 @@ void connectFifos(){
     config_destroy(&cfg);
     //return(EXIT_FAILURE);
   }
-  root = config_root_setting(&cfg);
-  bmp180 = config_lookup(&cfg, "BMP180");
 
 
   BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
