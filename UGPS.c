@@ -61,7 +61,7 @@ int main()
      printf("3\n");
     unlink(ADDRESS);
     len = sizeof(saun.sun_family) + strlen(saun.sun_path);
-
+    printf("%s\n",&saun);
     if (bind(s, &saun, len) < 0) {
         perror("server: bind");
         exit(1);
