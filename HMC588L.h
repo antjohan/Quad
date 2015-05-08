@@ -30,17 +30,19 @@
 int sampling=1;
 int HMC5883L_Sensor;
 double heading;
+int debug;
+int refreshrate;
 
 
-
+/*
 int offset_x=47;
 int offset_y=-168;
 int offset_z=123;
-/*
-int offset_x=0;
-int offset_y=0;
-int offset_z=0;
 */
+
+int offset_x;
+int offset_y;
+int offset_z;
 
 char* to_mag_fifo = "/home/pi/tmp/to_mag_fifo";
 char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
@@ -49,6 +51,8 @@ int from_mag_fd;
 
    //functions
 void HMC5883L_init();
+void config_init();
+void printOut();
 void connectFifos();
 void writeOutput();
 void checkPipe();

@@ -3,14 +3,14 @@
 
 
 int main(){
-  initConfig();
+  config_init();
   Initialize();
   connectFifos();
   printOut();
   sample();
 }
 
-void initConfig(){
+void config_init(){
   config_t cfg;
   config_setting_t *bmp180, *root;
   const char *str;
@@ -72,7 +72,7 @@ void initConfig(){
       printf("Calibration_MC: %d\n", Calibration_MC);
       printf("Calibration_MD: %d\n", Calibration_MD);
 
-      printf("---------------------------------\n");
+      printf("---------------------------------\n\n");
 
     }
 
