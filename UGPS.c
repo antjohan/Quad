@@ -33,7 +33,7 @@ char *portname = "/dev/ttyGPS";
  int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
 if (fd < 0)
 {
-        error_message ("error %d opening %s: %s", errno, portname, strerror (errno));
+       // error_message ("error %d opening %s: %s", errno, portname, strerror (errno));
         return;
 }
 
@@ -59,7 +59,7 @@ int set_interface_attribs (int fd, int speed, int parity)
         memset (&tty, 0, sizeof tty);
         if (tcgetattr (fd, &tty) != 0)
         {
-                error_message ("error %d from tcgetattr", errno);
+             //   error_message ("error %d from tcgetattr", errno);
                 return -1;
         }
 
@@ -87,7 +87,7 @@ int set_interface_attribs (int fd, int speed, int parity)
 
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
         {
-                error_message ("error %d from tcsetattr", errno);
+                //error_message ("error %d from tcsetattr", errno);
                 return -1;
         }
         return 0;
