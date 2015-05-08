@@ -27,7 +27,7 @@ void initConfig(){
   bmp180 = config_lookup(&cfg, "BMP180");
 
 
-  if(config_lookup_bool(bmp180, "Oversample", &Oversample))
+  if(config_setting_lookup_bool(bmp180, "Oversample", &Oversample))
   if(!oversample)
   printf("oversampel = false");
   else
@@ -49,7 +49,7 @@ void initConfig(){
   printf("No 'param2' setting in configuration file.\n");
 
 
-  if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
+  if (config_setting_lookup_int64(bmp180, "InitialPressurePa", &InitialPressurePa))
   {
     printf("InitialPressurePa: %d\n", InitialPressurePa);
   }
