@@ -14,6 +14,8 @@
 #include <errno.h>
 #include <string.h>
 #include <termios.h>
+#include <libconfig.h>
+
 
 char *portname = "/dev/ttyGPS";
 int fd_rtk;
