@@ -254,6 +254,12 @@ int main(){
 				printf("name: %s\n\n", s);
 			else
 				fprintf(stderr, "No 'name' setting in configuration file.\n");
+
+			if (config_lookup_int(&cfg, "enabled", &rate))
+				printf("rate: %d\n", &rate);
+			else 				
+				fprintf(stderr, "No 'rate' setting in configuration file.\n");
+
 /*
 			config_setting_lookup_int(sensors, "RefresRate", &rate);
 			printf("5");
