@@ -41,6 +41,7 @@ int to_baro_fd;
 float AbsoluteAltitude;
 int sampling=1;
 int refreshrate;
+int debug;
 
  uint8_t OversamplingSetting;
  bool Oversample;
@@ -65,6 +66,7 @@ int refreshrate;
 //Functions
 void Initialize();
 void initConfig();
+void debug();
 void connectFifos();
 void calibrateBaro();
 void sample();

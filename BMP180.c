@@ -6,7 +6,7 @@ int main(){
   initConfig();
   Initialize();
   connectFifos();
-  print();
+  debug();
   sample();
 }
 
@@ -29,8 +29,6 @@ void initConfig(){
 
   int os = 0;
   int oss = 0;
-  int debug = 5;
-
   config_setting_lookup_bool(bmp180, "Oversample", &os);
   if(os){
     Oversample = true;
@@ -48,12 +46,12 @@ void initConfig(){
 
   }
 
-  void print(){
+  void debug(){
 
 
     if(debug){
 
-      printf("----BMP180 Configuration data----\n")
+      printf("----BMP180 Configuration data----\n");
 
       printf("OversamplingSetting: %d\n", OversamplingSetting);
       printf("refreshrate: %d\n", refreshrate);
