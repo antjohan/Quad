@@ -16,8 +16,29 @@
 #include <string.h>
 
 #define ADDRESS "/home/pi/tmp/GPSsocket"
+#define MAX_BUF 500
+int from_gps_fd;
 
-int main()
+int main(){
+    pipe();
+}
+int pipe(){
+       char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
+  //delete in case it already exists
+   unlink(from_gps_fifo);
+   delay(200);
+  if (mkfifo(from_gps_fifo,0666)==-1){
+    printf("u_make_from_gps=error: %s\n",strerror(errno));
+  } 
+  from_gps_fd=open(from_gps_fifo, O_RDONLY);
+
+  while(1){
+    char gpsbuffer[MAX_BUF];
+    int a = read(from_gps_fd,gpsbuffer,MAX_BUF);
+    printf(gpsbuffer);
+    }
+}
+int socket()
 {
 	     printf("Program running\n");
     char c;
