@@ -20,7 +20,7 @@
 int from_gps_fd;
 
 int main(){
-    socketyy();
+    socketxy();
 }
 int pipe1(){
        char* from_gps_fifo = "/home/pi/tmp/from_gps_fifo";
@@ -192,7 +192,7 @@ int socketyy(){
    bzero(&servaddr,sizeof(servaddr));
    servaddr.sin_family = AF_INET;
    servaddr.sin_addr.s_addr=inet_addr(ip);
-   servaddr.sin_port=23;
+   servaddr.sin_port=60;
    printf("attempting to connect\n");
 
    connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
