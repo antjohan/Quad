@@ -246,6 +246,7 @@ int main(){
 										config_destroy(&cfg);
 										return(EXIT_FAILURE);
 									}
+									printf("YAAY");
 
 
 									}else if (val == 6){
