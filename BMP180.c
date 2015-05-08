@@ -3,14 +3,14 @@
 
 
 int main(){
-  config_init();
+  cfg_init();
   Initialize();
   connectFifos();
   printOut();
   sample();
 }
 
-void config_init(){
+void cfg_init(){
   config_t cfg;
   config_setting_t *bmp180, *root;
   const char *str;

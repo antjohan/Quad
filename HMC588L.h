@@ -51,7 +51,7 @@ int from_mag_fd;
 
    //functions
 void HMC5883L_init();
-void config_init();
+void cfg_init();
 void printOut();
 void connectFifos();
 void writeOutput();

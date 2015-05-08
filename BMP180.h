@@ -65,7 +65,7 @@ int debug;
 
 //Functions
 void Initialize();
-void config_init();
+void cfg_init();
 void printOut();
 void connectFifos();
 void calibrateBaro();

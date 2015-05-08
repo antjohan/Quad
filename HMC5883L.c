@@ -3,7 +3,7 @@
 
 
 int main(){
-  config_init();
+  cfg_init();
   HMC5883L_init();
   printOut();
   connectFifos();
@@ -17,7 +17,7 @@ void HMC5883L_init(){
  wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
 }
 
-void config_init(){
+void cfg_init(){
   config_t cfg;
   config_setting_t *hmc588l, *root;
   const char *str;
@@ -33,8 +33,8 @@ void config_init(){
   root = config_root_setting(&cfg);
   hmc588l = config_lookup(&cfg, "HMC588L");
 
-  config_setting_lookup_bool(bmp180, "Debug", &debug);
-  config_setting_lookup_int(bmp180, "refreshrate", &refreshrate);
+  config_setting_lookup_bool(hmc588l, "Debug", &debug);
+  config_setting_lookup_int(hmc588l, "refreshrate", &refreshrate);
   config_setting_lookup_int(hmc588l, "offset_x", &offset_x);
   config_setting_lookup_int(hmc588l, "offset_y", &offset_y);
   config_setting_lookup_int(hmc588l, "offset_z", &offset_z);
@@ -235,6 +235,8 @@ void connectFifos(){
   config_setting_set_int(x, offset_x);
   config_setting_set_int(y, offset_y);
   config_setting_set_int(z, offset_z);
+  config_write_file(&cfg, "c.cfg");
+
 
   config_destroy(&cfg);
 }
