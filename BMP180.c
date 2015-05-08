@@ -132,8 +132,11 @@ void connectFifos(){
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
 
-  AC1 = config_lookup(&cfg, "BMP180.Calibration_AC1");
-  config_setting_set_int(AC1, Calibration_AC1);
+  AC2 = config_lookup(&cfg, "BMP180.Calibration_AC2");
+  config_setting_set_int(AC2, Calibration_AC2);
+
+        printf("BMP180.Calibration_AC2 = %d\n", config_setting_get_int(AC2));
+
   config_destroy(&cfg);
 
 
