@@ -101,7 +101,7 @@ void checkPipe(){
 
       if (read(to_gps_fd, buffer, 10)>0){
           if (strcmp(buffer,str1)==0){
-            printf("GPS-process sends his regards\n");
+            printf("GPS-process sends his finest regards\n");
           } else if(strcmp(buffer,str2)==0){
             writeOutput();
           }
