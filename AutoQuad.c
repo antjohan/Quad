@@ -254,11 +254,11 @@ int main(){
 									printf("1");
 									root = config_root_setting(&cfg);
 									printf("2");
-									/*
 									sensors = config_setting_get_member(root, "Sensors");
 									printf("3");
 									int rate = 0; 
 									printf("4");
+									/*
 									config_setting_lookup_int(sensors, "RefresRate", &rate);
 									printf("5");
 									printf("%d",rate);
