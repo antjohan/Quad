@@ -48,8 +48,6 @@ int main()
      */
     saun.sun_family = AF_UNIX;
     strcpy(saun.sun_path, ADDRESS);
-    printf("family: %s\n",saun.sun_family);
-    printf("path: s\n",saun.sun_path);
 
     /*
      * Try to bind the address to the socket.  We
