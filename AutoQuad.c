@@ -233,7 +233,7 @@ int main(){
 
 		}else if (val == 5){
 			config_t cfg;
-			config_setting_t *sensors, *root *misc;
+			config_setting_t *sensors, *root, *misc;
 			const char *str;
 			config_init(&cfg);
 
