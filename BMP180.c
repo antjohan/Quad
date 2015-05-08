@@ -27,19 +27,21 @@ void initConfig(){
   bmp180 = config_lookup(&cfg, "BMP180");
 
   int os = 0;
+  int oss = 0;
   if(config_setting_lookup_bool(bmp180, "Oversample", &os))
   if(os){
     Oversample = true;
       printf("oversampel = true");
   }else{
-    Oversample = false
+    Oversample = false;
       printf("oversampel = false");
   }
   else
   fprintf(stderr, "No 'name' setting in configuration file.\n");
 
-  if (config_setting_lookup_int(bmp180, "OversamplingSetting", &OversamplingSetting))
+  if (config_setting_lookup_int(bmp180, "OversamplingSetting", &oss))
   {
+    OversamplingSetting = (uint8_t)oss;
     printf("OversamplingSetting: %d\n", OversamplingSetting);
   }
   else
@@ -54,7 +56,7 @@ void initConfig(){
   printf("No 'param2' setting in configuration file.\n");
 
 
-  if (config_setting_lookup_int64(bmp180, "InitialPressurePa", &InitialPressurePa))
+  if (config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa))
   {
     printf("InitialPressurePa: %d\n", InitialPressurePa);
   }
