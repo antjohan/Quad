@@ -30,6 +30,7 @@ int main(){
 }
 
 int initialize(){
+    fopen(portname,"w");
     fd_rtk = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
     set_interface_attribs (fd_rtk, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
     fcntl(fd_rtk, F_SETFL, O_NONBLOCK);
