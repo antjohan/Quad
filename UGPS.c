@@ -25,6 +25,7 @@ int main(){
     //sample();
     char * end;
     double d;
+    teststring = strstr(teststring,"  ");
     for (int i =0;i<10;++i){
         d = strtod(teststring, &end);
         printf("Value%d=%lf\n",i,d);
