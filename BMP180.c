@@ -134,7 +134,7 @@ void connectFifos(){
 
   AC2 = config_lookup(&cfg, "BMP180.Calibration_AC2");
   config_setting_set_int(AC2, Calibration_AC2);
-
+  config_write_file(&cfg, "c.cfg");
         printf("BMP180.Calibration_AC2 = %d\n", config_setting_get_int(AC2));
 
   config_destroy(&cfg);
