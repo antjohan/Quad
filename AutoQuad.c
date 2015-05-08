@@ -246,7 +246,9 @@ int main(){
 				return(EXIT_FAILURE);
 			}
 			root = config_root_setting(&cfg);
-			sensors = config_setting_get_member(root, "Sensors");
+			//sensors = config_setting_get_member(root, "Sensors");
+			sensors = config_lookup(&cfg, "Sensors");
+
 			int rate = 0; 
 			float h = 0;
 			const char *s;
@@ -261,15 +263,12 @@ int main(){
 			else
 				fprintf(stderr, "No 'name' setting in configuration file.\n");
 			
-			if (config_lookup_int(&cfg, "rate", &rate))
-				printf("rate: %d\n", &rate);
-			else 				
-				fprintf(stderr, "No 'rate' setting in configuration file.\n");
-			
-			if (config_lookup_float(&cfg, "rate", &h))
-				printf("hight: %f\n", &h);
-			else 				
-				fprintf(stderr, "No 'rate' setting in configuration file.\n");
+			if (config_setting_lookup_int(sensors, "rate", &rate))
+			{
+				printf("rate: %d\n", rate);
+			}
+			else
+				printf("No 'param2' setting in configuration file.\n");
 
 /*
 			config_setting_lookup_int(sensors, "RefresRate", &rate);
