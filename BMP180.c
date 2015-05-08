@@ -1,4 +1,6 @@
 #include "BMP180.h"
+#include <libconfig.h>
+
 
 int main(){
   initConfig();
