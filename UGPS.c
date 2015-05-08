@@ -40,14 +40,16 @@ int sample(){
     double date,tim;
     while(1){
         char buf [300];
+        char * str;
         if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
+                strcpy(str, buf);
                 char * end;
                 double d[13];
-                buf = strstr(buf,"  ");
+                str = strstr(str,"  ");
                 for (int i =0;i<13;++i){
-                    data[i] = strtod(buf, &end);
+                    data[i] = strtod(str, &end);
                     printf("Value%d=%lf\n",i,d);
-                    buf=end;
+                    str=end;
                 }
          }   
          delay(50);
