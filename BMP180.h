@@ -35,7 +35,7 @@
  #define BMP180_Mode_UltraHighResolution 3
  #define MAX_BUF 56
 
-long InitialPressurePa;
+int InitialPressurePa;
 int from_baro_fd;
 int to_baro_fd;
 float AbsoluteAltitude;
