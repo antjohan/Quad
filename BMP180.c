@@ -41,6 +41,7 @@ void initConfig(){
     config_setting_lookup_int(bmp180, "refreshrate", &refreshrate);
     config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa);
     OversamplingSetting = (uint8_t)oss;
+    printf("%d\n",debug);
 
 
     if(debug){
