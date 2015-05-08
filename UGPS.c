@@ -170,8 +170,8 @@ int socketxy()
      printf("something connected?!\n");
 
      while(1){
-        char buffer[200];
-            if (read(newsockfd,buffer,200)>0){   
+        char buffer[1];
+            if (read(newsockfd,buffer,1)>0){   
             printf("something was read\n");
             printf("%s\n",buffer);     
         }
