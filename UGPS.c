@@ -144,7 +144,7 @@ void error(char *msg)
 
 int socketxy()
 {
-    int portno=60;
+    int portno=20000;
      int sockfd, newsockfd, clilen;
      char buffer[256];
      struct sockaddr_in serv_addr, cli_addr;
