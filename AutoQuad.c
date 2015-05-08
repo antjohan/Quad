@@ -248,6 +248,7 @@ int main(){
 			root = config_root_setting(&cfg);
 			sensors = config_setting_get_member(root, "Sensors");
 			int rate = 0; 
+			float h = 0;
 			const char *s;
 
 			if(config_lookup_string(&cfg, "name", &s))
@@ -255,8 +256,18 @@ int main(){
 			else
 				fprintf(stderr, "No 'name' setting in configuration file.\n");
 
+			if(config_lookup_string(&cfg, "sensor", &s))
+				printf("sensor: %s\n\n", s);
+			else
+				fprintf(stderr, "No 'name' setting in configuration file.\n");
+			
 			if (config_lookup_int(&cfg, "rate", &rate))
 				printf("rate: %d\n", &rate);
+			else 				
+				fprintf(stderr, "No 'rate' setting in configuration file.\n");
+			
+			if (config_lookup_float(&cfg, "rate", &h))
+				printf("hight: %f\n", &h);
 			else 				
 				fprintf(stderr, "No 'rate' setting in configuration file.\n");
 
