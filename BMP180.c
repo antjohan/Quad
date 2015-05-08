@@ -6,6 +6,7 @@ int main(){
   initConfig();
   Initialize();
   connectFifos();
+  print();
   sample();
 }
 
@@ -43,19 +44,42 @@ void initConfig(){
     config_setting_lookup_int(bmp180, "InitialPressurePa", &InitialPressurePa);
     OversamplingSetting = (uint8_t)oss;
 
+    config_destroy(&cfg);
+
+  }
+
+  void print(){
+
+
     if(debug){
+
+      printf("----BMP180 Configuration data----\n")
+
       printf("OversamplingSetting: %d\n", OversamplingSetting);
       printf("refreshrate: %d\n", refreshrate);
       printf("InitialPressurePa: %d\n", InitialPressurePa);
-      if(os)
+      if(Oversampel)
       printf("Oversampel = true\n");
       else
       printf("Oversampel = false\n");
+
+      printf("\n");
+
+      printf("Calibration_AC1: %d\n", Calibration_AC1);
+      printf("Calibration_AC2: %d\n", Calibration_AC2);
+      printf("Calibration_AC3: %d\n", Calibration_AC3);
+      printf("Calibration_AC4: %d\n", Calibration_AC4);
+      printf("Calibration_AC5: %d\n", Calibration_AC5);
+      printf("Calibration_AC6: %d\n", Calibration_AC6);
+      printf("Calibration_B1: %d\n", Calibration_B1);
+      printf("Calibration_B2: %d\n", Calibration_B2);
+      printf("Calibration_MB: %d\n", Calibration_MB);
+      printf("Calibration_MC: %d\n", Calibration_MC);
+      printf("Calibration_MD: %d\n", Calibration_MD);
+
+      printf("---------------------------------\n");
+
     }
-
-
-
-    config_destroy(&cfg);
 
   }
   void Initialize(){
