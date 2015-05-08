@@ -167,6 +167,8 @@ int socketxy()
      clilen = sizeof(cli_addr);
      printf("got this far!\n");
      newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
+     printf("something connected?!\n");
+
      if (newsockfd < 0) 
           error("ERROR on accept");
      bzero(buffer,256);
