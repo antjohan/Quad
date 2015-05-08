@@ -79,9 +79,9 @@ void connectFifos(){
 }
 
 void writeOutput(){
-   char WriteBuf[56];
-   sprintf(WriteBuf,"%ld",currentHeight-offset);
-   write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
+   //char WriteBuf[56];
+   //sprintf(WriteBuf,"%ld",currentHeight-offset);
+   //write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
 }
 
 void checkPipe(){
@@ -93,7 +93,7 @@ void checkPipe(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
 
-      if (read(to_ultra_fd, buffer, 10)>0){
+      if (read(to_gps_fd, buffer, 10)>0){
           if (strcmp(buffer,str1)==0){
             printf("GPS-process sends his regards\n");
           } else if(strcmp(buffer,str2)==0){
