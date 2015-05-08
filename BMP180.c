@@ -104,7 +104,7 @@ void connectFifos(){
  void calibrateBaro(){
 
   config_t cfg;
-  config_setting_t *AC2;
+  config_setting_t *AC1, *AC2, *AC3, *AC4, *AC5, *AC6, *B1, *B2, *MB, *MC, *MD;
   const char *str;
   config_init(&cfg);
 
@@ -117,9 +117,9 @@ void connectFifos(){
     //return(EXIT_FAILURE);
   }
 
-
   BMP180_Sensor =  wiringPiI2CSetup (BMP180_Address);
   SetResolution(BMP180_Mode_UltraHighResolution, Oversample);
+  
   Calibration_AC1 = (short)((Read(0xAA) <<8) | Read(0xAB));
   Calibration_AC2 = (short)((Read(0xAC) <<8) | Read(0xAD));
   Calibration_AC3 = (short)((Read(0xAE) <<8) | Read(0xAF));
@@ -132,14 +132,32 @@ void connectFifos(){
   Calibration_MC = (short)((Read(0xBC) <<8) | Read(0xBD));
   Calibration_MD = (short)((Read(0xBE) <<8) | Read(0xBF));
 
+  AC1 = config_lookup(&cfg, "BMP180.Calibration_AC1");
   AC2 = config_lookup(&cfg, "BMP180.Calibration_AC2");
+  AC3 = config_lookup(&cfg, "BMP180.Calibration_AC3");
+  AC4 = config_lookup(&cfg, "BMP180.Calibration_AC4");
+  AC5 = config_lookup(&cfg, "BMP180.Calibration_AC5");
+  AC6 = config_lookup(&cfg, "BMP180.Calibration_AC6");
+  B1 = config_lookup(&cfg, "BMP180.Calibration_B1");
+  B2 = config_lookup(&cfg, "BMP180.Calibration_B2");
+  MB = config_lookup(&cfg, "BMP180.Calibration_MB");
+  MC = config_lookup(&cfg, "BMP180.Calibration_MC");
+  MD = config_lookup(&cfg, "BMP180.Calibration_MD");
+
+  config_setting_set_int(AC1, Calibration_AC1);
   config_setting_set_int(AC2, Calibration_AC2);
+  config_setting_set_int(AC3, Calibration_AC3);
+  config_setting_set_int(AC4, Calibration_AC4);
+  config_setting_set_int(AC5, Calibration_AC5);
+  config_setting_set_int(AC6, Calibration_AC6);
+  config_setting_set_int(B1, Calibration_B1);
+  config_setting_set_int(B2, Calibration_B2);
+  config_setting_set_int(MB, Calibration_MB);
+  config_setting_set_int(MC, Calibration_MC);
+  config_setting_set_int(MD, Calibration_MD);
+  
   config_write_file(&cfg, "c.cfg");
-        printf("BMP180.Calibration_AC2 = %d\n", config_setting_get_int(AC2));
-
   config_destroy(&cfg);
-
-
 }
 
 void sample(){
