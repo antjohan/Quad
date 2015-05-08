@@ -73,6 +73,7 @@ int main(){
 	wiringPiSetupSys();
 	sfinit();
 	while(1){
+		system("clear");
 		printf("---------------------------------\n");
 		printf("Make a choice:\n");
 		printf("---------------------------------\n");
