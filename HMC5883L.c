@@ -114,17 +114,6 @@ void connectFifos(){
        }
      }
 
-     int GetX(){
-       uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
-       uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
-       short x = (short)((MSB << 8) | LSB);
-       return x;
-     }
-
-     int GetY(){
-       uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_MSB);
-       uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
-
 void writeOutput(){
     char WriteBuf[56];
     sprintf(WriteBuf,"%lf",heading);
