@@ -1,17 +1,16 @@
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
- #include <wiringPiI2C.h>
- #include <wiringPi.h>
- #include <inttypes.h>
- #include <stdbool.h>
- #include <math.h>
+#include <wiringPiI2C.h>
+#include <wiringPi.h>
+#include <inttypes.h>
+#include <stdbool.h>
+#include <math.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
-
 
 #define HMC5883L_Address 0x1E
 #define ModeRegister_Address 0x02
@@ -33,13 +32,6 @@ double heading;
 int debug;
 int refreshrate;
 
-
-/*
-int offset_x=47;
-int offset_y=-168;
-int offset_z=123;
-*/
-
 int offset_x;
 int offset_y;
 int offset_z;
@@ -49,7 +41,7 @@ char* from_mag_fifo = "/home/pi/tmp/from_mag_fifo";
 int to_mag_fd;
 int from_mag_fd;
 
-   //functions
+//functions
 void HMC5883L_init();
 void cfg_init();
 void printOut();

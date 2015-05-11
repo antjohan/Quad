@@ -4,69 +4,11 @@
 #include <unistd.h>
 #include <wiringPiI2C.h>
 #include <wiringPi.h>
-//#include "BMP180.c"
-//#include "ultra.c"
-#include "SensorFusion.c"
 #include <libconfig.h>
-#include "testCases.c" //Test!
 
-/*
- Pinout FlightController -> Servo_Num -> Raspberry Pi
- ----------------------------------------------------
-	AIL -> 1 -> P1-11
-	ELE -> 2 -> P1-12
-	THR -> 3 -> P1-13
-	RUD -> 4 -> P1-15
- ----------------------------------------------------
- */
-
-void Set_Servo(int num, int pos){
-    
-    if((num <= 4 || num >= 1) && (pos <= 100 || pos >= 0)){
-        char* echo = "echo";
-        char* destination = " > /dev/servoblaster \n";
-        char* equal = "=";
-        char* procent = "%";
-        char cmd[256];
-        snprintf(cmd, sizeof cmd, "%s %i%s%i%s %s", echo, num, equal,pos, procent, destination);
-        system(cmd);
-        //printf("%s\n",cmd);
-    }else{
-        printf("Invalid!");
-    }
-}
-
-
-void Arm_FlightController(){
-    int servo[4] = {1,2,3,4};
-    int arm[4] = {0,0,0,0};
-    int normal[4] = {50,50,0,50};
-    
-    for(int i = 0; i < 4; i++){
-        Set_Servo(servo[i],arm[i]);
-    }
-    sleep(2);
-    
-    for(int i = 0; i < 4; i++){
-        Set_Servo(servo[i],normal[i]);
-    }
-}
-
-void Disarm_FlightController(){
-    int servo[4] = {1,2,3,4};
-    int disarm[4] = {0,0,0,100};
-    int normal[4] = {50,50,0,50};
-    
-    for(int i = 0; i < 4; i++){
-        Set_Servo(servo[i],disarm[i]);
-    }
-    sleep(2);
-    
-    for(int i = 0; i < 4; i++){
-        Set_Servo(servo[i],normal[i]);
-    }
-}
-
+#include "SensorFusion.c"
+#include "testCases.c"
+#include "FlightControl.c"
 
 int main(){
     wiringPiSetupSys();
@@ -81,8 +23,7 @@ int main(){
         printf("[2]	Disarm FlightController\n");
         printf("[3]	Servo menu\n");
         printf("[4]	Test menu\n");
-        printf("[5]	Print configuration file\n");
-        printf("[6]	Quit\n");
+        printf("[5]	Quit\n");
         printf("---------------------------------\n");
         
         int main_menu;
@@ -192,9 +133,11 @@ int main(){
             else if(test_menu == 2){
                 
                 int recdataprompt=0;
-                while (recdataprompt>=0){
+                while (1){
                     
                     system("clear");
+                    printf("---------------------------------\n");
+                    printf("Data Menu\n");
                     printf("---------------------------------\n");
                     printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
                     printf("[1]	Barometer\n");
@@ -203,7 +146,7 @@ int main(){
                     printf("[4]	GPS\n");
                     printf("[5]	All\n");
                     printf("[6]	Loop all sensors and log data\n");
-                    printf("[7] 	Loop height fast\n");
+                    printf("[7] Loop height fast\n");
                     printf("[8] Back\n");
                     printf("---------------------------------\n");
                     scanf("%d",&recdataprompt);
@@ -240,13 +183,14 @@ int main(){
                         }
                         
                     } else if (recdataprompt==7){
+                       
                         while(1){
                             printf("H: %lf\n",getHeight(getUHeight(),getBHeight()));
                             delay(200);
                         }
                         
                     }else if (recdataprompt==8){
-                        recdataprompt=-1;
+                        break;
                     }
                 }
             }
@@ -277,69 +221,13 @@ int main(){
             
             
         }else if (main_menu == 5){
-            config_t cfg;
-            config_setting_t *sensors, *root, *misc;
-            const char *str;
-            config_init(&cfg);
-            
-            
-            if(! config_read_file(&cfg, "c.cfg"))
-            {
-                fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
-                        config_error_line(&cfg), config_error_text(&cfg));
-                config_destroy(&cfg);
-                return(EXIT_FAILURE);
-            }
-            root = config_root_setting(&cfg);
-            sensors = config_lookup(&cfg, "Sensors");
-            misc = config_lookup(&cfg, "misc");
-            
-            
-            int rate = 0;
-            float pi = 0;
-            float h = 0;
-            const char *s;
-            
-            if(config_lookup_string(&cfg, "name", &s))
-                printf("name: %s\n\n", s);
-            else
-                fprintf(stderr, "No 'name' setting in configuration file.\n");
-            
-            if(config_lookup_string(&cfg, "sensor", &s))
-                printf("sensor: %s\n\n", s);
-            else
-                fprintf(stderr, "No 'name' setting in configuration file.\n");
-            
-            if (config_setting_lookup_int(sensors, "rate", &rate))
-            {
-                printf("rate: %d\n", rate);
-            }
-            else
-                printf("No 'param2' setting in configuration file.\n");
-            
-            /*
-             config_setting_lookup_int(sensors, "RefresRate", &rate);
-             printf("5");
-             
-             printf("%d",rate);
-             */
-            printf("6");
-            
-            
-        }else if (main_menu == 6){
             break;
-            //}else if(val==6){//recieve barometer data
-            //while(1){
-            //printf("Barometer: %lf   Ultrasonic: %lf\n",getBHeight(),getUHeight());
-            //delay(100);
-            //}
             
         }
         else{
             printf("Invalid\n");
         }
     }
-    ///////////////////
     printf("Program stopping\n");
     return 1;
 }
