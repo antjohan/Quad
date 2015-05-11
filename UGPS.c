@@ -16,8 +16,8 @@
     #include <termios.h>
     #include <libconfig.h>
 
-    int initialize();
-    int sample();
+    void initialize();
+    void sample();
     void connectFifos();
     void writeOutput();
     void checkPipe();
@@ -37,12 +37,12 @@
         sample();
     }
 
-    int initialize(){
+    void initialize(){
         fopen(portname,"w");
         fd_rtk = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
         set_interface_attribs (fd_rtk, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
         fcntl(fd_rtk, F_SETFL, O_NONBLOCK);
-                    //only for testing
+                    /*/only for testing
                     char * str;
                     strcpy(str, teststring);
                     char * end;
@@ -53,16 +53,16 @@
                         printf("Value%d=%lf\n",i,d);
                         str=end;
                     }
-                    //----------------
+                    //----------------*/
     }
 
-    int sample(){
+    void sample(){
         double date,tim;
         while(1){
             char buf [300];
             char * str;
             checkPipe();
-            /*if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
+            if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
                     strcpy(str, buf);
                     char * end;
                     double d[13];
@@ -72,7 +72,7 @@
                         //printf("Value%d=%lf\n",i,d);
                         str=end;
                     }
-             }   */
+             }   
 
              delay(1000);
              printf("sampling...\n");
