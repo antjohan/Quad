@@ -69,7 +69,7 @@ void BMP180_init();
 void cfg_init();
 void printOut();
 void connectFifos();
-void calibrateBaro();
+void calibrate();
 void sample();
 void checkPipe();
 void Write();
