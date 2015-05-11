@@ -21,7 +21,7 @@
     int fd_rtk;
     int from_gps_fd;
     int to_gps_fd;
-    char * teststring="2015/04/17 14:36:29.400   57.688079292   11.975502620    90.0067   5   5   3.3981   3.6186   7.1490  -1.5006   1.2235   1.5307   0.00    0.0";
+    char * teststring = "2015/04/17 14:36:29.400   57.688079292   11.975502620    90.0067   5   5   3.3981   3.6186   7.1490  -1.5006   1.2235   1.5307   0.00    0.0";
     double data[13];
 
     int main(){
@@ -35,6 +35,18 @@
         fd_rtk = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
         set_interface_attribs (fd_rtk, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
         fcntl(fd_rtk, F_SETFL, O_NONBLOCK);
+                    //only for testing
+                    char * str;
+                    strcpy(str, teststring);
+                    char * end;
+                    double d[13];
+                    str = strstr(str,"  ");
+                    for (int i =0;i<13;++i){
+                        data[i] = strtod(str, &end);
+                        //printf("Value%d=%lf\n",i,d);
+                        str=end;
+                    }
+                    //----------------
     }
 
     int sample(){
@@ -43,7 +55,7 @@
             char buf [300];
             char * str;
             checkPipe();
-            if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
+            /*if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
                     strcpy(str, buf);
                     char * end;
                     double d[13];
@@ -53,7 +65,8 @@
                         //printf("Value%d=%lf\n",i,d);
                         str=end;
                     }
-             }   
+             }   */
+
              delay(50);
         }
     }
