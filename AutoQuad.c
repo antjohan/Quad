@@ -12,10 +12,10 @@
 
 int main(){
 
-	System("./UGPS &");
-	System("./HMC5883L &");
-	System("./BMP180 &");
-	System("./ultra &");
+	system("./UGPS &");
+	system("./HMC5883L &");
+	system("./BMP180 &");
+	system("./ultra &");
 
     wiringPiSetupSys();
     sfinit();
@@ -228,10 +228,10 @@ int main(){
             
         }else if (main_menu == 5){
 
-        	System("pkill ultra");
-			System("pkill BMP180");
-			System("pkill HMC5883L");
-			System("pkill UGPS");
+        	system("pkill ultra");
+			system("pkill BMP180");
+			system("pkill HMC5883L");
+			system("pkill UGPS");
             break;
             
         }
