@@ -42,7 +42,7 @@
         fd_rtk = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
         set_interface_attribs (fd_rtk, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
         fcntl(fd_rtk, F_SETFL, O_NONBLOCK);
-                    //only for testing
+                    /*/only for testing
                     char * str;
                     strcpy(str, teststring);
                     char * end;
@@ -52,7 +52,7 @@
                        // printf("Value%d=%lf\n",i,d);
                         str=end;
                     }
-                    //----------------/
+                    //----------------*/
     }
 
     void sample(){
@@ -61,7 +61,7 @@
             char buf [300];
             char * str;
             checkPipe();
-            /*if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
+            if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
                     strcpy(str, buf);
                     char * end;
                     double d[13];
@@ -71,7 +71,7 @@
                         //printf("Value%d=%lf\n",i,d);
                         str=end;
                     }
-             }   */
+             }   
 
              delay(50);
         }
@@ -104,18 +104,17 @@
     }
 
     void writeOutput(){
-    char * WriteBuf[128];
-    double latitude=data[1];
-    double longitude=data[2];
-    double satquality=data[4];
-    double nsat=data[5];
-    double sdn=data[6];
-    double sde=data[7];
+        char * WriteBuf[128];
+        double latitude=data[1];
+        double longitude=data[2];
+        double satquality=data[4];
+        double nsat=data[5];
+        double sdn=data[6];
+        double sde=data[7];
 
-    sprintf(WriteBuf,"%ld %ld %ld %ld %ld %ld",latitude, longitude, satquality, nsat, sdn, sde);
-    printf("Writing to pipe: %s", WriteBuf);
-    write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
-
+        sprintf(WriteBuf,"%ld %ld %ld %ld %ld %ld",latitude, longitude, satquality, nsat, sdn, sde);
+        printf("Writing to pipe: %s", WriteBuf);
+        write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
     }
 
     void checkPipe(){
