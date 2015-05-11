@@ -11,6 +11,12 @@
 #include "FlightControl.c"
 
 int main(){
+
+	System("./UGPS &");
+	System("./HMC5883L &");
+	System("./BMP180 &");
+	System("./ultra &");
+
     wiringPiSetupSys();
     sfinit();
     while(1){
@@ -221,6 +227,11 @@ int main(){
             
             
         }else if (main_menu == 5){
+
+        	System("pkill ultra");
+			System("pkill BMP180");
+			System("pkill HMC5883L");
+			System("pkill UGPS");
             break;
             
         }
