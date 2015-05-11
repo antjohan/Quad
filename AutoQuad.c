@@ -12,6 +12,7 @@
 #include "FlightControl.c"
 #include "testCases.c"
 
+int input_fd;
 
 int kbhit(void)
 {
@@ -209,6 +210,7 @@ int main(){
                         
                     } else if (recdataprompt==6){
                         while (!kbhit()){
+
                             double uh=getUHeight();
                             double bh=getBHeight();
                             double h=getHeight(uh,bh);
@@ -273,4 +275,22 @@ int main(){
     }
     printf("Program stopping\n");
     return 1;
+}
+
+void linkInputFifo(){
+	  char* input_fifo = "/home/pi/tmp/input_fifo";
+      input_fd=open(input_fifo, O_RDONLY);
+      if (input_fd==-1){ 
+          printf("AQ_input_pipe=error: %s\n",strerror(errno));
+      } 
+      fcntl(input_fd, F_SETFL, O_NONBLOCK); //set non blocking
+}
+int checkForInput(){
+	 char buffer[8];
+	 int input=-1;
+
+      if (read(input_fd, buffer, sizeof(buffer))>0){
+          input=atoi(buffer);
+      }
+	return(input);
 }
