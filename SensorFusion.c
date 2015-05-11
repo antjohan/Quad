@@ -12,7 +12,7 @@
 
 	#include <unistd.h>
 
-	#define MAX_BUF 56 //Amount of characters that can be sent through the fifos
+	#define MAX_BUF 128 //Amount of characters that can be sent through the fifos
 	 
 	 //char * configfile= "./config.txt"
 	 //config_t * config;

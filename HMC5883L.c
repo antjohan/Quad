@@ -81,7 +81,7 @@ void connectFifos(){
 
  }
  void writeOutput(){
-   char WriteBuf[56];
+   char WriteBuf[128];
    sprintf(WriteBuf,"%lf",heading);
    write(from_mag_fd,WriteBuf,sizeof(WriteBuf));
  }
