@@ -50,7 +50,7 @@
                     str = strstr(str,"  ");
                     for (int i =0;i<13;++i){
                         data[i] = strtod(str, &end);
-                        //printf("Value%d=%lf\n",i,d);
+                        printf("Value%d=%lf\n",i,d);
                         str=end;
                     }
                     //----------------
@@ -74,7 +74,8 @@
                     }
              }   */
 
-             delay(50);
+             delay(1000);
+             printf("sampling...\n");
         }
     }
 
