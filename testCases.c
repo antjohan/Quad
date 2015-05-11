@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <wiringPiI2C.h>
-#include "FlightControl.c"
+//#include "FlightControl.c"
 //#include "BMP180.c"
 //include "ultra.c"
 const int hoverConst = 70;

@@ -7,8 +7,8 @@
 #include <libconfig.h>
 
 #include "SensorFusion.c"
-#include "testCases.c"
 #include "FlightControl.c"
+#include "testCases.c"
 
 int main(){
 
