@@ -34,12 +34,6 @@
 
 	//variables
 	double BaroInitialHeight=0;
-	//double height=0;
-	//double bheight=0;
-	//double uheight=0;
-	//double heading=0;
-	//double coordinate[3]; //lat, long, quality from gps
-	//double speed; //info from gps
 
 	clock_t t1;
 
