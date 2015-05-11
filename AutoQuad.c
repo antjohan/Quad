@@ -198,7 +198,7 @@ int main(){
                         printf("Magnetometer heading(deg): %lf\n", getHeading());
                         
                     } else if (recdataprompt==4){
-                    	double * gpsdata[13] = getCoordinate();
+                    	double * gpsdata = getCoordinate();
                         printf("lat: %lf long: %lf quality: %lf\n", gpsdata[1],gpsdata[2],gpsdata[3]);
                         
                     } else if (recdataprompt==5){
