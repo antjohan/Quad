@@ -264,7 +264,7 @@ void calibrate(){
     printf("Offsets:\nx=%d\ny=%d\nz=%d\nMagnetometer hard-iron compensated!\n", offset_x,offset_y,offset_z);
     
     config_t cfg;
-    config_setting_t *hmc588l, *root, *x, *y, *z;
+    config_setting_t *hmc588l, *x, *y, *z;
     config_init(&cfg);
     
     if(! config_read_file(&cfg, "c.cfg")){
@@ -273,7 +273,7 @@ void calibrate(){
         config_destroy(&cfg);
         //return(EXIT_FAILURE);
     }
-    root = config_root_setting(&cfg);
+
     x = config_lookup(&cfg, "HMC588L.offset_x");
     y = config_lookup(&cfg, "HMC588L.offset_y");
     z = config_lookup(&cfg, "HMC588L.offset_z");
