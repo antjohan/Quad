@@ -74,14 +74,12 @@ void connectFifos(){
     
     to_mag_fd=open(to_mag_fifo, O_RDONLY);
     if (to_mag_fd==-1){
-<<<<<<< HEAD
         printf("pipe_to_mag=error: %s\n",strerror(errno));
     } else {
         // printf("pipe_to_mag=connected\n");
     }
     
 }
-=======
       printf("pipe_to_mag=error: %s\n",strerror(errno));
       } else {
      // printf("pipe_to_mag=connected\n");
@@ -125,7 +123,6 @@ void connectFifos(){
      int GetY(){
        uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_MSB);
        uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,YData_LSB);
->>>>>>> origin/master
 
 void writeOutput(){
     char WriteBuf[56];
