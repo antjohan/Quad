@@ -65,7 +65,7 @@ int Calibration_MC;
 int Calibration_MD;
 
 //Functions
-void Initialize();
+void BMP180_init();
 void cfg_init();
 void printOut();
 void connectFifos();
