@@ -114,34 +114,6 @@ void connectFifos(){
        }
      }
 
-void writeOutput(){
-    char WriteBuf[56];
-    sprintf(WriteBuf,"%lf",heading);
-    write(from_mag_fd,WriteBuf,sizeof(WriteBuf));
-}
-
-void checkPipe(){
-    char buffer[10];
-    
-    char str1[10];
-    char str2[10];
-    char str3[10];
-    
-    strcpy(str1,"ping");
-    strcpy(str2, "read");
-    strcpy(str3,"calibrate");
-    
-    if (read(to_mag_fd, buffer, 10)>0){
-        if (strcmp(buffer,str1)==0){
-            printf("Magnetometer says hi! :)\n");
-        } else if(strcmp(buffer,str2)==0){
-            writeOutput();
-        } else if(strcmp(buffer,str3)==0){
-            calibrate();
-        }
-    }
-}
-
 int GetX(){
     uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
     uint8_t LSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_LSB);
