@@ -220,6 +220,7 @@
 		commandSensor("gps", "read");
 		double gpsdata[13];
 		char gpsbuffer[MAX_BUF];
+		char * str;
 	 	if(read (from_gps_fd, gpsbuffer, MAX_BUF)>0){  // read up to 100 characters if ready to read
 	        strcpy(str, gpsbuffer);
 	        char * end;
@@ -268,7 +269,7 @@
 	void updateLog(double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde){//enters all current sensor data into fusionlog
 		double current_time_seconds=millis()/1000.0;
 		to_log_file=fopen(log_path, "a");
-		if (fprintf(to_log_file,"%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n",current_time_seconds,bheight,uheight,height,heading,latutude,longitude,satquality,nsat,sdn,sde)==-1){
+		if (fprintf(to_log_file,"%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n",current_time_seconds,bheight,uheight,height,heading,latitude,longitude,satquality,nsat,sdn,sde)==-1){
 			printf("write_to_log=error: %s\n",strerror(errno));
 		}
 		fclose(to_log_file);

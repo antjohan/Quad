@@ -16,6 +16,13 @@
     #include <termios.h>
     #include <libconfig.h>
 
+    int initialize();
+    int sample();
+    void connectFifos();
+    void writeOutput();
+    void checkPipe();
+    int set_interface_attribs();
+
 
     char *portname = "/dev/ttyGPS";
     int fd_rtk;

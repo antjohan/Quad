@@ -177,8 +177,8 @@ int main(){
                             double hd=getHeading();
                             
                             updateLog(bh, uh, h, hd);
-                            
-                            printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd);
+                            //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
+                            printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd,0,0,0,0,0,0,0,0);
                             delay(100);
                         }
                         
