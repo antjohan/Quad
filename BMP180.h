@@ -29,11 +29,11 @@
 #define ErrorCode_1 "Entered sample resolution was invalid. See datasheet for details."
 #define ErrorCode_1_Num 1
 
-#define BMP180_Mode_UltraLowPower   0
-#define BMP180_Mode_Standard      1
-#define BMP180_Mode_HighResolution    2
-#define BMP180_Mode_UltraHighResolution 3
-#define MAX_BUF 128
+ #define BMP180_Mode_UltraLowPower   0
+ #define BMP180_Mode_Standard      1
+ #define BMP180_Mode_HighResolution    2
+ #define BMP180_Mode_UltraHighResolution 3
+ #define MAX_BUF 128
 
 
 int InitialPressurePa;
