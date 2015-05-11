@@ -1,13 +1,13 @@
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
- #include <wiringPiI2C.h>
- #include <wiringPi.h>
- #include <inttypes.h>
- #include <stdbool.h>
- #include <math.h>
+#include <wiringPiI2C.h>
+#include <wiringPi.h>
+#include <inttypes.h>
+#include <stdbool.h>
+#include <math.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -85,9 +85,13 @@ void connectFifos(){
 }
 
 void writeOutput(){
-   //char WriteBuf[56];
-   //sprintf(WriteBuf,"%ld",currentHeight-offset);
-   //write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
+double latitude=data[1];
+double longitude=data[2];
+int satquality=data[4];
+int nsat=data[5];
+double sdn=data[6];
+double sde=data[7];
+
 }
 
 void checkPipe(){
