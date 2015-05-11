@@ -79,11 +79,12 @@ void connectFifos(){
         // printf("pipe_to_mag=connected\n");
     }
     
-}
-      printf("pipe_to_mag=error: %s\n",strerror(errno));
+    to_mag_fd=open(to_mag_fifo, O_RDONLY);
+      if (to_mag_fd==-1){
+        printf("pipe_to_mag=error: %s\n",strerror(errno));
       } else {
      // printf("pipe_to_mag=connected\n");
-   }
+    }
 
  }
  void writeOutput(){
