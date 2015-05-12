@@ -64,7 +64,7 @@ void get_time(){
   char fname[50];
   char file_cmd[128];
   sprintf(fname, "%s offset=%d step=%d", str_time, HoverOffset, ThrottleStep);
-  sprintf(file_cmd, "touch /home/pi/logs/%s", fname);
+  sprintf(file_cmd, "touch /home/pi/logs/\"%s\"", fname);
   system(file_cmd);
 }
 
