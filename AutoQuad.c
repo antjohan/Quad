@@ -219,6 +219,7 @@ int main(){
                             double bh=getBHeight();
                             double h=getHeight(uh,bh);
                             double hd=getHeading();
+                           // double coordinates[13]=getCoordinate();
                             
                             updateLog(bh, uh, h, hd,0,0,0,0,0,0);
                             //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
