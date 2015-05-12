@@ -148,6 +148,7 @@ int main(){
                     	printf("----Press any key to continue----\n");
                         commandSensor("baro\0", "ping\0");
                         printf("---------------------------------\n");
+                      	char *msg = malloc(100*sizeof(char));
                       	fgets(msg, 100, stdin);
 
 
