@@ -222,13 +222,16 @@
 		double gpsdata[6]={0};
 		char gpsbuffer[MAX_BUF];
 		char * str;
+		printf("3\n");
 	 	if(read (from_gps_fd, gpsbuffer, MAX_BUF)>0){  // read up to 100 characters if ready to read
 	        strcpy(str, gpsbuffer);
 	        char * end;
+	        printf("4\n");
 			for (int i =0;i<6;++i){
 		        gpsdata[i] = strtod(str, &end);
 		        str=end;
 		    }
+		    printf("5\n");
 		}
 		return(gpsdata);
 	}
