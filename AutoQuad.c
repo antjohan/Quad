@@ -84,7 +84,6 @@ int main(){
             int servo;
             int speed;
             
-            system("clear");
             printf("---------------------------------\n");
             printf("Servo Menu\n");
             printf("---------------------------------\n");
@@ -96,18 +95,19 @@ int main(){
             
             scanf("%d",&servo);
             
-            system("clear");
-            printf("---------------------------------\n");
             printf("Set Speed (0-100)\n");
             printf("---------------------------------\n");
             
             scanf("%d", &speed);
             
             Set_Servo(servo, speed);
+
+            system("clear");
+
             
         }else if(main_menu == 4){
             int test_menu;
-            
+            system("clear");
             printf("---------------------------------\n");
             printf("Test Menu\n");
             printf("---------------------------------\n");
@@ -174,7 +174,6 @@ int main(){
                 int recdataprompt=0;
                 while (1){
                     
-                    system("clear");
                     printf("---------------------------------\n");
                     printf("Data Menu\n");
                     printf("---------------------------------\n");
@@ -189,6 +188,8 @@ int main(){
                     printf("[8] Back\n");
                     printf("---------------------------------\n");
                     scanf("%d",&recdataprompt);
+                    system("clear");
+
                     
                     if(recdataprompt==1){
                         printf("Barometer height(m): %lf\n", getBHeight());
