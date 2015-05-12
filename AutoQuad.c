@@ -211,20 +211,20 @@ int main(){
                         printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
                         
                     } else if (recdataprompt==6){
-                        while (kbhit()){
+                        while (1){
 
                             double uh=getUHeight();
                             double bh=getBHeight();
                             double h=getHeight(uh,bh);
                             double hd=getHeading();
 
-                            double gpsdata[6]=getCoordinate();
-                            double latitude=gpsdata[1];
-                            double longitude=gpsdata[2];
-                            double quality=gpsdata[3];
-                            double nsat=gpsdata[4];
-                            double sdn=gpsdata[5];
-                            double sde=gpsdata[6];
+                            double * gpsdata=getCoordinate();
+                            double latitude=*(gpsdata+1);
+                            double longitude=*(gpsdata+2);
+                            double quality=*(gpsdata+3);
+                            double nsat=*(gpsdata+4);
+                            double sdn=*(gpsdata+5);
+                            double sde=*(gpsdata+6);
 
                             
                             updateLog(bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
