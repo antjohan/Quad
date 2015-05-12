@@ -9,8 +9,8 @@
 #include <fcntl.h>
 
 #include "SensorFusion.c"
-#include "testCases.c"
 #include "FlightControl.c"
+#include "testCases.c"
 
 int input_fd;
 
