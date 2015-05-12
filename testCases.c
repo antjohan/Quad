@@ -12,6 +12,7 @@ int YawSpeed = 0;
 int PitchSpeed = 0;
 int RollSpeed = 0;
 int Debug = 0;
+char str_time[24];
 
 void test_cfg_init(){
 	config_t cfg;
@@ -51,13 +52,19 @@ void test_cfg_print(){
 }
 
 
-void print_time(){
+void get_time(){
 	time_t rawtime;
 	struct tm * timeinfo;
 
 	time (&rawtime);
 	timeinfo = localtime (&rawtime);
-	printf ("Current local time and date: %s", asctime(timeinfo));
+	printf ("Current local time and date: %s", );
+	sprintf(str_time, "%s",asctime(timeinfo));
+
+  //get_time();
+  char fname[50];
+  sprintf(fname, "%s offset=%d step=%d", str_time, HoverOffset, ThrottleStep);
+  system("touch /home/pi/logs/%s", fname);
 }
 
 //Functions for motorcontroll
@@ -83,7 +90,7 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 int testHoverToStep(void){
   
   printf("Startar hover to step test, setter hover\n");
-  
+
   FILE *fp;
   fp=fopen("/home/pi/logs/hoverToStepTest.txt","w");
   setHover();
