@@ -166,7 +166,7 @@
 	//initialize flight log
 		to_log_file=fopen(log_path, "w+");
 		delay(200);
-		if (fprintf(to_log_file,"Time: Barometer: Ultrasonic: Height: Magnetometer: \n")==-1){
+		if (fprintf(to_log_file,"Time: Barometer: Ultrasonic: Height: Magnetometer: Latitude: Longitude: SatQuality: NumSat: SDN: SDE:\n")==-1){
 			printf("initialize_fusion_log=error: %s\n",strerror(errno));
 		}
 		fclose(to_log_file);
