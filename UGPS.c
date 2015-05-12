@@ -112,7 +112,7 @@
         double sde=data[7];
 
         sprintf(WriteBuf,"%ld %ld %ld %ld %ld %ld",latitude, longitude, satquality, nsat, sdn, sde);
-        printf("Writing to pipe: %s", WriteBuf);
+      //  printf("Writing to pipe: %s\n", WriteBuf);
         write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
     }
 
