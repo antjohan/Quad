@@ -64,7 +64,6 @@
             if(read (fd_rtk, buf, sizeof buf)>0){  // read up to 100 characters if ready to read
                     strcpy(str, buf);
                     char * end;
-                    double d[13];
                     str = strstr(str,"  ");
                     for (int i =0;i<13;++i){
                         data[i] = strtod(str, &end);
