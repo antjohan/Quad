@@ -209,7 +209,7 @@ int main(){
                         printf("GPS coordinates(lat/long/quality): %lf\n", getBHeight());
                         
                     } else if (recdataprompt==6){
-                        while (!kbhit()){
+                        while (1){
 
                             double uh=getUHeight();
                             double bh=getBHeight();
