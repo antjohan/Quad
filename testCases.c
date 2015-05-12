@@ -98,26 +98,25 @@ void testHoverToStep(){
   
   setHover();
   sleep(4);
+  
   printf("Initierar steg och skriver ner värden\n");
-  fprintf(fp, "Nytt test, hover to step\n");
-  //Initiate step
   printf("Set_servo\n");
+  
   Set_Servo(3, ThrottleStep);
   double start_time = millis();
   printf("servo satt\n");
-//  ultraSetup();//Hårdkod, ska bort senare
+
   for (int i = 0; i<40;i++){
     double Uh = getUHeight();
     double Bh = getBHeight();
     double currentHeight = getHeight(Uh, Bh); //Use the ultra sensor to get height
     
     fprintf(fp, "Time = %lf, Höjd = %lf, Uh = %lf, Bh = %lf\n", millis()-start_time, currentHeight, Uh, Bh);
-   // fprintf(fp, "#Iteration = %i, Höjd = %lf\n", i, currentHeight);
     printf("Time = %lf, Höjd = %lf, Uh = %lf, Bh = %lf\n", millis()-start_time, currentHeight, Uh, Bh);
     delay(100);
   }
   printf("Klar med test, setter hover\n");
-  //Hover
+
   fclose(fp);
   setHover();
 }
@@ -144,31 +143,42 @@ get_time();
 
   FILE *fp;
   fp=fopen(dir,"w");
-  fprintf(fp, "Nytt test, testRotation\n");
  
   printf("Startar yaw rotations test, setter hover\n");
+ 
   setHover();
   sleep(4);
+  
+  printf("Initierar clockwise rotation\n"); 
+  
   double start_time = millis();
-  printf("Initierar clockwise rotation\n");
   Set_Servo(4,50+YawSpeed);
+ 
   for(int i = 0; i < 60; i++){
+
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
   	delay(50);
   }
+
   fprintf(fp, "Klar med en rotation, börjar nästa\n");
+ 
   printf("Klar med clockwise, setter hover\n");
+ 
   setHover();
   sleep(4);
+ 
   printf("Initierar counter clockwise rotation\n");
+ 
   start_time = millis();
   Set_Servo(4, 50-YawSpeed);
+ 
   for(int i = 0; i < 60; i++){
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
   	delay(50);
   }
-  fclose(fp);
+  
   printf("Klar med test, setter hover\n");
+  fclose(fp);
   setHover();
 }
 
