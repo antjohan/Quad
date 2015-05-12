@@ -152,7 +152,7 @@ double computeHeading(int x, int y, int z){
     } else if(y==0&&x>0){
         hd=0.0;
     }
-    printf("Heading: %lf\n",hd);
+    //printf("Heading: %lf\n",hd);
     return(hd);
 }
 
