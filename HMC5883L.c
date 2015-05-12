@@ -14,7 +14,6 @@ void HMC5883L_init(){
     wiringPiSetupSys();
     HMC5883L_Sensor =  wiringPiI2CSetup (HMC5883L_Address);
     wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
-    wiringPiI2CWriteReg8(HMC5883L_Sensor, ModeRegister_Address, ContinuosMeasurementMode);
 }
 
 void cfg_init(){
