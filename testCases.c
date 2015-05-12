@@ -90,7 +90,7 @@ int testHoverToStep(void){
   char dir[128];
   sprintf(fname, "%s offset=%d step=%d.txt", str_time, HoverOffset, ThrottleStep);
   sprintf(dir, "/home/pi/logs/ThrottleStep/\"%s\"", fname);
-  sprintf(file_cmd, "touch /home/pi/logs/ThrottleStep/\"%s\"", fname);
+  //sprintf(file_cmd, "touch /home/pi/logs/ThrottleStep/\"%s\"", fname);
   system(file_cmd);
   
   FILE *fp;
