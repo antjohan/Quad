@@ -106,6 +106,10 @@ int main(){
 
             
         }else if(main_menu == 4){
+            test_cfg_init();
+            test_cfg_print();
+            print_time();
+
             int test_menu;
             system("clear");
             printf("---------------------------------\n");

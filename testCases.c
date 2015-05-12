@@ -4,18 +4,72 @@
 #include <unistd.h>
 #include <math.h>
 #include <wiringPiI2C.h>
-//#include "FlightControl.c"
-//#include "BMP180.c"
-//include "ultra.c"
+#include <time.h>
+
+int HoverOffset = 0;
+int ThrottleStep = 0;
+int YawSpeed = 0;
+int PitchSpeed = 0;
+int RollSpeed = 0;
+int Debug = 0;
+
+void Ttest_cfg_init(){
+	config_t cfg;
+    config_setting_t *test;
+    const char *str;
+    config_init(&cfg);
+    
+    if(! config_read_file(&cfg, "c.cfg"))
+    {
+        fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
+        config_error_line(&cfg), config_error_text(&cfg));
+        config_destroy(&cfg);
+        //return(EXIT_FAILURE);
+    }
+    test = config_lookup(&cfg, "Test");
+    
+    config_setting_lookup_bool(test, "Debug", &Debug);
+    config_setting_lookup_int(test, "HoverOffset", &HoverOffset);
+    config_setting_lookup_int(test, "ThrottleStep", &ThrottleStep);
+    config_setting_lookup_int(test, "YawSpeed", &YawSpeed);
+    config_setting_lookup_int(test, "PitchSpeed", &PitchSpeed);
+    config_setting_lookup_int(test, "RollSpeed", &RollSpeed);
+ 
+    config_destroy(&cfg);
+}
+
+void test_print_cfg(){
+	if(Debug){
+    	printf("--------Test Configuration-------\n\n");
+		printf(" HoverOffset: %d", HoverOffset);
+		printf(" ThrottleStep: %d", ThrottleStep);
+		printf(" YawSpeed: %d", YawSpeed);
+		printf(" PitchSpeed: %d", PitchSpeed);
+		printf(" RollSpeed: %d", RollSpeed);
+    	printf("---------------------------------\n\n");
+	}
+}
+
+
+void print_time(){
+	time_t rawtime;
+	struct tm * timeinfo;
+
+	time (&rawtime);
+	timeinfo = localtime (&rawtime);
+	printf ("Current local time and date: %s", asctime(timeinfo));
+}
+
 //Functions for motorcontroll
 void setHover(){
 	int servo[4] = {1,2,3,4};
 	int hover[4] = {50,50,hoverConst,50};
 	
 	for (int i = 0; i<4;i++){
-	  Set_Servo(servo[i],hover[i]);
+		Set_Servo(servo[i],hover[i]);
 	}
 }
+
 /*
 Testcase1, Step from hover
 Idea:	Test roll capabilities of the quadcopter without sensordata.
@@ -27,9 +81,9 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 */
 
 int testHoverToStep(void){
+  
   printf("Startar hover to step test, setter hover\n");
   
-  int afterStep = 74;
   FILE *fp;
   fp=fopen("/home/pi/logs/hoverToStepTest.txt","w");
   setHover();
@@ -38,7 +92,7 @@ int testHoverToStep(void){
   fprintf(fp, "Nytt test, hover to step\n");
   //Initiate step
   printf("Set_servo\n");
-  Set_Servo(3, afterStep);
+  Set_Servo(3, ThrottleStep);
   double start_time = millis();
   printf("servo satt\n");
 //  ultraSetup();//Hårdkod, ska bort senare
@@ -70,7 +124,6 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int testRotation(void){
-  const int yawSpeed = 30;
   FILE *fp;
   fp=fopen("/home/pi/logs/testRotation.txt","w");
   fprintf(fp, "Nytt test, testRotation\n");
@@ -80,7 +133,7 @@ int testRotation(void){
   sleep(4);
   double start_time = millis();
   printf("Initierar clockwise rotation\n");
-  Set_Servo(4,50+yawSpeed);
+  Set_Servo(4,50+YawSpeed);
   for(int i = 0; i < 60; i++){
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
   	delay(50);
@@ -91,7 +144,7 @@ int testRotation(void){
   sleep(4);
   printf("Initierar counter clockwise rotation\n");
   start_time = millis();
-  Set_Servo(4, 50-yawSpeed);
+  Set_Servo(4, 50-YawSpeed);
   for(int i = 0; i < 60; i++){
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
   	delay(50);
@@ -114,18 +167,18 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from pitc
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int pitchTest(void){
-  const int pitchSpeed = 30;
+  const int PitchSpeed = 30;
   printf("Startar pitch test, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar framåt\n");
-  Set_Servo(1,50+pitchSpeed);
+  Set_Servo(1,50+PitchSpeed);
   sleep(4);
   printf("Klar med framåt, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar bakåt\n");
-  Set_Servo(1, 50-pitchSpeed);
+  Set_Servo(1, 50-PitchSpeed);
   sleep(4);
   printf("Klar med pitch test, setter hover\n");
   setHover();
@@ -142,18 +195,18 @@ Setup:	Doubled inputs from RC reciever to the MUX on all ports except from roll
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int rollTest(void){
-	const int rollSpeed = 30;
+	const int RollSpeed = 30;
   printf("Startar roll test, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar höger\n");
-  Set_Servo(2,50+rollSpeed);
+  Set_Servo(2,50+RollSpeed);
   sleep(4);
   printf("Klar med höger, setter hover\n");
   setHover();
   sleep(4);
   printf("Initierar vänster\n");
-  Set_Servo(2, 50-rollSpeed);
+  Set_Servo(2, 50-RollSpeed);
   sleep(4);
   printf("Klar med roll test, setter hover\n");
   setHover();
