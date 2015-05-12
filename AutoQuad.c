@@ -217,7 +217,8 @@ int main(){
                             double bh=getBHeight();
                             double h=getHeight(uh,bh);
                             double hd=getHeading();
-                           // double coordinates[13]=getCoordinate();
+
+                            double gpsdata[6]=getCoordinate();
                             double latitude=gpsdata[1];
                             double longitude=gpsdata[2];
                             double quality=gpsdata[3];

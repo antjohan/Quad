@@ -26,50 +26,6 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-static float pre_error = 0; 
-static float integral = 0;  
-float PIDcal(float diff) {   
-	printf("Diff: %lf \n", diff);
-	float epsilon = 0.01;
-	float dt = 0.01; //100ms loop time 
-	float MAX = hoverConst+5;  //for Current Saturation 
-	float MIN = hoverConst-5; //hoverconst-..
-	float Kp = 12;
-	float Kd = 0.2;
-	float Ki = 0.2;
-	float error = diff; 
-	float derivative;
-	float output = 0;
-  // for (int i = 0; i < 50; i++){
-   	printf("Iteration\n");
-//	error = error - output*0.02;//output*0.02 tillsvarar 2 cm per iteration per motorkraft över hover
-	printf("Error: %lf \n", error);
-	 //Caculate P,I,D    
-  	  //hur gör man detta om till fel i hastighet?
-  	//In case of error too small then stop integration    
-  //	if(abs(error) > epsilon)    {        
-  		integral = integral + error*dt;    
-	//}    
-	derivative = (error - pre_error)/dt;    
-	printf("Derivative: %lf \n", derivative);
-
-	printf("Integral: %lf \n", integral);
-
-	output = hoverConst+(Kp*error + Ki*integral + Kd*derivative);//+hoverConst
-	//Saturation Filter    
-	if(output > MAX)    {        
-	  	output = MAX;    
-	}    
-	else if(output < MIN)    {        
-  	 	output = MIN;    
-  	}        //Update error        
-	pre_error = error; //pre error måste lagras samma plats som denna kod används
-	output = round(output);
- 	printf("Output (post max/min/floor) : %lf \n", output);
-//   }
-   return output;
-}
-
 
 int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
