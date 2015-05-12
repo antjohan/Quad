@@ -221,7 +221,7 @@ int main(){
                             double bh=getBHeight();
                             double h=getHeight(uh,bh);
                             double hd=getHeading();
-
+                            printf("1\n");
                             double * gpsdata=getCoordinate();
                             double latitude=*(gpsdata+1);
                             double longitude=*(gpsdata+2);
@@ -230,10 +230,10 @@ int main(){
                             double sdn=*(gpsdata+5);
                             double sde=*(gpsdata+6);
 
-                            
+                            printf("2\n");
                             updateLog(bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
                             //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
-                            printf("Barometer: %.2lf   Ultrasonic: %.2lf  Height: %.2lf  Magnetometer: %.2lf\n",bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
+                            printf("Barometer: %.2lf   Ultrasonic: %.2lf  Height: %.2lf  Magnetometer: %.2lf Lat: %lf Long: %lf Q: %lf nsat: %lf sdn: %lf sde: %lf\n",bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
                             delay(100);
                         }
                         
