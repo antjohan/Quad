@@ -87,12 +87,14 @@ int testHoverToStep(void){
   get_time();
   char fname[50];
   char file_cmd[128];
+  char dir[128];
   sprintf(fname, "%s offset=%d step=%d.txt", str_time, HoverOffset, ThrottleStep);
+  sprintf(dir, "/home/pi/logs/ThrottleStep/\"%s\"", fname);
   sprintf(file_cmd, "touch /home/pi/logs/ThrottleStep/\"%s\"", fname);
   system(file_cmd);
   
   FILE *fp;
-  fp=fopen(fname,"w");
+  fp=fopen(dir,"w");
   
   setHover();
   sleep(4);
