@@ -11,7 +11,6 @@
 	RUD -> 4 -> P1-15
  ----------------------------------------------------
  */
- int hoverConst;
 
 void Set_Servo(int num, int pos){
     
