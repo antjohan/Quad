@@ -87,7 +87,7 @@ int testHoverToStep(void){
   double start_time = millis();
   printf("servo satt\n");
 //  ultraSetup();//Hårdkod, ska bort senare
-  for (int i = 0; i<40;i++){
+  for (int i = 0; i<400;i++){
     double Uh = getUHeight();
     double Bh = getBHeight();
     double currentHeight = getHeight(Uh, Bh); //Use the ultra sensor to get height
