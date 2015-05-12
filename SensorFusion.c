@@ -224,8 +224,9 @@
 		char * str;
 		printf("3\n");
 	 	if(read (from_gps_fd, gpsbuffer, MAX_BUF)>0){  // read up to 100 characters if ready to read
-	        printf("4\n");
+	        printf("x\n");
 	        strcpy(str, gpsbuffer);
+	        printf("x.5\n");
 	        char * end;
 	        printf("5\n");
 			for (int i =0;i<6;++i){
