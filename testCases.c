@@ -91,7 +91,7 @@ int testHoverToStep(void){
   sprintf(fname, "%s offset=%d step=%d.txt", str_time, HoverOffset, ThrottleStep);
   sprintf(dir, "/home/pi/logs/ThrottleStep/\"%s\"", fname);
   //sprintf(file_cmd, "touch /home/pi/logs/ThrottleStep/\"%s\"", fname);
-  system(file_cmd);
+  //system(file_cmd);
   
   FILE *fp;
   fp=fopen(dir,"w");
@@ -134,8 +134,16 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int testRotation(void){
+
+get_time();
+  char fname[50];
+  char file_cmd[128];
+  char dir[128];
+  sprintf(fname, "%s speed=%d.txt", str_time, YawSpeed);
+  sprintf(dir, "/home/pi/logs/Rotation/\"%s\"", fname);
+
   FILE *fp;
-  fp=fopen("/home/pi/logs/testRotation.txt","w");
+  fp=fopen(dir,"w");
   fprintf(fp, "Nytt test, testRotation\n");
  
   printf("Startar yaw rotations test, setter hover\n");
@@ -177,7 +185,15 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from pitc
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int pitchTest(void){
-  const int PitchSpeed = 30;
+	get_time();
+  char fname[50];
+  char file_cmd[128];
+  char dir[128];
+  sprintf(fname, "%s speed=%d.txt", str_time, PitchSpeed);
+  sprintf(dir, "/home/pi/logs/Pitch/\"%s\"", fname);
+
+  FILE *fp;
+  fp=fopen(dir,"w");
   printf("Startar pitch test, setter hover\n");
   setHover();
   sleep(4);
@@ -191,6 +207,7 @@ int pitchTest(void){
   Set_Servo(1, 50-PitchSpeed);
   sleep(4);
   printf("Klar med pitch test, setter hover\n");
+  fclose(fp);
   setHover();
   return 0;
 }
@@ -205,7 +222,16 @@ Setup:	Doubled inputs from RC reciever to the MUX on all ports except from roll
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 int rollTest(void){
-	const int RollSpeed = 30;
+	get_time();
+  char fname[50];
+  char file_cmd[128];
+  char dir[128];
+  sprintf(fname, "%s speed=%d.txt", str_time, PitchSpeed);
+  sprintf(dir, "/home/pi/logs/Roll/\"%s\"", fname);
+
+  FILE *fp;
+  fp=fopen(dir,"w");  
+
   printf("Startar roll test, setter hover\n");
   setHover();
   sleep(4);
@@ -219,6 +245,7 @@ int rollTest(void){
   Set_Servo(2, 50-RollSpeed);
   sleep(4);
   printf("Klar med roll test, setter hover\n");
+  fclose(fp);
   setHover();
   return 0;
 }
