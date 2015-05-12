@@ -81,7 +81,7 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
 
-int testHoverToStep(void){
+void testHoverToStep(){
   printf("Startar hover to step test, setter hover\n");
 
   get_time();
@@ -120,7 +120,6 @@ int testHoverToStep(void){
   //Hover
   fclose(fp);
   setHover();
-  return 0;
 }
 
 /*
@@ -133,7 +132,8 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-int testRotation(void){
+
+void testRotation(){
 
 get_time();
   char fname[50];
@@ -170,8 +170,6 @@ get_time();
   fclose(fp);
   printf("Klar med test, setter hover\n");
   setHover();
-  
-  return 0;
 }
 
 /*
@@ -184,7 +182,8 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from pitc
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-int pitchTest(void){
+
+void pitchTest(){
 	get_time();
   char fname[50];
   char file_cmd[128];
@@ -209,7 +208,6 @@ int pitchTest(void){
   printf("Klar med pitch test, setter hover\n");
   fclose(fp);
   setHover();
-  return 0;
 }
 /*
 Testcase4, roll
@@ -221,7 +219,8 @@ Setup:	Doubled inputs from RC reciever to the MUX on all ports except from roll
 	which is controlled by the rPI in one of the sets of the inputs. For safety; all other servos are set 
 	to idle from the rPI, so that if they are controlled through the mux aswell it will stay stationary, hovering.
 */
-int rollTest(void){
+
+void rollTest(){
 	get_time();
   char fname[50];
   char file_cmd[128];
@@ -247,7 +246,6 @@ int rollTest(void){
   printf("Klar med roll test, setter hover\n");
   fclose(fp);
   setHover();
-  return 0;
 }
 
 /* 
@@ -262,7 +260,8 @@ Action:	The motor is first given an offset to achieve hover. The pilot controlls
 Setup:	The ultra sensor should be placed facing downwards. Doubled signals from the RC reciever is sent
 	to the MUX, except for the thrust which is sent from the rPI on one set of inputs.
 */
-int pidHeightTest(int refHeight){
+
+void pidHeightTest(int refHeight){
   const int hoverOffset = 70;
   FILE *fp;
   fp=fopen("heightAndSpeed.txt","r+");
@@ -280,10 +279,9 @@ int pidHeightTest(int refHeight){
   printf("Klar med PID height test, borde hovra nu\n");
   setHover();//Should not be needed if the PID works nicely
   fclose(fp);
-  return 0;
 }
 
-int pidInsideTest(float refHeight){
+void pidInsideTest(float refHeight){
 	integral = 0;
 	for(int i = 0; i < 100; i++){
 		float currentHeight = getHeight(getUHeight(), getBHeight());
@@ -291,8 +289,6 @@ int pidInsideTest(float refHeight){
 		printf("%fl\n", reqThrust);
 		delay(300);
 	}
-
-	return 0;
 }
 /*
 int main(){
