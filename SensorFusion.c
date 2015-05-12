@@ -219,13 +219,13 @@
 	*/
 	double * getCoordinate(){ 
 		commandSensor("gps", "read");
-		double gpsdata[13]={0};
+		double gpsdata[6]={0};
 		char gpsbuffer[MAX_BUF];
 		char * str;
 	 	if(read (from_gps_fd, gpsbuffer, MAX_BUF)>0){  // read up to 100 characters if ready to read
 	        strcpy(str, gpsbuffer);
 	        char * end;
-			for (int i =0;i<13;++i){
+			for (int i =0;i<6;++i){
 		        gpsdata[i] = strtod(str, &end);
 		        str=end;
 		    }

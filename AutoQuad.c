@@ -201,7 +201,7 @@ int main(){
                         
                     } else if (recdataprompt==4){
                     	double * gpsdata = getCoordinate();
-                        printf("lat: %lf long: %lf quality: %lf\n", gpsdata[1],gpsdata[2],gpsdata[3]);
+                        printf("lat: %lf long: %lf quality: %lf nsat: %lf sdn: %lf sde: %lf\n", gpsdata[1],gpsdata[2],gpsdata[3], gpsdata[4], gpsdata[5], gpsdata[6]);
                         
                     } else if (recdataprompt==5){
                         printf("Barometer height(m): %lf\n", getBHeight());
@@ -217,10 +217,17 @@ int main(){
                             double h=getHeight(uh,bh);
                             double hd=getHeading();
                            // double coordinates[13]=getCoordinate();
+                            double latitude=gpsdata[1];
+                            double longitude=gpsdata[2];
+                            double quality=gpsdata[3];
+                            double nsat=gpsdata[4];
+                            double sdn=gpsdata[5];
+                            double sde=gpsdata[6];
+
                             
-                            updateLog(bh, uh, h, hd,0,0,0,0,0,0);
+                            updateLog(bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
                             //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
-                            printf("Barometer: %.2lf   Ultrasonic: %.2lf  Height: %.2lf  Magnetometer: %.2lf\n",bh,uh,h, hd);
+                            printf("Barometer: %.2lf   Ultrasonic: %.2lf  Height: %.2lf  Magnetometer: %.2lf\n",bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
                             delay(100);
                         }
                         
