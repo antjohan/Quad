@@ -108,7 +108,6 @@ int main(){
         }else if(main_menu == 4){
             int test_menu;
             
-            system("clear");
             printf("---------------------------------\n");
             printf("Test Menu\n");
             printf("---------------------------------\n");
@@ -122,8 +121,9 @@ int main(){
             printf("[8]	PIDtest, 0.3m\n");
             printf("[9]	Back\n");
             printf("---------------------------------\n");
-            
             scanf("%d",&test_menu);
+            system("clear");
+
             //barometertest
             
             if (test_menu == 1){
