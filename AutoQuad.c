@@ -133,7 +133,7 @@ int main(){
                     printf("---------------------------------\n");
                     printf("Ping Menu\n");
                     printf("---------------------------------\n");
-                    printf("ping to see if program->sensor communication (pipe) is working\n");
+                    //printf("ping to see if program->sensor communication (pipe) is working\n");
                     printf("[1]	Barometer\n");
                     printf("[2]	Ultrasonic sensor\n");
                     printf("[3]	Magnetometer\n");
@@ -177,7 +177,7 @@ int main(){
                     printf("---------------------------------\n");
                     printf("Data Menu\n");
                     printf("---------------------------------\n");
-                    printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
+                    //printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
                     printf("[1]	Barometer\n");
                     printf("[2]	Ultrasonic sensor\n");
                     printf("[3]	Magnetometer\n");
