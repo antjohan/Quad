@@ -59,13 +59,6 @@ void get_time(){
 	time (&rawtime);
 	timeinfo = localtime (&rawtime);
 	sprintf(str_time, "%s",asctime(timeinfo));
-
-  //get_time();
-  char fname[50];
-  char file_cmd[128];
-  sprintf(fname, "%s offset=%d step=%d", str_time, HoverOffset, ThrottleStep);
-  sprintf(file_cmd, "touch /home/pi/logs/\"%s\"", fname);
-  system(file_cmd);
 }
 
 //Functions for motorcontroll
@@ -89,11 +82,18 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from thru
 */
 
 int testHoverToStep(void){
-  
   printf("Startar hover to step test, setter hover\n");
 
+  get_time();
+  char fname[50];
+  char file_cmd[128];
+  sprintf(fname, "%s offset=%d step=%d.txt", str_time, HoverOffset, ThrottleStep);
+  sprintf(file_cmd, "touch /home/pi/logs/ThrottleStep/\"%s\"", fname);
+  system(file_cmd);
+  
   FILE *fp;
-  fp=fopen("/home/pi/logs/hoverToStepTest.txt","w");
+  fp=fopen(fname,"w");
+  
   setHover();
   sleep(4);
   printf("Initierar steg och skriver ner värden\n");
