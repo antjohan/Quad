@@ -7,7 +7,7 @@
 //#include "FlightControl.c"
 //#include "BMP180.c"
 //include "ultra.c"
-const int hoverConst = 69;
+const int hoverConst = 71;
 //Functions for motorcontroll
 void setHover(){
 	int servo[4] = {1,2,3,4};
@@ -74,7 +74,7 @@ float PIDcal(float diff) {
 int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
   
-  int afterStep = 72;
+  int afterStep = 74;
   FILE *fp;
   fp=fopen("/home/pi/logs/hoverToStepTest.txt","w");
   setHover();
