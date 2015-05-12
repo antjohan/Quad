@@ -175,9 +175,10 @@
 	double getHeight(double uh, double bh){ //returns the best value for height, using both barometer/ultrasonic sensor input
 		//double uh=getUHeight(); //ultrasonic height
 		//double bh=getBHeight(); //barometer height
+		double offset=0.0;
 		if (uh<450 && uh>0){
 			BaroInitialHeight=bh-(uh/100.0);
-			return(uh/100.0);
+			return((uh-offset)/100.0);
 		} else {
 			return (bh-BaroInitialHeight);
 		} 
