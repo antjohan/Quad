@@ -58,13 +58,14 @@ void get_time(){
 
 	time (&rawtime);
 	timeinfo = localtime (&rawtime);
-	printf ("Current local time and date: %s", );
 	sprintf(str_time, "%s",asctime(timeinfo));
 
   //get_time();
   char fname[50];
+  char file_cmd[128];
   sprintf(fname, "%s offset=%d step=%d", str_time, HoverOffset, ThrottleStep);
-  system("touch /home/pi/logs/%s", fname);
+  sprintf(file_cmd, "touch /home/pi/logs/%s", fname);
+  system(file_cmd);
 }
 
 //Functions for motorcontroll
