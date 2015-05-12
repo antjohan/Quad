@@ -63,7 +63,7 @@ void Disarm_FlightController(){
 
 static float pre_error = 0; 
 static float integral = 0;  
-float hoverPID(float diff) {   
+float PIDcal(float diff) {   
 	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.01; //100ms loop time 
