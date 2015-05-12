@@ -148,7 +148,8 @@ int main(){
                     	printf("----Press any key to continue----\n");
                         commandSensor("baro\0", "ping\0");
                         printf("---------------------------------\n");
-                        scanf();
+                        int tmp; 
+                        scanf("%d", &tmp);
 
                         
                     } else if (pingprompt==2){
