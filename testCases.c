@@ -74,7 +74,7 @@ float PIDcal(float diff) {
 int testHoverToStep(void){
   printf("Startar hover to step test, setter hover\n");
   
-  int afterStep = 75;
+  int afterStep = 72;
   FILE *fp;
   fp=fopen("/home/pi/logs/hoverToStepTest.txt","w");
   setHover();
