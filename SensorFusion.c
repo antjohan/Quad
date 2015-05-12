@@ -251,7 +251,7 @@
 		strcpy(sensorstr,sensor);
 		sprintf(sendstr,"%s",command);
 
-
+		printf("%s", sensorstr);
 		if (strcmp(sensorstr, str1)==0){
 			sensor_fd=to_mag_fd;
 		} else if (strcmp(sensorstr, str2)==0){
