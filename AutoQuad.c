@@ -224,7 +224,7 @@ int main(){
                             
                             updateLog(bh, uh, h, hd,0,0,0,0,0,0);
                             //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
-                            printf("Barometer: %lf   Ultrasonic: %lf  Height: %lf  Magnetometer: %lf\n",bh,uh,h, hd);
+                            printf("Barometer: %.2lf   Ultrasonic: %.2lf  Height: %.2lf  Magnetometer: %.2lf\n",bh,uh,h, hd);
                             delay(100);
                         }
                         
