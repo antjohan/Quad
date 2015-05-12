@@ -139,7 +139,7 @@ int main(){
                     printf("[3]	Magnetometer\n");
                     printf("[4]	GPS\n");
                     printf("[5]	All\n");
-                    printf("[6] Back\n");
+                    printf("[6]	Back\n");
                     printf("---------------------------------\n");
                     scanf("%d",&pingprompt);
 					system("clear");
@@ -184,8 +184,8 @@ int main(){
                     printf("[4]	GPS\n");
                     printf("[5]	All\n");
                     printf("[6]	Loop all sensors and log data\n");
-                    printf("[7] Loop height fast\n");
-                    printf("[8] Back\n");
+                    printf("[7]	Loop height fast\n");
+                    printf("[8]	Back\n");
                     printf("---------------------------------\n");
                     scanf("%d",&recdataprompt);
                     system("clear");
