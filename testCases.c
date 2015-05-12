@@ -13,7 +13,7 @@ int PitchSpeed = 0;
 int RollSpeed = 0;
 int Debug = 0;
 
-void Ttest_cfg_init(){
+void test_cfg_init(){
 	config_t cfg;
     config_setting_t *test;
     const char *str;
@@ -38,7 +38,7 @@ void Ttest_cfg_init(){
     config_destroy(&cfg);
 }
 
-void test_print_cfg(){
+void test_cfg_print(){
 	if(Debug){
     	printf("--------Test Configuration-------\n\n");
 		printf(" HoverOffset: %d", HoverOffset);
