@@ -7,7 +7,7 @@
 //#include "FlightControl.c"
 //#include "BMP180.c"
 //include "ultra.c"
-const int hoverConst = 70;
+const int hoverConst = 69;
 //Functions for motorcontroll
 void setHover(){
 	int servo[4] = {1,2,3,4};
