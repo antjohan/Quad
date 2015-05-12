@@ -130,7 +130,6 @@ int main(){
                 int pingprompt=0;
                 while (pingprompt>=0){
                     
-                    system("clear");
                     printf("---------------------------------\n");
                     printf("Ping Menu\n");
                     printf("---------------------------------\n");
@@ -143,16 +142,12 @@ int main(){
                     printf("[6] Back\n");
                     printf("---------------------------------\n");
                     scanf("%d",&pingprompt);
+					system("clear");
+
+
                     
                     if(pingprompt==1){
-                    	printf("----Press any key to continue----\n");
                         commandSensor("baro\0", "ping\0");
-                        printf("---------------------------------\n");
-                      	char *msg = malloc(100*sizeof(char));
-                      	fgets(msg, 100, stdin);
-
-
-                        
                     } else if (pingprompt==2){
                         commandSensor("ultra\0", "ping\0");
                         
