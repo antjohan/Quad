@@ -125,8 +125,11 @@
        strcpy(str1,"ping");
        strcpy(str2, "read");
 
-       while (read(to_gps_fd, buffer, 10)>0){
-       }
+       char temp[10];
+        while (read(to_gps_fd, buffer, 10)>0){
+          strcpy(temp,buffer);
+        }
+    strcpy(buffer,temp);
           if (strcmp(buffer,str1)==0){
             printf("GPS-process sends his finest regards\n");
           } else if(strcmp(buffer,str2)==0){

@@ -195,8 +195,11 @@ void checkPipe(){
     
     strcpy(str1,"ping");
     strcpy(str2,"read");
-       while (read(to_baro_fd, buffer, 10)>0){
-       }
+    char temp[10];
+    while (read(to_baro_fd, buffer, 10)>0){
+      strcpy(temp,buffer);
+    }
+    strcpy(buffer,temp);
         if (strcmp(buffer,str1)==0){ //ping
             printf("Barometer says hi! :D\n");
         } else if(strcmp(buffer,str2)==0) { //read

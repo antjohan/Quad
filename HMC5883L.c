@@ -101,8 +101,11 @@ void connectFifos(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
    strcpy(str3,"calibrate");
-       while (read(to_mag_fd, buffer, 10)>0){
-       }
+    char temp[10];
+    while (read(to_mag_fd, buffer, 10)>0){
+      strcpy(temp,buffer);
+    }
+    strcpy(buffer,temp);
 
      if (strcmp(buffer,str1)==0){
        printf("Magnetometer says hi! :)\n");
