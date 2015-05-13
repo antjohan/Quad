@@ -117,7 +117,7 @@
     }
 
     void checkPipe(){
-       char buffer[10];
+    char buffer[10]={""};
 
        char str1[10];
        char str2[10];
@@ -125,12 +125,14 @@
        strcpy(str1,"ping");
        strcpy(str2, "read");
 
-          if (read(to_gps_fd, buffer, 10)>0){
-              if (strcmp(buffer,str1)==0){
-                printf("GPS-process sends his finest regards\n");
-              } else if(strcmp(buffer,str2)==0){
-                writeOutput();
-              }
+       char strlast[10];
+       while (read(to_gps_fd, strlast, 10)>0){
+            buffer=strlast;
+       }
+          if (strcmp(buffer,str1)==0){
+            printf("GPS-process sends his finest regards\n");
+          } else if(strcmp(buffer,str2)==0){
+            writeOutput();
           }
     }
 

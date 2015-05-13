@@ -92,7 +92,7 @@ void connectFifos(){
    write(from_mag_fd,WriteBuf,sizeof(WriteBuf));
  }
  void checkPipe(){
-   char buffer[10];
+  char buffer[10]={""};
 
    char str1[10];
    char str2[10];
@@ -101,8 +101,11 @@ void connectFifos(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
    strcpy(str3,"calibrate");
+   char strlast[10];
+   while (read(to_mag_fd, strlast, 10)>0){
+        buffer=strlast;
+   }
 
-   if (read(to_mag_fd, buffer, 10)>0){
      if (strcmp(buffer,str1)==0){
        printf("Magnetometer says hi! :)\n");
        } else if(strcmp(buffer,str2)==0){
@@ -110,7 +113,6 @@ void connectFifos(){
          } else if(strcmp(buffer,str3)==0){
            calibrate();
          }
-       }
      }
 
 int GetX(){

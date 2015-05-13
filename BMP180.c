@@ -190,20 +190,21 @@ void writeOutput(){
 }
 
 void checkPipe(){
-    char buffer[10];
+    char buffer[10]={""};
     char str1[10];
     char str2[10];
     
     strcpy(str1,"ping");
     strcpy(str2,"read");
-    
-    if (read(to_baro_fd, buffer, 10)>0){
+    char strlast[10];
+    while (read(to_baro_fd, strlast, 10)>0){
+        buffer=strlast;
+    }
         if (strcmp(buffer,str1)==0){ //ping
             printf("Barometer says hi! :D\n");
         } else if(strcmp(buffer,str2)==0) { //read
             writeOutput();
         }
-    }
 }
 
 void Write(int address, int data){
