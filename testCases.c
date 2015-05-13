@@ -64,7 +64,7 @@ void get_time(){
 //Functions for motorcontroll
 void setHover(){
 	int servo[4] = {1,2,3,4};
-	int hover[4] = {50,50,hoverConst,50};
+	int hover[4] = {50,50,HoverConst,50};
 	
 	for (int i = 0; i<4;i++){
 		Set_Servo(servo[i],hover[i]);
