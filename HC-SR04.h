@@ -29,7 +29,7 @@ int getCM();
 void connectFifos();
 void checkPipe();
 void getCMloop();
-void ultraSetup();
+void HCSR04_init();
 int getUltra();
 void getCMloop();
 

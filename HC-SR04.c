@@ -1,7 +1,7 @@
 #include "HC-SR04.h"
 
 int main(){
-  ultraSetup();
+  HCSR04_init();
   sample();
 
 }
@@ -14,7 +14,7 @@ void sample(){
    }
 }
  
-void ultraSetup() {
+void HCSR04_init() {
    wiringPiSetup();
    connectFifos();
    pinMode(TRIG, OUTPUT);
