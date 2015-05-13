@@ -215,7 +215,7 @@ int main(){
                     } else if (recdataprompt==6){
                         double starttime=millis();
                         while (1){
-                            if((millis()-starttime)>50){
+                            if((millis()-starttime)>200){
                                 double uh=getUHeight();
                                 double bh=getBHeight();
                                 double h=getHeight(uh,bh);
