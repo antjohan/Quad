@@ -197,7 +197,7 @@ double movingAvg(float newvalue){
 
 void writeOutput(){
     char WriteBuf[MAX_BUF];
-    sprintf(WriteBuf,"%f",AbsoluteAltitude);
+    sprintf(WriteBuf,"%lf",AbsoluteAltitude);
     write(from_baro_fd,WriteBuf,sizeof(WriteBuf));
 }
 

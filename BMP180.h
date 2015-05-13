@@ -73,6 +73,7 @@ void printOut();
 void connectFifos();
 void calibrate();
 void sample();
+double movingAvg(float newvalue);
 void checkPipe();
 void Write();
 uint8_t Read(int address);
