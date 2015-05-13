@@ -215,7 +215,7 @@ int main(){
                     } else if (recdataprompt==6){
                         double starttime=millis();
                         while (1){
-                            if((millis()-starttime)>200){
+                            if((millis()-starttime)>50){
                                 double uh=getUHeight();
                                 double bh=getBHeight();
                                 double h=getHeight(uh,bh);
@@ -229,8 +229,9 @@ int main(){
                                 double sde=*(gpsdata+5);
 
                                 updateLog(bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
+                                double samplingspeed=millis()-starttime;
                                 //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
-                                printf("Baro: %5.2lf   Ultra: %5.2lf  H: %5.2lf  Mag: %3.0lf Lat: %7lf Long: %7lf Q: %1.0lf nsat:%2.0lf sdn: %3.2lf sde: %3.2lf\n",bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
+                                printf("Baro: %5.2lf   Ultra: %5.2lf  H: %5.2lf  Mag: %3.0lf Lat: %7lf Long: %7lf Q: %1.0lf nsat:%2.0lf sdn: %3.2lf sde: %3.2lf ms: %lf\n",bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde,samplingspeed);
                                 starttime=millis();
                             }
                         }
