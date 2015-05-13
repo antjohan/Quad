@@ -1,42 +1,4 @@
- #include <stdio.h>
-#include <stdlib.h>
- #include <wiringPiI2C.h>
- #include <wiringPi.h>
- #include <inttypes.h>
- #include <stdbool.h>
- #include <math.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
- 
-// #define TRUE 1
- 
-#define TRIG 10
-#define ECHO 11
-#define MAX_BUF 256
-
-
-int sampling=1; //ultra will loop and report sampled data
-long currentHeight;
-
-
-//functions
-void sample();
-long getCM();
-void connectFifos();
-void checkPipe();
-void getCMloop();
-void ultraSetup();
-long getUltra();
-void getCMloop();
-
-int from_ultra_fd;
-int to_ultra_fd;
-long offset=3;
-
+#include "HC-SR04.h"
 
 int main(){
   ultraSetup();
@@ -111,7 +73,7 @@ void checkPipe(){
       }
 }
 
-long getUltra() {
+int getUltra() {
         //Send trig pulse
         digitalWrite(TRIG, HIGH);
         delayMicroseconds(20);
@@ -127,7 +89,7 @@ long getUltra() {
         }
         long travelTime = micros() - startTime;
         //Get distance in cm
-        long distance = travelTime / 58;
+        int distance = travelTime / 58;
  
         return distance;
 }
@@ -136,16 +98,16 @@ long getUltra() {
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
 long getCM(){
-   long val = 5;
-   long sum;
+   int val = 5;
+   int sum;
 
 
    // Första mätningen, val=antal mätvärden,
    // värden större än 400cm förkastas
-   long m1[val];
-   long tmp;
-   long medel1 = 0;
-   long length1 = 0;
+   int m1[val];
+   int tmp;
+   int medel1 = 0;
+   int length1 = 0;
    for(int i = 0; i<val; i++){
       tmp = getUltra();         // Gör en mätning
       if(tmp < 400 && tmp > 0){            // Kollar om värdet är rimligt (kortare än 400cm)
@@ -155,16 +117,16 @@ long getCM(){
       }
       if (length1 == 0){
       //printf("Avståndet är längre än 4m\n");
-      return ((long)-1);
+      return ((int)-1);
       }
       //delay(50);               // Fördröjning för att det ska fungera, tror 30 är lagom
    }
    // Mätningarnas medelvärde 
-   long medel = medel1  / length1;
+   int medel = medel1  / length1;
    // Mätvärdenas individuella differens från medelvärdet (diff)
    // och medelvärde av avvikelssen (diff_medel)
-   long diff[length1];    // Vektor att fylla med individuella skillnader
-   long diff_medel = 0;
+   int diff[length1];    // Vektor att fylla med individuella skillnader
+   int diff_medel = 0;
    for(int i = 0; i<length1; i++){
       diff[i] = abs(medel1 - m1[i]);        // Differens i längd
       diff_medel = diff_medel + diff[i];  // Summerar alla differenser för att kunna ta medelvärde
@@ -173,8 +135,8 @@ long getCM(){
 
    // Filtrerar bort de mätningar som är vars avvikelse är 
    // längre bort än medelavvikelsen + 5 cm
-   long count = 0;                      // Räknare för indexering då vektorn blir kortare
-   long res[val];
+   int count = 0;                      // Räknare för indexering då vektorn blir kortare
+   int res[val];
    for(int i = 0; i<length1; i++){
       if(diff[i] < diff_medel + 5 ){     // Krav för att bli godkänd
          res[count] = m1[i];                // Skrivs in i vektorn
@@ -184,7 +146,7 @@ long getCM(){
 
 
    // De mätvärden som är godkända summeras och medelvärdes tas
-   long ans = 0;                       
+   int ans = 0;                       
    for(int i = 0; i<count; i++){ 
       ans = ans + res[i];             
    }
@@ -199,11 +161,11 @@ long getCM(){
    */
 
    //printf("%ld\n", ans);
-   return ((long)ans);
+   return ((int)ans);
 }
 
 void getCMloop(){
- long l;
+ int l;
  while(1){
  l = getCM();
  printf("%ld\n", l);
