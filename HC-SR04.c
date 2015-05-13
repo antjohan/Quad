@@ -29,11 +29,11 @@ double movingAvg(int newvalue){
   for (int i=0;i<avgsamples-1;++i){
     latestdata[i]=latestdata[i+1];
     tmp=tmp+(double)latestdata[i+1];
-    printf("i:%d sum:%lf new:%d latesti:\n",i,tmp,newvalue,latestdata[i]);
+    //printf("i:%d sum:%lf new:%d latesti:%lf\n",i,tmp,newvalue,latestdata[i]);
   }
-    latestdata[avgsamples]=newvalue;
+    latestdata[avgsamples-1]=newvalue;
     tmp=tmp+newvalue;
-    printf("filtered: %lf\n", tmp);
+    //printf("filtered: %lf\n", tmp);
     return((double)tmp/(double)avgsamples);
 }
 
