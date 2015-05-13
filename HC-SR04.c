@@ -9,8 +9,8 @@ void sample(){
    while(sampling==1){
       checkPipe();
       currentHeight=movingAvg(getUltra());
-      //printf("UH-int: %s\n", WriteBuf);
-      delay(7);
+      printf("UH: %lf\n", currentHeight);
+      delay(10);
    }
 }
  
