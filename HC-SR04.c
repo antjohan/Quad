@@ -9,7 +9,7 @@ void sample(){
    while(sampling==1){
       checkPipe();
       currentHeight=movingAvg(getUltra());
-      printf("UH: %lf\n", currentHeight);
+   //   printf("UH: %lf\n", currentHeight);
       delay(10);
    }
 }
@@ -65,7 +65,7 @@ void connectFifos(){
 
 void writeOutput(){
    char WriteBuf[128];
-   sprintf(WriteBuf,"%ld",currentHeight);
+   sprintf(WriteBuf,"%lf",currentHeight);
    write(from_ultra_fd,WriteBuf,sizeof(WriteBuf));
 }
 void checkPipe(){
