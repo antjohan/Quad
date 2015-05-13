@@ -39,7 +39,9 @@
 int InitialPressurePa;
 int from_baro_fd;
 int to_baro_fd;
-float AbsoluteAltitude;
+double AbsoluteAltitude;
+int avgsamples=10;
+double latestdata[10];
 int sampling=1;
 int refreshrate;
 int debug;

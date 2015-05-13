@@ -177,9 +177,22 @@ void calibrate(){
 void sample(){
     while(sampling==1){
         checkPipe();
-        AbsoluteAltitude=GetAltitude(InitialPressurePa);
+        AbsoluteAltitude=movingAvg(GetAltitude(InitialPressurePa));
         //printf("ABSOLUTE ALTITUDE", RelativeAltitude);
     }
+}
+
+double movingAvg(float newvalue){
+  double tmp=0.0;
+  for (int i=0;i<avgsamples-1;++i){
+    latestdata[i]=latestdata[i+1];
+    tmp=tmp+latestdata[i+1];
+    //printf("i:%d sum:%lf new:%d latesti:%lf\n",i,tmp,newvalue,latestdata[i]);
+  }
+    latestdata[avgsamples-1]=newvalue;
+    tmp=tmp+(double)newvalue;
+    //printf("filtered: %lf\n", tmp);
+    return((double)tmp/(double)avgsamples);
 }
 
 void writeOutput(){
