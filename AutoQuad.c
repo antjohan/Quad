@@ -276,7 +276,7 @@ int main(){
             
         }else if (main_menu == 5){
 
-        	system("pkill ultra");
+        	system("pkill HC-SR04");
 			system("pkill BMP180");
 			system("pkill HMC5883L");
 			system("pkill UGPS");
