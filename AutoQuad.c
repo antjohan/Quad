@@ -51,6 +51,7 @@ int main(){
 
     wiringPiSetupSys();
     sfinit();
+    
     while(1){
         
         system("clear");
@@ -75,7 +76,7 @@ int main(){
             printf("Done!\n");
             
             
-        }else if( main_menu == 2){
+        }else if(main_menu == 2){
             printf("Disarming...\n");
             Disarm_FlightController();
             printf("Done!\n");
@@ -108,7 +109,6 @@ int main(){
         }else if(main_menu == 4){
             test_cfg_init();
             test_cfg_print();
-            get_time();
 
             int test_menu;
             system("clear");
@@ -128,16 +128,14 @@ int main(){
             scanf("%d",&test_menu);
             system("clear");
 
-            //barometertest
             
             if (test_menu == 1){
                 int pingprompt=0;
-                while (pingprompt>=0){
+                while (1){
                     
                     printf("---------------------------------\n");
                     printf("Ping Menu\n");
                     printf("---------------------------------\n");
-                    //printf("ping to see if program->sensor communication (pipe) is working\n");
                     printf("[1]	Barometer\n");
                     printf("[2]	Ultrasonic sensor\n");
                     printf("[3]	Magnetometer\n");
@@ -168,11 +166,12 @@ int main(){
                         commandSensor("gps\0", "ping\0");
                         
                     } else if (pingprompt==6){
-                        pingprompt=-1;
+                        break;
+                    }else{
+                        printf("Invalid\n");
                     }
                 }
             }
-            //Ultra sensor
             else if(test_menu == 2){
                 
                 int recdataprompt=0;
@@ -181,7 +180,6 @@ int main(){
                     printf("---------------------------------\n");
                     printf("Data Menu\n");
                     printf("---------------------------------\n");
-                    //printf("recieve 1 data to see if sensor->program communication (pipe) is working\n");
                     printf("[1]	Barometer\n");
                     printf("[2]	Ultrasonic sensor\n");
                     printf("[3]	Magnetometer\n");
@@ -244,11 +242,13 @@ int main(){
                         
                     }else if (recdataprompt==8){
                         break;
+                    
+                    }else{
+                        printf("Invalid\n");
                     }
                 }
             }
             
-            //Test hoverToStep
             else if(test_menu == 3){
                 testHoverToStep();
                 
