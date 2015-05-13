@@ -251,11 +251,7 @@
 		strcpy(sensorstr,sensor);
 		sprintf(sendstr,"%s",command);
 
-		printf("sensor: %s\n", sensorstr);
-		printf("command: %s\n", sendstr);
-
 		if (strcmp(sensorstr, str1)==0){
-			printf("requesting from mag\n");
 			sensor_fd=to_mag_fd;
 		} else if (strcmp(sensorstr, str2)==0){
 			sensor_fd=to_ultra_fd;
