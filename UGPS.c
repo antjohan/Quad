@@ -125,7 +125,7 @@
        strcpy(str1,"ping");
        strcpy(str2, "read");
 
- if (read(to_baro_fd, buffer, 10)>0){
+ if (read(to_gps_fd, buffer, 10)>0){
           if (strcmp(buffer,str1)==0){
             printf("GPS-process sends his finest regards\n");
           } else if(strcmp(buffer,str2)==0){
