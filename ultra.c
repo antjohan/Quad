@@ -102,7 +102,7 @@ void checkPipe(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
 
-      char strlast[10];
+       char strlast[10]={""};
        while (read(to_ultra_fd, strlast, 10)>0){
             buffer=strlast;
        }

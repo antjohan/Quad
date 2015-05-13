@@ -101,7 +101,7 @@ void connectFifos(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
    strcpy(str3,"calibrate");
-   char strlast[10];
+       char strlast[10]={""};
    while (read(to_mag_fd, strlast, 10)>0){
         buffer=strlast;
    }
