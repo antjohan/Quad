@@ -8,7 +8,7 @@ int main(){
 void sample(){
    while(sampling==1){
       checkPipe();
-      currentHeight=getUltra();
+      currentHeight=movingAvg(getUltra());
       //printf("UH-int: %s\n", WriteBuf);
       delay(7);
    }
@@ -22,6 +22,17 @@ void HCSR04_init() {
    //TRIG pin must start LOW
    digitalWrite(TRIG, LOW);
    delay(20);
+}
+
+double movingAvg(int newvalue){
+  double tmp=0.0;
+  for (int i=0;i<avgsamples-1;++i){
+    latestdata[i]=latestdata[i+1]
+    tmp=tmp+latestdata[i+1];
+  }
+    latestdata[avgsamples]=newvalue;
+    tmp=tmp+newvalue;
+    return((double)tmp/(double)avgsamples);
 }
 
 void connectFifos(){

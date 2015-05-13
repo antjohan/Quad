@@ -21,7 +21,8 @@
 
 int sampling=1; //ultra will loop and report sampled data
 double currentHeight;
-int latestdata[10];
+int avgsamples=10;
+int latestdata[avgsamples]={0};
 
 
 //functions
