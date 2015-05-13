@@ -64,16 +64,13 @@ void checkPipe(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
 
-    char temp[10];
-    while (read(to_ultra_fd, buffer, 10)>0){
-      strcpy(temp,buffer);
-    }
-    strcpy(buffer,temp);
+ if (read(to_baro_fd, buffer, 10)>0){
           if (strcmp(buffer,str1)==0){
             printf("Ultrasonic says hi :>!\n");
           } else if(strcmp(buffer,str2)==0){
             writeOutput();
           }
+        }
 }
 
 int getUltra() {

@@ -101,12 +101,7 @@ void connectFifos(){
    strcpy(str1,"ping");
    strcpy(str2, "read");
    strcpy(str3,"calibrate");
-    char temp[10];
-    while (read(to_mag_fd, buffer, 10)>0){
-      strcpy(temp,buffer);
-    }
-    strcpy(buffer,temp);
-
+ if (read(to_baro_fd, buffer, 10)>0){
      if (strcmp(buffer,str1)==0){
        printf("Magnetometer says hi! :)\n");
        } else if(strcmp(buffer,str2)==0){
@@ -115,6 +110,7 @@ void connectFifos(){
            calibrate();
          }
      }
+ }
 
 int GetX(){
     uint8_t MSB = wiringPiI2CReadReg8(HMC5883L_Sensor,XData_MSB);
