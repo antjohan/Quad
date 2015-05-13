@@ -166,7 +166,7 @@ void sample(){
         z = GetZ();
         heading=computeHeading(x,y,z);
         // printf("Heading: %lf\n", heading);
-        delay(20);
+        delay(7);
     }
 }
 
