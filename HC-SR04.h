@@ -25,12 +25,12 @@ long currentHeight;
 
 //functions
 void sample();
-long getCM();
+int getCM();
 void connectFifos();
 void checkPipe();
 void getCMloop();
 void ultraSetup();
-long getUltra();
+int getUltra();
 void getCMloop();
 
 int from_ultra_fd;

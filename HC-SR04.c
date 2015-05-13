@@ -97,7 +97,7 @@ int getUltra() {
 
 // I funktionen/filtret kan man välja antal mätningar(val) 
 
-long getCM(){
+int getCM(){
    int val = 5;
    int sum;
 
