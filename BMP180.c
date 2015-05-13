@@ -23,7 +23,6 @@ void cfg_init(){
         config_destroy(&cfg);
         //return(EXIT_FAILURE);
     }
-    //root = config_root_setting(&cfg);
     bmp180 = config_lookup(&cfg, "BMP180");
     
     int os = 0;
@@ -292,22 +291,6 @@ long CompensatePressure(long uncompensatedPressure){
     // Check to see if we have old temperature data.
     //if (msSinceLastTempReading > AcceptableTemperatureLatencyForPressure)
     //  GetTemperature(); // Refresh the temperature.
-    
-    // Data from the BMP180 datasheet to test algorithm.
-    /*OversamplingSetting = 0;
-     uncompensatedPressure = 23843;
-     LastTemperatureData = 2399;
-     Calibration_AC1 = 408;
-     Calibration_AC2 = -72;
-     Calibration_AC3 = -14383;
-     Calibration_AC4 = 32741;
-     Calibration_AC5 = 32757;
-     Calibration_AC6 = 23153;
-     Calibration_B1 = 6190;
-     Calibration_B2 = 4;
-     Calibration_MB = -32767;
-     Calibration_MC = -8711;
-     Calibration_MD = 2868;*/
     
     // Algorithm taken from BMP180 datasheet.
     long b6 = LastTemperatureData - 4000;
