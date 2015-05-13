@@ -47,7 +47,7 @@ int main(){
 	system("./UGPS &");
 	system("./HMC5883L &");
 	system("./BMP180 &");
-	system("./ultra &");
+	system("./HC-SR04 &");
 
     wiringPiSetupSys();
     sfinit();
