@@ -27,7 +27,7 @@ void HCSR04_init() {
 double movingAvg(int newvalue){
   double tmp=0.0;
   for (int i=0;i<avgsamples-1;++i){
-    latestdata[i]=latestdata[i+1]
+    latestdata[i]=latestdata[i+1];
     tmp=tmp+latestdata[i+1];
   }
     latestdata[avgsamples]=newvalue;

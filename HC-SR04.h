@@ -27,6 +27,7 @@ int latestdata[avgsamples]={0};
 
 //functions
 void sample();
+double movingAvg(int newvalue);
 int getCM();
 void connectFifos();
 void checkPipe();
