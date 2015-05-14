@@ -155,17 +155,7 @@ get_time();
   Set_Servo(4,50+YawSpeed);
   
   for(int i = 0; i < 80; i++){
-  	double uh=getUHeight();
-                                double bh=getBHeight();
-                                double h=getHeight(uh,bh);
                                 double head=getHeading();
-                                void refreshGPS();
-                                double lat=latitude();
-                                double lon=longitude();
-                                double qual=quality();
-                                double ns=nsat();
-                                double sn=sdn();
-                                double se=sde();
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	delay(50);
