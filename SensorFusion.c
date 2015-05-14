@@ -34,7 +34,7 @@
 
 	//variables
 	double BaroInitialHeight=0;
-	double gpsdata[];
+	double gpsdata[6];
 
 	clock_t t1;
 
