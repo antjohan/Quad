@@ -203,8 +203,8 @@ int main(){
                         printf("Magnetometer heading(deg): %lf\n", getHeading());
                         
                     } else if (recdataprompt==4){
-                    	double * gpsdata = getCoordinate();
-                        printf("lat: %lf long: %lf quality: %lf nsat: %lf sdn: %lf sde: %lf\n", *(gpsdata+1),*(gpsdata+2),*(gpsdata+3), *(gpsdata+4), gpsdata[5], gpsdata[6]);
+                    	 void refreshGPS();
+                        printf("lat: %lf long: %lf quality: %d nsat: %d sdn: %lf sde: %lf\n", longitude(),latitude(),quality(),nsat(), sdn(), sde());
                         
                     } else if (recdataprompt==5){
                         printf("Barometer height(m): %lf\n", getBHeight());
@@ -223,12 +223,12 @@ int main(){
                                 double h=getHeight(uh,bh);
                                 double hd=getHeading();
                                 void refreshGPS();
-                                double latitude=*(gpsdata);
-                                double longitude=*(gpsdata+1);
-                                double quality=*(gpsdata+2);
-                                double nsat=*(gpsdata+3);
-                                double sdn=*(gpsdata+4);
-                                double sde=*(gpsdata+5);
+                                double latitude=latitude();
+                                double longitude=longitude();
+                                double quality=quality();
+                                double nsat=nsat();
+                                double sdn=sdn();
+                                double sde=sde();
 
                                 updateLog(bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
                                 double samplingspeed=millis()-starttime;
