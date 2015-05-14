@@ -203,7 +203,7 @@ int main(){
                         int i = 0;
                         double starttime=millis();
                         while (i<100){
-                            printf("T: Magnetometer heading(deg): %lf\n", millis()-starttime,getHeading());
+                            printf("T:%lf Magnetometer heading(deg): %lf\n", millis()-starttime,getHeading());
                             delay(50);
                             ++i;
                         }
