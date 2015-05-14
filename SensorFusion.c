@@ -46,6 +46,13 @@
 	double getUHeight();
 	double getHeading();
 	//double * getCoordinate();
+	void refreshGPS();
+	double latitude();
+	double longitude();
+	int quality();
+	int nsat();
+	double sdn();
+	double sde();
 	void commandSensor(char * sensor, char * command);
 	void updateLog();
 
@@ -221,15 +228,18 @@
 	*/
 	void refreshGPS(){ 
 		commandSensor("gps", "read");
-		gpsdata[6]={0};
+		double newgpsdata[6]={0};
 		char gpsbuffer[MAX_BUF];
 		char * str=&gpsbuffer;
 	 	if(read (from_gps_fd, gpsbuffer, MAX_BUF)>0){  // read up to 100 characters if ready to read
 	        char * end;
 			for (int i =0;i<6;++i){
-		        gpsdata[i] = strtod(str, &end);
+		        newgpsdata[i] = strtod(str, &end);
 		        str=end;
 		    }
+		}
+		for (int i=0;i<6;++i){
+			gpsdata[i]=newgpsdata[i];
 		}
 	}
 	double latitude(){
