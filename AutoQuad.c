@@ -223,17 +223,17 @@ int main(){
                                 double h=getHeight(uh,bh);
                                 double hd=getHeading();
                                 void refreshGPS();
-                                double latitude=latitude();
-                                double longitude=longitude();
-                                double quality=quality();
-                                double nsat=nsat();
-                                double sdn=sdn();
-                                double sde=sde();
+                                double lat=latitude();
+                                double lon=longitude();
+                                double qual=quality();
+                                double ns=nsat();
+                                double sn=sdn();
+                                double se=sde();
 
-                                updateLog(bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde);
+                                updateLog(bh,uh,h,hd,lat,lon,qual,ns,sn,se);
                                 double samplingspeed=millis()-starttime;
                                 //double bheight, double uheight, double height, double heading, double latitude, double longitude, double satquality, double nsat, double sdn, double sde
-                                printf("Baro: %5.2lf   Ultra: %5.2lf  H: %5.2lf  Mag: %3.0lf Lat: %7lf Long: %7lf Q: %1.0lf nsat:%2.0lf sdn: %3.2lf sde: %3.2lf ms: %lf\n",bh,uh,h,hd,latitude,longitude,quality,nsat,sdn,sde,samplingspeed);
+                                printf("Baro: %5.2lf   Ultra: %5.2lf  H: %5.2lf  Mag: %3.0lf Lat: %7lf Long: %7lf Q: %1.0lf nsat:%2.0lf sdn: %3.2lf sde: %3.2lf ms: %lf\n",bh,uh,h,hd,lat,lon,qual,ns,sn,se,samplingspeed);
                                 starttime=millis();
                                 delay(40);
                             }
