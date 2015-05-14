@@ -171,7 +171,7 @@ void sample(){
 }
 
 void calibrate(){
-    int calsamp=10000;
+    int calsamp=6000;
     int xvalues[calsamp];
     int yvalues[calsamp];
     int zvalues[calsamp];
@@ -215,6 +215,7 @@ void calibrate(){
         if ((i%calsamp/100)==0){
             printf("X: %d Y: %d Z: %d current x:%d %d y:%d %d z:%d %d\n",xvalues[i],yvalues[i],zvalues[i],max_x,min_x,max_y,min_y,max_z,min_z);
         }
+        delay(10);
     }
     printf("Calibration 100%% done\n");
     offset_x=(min_x+max_x)/2;
