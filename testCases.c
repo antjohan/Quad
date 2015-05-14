@@ -191,7 +191,7 @@ get_time();
 	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	delay(50);
   }*/
-  fclose(fp);
+  //fclose(fp);
   setHover();
   
 }
