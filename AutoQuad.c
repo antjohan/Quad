@@ -200,7 +200,12 @@ int main(){
                         printf("Ultrasonic height(cm): %lf\n", getUHeight());
                         
                     } else if (recdataprompt==3){
-                        printf("Magnetometer heading(deg): %lf\n", getHeading());
+                        int i = 0;
+                        while (i<100){
+                            printf("Magnetometer heading(deg): %lf\n", getHeading());
+                            delay(50);
+                            ++i;
+                        }
                         
                     } else if (recdataprompt==4){
                     	 void refreshGPS();
