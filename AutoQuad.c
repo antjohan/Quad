@@ -205,7 +205,7 @@ int main(){
                          char fname[50];
 			  char file_cmd[128];
 			  char dir[128];
-			  sprintf(fname, "%s TEST_DELETE=%d.txt", str_time, YawSpeed);
+			  sprintf(fname, "TEST_DELETE.txt");
 			  sprintf(dir, "/home/pi/logs/\"%s\"", fname);
 			
 			  FILE *fp;
