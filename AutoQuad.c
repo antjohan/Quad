@@ -212,7 +212,7 @@ int main(){
 			  fp=fopen(dir,"w");
                         while (i<100){
                         double head=getHeading();
-                       	    fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+                       	    fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-starttime, head);
                             printf("T:%lf Magnetometer heading(deg): %lf\n", millis()-starttime,head);
                             delay(50);
                             ++i;
