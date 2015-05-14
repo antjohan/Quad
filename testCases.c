@@ -153,7 +153,7 @@ get_time();
   
   double start_time = millis();
   Set_Servo(4,50+YawSpeed);
-  double head;
+  double head=0;
   for(int i = 0; i < 40; i++){
   	head = getHeading();
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
