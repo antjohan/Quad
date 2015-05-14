@@ -134,6 +134,13 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 
 void testRotation(){
 
+  int i=0;
+  while (i<50){
+    printf("M:%lf\n",getHeading());
+    ++i;
+    delay(50);
+  }
+
 get_time();
 //  char fname[50];
 //  char file_cmd[128];
@@ -153,12 +160,7 @@ get_time();
   
   //double start_time = millis();
   //Set_Servo(4,50+YawSpeed);
-  int i=0;
-  while (i<50){
-  	printf("M:%lf\n",getHeading());
-  	++i;
-  	delay(50);
-  }
+
   
   for(int i = 0; i < 80; i++){
         double head=getHeading();
