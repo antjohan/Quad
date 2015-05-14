@@ -146,7 +146,7 @@ get_time();
  
   printf("Startar yaw rotations test, setter hover\n");
  
-  setHover();
+ // setHover();
   sleep(4);
   
   printf("Initierar clockwise rotation\n"); 
@@ -155,10 +155,10 @@ get_time();
   Set_Servo(4,50+YawSpeed);
   
   for(int i = 0; i < 80; i++){
-                                double head=getHeading();
+        double head=getHeading();
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
-  	delay(50);
+  	delay(250);
   }
 
   fprintf(fp, "Klar med en rotation, börjar nästa\n");
