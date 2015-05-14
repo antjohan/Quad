@@ -194,7 +194,7 @@ int main(){
 
                     
                     if(recdataprompt==1){
-                        printf("Magnetometer heading(deg): %lf\n", head);
+                        printf("Magnetometer heading(deg): %lf\n", getHeading());
              
                     } else if (recdataprompt==4){
                     	 void refreshGPS();
