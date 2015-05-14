@@ -200,7 +200,74 @@ int main(){
                         printf("Ultrasonic height(cm): %lf\n", getUHeight());
                         
                     } else if (recdataprompt==3){
-                        int i = 0;
+                    	int HoverOffset = 0;
+int ThrottleStep = 0;
+int YawSpeed = 0;
+int PitchSpeed = 0;
+int RollSpeed = 0;
+int Debug = 0;
+char str_time[24];
+
+get_time();
+  char fname[50];
+  char file_cmd[128];
+  char dir[128];
+  sprintf(fname, "%s speed=%d.txt", str_time, YawSpeed);
+  sprintf(dir, "/home/pi/logs/Rotation/\"%s\"", fname);
+
+  FILE *fp;
+  fp=fopen(dir,"w");
+ 
+  printf("Startar yaw rotations test, setter hover\n");
+ 
+ // setHover();
+  sleep(4);
+  
+  printf("Initierar clockwise rotation\n"); 
+  
+  double start_time = millis();
+  Set_Servo(4,50+YawSpeed);
+  
+  for(int i = 0; i < 80; i++){
+        double head=getHeading();
+  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(250);
+  }
+
+  fprintf(fp, "Klar med en rotation, börjar nästa\n");
+  setHover();
+  printf("Klar med clockwise, setter hover och mäter bromsning\n");
+  for(int i = 0; i<20; i++){
+  	double head = getHeading();
+	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(50);
+  }
+  sleep(3);
+ 
+  printf("Initierar counter clockwise rotation\n");
+ 
+  start_time = millis();
+  Set_Servo(4, 50-YawSpeed);
+ 
+  for(int i = 0; i < 80; i++){
+  	double head = getHeading();
+  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(50);
+  }
+  
+  printf("Klar med test, setter hover och mäter bromsning\n");
+  for(int i = 0; i<20; i++){
+  	double head = getHeading();
+	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(50);
+  }
+  fclose(fp);
+  setHover();
+                        /*int i = 0;
                         double starttime=millis();
                          char fname[50];
 			  char file_cmd[128];
@@ -217,7 +284,7 @@ int main(){
                             delay(50);
                             ++i;
                         }
-                        
+                        */
                     } else if (recdataprompt==4){
                     	 void refreshGPS();
                         printf("lat: %lf long: %lf quality: %d nsat: %d sdn: %lf sde: %lf\n", longitude(),latitude(),quality(),nsat(), sdn(), sde());
