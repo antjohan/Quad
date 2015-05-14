@@ -34,6 +34,7 @@
 
 	//variables
 	double BaroInitialHeight=0;
+	double gpsdata[];
 
 	clock_t t1;
 
@@ -216,10 +217,11 @@
 	/*
 	return array gpsdata[] constists of (in the following order)
 	latitude(deg) longitude(deg)  height(m)   Q  ns   sdn(m)   sde(m)   sdu(m)  sdne(m)  sdeu(m)  sdun(m) age(s)  ratio
+	refresh only contains lat,long,qual,nsat,sdn,sde
 	*/
-	double * getCoordinate(){ 
+	void refreshGPS(){ 
 		commandSensor("gps", "read");
-		double gpsdata[6]={0};
+		gpsdata[6]={0};
 		char gpsbuffer[MAX_BUF];
 		char * str=&gpsbuffer;
 	 	if(read (from_gps_fd, gpsbuffer, MAX_BUF)>0){  // read up to 100 characters if ready to read
@@ -229,7 +231,24 @@
 		        str=end;
 		    }
 		}
-		return(gpsdata);
+	}
+	double latitude(){
+		return(gpsdata[1]);
+	}
+	double longitude(){
+		return(gpsdata[2]);
+	}
+	int quality(){
+		return((int)gpsdata[3]);
+	}
+	int nsat(){
+		return((int)gpsdata[4]);
+	}
+	double sdn(){
+		return(gpsdata[5]);
+	}
+	double sde(){
+		return(gpsdata[6]);
 	}
 
 	void commandSensor(char * sensor, char * command){//sensor = ultra, baro, mag or gps

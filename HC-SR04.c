@@ -10,7 +10,7 @@ void sample(){
       checkPipe();
       currentHeight=movingAvg(getUltra());
    //   printf("UH: %lf\n", currentHeight);
-      delay(10);
+      delay(20);
    }
 }
  

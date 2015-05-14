@@ -222,7 +222,7 @@ int main(){
                                 double bh=getBHeight();
                                 double h=getHeight(uh,bh);
                                 double hd=getHeading();
-                                double * gpsdata=getCoordinate();
+                                void refreshGPS();
                                 double latitude=*(gpsdata);
                                 double longitude=*(gpsdata+1);
                                 double quality=*(gpsdata+2);
