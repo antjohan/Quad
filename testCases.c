@@ -153,31 +153,44 @@ get_time();
   
   double start_time = millis();
   Set_Servo(4,50+YawSpeed);
- 
-  for(int i = 0; i < 60; i++){
-
-  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
-  	delay(50);
+  float head;
+  for(int i = 0; i < 40; i++){
+  	head = getHeading();
+  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(100);
   }
 
   fprintf(fp, "Klar med en rotation, börjar nästa\n");
- 
-  printf("Klar med clockwise, setter hover\n");
- 
   setHover();
-  sleep(4);
+  printf("Klar med clockwise, setter hover och mäter bromsning\n");
+  for(int i = 0; i<10; i++){
+  	head = getHeading();
+	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(100);
+  }
+  sleep(3);
  
   printf("Initierar counter clockwise rotation\n");
  
   start_time = millis();
   Set_Servo(4, 50-YawSpeed);
  
-  for(int i = 0; i < 60; i++){
-  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, getHeading());
-  	delay(50);
+  for(int i = 0; i < 40; i++){
+  	head = getHeading();
+  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(100);
   }
   
-  printf("Klar med test, setter hover\n");
+  printf("Klar med test, setter hover och mäter bromsning\n");
+  for(int i = 0; i<10; i++){
+  	head = getHeading();
+	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	delay(100);
+  }
   fclose(fp);
   setHover();
 }
