@@ -146,18 +146,19 @@ get_time();
  
   printf("Startar yaw rotations test, setter hover\n");
  
-  setHover();
-  sleep(4);
+  //setHover();
+  //sleep(4);
   
   printf("Initierar clockwise rotation\n"); 
   
-  double start_time = millis();
-  Set_Servo(4,50+YawSpeed);
+  //double start_time = millis();
+  //Set_Servo(4,50+YawSpeed);
   
   for(int i = 0; i < 80; i++){
         double head=getHeading();
 // 	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
-  	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	//printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  	printf("%lf\n", head);
   	delay(250);
   }
 /*
@@ -192,7 +193,7 @@ get_time();
   	delay(50);
   }*/
   //fclose(fp);
-  setHover();
+  //setHover();
   
 }
 
