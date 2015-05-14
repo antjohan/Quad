@@ -202,8 +202,18 @@ int main(){
                     } else if (recdataprompt==3){
                         int i = 0;
                         double starttime=millis();
+                         char fname[50];
+			  char file_cmd[128];
+			  char dir[128];
+			  sprintf(fname, "%s TEST_DELETE=%d.txt", str_time, YawSpeed);
+			  sprintf(dir, "/home/pi/logs/\"%s\"", fname);
+			
+			  FILE *fp;
+			  fp=fopen(dir,"w");
                         while (i<100){
-                            printf("T:%lf Magnetometer heading(deg): %lf\n", millis()-starttime,getHeading());
+                        double head=getHeading();
+                       	    fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+                            printf("T:%lf Magnetometer heading(deg): %lf\n", millis()-starttime,head());
                             delay(50);
                             ++i;
                         }
