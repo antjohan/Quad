@@ -141,7 +141,7 @@ void testRotation(){
     delay(50);
   }
 
-get_time();
+//get_time();
 //  char fname[50];
 //  char file_cmd[128];
 //  char dir[128];
