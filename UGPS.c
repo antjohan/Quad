@@ -65,6 +65,7 @@
                     strcpy(str, buf);
                     char * end;
                     str = strstr(str,"  ");
+                    printf("String recieved from rtklib: %s\n",str);
                     for (int i =0;i<13;++i){
                         data[i] = strtod(str, &end);
                         //printf("Value%d=%lf\n",i,d);
@@ -112,7 +113,7 @@
         double sde=data[7];
 
         sprintf(WriteBuf,"%ld %ld %ld %ld %ld %ld",latitude, longitude, satquality, nsat, sdn, sde);
-      //  printf("Writing to pipe: %s\n", WriteBuf);
+        printf("Writing to pipe: %s\n", WriteBuf);
         write(from_gps_fd,WriteBuf,sizeof(WriteBuf));
     }
 
