@@ -153,13 +153,19 @@ get_time();
   
   //double start_time = millis();
   //Set_Servo(4,50+YawSpeed);
+  int i=0;
+  while (i<50){
+  	printf("M:%lf\n",getHeading());
+  	++i;
+  	delay(50);
+  }
   
   for(int i = 0; i < 80; i++){
         double head=getHeading();
 // 	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	//printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("%lf\n", head);
-  	delay(250);
+  	delay(50);
   }
 /*
   fprintf(fp, "Klar med en rotation, börjar nästa\n");
