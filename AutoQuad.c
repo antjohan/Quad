@@ -201,8 +201,9 @@ int main(){
                         
                     } else if (recdataprompt==3){
                         int i = 0;
+                        double starttime=millis();
                         while (i<100){
-                            printf("Magnetometer heading(deg): %lf\n", getHeading());
+                            printf("T: Magnetometer heading(deg): %lf\n", millis()-starttime,getHeading());
                             delay(50);
                             ++i;
                         }
