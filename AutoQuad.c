@@ -270,7 +270,7 @@ int main(){
 		float hojd;
 		printf("Skriv ref hojd");
                 scanf("%lf",&hojd);
-                pidHeightTest(hojd));
+                pidHeightTest(hojd);
             }else{
                 printf("Invalid\n");
             }

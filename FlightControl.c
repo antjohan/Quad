@@ -15,16 +15,16 @@
  ----------------------------------------------------
  */
 //int hoverConst = 71;
-float kp;
-float ki;
-float kd;
+double kp;
+double ki;
+double kd;
 
 int HoverOffset;
 
 void PID_cfg_init(){
 
     config_t cfg;
-    config_setting_t *test;
+    config_setting_t *PID;
     const char *str;
     config_init(&cfg);
     
@@ -124,7 +124,7 @@ float PIDcal(float diff) {
 //	printf("Derivative: %lf \n", derivative);
 //	printf("Integral: %lf \n", integral);
 
-	output = HoverOffset+(Kp*error + Ki*integral + Kd*derivative);
+	output = HoverOffset+(kp*error + ki*integral + kd*derivative);
 	//Saturation Filter    
 	if(output > MAX)    {        
 	  	output = MAX;    
