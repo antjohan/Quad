@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
+#include <libconfig.h>
+
 
 /*
  Pinout FlightController -> Servo_Num -> Raspberry Pi
@@ -12,7 +14,47 @@
 	RUD -> 4 -> P1-15
  ----------------------------------------------------
  */
-int hoverConst = 71;
+//int hoverConst = 71;
+float kp;
+float ki;
+float kd;
+
+int HoverOffset;
+
+void PID_cfg_init(){
+
+    config_t cfg;
+    config_setting_t *test;
+    const char *str;
+    config_init(&cfg);
+    
+    if(! config_read_file(&cfg, "c.cfg"))
+    {
+        fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
+        config_error_line(&cfg), config_error_text(&cfg));
+        config_destroy(&cfg);
+        //return(EXIT_FAILURE);
+    }
+    PID = config_lookup(&cfg, "PID");
+    
+    config_setting_lookup_bool(PID, "Debug", &Debug);
+    config_setting_lookup_int(PID, "HoverOffset", &HoverOffset);
+    config_setting_lookup_float(PID, "kp", &kp);
+    config_setting_lookup_float(PID, "ki", &ki);
+    config_setting_lookup_float(PID, "kd", &kd);
+ 
+    config_destroy(&cfg);
+}
+
+void PID_cfg_print(){
+
+    printf("kp: %f", kp);
+    printf("ki: %f", ki);
+    printf("kd: %f", kd);
+
+    printf("offset: %d", HoverOffset);
+}
+
 
 void Set_Servo(int num, int pos){
     
@@ -67,11 +109,11 @@ float PIDcal(float diff) {
 //	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.1; //100ms loop time 
-	float MAX = hoverConst+5;  //for Current Saturation 
-	float MIN = hoverConst-5; //hoverconst-..
-	float Kp = 8;
-	float Kd = 0.5;
-	float Ki = 0.02;
+	float MAX = HoverOffset+5;  //for Current Saturation 
+	float MIN = HoverOffset-5; //hoverconst-..
+	//float Kp = 8;
+	//float Kd = 0.5;
+	//float Ki = 0.02;
 	float error = diff; 
 	float derivative;
 	float output = 0;
@@ -82,7 +124,7 @@ float PIDcal(float diff) {
 //	printf("Derivative: %lf \n", derivative);
 //	printf("Integral: %lf \n", integral);
 
-	output = hoverConst+(Kp*error + Ki*integral + Kd*derivative);
+	output = HoverOffset+(Kp*error + Ki*integral + Kd*derivative);
 	//Saturation Filter    
 	if(output > MAX)    {        
 	  	output = MAX;    

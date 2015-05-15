@@ -185,9 +185,3 @@ void getCMloop(){
  printf("%ld\n", l);
  }
 }
-
-
-
-
-
-

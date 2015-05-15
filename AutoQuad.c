@@ -109,6 +109,8 @@ int main(){
         }else if(main_menu == 4){
             test_cfg_init();
             test_cfg_print();
+            PID_cfg_init();
+            PID_cfg_print();
 
             int test_menu;
             system("clear");
