@@ -310,20 +310,65 @@ void pidHeightTest(double refHeight){
     fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     Set_Servo(3, reqThrust);
-    delay(101);//0.1 second
+    delay(100);//0.1 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
   setHover();//Should not be needed if the PID works nicely
   fclose(fp);
 }
 
-void pidInsideTest(float refHeight){
-	for(int i = 0; i < 100; i++){
-		float currentHeight = getHeight(getUHeight(), getBHeight());
-		int reqThrust = PIDcal(refHeight-currentHeight);
-		printf("%fl\n", reqThrust);
-		delay(101);
-	}
+void pidHeightTestTwo(){
+//  get_time();
+  char fname[50];
+  char file_cmd[128];
+  char dir[128];
+  sprintf(fname, "%s.txt", str_time, PitchSpeed);
+  sprintf(dir, "/home/pi/logs/Roll/\"%s\"", fname);
+
+  FILE *fp;
+  fp=fopen(dir,"w");  
+  fprintf(fp, "Startar PID height test, setter hover\n");
+  printf("Startar PID height test, setter hover\n");
+  setHover();
+ double start_time = millis();
+//  for(int i = 0; i<1000; i++){
+  for(int i = 0; i<200; i++){
+    double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
+    double diff = refHeightOne-currentHeight;
+    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
+    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    printf("Höjd: %lf\n", currentHeight);
+    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    Set_Servo(3, reqThrust);
+    delay(100);//0.1 second
+  }//Iterate 20 seconds
+  for(int i = 0; i<200; i++){
+    double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
+    double diff = refHeightTwo-currentHeight;
+    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
+    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    printf("Höjd: %lf\n", currentHeight);
+    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    Set_Servo(3, reqThrust);
+    delay(100);//0.1 second
+  }//Iterate 20 seconds
+  for(int i = 0; i<200; i++){
+    double refHeight = 0.5;
+    double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
+    double diff = refHeightOne-currentHeight;
+    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
+    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    printf("Höjd: %lf\n", currentHeight);
+    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    Set_Servo(3, reqThrust);
+    delay(100);//0.1 second
+  }//Iterate 20 seconds
+  printf("Klar med PID height test, borde hovra nu\n");
+  setHover();//Should not be needed if the PID works nicely
+  fclose(fp);
 }
 /*
 void loopMagnetometer(){
