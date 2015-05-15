@@ -133,12 +133,6 @@ Setup: 	Doubled inputs from RC reciever to the MUX on all ports except from yaw
 */
 
 void testRotation(){
-  int i=0;
-  while (i<50){
-    printf("M:%lf\n",getHeading());
-    ++i;
-    delay(50);
-  }
 
 //get_time();
   char fname[50];
@@ -161,18 +155,17 @@ void testRotation(){
   Set_Servo(4,50+YawSpeed);
 
   
-  for(int i = 0; i < 40; i++){
+  for(int i = 0; i < 60; i++){
     double head=getHeading();
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
-  	printf("%lf\n", head);
   	delay(100);
   }
 
   fprintf(fp, "Klar med en rotation, börjar nästa\n");
   setHover();
   printf("Klar med clockwise, setter hover och mäter bromsning\n");
-  for(int i = 0; i<10; i++){
+  for(int i = 0; i<20; i++){
   	double head = getHeading();
 	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
 	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
@@ -185,7 +178,7 @@ void testRotation(){
   start_time = millis();
   Set_Servo(4, 50-YawSpeed);
  
-  for(int i = 0; i < 40; i++){
+  for(int i = 0; i < 60; i++){
   	double head = getHeading();
   	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
@@ -193,7 +186,7 @@ void testRotation(){
   }
   
   printf("Klar med test, setter hover och mäter bromsning\n");
-  for(int i = 0; i<10; i++){
+  for(int i = 0; i<20; i++){
   	double head = getHeading();
 	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
 	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
