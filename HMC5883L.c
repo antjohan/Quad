@@ -152,7 +152,7 @@ double computeHeading(int x, int y, int z){
         hd=0.0;
     }
     //printf("Heading: %lf\n",hd);
-    return(z);
+    return(hd);
 }
 
 void sample(){
