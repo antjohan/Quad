@@ -298,7 +298,7 @@ void pidHeightTest(int refHeight){
   fprintf(fp, "Startar PID height test, setter hover\n");
   printf("Startar PID height test, setter hover\n");
   setHover();
-  start_time = millis();
+  double start_time = millis();
   for(int i = 0; i<1000; i++){
     printf("Ny Iteration\n");
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
