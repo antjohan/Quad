@@ -267,8 +267,8 @@ int main(){
                 setHover();
                 
             }else if(test_menu == 8){
-		float hojd;
-		printf("Skriv ref hojd");
+		double hojd;
+		printf("Skriv ref hojd\n");
                 scanf("%lf",&hojd);
                 pidHeightTest(hojd);
             }else{
