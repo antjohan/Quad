@@ -286,19 +286,26 @@ Setup:	The ultra sensor should be placed facing downwards. Doubled signals from 
 */
 
 void pidHeightTest(int refHeight){
-  const int hoverOffset = 70;
+  get_time();
+  char fname[50];
+  char file_cmd[128];
+  char dir[128];
+  sprintf(fname, "%s.txt", str_time, PitchSpeed);
+  sprintf(dir, "/home/pi/logs/Roll/\"%s\"", fname);
+
   FILE *fp;
-  fp=fopen("heightAndSpeed.txt","r+");
+  fp=fopen(dir,"w");  
+  fprintf(fp, "Startar PID height test, setter hover\n");
   printf("Startar PID height test, setter hover\n");
   setHover();
-  
-  for(int i = 0; i<100; i++){
+  start_time = millis();
+  for(int i = 0; i<1000; i++){
     printf("Ny Iteration\n");
-  	int currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
-  	int reqThrust = PIDcal(refHeight-currentHeight);//PID function
-  	fprintf(fp, "#Iteration = %i, Höjd = %i, Hastighet ut från PID = %i", i, currentHeight, reqThrust, "\n");
-  	Set_Servo(3, reqThrust);
-    delay(100);//0.01 second
+    double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
+    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i",  millis()-start_time, currentHeight, reqThrust, "\n");
+    Set_Servo(3, reqThrust);
+    delay(100);//0.1 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
   setHover();//Should not be needed if the PID works nicely
