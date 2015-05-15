@@ -70,12 +70,12 @@ float PIDcal(float diff) {
 	float MAX = hoverConst+5;  //for Current Saturation 
 	float MIN = hoverConst-5; //hoverconst-..
 	float Kp = 18;
-	float Kd = 0.5;
-	float Ki = 0.02;
+	float Kd = 0.005;
+	float Ki = 0.0002;
 	float error = diff; 
 	float derivative;
 	float output = 0;
-//	printf("Error: %lf \n", error);
+	printf("Error: %lf \n", error);
 	 //Calculate P,I,D    
   	integral = integral + error*dt;    
 	derivative = (error - pre_error)/dt;
@@ -92,7 +92,7 @@ float PIDcal(float diff) {
   	}        //Update error        
 	pre_error = error;
 	output = round(output);
- //	printf("Output (post max/min/floor) : %lf \n", output);
+ 	printf("Output (post max/min/floor) : %lf \n", output);
 //   }
    return output;
 }
