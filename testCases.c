@@ -315,6 +315,14 @@ void pidInsideTest(float refHeight){
 		delay(300);
 	}
 }
+void loopMagnetometer(){
+	while(1){
+		int x = getX();
+		int y = getY();
+		int z = getZ();
+		printf("X: %i, Y: %i, Z: %i\n", x,y,z);
+	}
+}
 /*
 int main(){
 	wiringPiSetup();
