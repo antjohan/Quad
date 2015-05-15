@@ -303,8 +303,9 @@ void pidHeightTest(int refHeight){
   while(1){
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
     int reqThrust = PIDcal(refHeight-currentHeight);//PID function
-    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
-    printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    printf("Höjd: %lf\n", currentHeight);
+//    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+ //   printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     Set_Servo(3, reqThrust);
     delay(100);//0.1 second
   }//Iterate 10 seconds
