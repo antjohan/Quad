@@ -19,7 +19,7 @@ double kp;
 double ki;
 double kd;
 
-boolean Debug;
+int Debug;
 
 int HoverOffset;
 
