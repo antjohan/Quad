@@ -299,11 +299,12 @@ void pidHeightTest(int refHeight){
   printf("Startar PID height test, setter hover\n");
   setHover();
   double start_time = millis();
-  for(int i = 0; i<1000; i++){
-    printf("Ny Iteration\n");
+//  for(int i = 0; i<1000; i++){
+  while(1){
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
     int reqThrust = PIDcal(refHeight-currentHeight);//PID function
-    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i",  millis()-start_time, currentHeight, reqThrust, "\n");
+    fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
+    printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     Set_Servo(3, reqThrust);
     delay(100);//0.1 second
   }//Iterate 10 seconds
