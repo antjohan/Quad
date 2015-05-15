@@ -64,7 +64,7 @@ void Disarm_FlightController(){
 static float pre_error = 0; 
 static float integral = 0;  
 float PIDcal(float diff) {   
-	printf("Diff: %lf \n", diff);
+//	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.1; //100ms loop time 
 	float MAX = hoverConst+5;  //for Current Saturation 
@@ -75,12 +75,12 @@ float PIDcal(float diff) {
 	float error = diff; 
 	float derivative;
 	float output = 0;
-	printf("Error: %lf \n", error);
+//	printf("Error: %lf \n", error);
 	 //Calculate P,I,D    
   	integral = integral + error*dt;    
 	derivative = (error - pre_error)/dt;
-	printf("Derivative: %lf \n", derivative);
-	printf("Integral: %lf \n", integral);
+//	printf("Derivative: %lf \n", derivative);
+//	printf("Integral: %lf \n", integral);
 
 	output = hoverConst+(Kp*error + Ki*integral + Kd*derivative);
 	//Saturation Filter    
@@ -92,7 +92,7 @@ float PIDcal(float diff) {
   	}        //Update error        
 	pre_error = error;
 	output = round(output);
- 	printf("Output (post max/min/floor) : %lf \n", output);
+ //	printf("Output (post max/min/floor) : %lf \n", output);
 //   }
    return output;
 }
