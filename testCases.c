@@ -307,7 +307,7 @@ void pidHeightTest(int refHeight){
     fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     Set_Servo(3, reqThrust);
-    delay(100);//0.1 second
+    delay(101);//0.1 second
   }//Iterate 10 seconds
   printf("Klar med PID height test, borde hovra nu\n");
   setHover();//Should not be needed if the PID works nicely
@@ -315,12 +315,11 @@ void pidHeightTest(int refHeight){
 }
 
 void pidInsideTest(float refHeight){
-	integral = 0;
 	for(int i = 0; i < 100; i++){
 		float currentHeight = getHeight(getUHeight(), getBHeight());
 		int reqThrust = PIDcal(refHeight-currentHeight);
 		printf("%fl\n", reqThrust);
-		delay(300);
+		delay(101);
 	}
 }
 /*
