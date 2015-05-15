@@ -49,12 +49,16 @@ void PID_cfg_init(){
 }
 
 void PID_cfg_print(){
+    if(Debug){
+    printf("--------PID Configuration--------\n");
+    printf("kp: %f\n", kp);
+    printf("ki: %f\n", ki);
+    printf("kd: %f\n", kd);
 
-    printf("kp: %f", kp);
-    printf("ki: %f", ki);
-    printf("kd: %f", kd);
+    printf("offset: %d\n", HoverOffset);
+    printf("---------------------------------\n");
 
-    printf("offset: %d", HoverOffset);
+}
 }
 
 
