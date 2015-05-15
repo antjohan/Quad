@@ -267,10 +267,10 @@ int main(){
                 setHover();
                 
             }else if(test_menu == 8){
-		double hojd;
+		/*double hojd;
 		printf("Skriv ref hojd\n");
-                scanf("%lf",&hojd);
-                pidHeightTest(hojd);
+                scanf("%lf",&hojd);*/
+                pidHeightTest(1.5);
             }else{
                 printf("Invalid\n");
             }
