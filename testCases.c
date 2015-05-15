@@ -144,12 +144,12 @@ void testRotation(){
   char fname[50];
   char file_cmd[128];
   char dir[128];
-  sprintf(fname, "%s speed=%d.txt", str_time, YawSpeed);
+ /* sprintf(fname, "%s speed=%d.txt", str_time, YawSpeed);
   sprintf(dir, "/home/pi/logs/Rotation/\"%s\"", fname);
 
   FILE *fp;
   fp=fopen(dir,"w");
- 
+ */
   printf("Startar yaw rotations test, setter hover\n");
   
   setHover();
@@ -163,12 +163,12 @@ void testRotation(){
   
   for(int i = 0; i < 80; i++){
     double head=getHeading();
-  	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
+  //	fprintf(fp, "Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	printf("%lf\n", head);
   	delay(50);
   }
-
+/*
   fprintf(fp, "Klar med en rotation, börjar nästa\n");
   setHover();
   printf("Klar med clockwise, setter hover och mäter bromsning\n");
@@ -199,9 +199,9 @@ void testRotation(){
 	printf("Time = %lf, Grader = %lf\n", millis()-start_time, head);
   	delay(50);
   }
-  //fclose(fp);
-  //setHover();
-  
+  fclose(fp);
+  setHover();
+  */
 }
 
 /*
