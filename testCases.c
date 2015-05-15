@@ -6,6 +6,8 @@
 #include <wiringPiI2C.h>
 #include <time.h>
 
+#include "HMC5883L.c"
+
 int HoverOffset = 0;
 int ThrottleStep = 0;
 int YawSpeed = 0;
