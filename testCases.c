@@ -5,9 +5,6 @@
 #include <math.h>
 #include <wiringPiI2C.h>
 #include <time.h>
-
-#include "HMC5883L.c"
-
 int HoverOffset = 0;
 int ThrottleStep = 0;
 int YawSpeed = 0;
@@ -317,6 +314,7 @@ void pidInsideTest(float refHeight){
 		delay(300);
 	}
 }
+/*
 void loopMagnetometer(){
 	while(1){
 		int x = getX();
@@ -324,7 +322,7 @@ void loopMagnetometer(){
 		int z = getZ();
 		printf("X: %i, Y: %i, Z: %i\n", x,y,z);
 	}
-}
+}*/
 /*
 int main(){
 	wiringPiSetup();
