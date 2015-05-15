@@ -19,6 +19,8 @@ double kp;
 double ki;
 double kd;
 
+boolean Debug;
+
 int HoverOffset;
 
 void PID_cfg_init(){
