@@ -124,8 +124,9 @@ int main(){
             printf("[5]	Calibrate magnetometer\n");
             printf("[6]	Test PID regulator\n");
             printf("[7]	Set hover\n");
-            printf("[8]	Pid test 0.5m\n");
-            printf("[9]	Back\n");
+            printf("[8]	Pid test 1\n");
+            printf("[9] Pid test 2\n");
+            printf("[10]	Back\n");
             printf("---------------------------------\n");
             scanf("%d",&test_menu);
             system("clear");
@@ -270,7 +271,10 @@ int main(){
 		/*double hojd;
 		printf("Skriv ref hojd\n");
                 scanf("%lf",&hojd);*/
-                pidHeightTest(1.5);
+                pidHeightTest();
+
+            }else if(test_menu == 9){
+                pidHeightTestTwo();
             }else{
                 printf("Invalid\n");
             }

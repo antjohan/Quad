@@ -14,6 +14,9 @@ int RollSpeed = 0;
 int Debug = 0;
 char str_time[24];
 
+double refHeightOne;
+double refHeightTwo;
+
 void test_cfg_init(){
 	config_t cfg;
     config_setting_t *test;
@@ -35,6 +38,9 @@ void test_cfg_init(){
     config_setting_lookup_int(test, "YawSpeed", &YawSpeed);
     config_setting_lookup_int(test, "PitchSpeed", &PitchSpeed);
     config_setting_lookup_int(test, "RollSpeed", &RollSpeed);
+
+    config_setting_lookup_float(test, "refHeightOne", &refHeightOne);
+    config_setting_lookup_float(test, "refHeightTwo", &refHeightTwo);
  
     config_destroy(&cfg);
 }
@@ -47,6 +53,8 @@ void test_cfg_print(){
 		printf(" YawSpeed: %d", YawSpeed);
 		printf(" PitchSpeed: %d", PitchSpeed);
 		printf(" RollSpeed: %d", RollSpeed);
+		printf(" refHeightOne: %lf", refHeightOne);
+		printf(" refHeightTwo: %lf", refHeightTwo);
     	printf("---------------------------------\n\n");
 	}
 }
@@ -286,7 +294,7 @@ Setup:	The ultra sensor should be placed facing downwards. Doubled signals from 
 	to the MUX, except for the thrust which is sent from the rPI on one set of inputs.
 */
 
-void pidHeightTest(double refHeight){
+void pidHeightTest(){
 //  get_time();
   char fname[50];
   char file_cmd[128];
@@ -303,9 +311,9 @@ void pidHeightTest(double refHeight){
 //  for(int i = 0; i<1000; i++){
   while(1){
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
-    double diff = refHeight-currentHeight;
-    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
-    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    double diff = refHeightOne-currentHeight;
+    printf("Ref: %d, Cur: %d\n", refHeightOne, currentHeight, diff);
+    int reqThrust = PIDcal(refHeightOne-currentHeight);//PID function
     printf("Höjd: %lf\n", currentHeight);
     fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
@@ -335,8 +343,8 @@ void pidHeightTestTwo(){
   for(int i = 0; i<200; i++){
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
     double diff = refHeightOne-currentHeight;
-    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
-    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    printf("Ref: %d, Cur: %d\n", refHeightOne, currentHeight, diff);
+    int reqThrust = PIDcal(refHeightOne-currentHeight);//PID function
     printf("Höjd: %lf\n", currentHeight);
     fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
@@ -346,8 +354,8 @@ void pidHeightTestTwo(){
   for(int i = 0; i<200; i++){
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
     double diff = refHeightTwo-currentHeight;
-    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
-    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    printf("Ref: %d, Cur: %d\n", refHeightTwo, currentHeight, diff);
+    int reqThrust = PIDcal(refHeightTwo-currentHeight);//PID function
     printf("Höjd: %lf\n", currentHeight);
     fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
@@ -355,11 +363,10 @@ void pidHeightTestTwo(){
     delay(100);//0.1 second
   }//Iterate 20 seconds
   for(int i = 0; i<200; i++){
-    double refHeight = 0.5;
     double currentHeight = getHeight(getUHeight(), getBHeight()); //Use the ultra sensor to get height
     double diff = refHeightOne-currentHeight;
-    printf("Ref: %d, Cur: %d\n", refHeight, currentHeight, diff);
-    int reqThrust = PIDcal(refHeight-currentHeight);//PID function
+    printf("Ref: %d, Cur: %d\n", refHeightOne, currentHeight, diff);
+    int reqThrust = PIDcal(refHeightOne-currentHeight);//PID function
     printf("Höjd: %lf\n", currentHeight);
     fprintf(fp, "Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
     printf("Time = %lf, Höjd = %lf, Hastighet ut från PID = %i\n",  millis()-start_time, currentHeight, reqThrust);
