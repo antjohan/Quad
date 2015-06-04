@@ -115,8 +115,8 @@ float PIDcal(float diff) {
 //	printf("Diff: %lf \n", diff);
 	float epsilon = 0.01;
 	float dt = 0.1; //100ms loop time 
-	float MAX = HoverOffset+5;  //for Current Saturation 
-	float MIN = HoverOffset-5; //hoverconst-..
+	float MAX = HoverOffset+25;  //for Current Saturation 
+	float MIN = HoverOffset-25; //hoverconst-..
 	//float Kp = 8;
 	//float Kd = 0.5;
 	//float Ki = 0.02;
